@@ -12,10 +12,12 @@
     <img alt="GitHub: bhoominn" src="https://img.shields.io/github/issues-raw/bhoominn/nb_utils?style=flat" />
 </a>
 <img src="https://img.shields.io/tokei/lines/github/bhoominn/nb_utils" />
-<img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" />
 <img src="https://img.shields.io/github/last-commit/bhoominn/nb_utils" />
 <a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank">
     <img src="https://img.shields.io/discord/854023838136533063" />
+</a>
+<a href="https://github.com/bhoominn/nb_utils">
+    <img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" />
 </a>
 <a href="https://github.com/bhoominn">
     <img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" target="_blank" />
