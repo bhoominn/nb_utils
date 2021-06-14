@@ -1,5 +1,4 @@
 [![Pub Package](https://img.shields.io/pub/v/nb_utils.svg)](https://pub.dartlang.org/packages/nb_utils)
-
 <a href="https://opensource.org/licenses/MIT" target="_blank">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
 </a>
@@ -15,6 +14,7 @@
 <a href="https://twitter.com/bhoominnaik" target="_blank">
   <img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter"/>
 </a>
+
 
 <a href="https://www.buymeacoffee.com/bhoominn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bhoominn&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
 
