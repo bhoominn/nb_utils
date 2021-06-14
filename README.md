@@ -100,7 +100,7 @@ SettingSection(
   ],
 ),
 ```
-![SettingSection](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/setting_section_widget.jpg)
+![SettingSection](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_section_widget.jpg)
 
 ```dart
 //SettingItem
@@ -114,7 +114,7 @@ SettingItemWidget(
    subTitle: "Subtitle", // Optional
 ),
 ```
-![SettingItemWidget](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/setting_item_widget.jpg)
+![SettingItemWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_item_widget.jpg)
 
 ```dart
 /// Default AppButton
@@ -156,7 +156,7 @@ AppTextField(
     decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
 ),
 ```
-![AppTextField](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/app_text_field_widget.jpg)
+![AppTextField](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_text_field_widget.jpg)
 
 ```dart
 HoverWidget(
@@ -178,7 +178,7 @@ HorizontalList(
     itemCount: 25,
 ),
 ```
-![HorizontalList](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/horizontal_widget.gif)
+![HorizontalList](https://github.com/bhoominn/nb_utils/blob/main/screenshots/horizontal_widget.gif)
 ```dart
 RatingBarWidget(
     rating: initialRating,
@@ -187,7 +187,7 @@ RatingBarWidget(
     },
 ),
 ```
-![RatingBarWidget](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/rating_bar_widget.gif)
+![RatingBarWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/rating_bar_widget.gif)
 
 ```dart
 /// Make your Flutter App Responsive in any device out there with Responsive widget
@@ -228,7 +228,7 @@ DottedBorderWidget(
     ),
 ),
 ```
-![DottedBorderWidget](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/dotted_border_widget.jpg)
+![DottedBorderWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dotted_border_widget.jpg)
 
 ```dart
 AppButton(
@@ -245,7 +245,7 @@ AppButton(
   },
 ),
 ```
-![Add Confirmation Dialog](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/add_confirmation_dialog.gif)
+![Add Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/add_confirmation_dialog.gif)
 
 ```dart
 AppButton(
@@ -262,7 +262,7 @@ AppButton(
   },
 ),
 ```
-![Delete Confirmation Dialog](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/delete_confirmation_dialog.gif)
+![Delete Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/delete_confirmation_dialog.gif)
 
 ```dart
 AppButton(
@@ -279,7 +279,7 @@ AppButton(
   },
 ),
 ```
-![Update Confirmation Dialog](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/update_confirmation_dialog.gif)
+![Update Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/update_confirmation_dialog.gif)
 
 ```dart
 AppButton(
@@ -302,7 +302,7 @@ AppButton(
   },
 ),
 ```
-![Custom Confirmation Dialog](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/custom_confirmation_dialog.gif)
+![Custom Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/custom_confirmation_dialog.gif)
 
 ```dart
 AppButton(
@@ -322,7 +322,7 @@ AppButton(
   },
 ),
 ```
-![Default Confirmation Dialog](https://gitlab.com/bhoominn/nb_utils/-/raw/master/screenshots/default_confirmation_dialog.gif)
+![Default Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/default_confirmation_dialog.gif)
 
 ## Some useful method or extensions you will ever need
 ```dart
