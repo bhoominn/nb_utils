@@ -77,7 +77,7 @@ appBarWidget(
 ```dart
 SettingSection(
   title: Text('Account Management', style: boldTextStyle(size: 24)),
-  subTitle: Text('Control your account', style: primaryTextStyle(size: 16)), // Optional
+  subTitle: Text('Control your account', style: primaryTextStyle()), // Optional
   items: [
     SettingItemWidget(
       title: 'Hibernate account',
