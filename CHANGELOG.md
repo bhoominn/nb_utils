@@ -1,4 +1,4 @@
-## 4.3.0+1
+## 4.3.0+2
 - Added Circular Progress with Gradient Widget
 - Updated ReadMe file
 ## 4.2.14

@@ -1,3 +1,5 @@
+[![Pub Package](https://img.shields.io/pub/v/nb_utils.svg)](https://pub.dartlang.org/packages/nb_utils)
+
 <a href="https://opensource.org/licenses/MIT" target="_blank">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
 </a>
@@ -753,6 +755,12 @@ platformName();
 /// Invoke Native method and get result
 var data = await invokeNativeMethod(CHANNEL_NAME, METHOD_NAME, [dynamic arguments]);
 ```
+
+## Features and bugs
+
+Please file feature requests and bugs at the [issue tracker][tracker].
+
+[tracker]: https://github.com/bhoominn/nb_utils/issues
 
 ## If you want to give suggestion, please contact me via email - bhoominn@gmail.com
 

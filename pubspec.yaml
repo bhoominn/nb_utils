@@ -1,6 +1,6 @@
 name: nb_utils
 description: This package helps you daily usable function with ease. Just add nb_utils with its latest version and that's it you are ready to use.
-version: 4.3.0+1
+version: 4.3.0+2
 homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
@@ -11,6 +11,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_web_plugins:
     sdk: flutter
 
   shared_preferences: ^2.0.6
@@ -35,3 +37,5 @@ flutter:
         pluginClass: NbUtilsPlugin
       windows:
         pluginClass: nb_utils_plugin
+      web:
+        pluginClass: NbUtilsWeb
