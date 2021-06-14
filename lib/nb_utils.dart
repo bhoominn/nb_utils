@@ -157,8 +157,7 @@ mixin AfterLayoutMixin<T extends StatefulWidget> on State<T> {
 }
 
 class NBUtils {
-  static const MethodChannel _channel =
-      const MethodChannel('nb_utils');
+  static const MethodChannel _channel = const MethodChannel('nb_utils');
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');

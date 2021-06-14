@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: createMaterialColor(Colors.blue),
       ),
       themeMode:
-      getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
+          getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
       home: HomePage(),
     );
   }
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                               title: "Do you want to logout from the app?",
                               dialogType: DialogType.CONFIRMATION,
                               centerImage:
-                              'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
+                                  'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
                               onAccept: () {
                                 //
                               },
@@ -319,7 +319,7 @@ class _HomePageState extends State<HomePage> {
                     SettingItemWidget(
                       title: 'Close account',
                       subTitle:
-                      'Learn about your options, and close your account if you wish',
+                          'Learn about your options, and close your account if you wish',
                       decoration: BoxDecoration(borderRadius: radius()),
                       trailing: Icon(Icons.keyboard_arrow_right_rounded,
                           color: context.dividerColor),
