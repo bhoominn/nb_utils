@@ -33,6 +33,7 @@ export 'src/extensions/string_extensions.dart';
 export 'src/extensions/widget_extensions.dart';
 export 'src/models/LanguageDataModel.dart';
 export 'src/models/WalkThroughModel.dart';
+export 'src/utils/after_layout.dart';
 export 'src/utils/colors.dart';
 export 'src/utils/common.dart';
 export 'src/utils/constants.dart';
@@ -135,25 +136,6 @@ Future<void> initialize({
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
-}
-
-/// Callback after build widget is rendered
-/// CREDIT
-/// https://pub.dev/packages/after_layout
-mixin AfterLayoutMixin<T extends StatefulWidget> on State<T> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!
-        .addPostFrameCallback((_) => afterFirstLayout(context));
-  }
-
-  void afterFirstLayout(BuildContext context);
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }
 
 class NBUtils {
