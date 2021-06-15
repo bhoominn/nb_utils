@@ -16,7 +16,8 @@
 <a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank">
     <img src="https://img.shields.io/discord/854023838136533063" />
 </a>
-
+<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/likes"></a>
+<a href="https://pub.dev/packages/nb_utils/pub%20points"><img src="https://badges.bar/nb_utils/pub%20points"></a>
 <a href="https://github.com/bhoominn">
     <img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" target="_blank" />
 </a>
@@ -26,7 +27,6 @@
 <a href="https://twitter.com/bhoominnaik" target="_blank">
   <img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter"/>
 </a>
-
 
 <a href="https://www.buymeacoffee.com/bhoominn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bhoominn&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
 
@@ -742,7 +742,6 @@ int dayInMonthTotal = daysInMonth(2, 2000);
 
 String timeAgo = DateTime.now().timeAgo;
 ```
-
 
 ## Systems Methods
 ```dart
