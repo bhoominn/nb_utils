@@ -5,9 +5,9 @@
 Pod::Spec.new do |s|
   s.name             = 'nb_utils'
   s.version          = '0.0.1'
-  s.summary          = 'This package helps you daily usable function with ease. Just add nb_utils with its latest version and that's it you are ready to use.'
+  s.summary          = 'This package helps you daily usable function and ready made Widgets with ease.'
   s.description      = <<-DESC
-This package helps you daily usable function with ease. Just add nb_utils with its latest version and that's it you are ready to use.
+This package helps you daily usable function and ready made Widgets with ease.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
