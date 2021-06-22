@@ -37,8 +37,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await NBUtils.platformVersion ?? 'Unknown platform version';
+      platformVersion = await NBUtils.platformVersion ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -65,8 +64,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(
         primarySwatch: createMaterialColor(Colors.blue),
       ),
-      themeMode:
-          getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
+      themeMode: getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
       home: HomePage(),
     );
   }
@@ -164,8 +162,7 @@ class _HomePageState extends State<HomePage> {
                                 snackBar(
                                   context,
                                   title: 'Confirmed',
-                                  snackBarAction: SnackBarAction(
-                                      label: 'label', onPressed: () {}),
+                                  snackBarAction: SnackBarAction(label: 'label', onPressed: () {}),
                                 );
                               },
                             );
@@ -246,9 +243,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text('Hi', style: primaryTextStyle()),
                         Text('Hello', style: primaryTextStyle()),
-                        Text(
-                            'How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you?',
-                            style: primaryTextStyle()),
+                        Text('How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you?', style: primaryTextStyle()),
                       ],
                     ),
                     16.height,
@@ -301,28 +296,23 @@ class _HomePageState extends State<HomePage> {
                 ),
                 8.height,
                 SettingSection(
-                  title: Text('Account Management',
-                      style: boldTextStyle(size: 24)),
-                  subTitle: Text('Control your account',
-                      style: primaryTextStyle(size: 16)),
+                  title: Text('Account Management', style: boldTextStyle(size: 24)),
+                  subTitle: Text('Control your account', style: primaryTextStyle(size: 16)),
                   items: [
                     SettingItemWidget(
                       title: 'Hibernate account',
                       subTitle: 'Temporary deactivate your account',
                       decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
+                      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                       onTap: () {
                         //
                       },
                     ),
                     SettingItemWidget(
                       title: 'Close account',
-                      subTitle:
-                          'Learn about your options, and close your account if you wish',
+                      subTitle: 'Learn about your options, and close your account if you wish',
                       decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
+                      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                       onTap: () {
                         HomePage().launch(context);
                       },

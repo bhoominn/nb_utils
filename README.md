@@ -36,12 +36,6 @@
 
 [API Docs](https://pub.dev/documentation/nb_utils/latest/) are available.
 
-## Platform Support
-
-| Android | iOS | MacOS  | Web | Linux | Windows |
-| :-----: | :-: | :---:  | :-: | :---: | :-----: |
-|   ✔️    | ✔️  |  ✔️   | ✔️  |  ✔️   |   ✔️   |
-
 ## Installation
 
 Add this line to pubspec.yaml
@@ -343,6 +337,9 @@ AppButton(
 
 /// Open a new screen
 HomePage().launch(context);
+
+///Animate the new page (Slide,Rotate,Scale,Fade)
+HomePage().launch(context,pageRouteAnimation: PageRouteAnimation.Slide);
 
 /// Remove all screens from back stack and opens new screen
 HomePage().launch(context, isNewTask: true);
