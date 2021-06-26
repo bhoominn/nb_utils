@@ -36,6 +36,12 @@
 
 [API Docs](https://pub.dev/documentation/nb_utils/latest/) are available.
 
+## Platform Support
+
+| Android | iOS | MacOS  | Web | Linux | Windows |
+| :-----: | :-: | :---:  | :-: | :---: | :-----: |
+|   ✔️    | ✔️  |  ✔️   | ✔️  |  ✔️   |   ✔️   |
+
 ## Installation
 
 Add this line to pubspec.yaml
@@ -331,6 +337,29 @@ AppButton(
 ),
 ```
 ![Default Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/default_confirmation_dialog.gif)
+
+
+```dart
+Marquee(
+    direction: Axis.horizontal,
+    animationDuration: Duration(milliseconds: 100),
+    pauseDuration: Duration(milliseconds: 100),
+    child: Text("Please enter a long text to see the effect of the marquee widget"),
+),
+```
+```dart
+SnackBar(
+  content: Text('you can use this snackbar with custom styling ', style: boldTextStyle()),
+  backgroundColor: Colors.green,
+  action: SnackBarAction(
+    label: 'Yes',
+    onPressed: () {
+    //Your logic
+    },
+  ),
+  elevation: 8,
+),
+```
 
 ## Some useful method or extensions you will ever need
 ```dart
