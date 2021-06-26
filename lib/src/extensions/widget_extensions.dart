@@ -114,10 +114,10 @@ extension WidgetExtension on Widget? {
   }
 
   /// add opacity to parent widget
-  Widget opacity({required double opacity, durationInSecond = 1}) {
+  Widget opacity({required double opacity, int durationInSecond = 1, Duration? duration}) {
     return AnimatedOpacity(
       opacity: opacity,
-      duration: Duration(seconds: durationInSecond),
+      duration: duration ?? Duration(milliseconds: 500),
       child: this,
     );
   }
@@ -168,8 +168,7 @@ extension WidgetExtension on Widget? {
 
   /// set parent widget in center
   Widget center({double? heightFactor, double? widthFactor}) {
-    return Center(
-        heightFactor: heightFactor, widthFactor: widthFactor, child: this);
+    return Center(heightFactor: heightFactor, widthFactor: widthFactor, child: this);
   }
 
   @deprecated
@@ -245,10 +244,7 @@ extension WidgetExtension on Widget? {
   }
 
   /// Launch a new screen
-  Future<T?> launch<T>(BuildContext context,
-      {bool isNewTask = false,
-      PageRouteAnimation? pageRouteAnimation,
-      Duration? duration}) async {
+  Future<T?> launch<T>(BuildContext context, {bool isNewTask = false, PageRouteAnimation? pageRouteAnimation, Duration? duration}) async {
     if (isNewTask) {
       return await Navigator.of(context).pushAndRemoveUntil(
         buildPageRoute(pageRouteAnimation, duration),
@@ -261,28 +257,24 @@ extension WidgetExtension on Widget? {
     }
   }
 
-  Route<T> buildPageRoute<T>(
-      PageRouteAnimation? pageRouteAnimation, Duration? duration) {
+  Route<T> buildPageRoute<T>(PageRouteAnimation? pageRouteAnimation, Duration? duration) {
     if (pageRouteAnimation != null) {
       if (pageRouteAnimation == PageRouteAnimation.Fade) {
         return PageRouteBuilder(
           pageBuilder: (c, a1, a2) => this!,
-          transitionsBuilder: (c, anim, a2, child) =>
-              FadeTransition(opacity: anim, child: child),
+          transitionsBuilder: (c, anim, a2, child) => FadeTransition(opacity: anim, child: child),
           transitionDuration: duration ?? 1000.milliseconds,
         );
       } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
         return PageRouteBuilder(
           pageBuilder: (c, a1, a2) => this!,
-          transitionsBuilder: (c, anim, a2, child) =>
-              RotationTransition(child: child, turns: ReverseAnimation(anim)),
+          transitionsBuilder: (c, anim, a2, child) => RotationTransition(child: child, turns: ReverseAnimation(anim)),
           transitionDuration: duration ?? 700.milliseconds,
         );
       } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
         return PageRouteBuilder(
           pageBuilder: (c, a1, a2) => this!,
-          transitionsBuilder: (c, anim, a2, child) =>
-              ScaleTransition(child: child, scale: anim),
+          transitionsBuilder: (c, anim, a2, child) => ScaleTransition(child: child, scale: anim),
           transitionDuration: duration ?? 700.milliseconds,
         );
       } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
@@ -290,8 +282,7 @@ extension WidgetExtension on Widget? {
           pageBuilder: (c, a1, a2) => this!,
           transitionsBuilder: (c, anim, a2, child) => SlideTransition(
             child: child,
-            position: Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0))
-                .animate(anim),
+            position: Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0)).animate(anim),
           ),
           transitionDuration: duration ?? 500.milliseconds,
         );

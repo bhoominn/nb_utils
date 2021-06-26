@@ -12,6 +12,10 @@ void main() async {
     LanguageDataModel(name: 'Hindi', languageCode: 'hi'),
   ]);
 
+  defaultToastBackgroundColor = Colors.black;
+  defaultToastTextColor = Colors.white;
+  defaultToastGravityGlobal = ToastGravity.CENTER;
+
   selectedLanguageDataModel = getSelectedLanguageModel();
 
   runApp(MyApp());
@@ -125,8 +129,11 @@ class _HomePageState extends State<HomePage> {
                 8.height,
                 RatingBarWidget(
                   rating: rating,
+                  size: 40,
+                  allowHalfRating: true,
                   onRatingChanged: (e) {
                     rating = e;
+                    log(rating);
                   },
                 ),
                 16.height,
@@ -243,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text('Hi', style: primaryTextStyle()),
                         Text('Hello', style: primaryTextStyle()),
-                        Text('How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you? How are you?', style: primaryTextStyle()),
+                        Text('How are you?', style: primaryTextStyle()),
                       ],
                     ),
                     16.height,
@@ -277,12 +284,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ).paddingAll(16),
+                GoogleLogoWidget(size: 30),
                 16.height,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GoogleLogoWidget(),
-                    16.width,
                     AppButton(
                       text: 'Save',
                       onTap: () async {
@@ -291,9 +297,16 @@ class _HomePageState extends State<HomePage> {
                         }
                       },
                     ),
+                    8.width,
+                    AppButton(
+                      text: 'Toast',
+                      onTap: () async {
+                        toasty(context, 'Toast', borderRadius: BorderRadius.circular(1), textColor: Colors.pinkAccent, gravity: ToastGravity.CENTER);
+                      },
+                    ),
                   ],
                 ),
-                8.height,
+                16.height,
                 SettingSection(
                   title: Text('Account Management', style: boldTextStyle(size: 24)),
                   subTitle: Text('Control your account', style: primaryTextStyle(size: 16)),

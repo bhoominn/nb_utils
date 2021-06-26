@@ -2,9 +2,9 @@ library nb_utils;
 
 import 'dart:async';
 
-import 'package:flutter/services.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nb_utils/src/models/LanguageDataModel.dart';
 import 'package:nb_utils/src/utils/colors.dart';
 import 'package:nb_utils/src/utils/constants.dart';
@@ -82,8 +82,6 @@ Color defaultLoaderBgColorGlobal = Colors.white;
 Color? defaultLoaderAccentColorGlobal;
 Color? defaultInkWellSplashColor;
 Color? defaultInkWellHoverColor;
-Color defaultToastBackgroundColor = Colors.grey.shade200;
-Color defaultToastTextColor = Colors.black;
 
 int defaultElevation = 4;
 double defaultRadius = 8.0;
@@ -119,11 +117,16 @@ late SharedPreferences sharedPreferences;
 ShapeBorder? defaultAppButtonShapeBorder;
 ShapeBorder? defaultDialogShape;
 
-LanguageDataModel? selectedLanguageDataModel;
-
 String defaultCurrencySymbol = currencyRupee;
 
+LanguageDataModel? selectedLanguageDataModel;
 List<LanguageDataModel> localeLanguageList = [];
+
+// Toast Config
+Color defaultToastBackgroundColor = Colors.grey.shade200;
+Color defaultToastTextColor = Colors.black;
+ToastGravity defaultToastGravityGlobal = ToastGravity.CENTER;
+BorderRadius defaultToastBorderRadiusGlobal = radius(30);
 //endregion
 
 // Must be initialize before using shared preference
@@ -133,8 +136,7 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder =
-      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder = RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 

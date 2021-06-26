@@ -13,28 +13,13 @@ bool hasMatch(String? s, String p) {
 /// Toast for default time
 void toast(
   String? value, {
-  BuildContext? context,
   ToastGravity gravity = ToastGravity.BOTTOM,
   length = Toast.LENGTH_SHORT,
   Color? bgColor,
   Color? textColor,
   bool print = false,
 }) {
-  if (context != null) {
-    ToastUtil.show(
-      value.validate(),
-      context,
-      backgroundColor: bgColor ?? defaultToastBackgroundColor,
-      textStyle: primaryTextStyle(color: textColor ?? defaultToastTextColor),
-      backgroundRadius: defaultToastBorderRadius,
-      gravity: gravity == ToastGravity.CENTER
-          ? ToastUtil.center
-          : gravity == ToastGravity.BOTTOM
-              ? ToastUtil.bottom
-              : ToastUtil.top,
-    );
-    if (print) log(value);
-  } else if (value.validate().isEmpty || isLinux) {
+  if (value.validate().isEmpty || isLinux) {
     log(value);
   } else {
     Fluttertoast.showToast(
@@ -46,6 +31,35 @@ void toast(
     );
     if (print) log(value);
   }
+}
+
+void toasty(
+  BuildContext context,
+  String text, {
+  ToastGravity? gravity,
+  length = Toast.LENGTH_SHORT,
+  Color? bgColor,
+  Color? textColor,
+  bool print = false,
+  Duration? duration,
+  BorderRadius? borderRadius,
+  EdgeInsets? padding,
+}) {
+  FToast().init(context);
+  FToast().showToast(
+    child: Container(
+      child: Text(text.validate(), style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
+      decoration: BoxDecoration(
+        color: bgColor ?? defaultToastBackgroundColor,
+        boxShadow: defaultBoxShadow(),
+        borderRadius: borderRadius ?? defaultToastBorderRadiusGlobal,
+      ),
+      padding: padding ?? EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+    ),
+    gravity: gravity ?? defaultToastGravityGlobal,
+    toastDuration: duration,
+  );
+  if (print) log(text);
 }
 
 /// Toast for long period of time
@@ -65,7 +79,6 @@ void toastLong(
     textColor: textColor,
     length: length,
     print: print,
-    context: context,
   );
 }
 
