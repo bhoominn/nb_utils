@@ -78,13 +78,13 @@ void main() async {
 /// Add size parameter for custom size - Default is 24
 GoogleLogoWidget(),
 ```
-![GoogleLogoWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/google_logo_widget.jpg)
+![GoogleLogoWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/google_logo_widget.gif)
 
 ```dart
 /// You can use your preferred State Management technique
 Loader().visible(mIsLoading),
 ```
-![Loader](https://github.com/bhoominn/nb_utils/blob/main/screenshots/loader_widget.jpg)
+![Loader](https://github.com/bhoominn/nb_utils/blob/main/screenshots/loader_widget.gif)
 
 ```dart
 /// AppBar widget
@@ -145,7 +145,7 @@ AppButton(
     },
 ),
 ```
-![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.jpg)
+![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.gif)
 
 ```dart
 UL(
@@ -233,7 +233,7 @@ DotIndicator(
     pages: list,
 ),
 ```
-![DotIndicator](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dot_indicator.jpg)
+![DotIndicator](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dot_indicator.gif)
 
 ```dart
 /// Use SnapHelperWidget to handle loading and error widget automatically
