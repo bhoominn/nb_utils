@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -289,7 +289,6 @@ class _HomePageState extends State<HomePage> {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
                         }
-                        toast('Sample toast');
                       },
                     ),
                   ],

@@ -13,12 +13,28 @@ bool hasMatch(String? s, String p) {
 /// Toast for default time
 void toast(
   String? value, {
+  BuildContext? context,
   ToastGravity gravity = ToastGravity.BOTTOM,
   length = Toast.LENGTH_SHORT,
   Color? bgColor,
   Color? textColor,
+  bool print = false,
 }) {
-  if (value.validate().isEmpty || isLinux) {
+  if (context != null) {
+    ToastUtil.show(
+      value.validate(),
+      context,
+      backgroundColor: bgColor ?? defaultToastBackgroundColor,
+      textStyle: primaryTextStyle(color: textColor ?? defaultToastTextColor),
+      backgroundRadius: defaultToastBorderRadius,
+      gravity: gravity == ToastGravity.CENTER
+          ? ToastUtil.center
+          : gravity == ToastGravity.BOTTOM
+              ? ToastUtil.bottom
+              : ToastUtil.top,
+    );
+    if (print) log(value);
+  } else if (value.validate().isEmpty || isLinux) {
     log(value);
   } else {
     Fluttertoast.showToast(
@@ -28,16 +44,19 @@ void toast(
       backgroundColor: bgColor,
       textColor: textColor,
     );
+    if (print) log(value);
   }
 }
 
 /// Toast for long period of time
 void toastLong(
   String value, {
+  BuildContext? context,
   ToastGravity gravity = ToastGravity.BOTTOM,
   length = Toast.LENGTH_LONG,
   Color? bgColor,
   Color? textColor,
+  bool print = false,
 }) {
   toast(
     value,
@@ -45,7 +64,55 @@ void toastLong(
     bgColor: bgColor,
     textColor: textColor,
     length: length,
+    print: print,
+    context: context,
   );
+}
+
+/// Show SnackBar
+void snackBar(
+  BuildContext context, {
+  String title = '',
+  Widget? content,
+  SnackBarAction? snackBarAction,
+  Function? onVisible,
+  Color? textColor,
+  Color? backgroundColor,
+  EdgeInsets? margin,
+  EdgeInsets? padding,
+  Animation<double>? animation,
+  double? width,
+  ShapeBorder? shape,
+  Duration? duration,
+  SnackBarBehavior? behavior,
+  double? elevation,
+}) {
+  if (title.isEmpty) {
+    log(title);
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: backgroundColor,
+        action: snackBarAction,
+        margin: margin,
+        animation: animation,
+        width: width,
+        shape: shape,
+        duration: 4.seconds,
+        behavior: margin != null ? SnackBarBehavior.floating : behavior,
+        elevation: elevation,
+        onVisible: onVisible?.call(),
+        content: content ??
+            Padding(
+              padding: padding ?? EdgeInsets.symmetric(vertical: 4),
+              child: Text(
+                title,
+                style: primaryTextStyle(color: textColor ?? Colors.white),
+              ),
+            ),
+      ),
+    );
+  }
 }
 
 /// Hide soft keyboard

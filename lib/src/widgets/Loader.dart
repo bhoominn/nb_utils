@@ -3,7 +3,6 @@ import 'package:nb_utils/nb_utils.dart';
 
 /// Circular Loader Widget
 class Loader extends StatefulWidget {
-  static String tag = '/Loader';
   final Color? color;
   final Color? accentColor;
   final Decoration? decoration;
@@ -11,13 +10,14 @@ class Loader extends StatefulWidget {
   final double? value;
   final Animation<Color?>? valueColor;
 
-  Loader(
-      {this.color,
-      this.decoration,
-      this.size,
-      this.value,
-      this.valueColor,
-      this.accentColor});
+  Loader({
+    this.color,
+    this.decoration,
+    this.size,
+    this.value,
+    this.valueColor,
+    this.accentColor,
+  });
 
   @override
   LoaderState createState() => LoaderState();

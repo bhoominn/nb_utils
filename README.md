@@ -78,10 +78,14 @@ void main() async {
 /// Add size parameter for custom size - Default is 24
 GoogleLogoWidget(),
 ```
+![GoogleLogoWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/google_logo_widget.jpg)
+
 ```dart
 /// You can use your preferred State Management technique
 Loader().visible(mIsLoading),
 ```
+![Loader](https://github.com/bhoominn/nb_utils/blob/main/screenshots/loader_widget.jpg)
+
 ```dart
 /// AppBar widget
 appBarWidget(
@@ -141,6 +145,8 @@ AppButton(
     },
 ),
 ```
+![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.jpg)
+
 ```dart
 UL(
    symbolType: SymbolType.Numbered,
@@ -151,6 +157,7 @@ UL(
    ],
 ),
 ```
+![UL](https://github.com/bhoominn/nb_utils/blob/main/screenshots/ul_widget.jpg)
 
 ```dart
 /// Use AppTextField on your app to try more properties
@@ -211,6 +218,8 @@ Responsive(
     web: WebWidget(), // Optional
 ),
 ```
+![Responsive](https://github.com/bhoominn/nb_utils/blob/main/screenshots/responsive_widget.gif)
+
 ```dart
 TextIcon(
     text: 'Your text',
@@ -224,6 +233,8 @@ DotIndicator(
     pages: list,
 ),
 ```
+![DotIndicator](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dot_indicator.jpg)
+
 ```dart
 /// Use SnapHelperWidget to handle loading and error widget automatically
 /// Still you can specify custom Loader Widget and Error Widget
@@ -338,7 +349,6 @@ AppButton(
 ```
 ![Default Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/default_confirmation_dialog.gif)
 
-
 ```dart
 Marquee(
     direction: Axis.horizontal,
@@ -348,17 +358,21 @@ Marquee(
 ),
 ```
 ```dart
-SnackBar(
-  content: Text('you can use this snackbar with custom styling ', style: boldTextStyle()),
-  backgroundColor: Colors.green,
-  action: SnackBarAction(
-    label: 'Yes',
-    onPressed: () {
-    //Your logic
-    },
-  ),
+// Basic
+snackBar(context, title: 'Sample toast'),
+```
+```dart
+// Enhanced
+snackBar(
+  context,
+  title: 'Sample toast',
+  textColor: Colors.blue,
+  backgroundColor: Colors.white,
   elevation: 8,
-),
+  shape: RoundedRectangleBorder(borderRadius: radius(30)),
+  margin: EdgeInsets.all(16),
+  duration: 3.seconds,
+);
 ```
 
 ## Some useful method or extensions you will ever need

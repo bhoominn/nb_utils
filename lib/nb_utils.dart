@@ -43,10 +43,10 @@ export 'src/utils/jwt_decoder.dart';
 export 'src/utils/network_utils.dart';
 export 'src/utils/pattern.dart';
 export 'src/utils/shared_pref.dart';
-export 'src/utils/snack_bar_utils.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
+export 'src/utils/toast_util.dart';
 export 'src/widgets/AppButton.dart';
 export 'src/widgets/AppTextField.dart';
 export 'src/widgets/CircularProgressGradient.dart';
@@ -82,6 +82,8 @@ Color defaultLoaderBgColorGlobal = Colors.white;
 Color? defaultLoaderAccentColorGlobal;
 Color? defaultInkWellSplashColor;
 Color? defaultInkWellHoverColor;
+Color defaultToastBackgroundColor = Colors.grey.shade200;
+Color defaultToastTextColor = Colors.black;
 
 int defaultElevation = 4;
 double defaultRadius = 8.0;
@@ -90,6 +92,7 @@ double defaultAppButtonElevation = 4.0;
 double defaultBlurRadius = 4.0;
 double defaultSpreadRadius = 1.0;
 double defaultAppBarElevation = 4.0;
+double defaultToastBorderRadius = 20.0;
 
 double textBoldSizeGlobal = 16;
 double textPrimarySizeGlobal = 16;
