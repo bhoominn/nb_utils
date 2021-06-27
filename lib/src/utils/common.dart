@@ -48,7 +48,8 @@ void toasty(
   FToast().init(context);
   FToast().showToast(
     child: Container(
-      child: Text(text.validate(), style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
+      child: Text(text.validate(),
+          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
       decoration: BoxDecoration(
         color: bgColor ?? defaultToastBackgroundColor,
         boxShadow: defaultBoxShadow(),

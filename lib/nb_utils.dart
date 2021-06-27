@@ -136,7 +136,8 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder = RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder =
+      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
