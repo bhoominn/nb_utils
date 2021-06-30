@@ -51,6 +51,8 @@ extension IntExtensions on int? {
   /// ```
   Duration get days => Duration(days: this.validate());
 
+  /// Returns if a number is between `first` and `second`
+  /// ```dart
   /// 100.isBetween(50, 150) // true;
   /// 100.isBetween(100, 100) // true;
   /// ```
