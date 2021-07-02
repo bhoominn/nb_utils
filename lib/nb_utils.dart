@@ -46,7 +46,6 @@ export 'src/utils/shared_pref.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
-export 'src/utils/toast_util.dart';
 export 'src/widgets/AppButton.dart';
 export 'src/widgets/AppTextField.dart';
 export 'src/widgets/CircularProgressGradient.dart';
@@ -96,7 +95,7 @@ double textBoldSizeGlobal = 16;
 double textPrimarySizeGlobal = 16;
 double textSecondarySizeGlobal = 14;
 
-double tabletBreakpointGlobal = 500.0;
+double tabletBreakpointGlobal = 600.0;
 double desktopBreakpointGlobal = 720.0;
 
 String? fontFamilyBoldGlobal;

@@ -70,7 +70,7 @@ class CircularProgressGradient extends StatelessWidget {
     if (strokeCapRound) {
       _offset = asin(stokeWidth / (radius * 2 - stokeWidth));
     }
-    var _colors = colors;
+    List<Color> _colors = colors;
     if (_colors == null) {
       Color color = Theme.of(context).accentColor;
       _colors = [color, color];
@@ -78,16 +78,17 @@ class CircularProgressGradient extends StatelessWidget {
     return Transform.rotate(
       angle: -pi / 2.0 - _offset,
       child: CustomPaint(
-          size: Size.fromRadius(radius),
-          painter: _GradientCircularProgressPainter(
-            stokeWidth: stokeWidth,
-            strokeCapRound: strokeCapRound,
-            backgroundColor: backgroundColor,
-            value: value,
-            total: totalAngle,
-            radius: radius,
-            colors: _colors,
-          )),
+        size: Size.fromRadius(radius),
+        painter: _GradientCircularProgressPainter(
+          stokeWidth: stokeWidth,
+          strokeCapRound: strokeCapRound,
+          backgroundColor: backgroundColor,
+          value: value,
+          total: totalAngle,
+          radius: radius,
+          colors: _colors,
+        ),
+      ),
     );
   }
 }

@@ -41,11 +41,13 @@ void toasty(
   Color? bgColor,
   Color? textColor,
   bool print = false,
+  bool removeQueue = false,
   Duration? duration,
   BorderRadius? borderRadius,
   EdgeInsets? padding,
 }) {
   FToast().init(context);
+  if (removeQueue) FToast().removeCustomToast();
   FToast().showToast(
     child: Container(
       child: Text(text.validate(),
@@ -101,8 +103,8 @@ void snackBar(
   SnackBarBehavior? behavior,
   double? elevation,
 }) {
-  if (title.isEmpty) {
-    log(title);
+  if (title.isEmpty && content != null) {
+    log('SnackBar message is empty');
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

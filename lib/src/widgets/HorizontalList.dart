@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class HorizontalList extends StatelessWidget {
   final int itemCount;
@@ -8,7 +7,7 @@ class HorizontalList extends StatelessWidget {
   final double? runSpacing;
   final EdgeInsets? padding;
   final ScrollPhysics? physics;
-  final bool? reverse;
+  final bool reverse;
   final ScrollController? controller;
 
   final WrapAlignment? wrapAlignment;
@@ -22,7 +21,7 @@ class HorizontalList extends StatelessWidget {
     this.padding,
     this.physics,
     this.controller,
-    this.reverse,
+    this.reverse = false,
     this.wrapAlignment,
     this.crossAxisAlignment,
   });
@@ -34,7 +33,7 @@ class HorizontalList extends StatelessWidget {
         physics: physics,
         padding: padding ?? EdgeInsets.all(8),
         scrollDirection: Axis.horizontal,
-        reverse: reverse.validate(),
+        reverse: reverse,
         controller: controller,
         child: Wrap(
           spacing: spacing ?? 8,

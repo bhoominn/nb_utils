@@ -1,13 +1,13 @@
-## 4.3.0+5
+## 4.3.1
 - Added toasty method with context for better controls
 - Updated ReadMe file
-## 4.3.0+4
+## 4.3.0
 - Added Circular Progress with Gradient Widget
 ## 4.2.14
 - Help widget for FutureBuilder & StreamBuilder with loading and error handling inbuilt
 - Added Overlay widget
 - Added JWT Decoder
-- Added builder in showInDialog method to fix context issue (Migrate from child to builder)
+- Added builder in showInDialog method to fix context issue (Migrated from child to builder)
 ## 4.2.12
 - Added page route animation
 - Added default input decoration
@@ -29,7 +29,11 @@
 ## 4.2.8
 - Added Rating Item Widget, Common Model Class
 ## 4.2.5
-- Added Setting Section widget, TextButton, DateTime Extensions, Default BoxDecoration, Added currency symbols
+- Added Setting Section widget
+- Added TextButton Widget
+- Added DateTime Extensions
+- Added Default BoxDecoration
+- Added currency symbols
 ## 4.2.2
 - Added Persistent Tabs widget
 ## 4.1.0

@@ -176,9 +176,9 @@ extension StringExtension on String? {
   double toDouble({double defaultValue = 0.0}) {
     if (this == null) return defaultValue;
 
-    if (this.isDigit()) {
+    try {
       return double.parse(this!);
-    } else {
+    } catch (e) {
       return defaultValue;
     }
   }

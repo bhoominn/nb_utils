@@ -18,7 +18,6 @@ class _HoverWidgetState extends State<HoverWidget> {
 
   void onEvent(bool value) {
     isHovering = value;
-
     setState(() {});
   }
 
