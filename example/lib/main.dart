@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              onAccept: () {
+                              onAccept: (_) {
                                 snackBar(
                                   context,
                                   title: 'Confirmed',
@@ -187,10 +187,10 @@ class _HomePageState extends State<HomePage> {
                               dialogType: DialogType.CONFIRMATION,
                               centerImage:
                                   'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
-                              onAccept: () {
+                              onAccept: (_) {
                                 //
                               },
-                              onCancel: () {
+                              onCancel: (_) {
                                 //
                               },
                               height: 300,
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               title: "Do you want to update this item?",
                               dialogType: DialogType.UPDATE,
-                              onAccept: () {
+                              onAccept: (_) {
                                 snackBar(context, title: 'Updated');
                               },
                             );
@@ -218,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               title: "Delete 89 files permanent?",
                               dialogType: DialogType.DELETE,
-                              onAccept: () {
+                              onAccept: (_) {
                                 snackBar(context, title: 'Deleted');
                               },
                             );
@@ -231,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               title: "Do you want to add this item?",
                               dialogType: DialogType.ADD,
-                              onAccept: () {
+                              onAccept: (_) {
                                 snackBar(context, title: 'Added');
                               },
                             );

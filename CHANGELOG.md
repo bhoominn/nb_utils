@@ -1,3 +1,5 @@
+## 4.4.0
+- BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method
 ## 4.3.1
 - Added toasty method with context for better controls
 - Updated ReadMe file

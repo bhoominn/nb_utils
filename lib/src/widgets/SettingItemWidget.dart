@@ -22,6 +22,7 @@ class SettingItemWidget extends StatelessWidget {
   final Color? splashColor;
   final Decoration? decoration;
   final double? borderRadius;
+  final BorderRadius? radius;
 
   SettingItemWidget({
     required this.title,
@@ -40,6 +41,7 @@ class SettingItemWidget extends StatelessWidget {
     this.borderRadius,
     this.hoverColor,
     this.splashColor,
+    this.radius,
   });
 
   @override
@@ -78,10 +80,8 @@ class SettingItemWidget extends StatelessWidget {
         ],
       ),
     ).onTap(
-      () {
-        onTap?.call();
-      },
-      borderRadius: BorderRadius.circular(borderRadius.validate()),
+      onTap,
+      borderRadius: radius ?? (BorderRadius.circular(borderRadius.validate())),
       hoverColor: hoverColor,
       splashColor: splashColor,
     );

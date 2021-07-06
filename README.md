@@ -69,6 +69,9 @@ void main() async {
 }
 ```
 
+## Migrating from 4.3.1 to 4.4.0
+BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method.
+
 # Examples
 
 ## Ready to Use widgets with Optional Parameters

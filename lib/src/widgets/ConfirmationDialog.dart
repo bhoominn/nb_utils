@@ -4,7 +4,9 @@ import 'package:nb_utils/src/utils/text_styles.dart';
 
 enum DialogType { CONFIRMATION, ACCEPT, DELETE, UPDATE, ADD, RETRY }
 
-Color getDialogPrimaryColor(BuildContext context, DialogType dialogType) {
+Color getDialogPrimaryColor(
+    BuildContext context, DialogType dialogType, Color? primaryColor) {
+  if (primaryColor != null) return primaryColor;
   Color color;
 
   switch (dialogType) {
@@ -101,38 +103,45 @@ Widget getIcon(DialogType dialogType, {double? size}) {
   return icon;
 }
 
-Widget? getCenteredImage(BuildContext context, DialogType dialogType) {
+Widget? getCenteredImage(
+    BuildContext context, DialogType dialogType, Color? primaryColor) {
   Widget? widget;
 
   switch (dialogType) {
     case DialogType.CONFIRMATION:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType).withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor)
+              .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(Icons.warning_amber_rounded,
-            color: getDialogPrimaryColor(context, dialogType), size: 40),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor),
+            size: 40),
         padding: EdgeInsets.all(16),
       );
       break;
     case DialogType.DELETE:
       widget = Container(
         decoration: BoxDecoration(
-            color: getDialogPrimaryColor(context, dialogType).withOpacity(0.2),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor)
+                .withOpacity(0.2),
             shape: BoxShape.circle),
         child: Icon(Icons.close,
-            color: getDialogPrimaryColor(context, dialogType), size: 40),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor),
+            size: 40),
         padding: EdgeInsets.all(16),
       );
       break;
     case DialogType.UPDATE:
       widget = Container(
         decoration: BoxDecoration(
-            color: getDialogPrimaryColor(context, dialogType).withOpacity(0.2),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor)
+                .withOpacity(0.2),
             shape: BoxShape.circle),
         child: Icon(Icons.edit_outlined,
-            color: getDialogPrimaryColor(context, dialogType), size: 40),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor),
+            size: 40),
         padding: EdgeInsets.all(16),
       );
       break;
@@ -140,22 +149,26 @@ Widget? getCenteredImage(BuildContext context, DialogType dialogType) {
     case DialogType.ACCEPT:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType).withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor)
+              .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(Icons.done_outline,
-            color: getDialogPrimaryColor(context, dialogType), size: 40),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor),
+            size: 40),
         padding: EdgeInsets.all(16),
       );
       break;
     case DialogType.RETRY:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType).withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor)
+              .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(Icons.refresh_rounded,
-            color: getDialogPrimaryColor(context, dialogType), size: 40),
+            color: getDialogPrimaryColor(context, dialogType, primaryColor),
+            size: 40),
         padding: EdgeInsets.all(16),
       );
       break;
@@ -172,12 +185,12 @@ Widget defaultPlaceHolder(
   Widget? child,
 }) {
   return Container(
-    color: primaryColor ??
-        (getDialogPrimaryColor(context, dialogType).withOpacity(0.2)),
+    color: getDialogPrimaryColor(context, dialogType, primaryColor)
+        .withOpacity(0.2),
     height: height,
     width: width,
     alignment: Alignment.center,
-    child: child ?? getCenteredImage(context, dialogType),
+    child: child ?? getCenteredImage(context, dialogType, primaryColor),
   );
 }
 
@@ -252,8 +265,8 @@ Future<bool?> showConfirmDialogCustom(
   ShapeBorder? shape,
 
   /// Use as function
-  required Function onAccept,
-  Function? onCancel,
+  required Function(BuildContext) onAccept,
+  Function(BuildContext)? onCancel,
   DialogType dialogType = DialogType.CONFIRMATION,
   bool barrierDismissible = true,
   double height = 140,
@@ -321,13 +334,13 @@ Future<bool?> showConfirmDialogCustom(
                   onTap: () {
                     if (cancelable) finish(_, false);
 
-                    onCancel?.call();
+                    onCancel?.call(_);
                   },
                 ).expand(),
                 16.width,
                 AppButton(
                   elevation: 0,
-                  color: primaryColor ?? (getDialogPrimaryColor(_, dialogType)),
+                  color: getDialogPrimaryColor(_, dialogType, primaryColor),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -340,9 +353,9 @@ Future<bool?> showConfirmDialogCustom(
                     ],
                   ).fit(),
                   onTap: () {
-                    finish(_, true);
+                    onAccept.call(_);
 
-                    onAccept.call();
+                    if (cancelable) finish(_, true);
                   },
                 ).expand(),
               ],

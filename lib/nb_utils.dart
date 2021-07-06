@@ -89,7 +89,6 @@ double defaultAppButtonElevation = 4.0;
 double defaultBlurRadius = 4.0;
 double defaultSpreadRadius = 1.0;
 double defaultAppBarElevation = 4.0;
-double defaultToastBorderRadius = 20.0;
 
 double textBoldSizeGlobal = 16;
 double textPrimarySizeGlobal = 16;
