@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 extension DoubleExtensions on double? {
   /// Validate given double is not null and returns given value if null.

@@ -35,7 +35,7 @@ void toast(
 
 void toasty(
   BuildContext context,
-  String text, {
+  String? text, {
   ToastGravity? gravity,
   length = Toast.LENGTH_SHORT,
   Color? bgColor,
@@ -48,6 +48,7 @@ void toasty(
 }) {
   FToast().init(context);
   if (removeQueue) FToast().removeCustomToast();
+
   FToast().showToast(
     child: Container(
       child: Text(text.validate(),
@@ -67,7 +68,7 @@ void toasty(
 
 /// Toast for long period of time
 void toastLong(
-  String value, {
+  String? value, {
   BuildContext? context,
   ToastGravity gravity = ToastGravity.BOTTOM,
   length = Toast.LENGTH_LONG,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 extension IntExtensions on int? {
   /// Validate given int is not null and returns given value if null.
@@ -16,6 +17,8 @@ extension IntExtensions on int? {
   bool isSuccessful() {
     return this! >= 200 && this! <= 206;
   }
+
+  BorderRadius get borderRadius => radius(this!.toDouble());
 
   /// Returns microseconds duration
   /// 5.microseconds
