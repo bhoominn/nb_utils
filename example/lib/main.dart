@@ -126,6 +126,17 @@ class _HomePageState extends State<HomePage> {
                 ),
                 16.height,
 
+                /// Gradient Border Widget
+                GradientBorder(
+                  gradient: LinearGradient(
+                      colors: [Colors.orange, Colors.yellow, Colors.pink]),
+                  strokeWidth: 4.0,
+                  child: Container(
+                    child: Image.network(
+                        "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                  ),
+                ).paddingAll(18),
+
                 ///
                 Text('Rating Bar Widget Example', style: primaryTextStyle()),
                 8.height,
@@ -167,6 +178,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
+                              dialogAnimation: DialogAnimation.SLIDE_TB,
                               onAccept: (_) {
                                 snackBar(
                                   context,
@@ -183,6 +195,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () async {
                             showConfirmDialogCustom(
                               context,
+                              dialogAnimation: DialogAnimation.SLIDE_RL,
                               title: "Do you want to logout from the app?",
                               dialogType: DialogType.CONFIRMATION,
                               centerImage:
@@ -203,6 +216,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
+                              dialogAnimation: DialogAnimation.SLIDE_BT,
                               title: "Do you want to update this item?",
                               dialogType: DialogType.UPDATE,
                               onAccept: (_) {
@@ -216,6 +230,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
+                              dialogAnimation: DialogAnimation.SLIDE_LR,
                               title: "Delete 89 files permanent?",
                               dialogType: DialogType.DELETE,
                               onAccept: (_) {

@@ -146,3 +146,39 @@ Future<dynamic> pasteObject() async {
   ClipboardData? data = await Clipboard.getData('text/plain');
   return data;
 }
+
+enum SocialMedia {
+  PLAYSTORE,
+  APPSTORE,
+  FACEBOOK,
+  INSTAGRAM,
+  LINKEDIN,
+  TWITTER,
+  YOUTUBE,
+  REDDIT,
+  TELEGRAM
+}
+
+String getSocialMediaLink({SocialMedia? socialMedia, String? url}) {
+  switch (socialMedia!) {
+    case SocialMedia.PLAYSTORE:
+      return "https://play.google.com/store/apps/details?id=$url";
+    case SocialMedia.APPSTORE:
+      return "https://apps.apple.com/in/app/$url";
+    case SocialMedia.FACEBOOK:
+      return "https://www.facebook.com/$url";
+    case SocialMedia.INSTAGRAM:
+      return "https://www.instagram.com/$url";
+    case SocialMedia.LINKEDIN:
+      return "https://www.linkedin.com/in/$url";
+    case SocialMedia.TWITTER:
+      return "https://twitter.com/$url";
+    case SocialMedia.YOUTUBE:
+      return "https://www.youtube.com/$url";
+    case SocialMedia.REDDIT:
+      return "https://reddit.com/r/$url";
+    case SocialMedia.TELEGRAM:
+      return "https://t.me/$url";
+  }
+  return 'Invalid URL';
+}

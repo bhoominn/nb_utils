@@ -69,6 +69,7 @@ export 'src/widgets/TextIcon.dart';
 export 'src/widgets/ThemeWidget.dart';
 export 'src/widgets/ULWidget.dart';
 export 'src/widgets/widgets.dart';
+export 'src/widgets/GradientBorder.dart';
 
 //region Global variables - This variables can be changed.
 Color textPrimaryColorGlobal = textPrimaryColor;
