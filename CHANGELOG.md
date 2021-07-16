@@ -1,3 +1,5 @@
+## 4.4.1
+- Added highlight color in onTap extension
 ## 4.4.0
 - BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method
 ## 4.3.1

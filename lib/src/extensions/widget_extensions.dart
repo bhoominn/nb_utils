@@ -170,7 +170,10 @@ extension WidgetExtension on Widget? {
   /// set parent widget in center
   Widget center({double? heightFactor, double? widthFactor}) {
     return Center(
-        heightFactor: heightFactor, widthFactor: widthFactor, child: this);
+      heightFactor: heightFactor,
+      widthFactor: widthFactor,
+      child: this,
+    );
   }
 
   @deprecated
@@ -232,16 +235,19 @@ extension WidgetExtension on Widget? {
   /// add tap to parent widget
   Widget onTap(
     Function? function, {
-    BorderRadius borderRadius = const BorderRadius.all(Radius.circular(0)),
+    BorderRadius? borderRadius,
     Color? splashColor,
     Color? hoverColor,
+    Color? highlightColor,
   }) {
     return InkWell(
       onTap: function as void Function()?,
-      borderRadius: borderRadius,
+      borderRadius: borderRadius ??
+          (defaultInkWellRadius != null ? radius(defaultInkWellRadius) : null),
       child: this,
       splashColor: splashColor ?? defaultInkWellSplashColor,
       hoverColor: hoverColor ?? defaultInkWellHoverColor,
+      highlightColor: highlightColor ?? defaultInkWellHighlightColor,
     );
   }
 
@@ -252,18 +258,18 @@ extension WidgetExtension on Widget? {
       Duration? duration}) async {
     if (isNewTask) {
       return await Navigator.of(context).pushAndRemoveUntil(
-        buildPageRoute(pageRouteAnimation, duration),
+        buildPageRoute(this!, pageRouteAnimation, duration),
         (route) => false,
       );
     } else {
       return await Navigator.of(context).push(
-        buildPageRoute(pageRouteAnimation, duration),
+        buildPageRoute(this!, pageRouteAnimation, duration),
       );
     }
   }
 
   Route<T> buildPageRoute<T>(
-      PageRouteAnimation? pageRouteAnimation, Duration? duration) {
+      Widget child, PageRouteAnimation? pageRouteAnimation, Duration? duration) {
     if (pageRouteAnimation != null) {
       if (pageRouteAnimation == PageRouteAnimation.Fade) {
         return PageRouteBuilder(

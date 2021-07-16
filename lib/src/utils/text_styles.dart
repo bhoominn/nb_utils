@@ -17,6 +17,7 @@ TextStyle boldTextStyle({
   TextBaseline? textBaseline,
   Color? decorationColor,
   Color? backgroundColor,
+  double? height,
 }) {
   return TextStyle(
     fontSize: size != null ? size.toDouble() : textBoldSizeGlobal,
@@ -31,6 +32,7 @@ TextStyle boldTextStyle({
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
+    height: height,
   );
 }
 
@@ -48,6 +50,7 @@ TextStyle primaryTextStyle({
   TextBaseline? textBaseline,
   Color? decorationColor,
   Color? backgroundColor,
+  double? height,
 }) {
   return TextStyle(
     fontSize: size != null ? size.toDouble() : textPrimarySizeGlobal,
@@ -62,6 +65,7 @@ TextStyle primaryTextStyle({
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
+    height: height,
   );
 }
 
@@ -79,6 +83,7 @@ TextStyle secondaryTextStyle({
   TextBaseline? textBaseline,
   Color? decorationColor,
   Color? backgroundColor,
+  double? height,
 }) {
   return TextStyle(
     fontSize: size != null ? size.toDouble() : textSecondarySizeGlobal,
@@ -93,6 +98,7 @@ TextStyle secondaryTextStyle({
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
+    height: height,
   );
 }
 
