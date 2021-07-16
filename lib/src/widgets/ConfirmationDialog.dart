@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:nb_utils/src/utils/text_styles.dart';
-import 'package:vector_math/vector_math.dart' as math;
 
 enum DialogType { CONFIRMATION, ACCEPT, DELETE, UPDATE, ADD, RETRY }
+
 enum DialogAnimation {
   DEFAULT,
   ROTATE,
-  SLIDE_TB,
-  SLIDE_BT,
-  SLIDE_LR,
-  SLIDE_RL,
+  SLIDE_TOP_BOTTOM,
+  SLIDE_BOTTOM_TOP,
+  SLIDE_LEFT_RIGHT,
+  SLIDE_RIGHT_LEFT,
   SCALE
 }
 
 Color getDialogPrimaryColor(
-    BuildContext context, DialogType dialogType, Color? primaryColor) {
+  BuildContext context,
+  DialogType dialogType,
+  Color? primaryColor,
+) {
   if (primaryColor != null) return primaryColor;
   Color color;
 
@@ -491,10 +494,10 @@ Widget _dialogAnimatedWrapperWidget({
   switch (dialogAnimation) {
     case DialogAnimation.ROTATE:
       return Transform.rotate(
-        angle: math.radians(animation.value * 360),
+        angle: radians(animation.value * 360),
         child: Opacity(opacity: animation.value, child: child),
       );
-    case DialogAnimation.SLIDE_TB:
+    case DialogAnimation.SLIDE_TOP_BOTTOM:
       final curvedValue = Curves.easeInOutBack.transform(animation.value) - 1.0;
       return Transform(
         transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
@@ -502,7 +505,7 @@ Widget _dialogAnimatedWrapperWidget({
       );
     case DialogAnimation.SCALE:
       return Transform.scale(scale: animation.value, child: child);
-    case DialogAnimation.SLIDE_BT:
+    case DialogAnimation.SLIDE_BOTTOM_TOP:
       return SlideTransition(
         position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(
           CurvedAnimation(
@@ -512,7 +515,7 @@ Widget _dialogAnimatedWrapperWidget({
         ),
         child: Opacity(opacity: animation.value, child: child),
       );
-    case DialogAnimation.SLIDE_LR:
+    case DialogAnimation.SLIDE_LEFT_RIGHT:
       return SlideTransition(
         position: Tween(begin: Offset(-0.5, 0.0), end: Offset(0, 0)).animate(
           CurvedAnimation(
@@ -522,7 +525,7 @@ Widget _dialogAnimatedWrapperWidget({
         ),
         child: Opacity(opacity: animation.value, child: child),
       );
-    case DialogAnimation.SLIDE_RL:
+    case DialogAnimation.SLIDE_RIGHT_LEFT:
       return SlideTransition(
         position: Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(
           CurvedAnimation(

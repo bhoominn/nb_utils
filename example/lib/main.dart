@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_TB,
+                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
                               onAccept: (_) {
                                 snackBar(
                                   context,
@@ -195,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () async {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_RL,
+                              dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT,
                               title: "Do you want to logout from the app?",
                               dialogType: DialogType.CONFIRMATION,
                               centerImage:
@@ -216,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_BT,
+                              dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
                               title: "Do you want to update this item?",
                               dialogType: DialogType.UPDATE,
                               onAccept: (_) {
@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_LR,
+                              dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT,
                               title: "Delete 89 files permanent?",
                               dialogType: DialogType.DELETE,
                               onAccept: (_) {

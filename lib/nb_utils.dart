@@ -52,6 +52,7 @@ export 'src/widgets/CircularProgressGradient.dart';
 export 'src/widgets/ConfirmationDialog.dart';
 export 'src/widgets/DotIndicator.dart';
 export 'src/widgets/DottedBorderWidget.dart';
+export 'src/widgets/GradientBorder.dart';
 export 'src/widgets/HorizontalList.dart';
 export 'src/widgets/HoverWidget.dart';
 export 'src/widgets/LanguageListWidget.dart';

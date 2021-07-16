@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -181,3 +183,6 @@ String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
       return "$telegramBaseURL$url";
   }
 }
+
+const double degrees2Radians = pi / 180.0;
+double radians(double degrees) => degrees * degrees2Radians;
