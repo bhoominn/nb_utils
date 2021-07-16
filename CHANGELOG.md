@@ -1,5 +1,9 @@
+## 4.4.2
+- Added Gradient Border Widget
+- Added Animation in Custom Dialog
 ## 4.4.1
 - Added highlight color in onTap extension
+- Added height property in all TextStyles
 ## 4.4.0
 - BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method
 ## 4.3.1

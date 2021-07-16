@@ -268,8 +268,8 @@ extension WidgetExtension on Widget? {
     }
   }
 
-  Route<T> buildPageRoute<T>(
-      Widget child, PageRouteAnimation? pageRouteAnimation, Duration? duration) {
+  Route<T> buildPageRoute<T>(Widget child,
+      PageRouteAnimation? pageRouteAnimation, Duration? duration) {
     if (pageRouteAnimation != null) {
       if (pageRouteAnimation == PageRouteAnimation.Fade) {
         return PageRouteBuilder(

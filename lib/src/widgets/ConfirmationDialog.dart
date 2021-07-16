@@ -295,7 +295,7 @@ Future<bool?> showConfirmDialogCustom(
     barrierLabel: '',
     transitionDuration: Duration(milliseconds: 300),
     transitionBuilder: (_, animation, secondaryAnimation, child) {
-      return customWidget(
+      return _dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
         child: AlertDialog(
@@ -390,7 +390,7 @@ Future<bool?> showConfirmDialogCustom(
     },
   );
 
-  return showDialog(
+  /*return showDialog(
     context: context,
     barrierDismissible: barrierDismissible,
     builder: (_) => AlertDialog(
@@ -439,8 +439,7 @@ Future<bool?> showConfirmDialogCustom(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.close,
-                          color: textPrimaryColorGlobal, size: 20),
+                      Icon(Icons.close, color: textPrimaryColorGlobal, size: 20),
                       6.width,
                       Text(
                         negativeText ?? 'Cancel',
@@ -481,13 +480,14 @@ Future<bool?> showConfirmDialogCustom(
         ),
       ),
     ),
-  );
+  );*/
 }
 
-Widget customWidget(
-    {required Animation<double> animation,
-    required Widget child,
-    required DialogAnimation dialogAnimation}) {
+Widget _dialogAnimatedWrapperWidget({
+  required Animation<double> animation,
+  required Widget child,
+  required DialogAnimation dialogAnimation,
+}) {
   switch (dialogAnimation) {
     case DialogAnimation.ROTATE:
       return Transform.rotate(
@@ -501,34 +501,37 @@ Widget customWidget(
         child: Opacity(opacity: animation.value, child: child),
       );
     case DialogAnimation.SCALE:
-      return Transform.scale(
-        scale: animation.value,
-        child: child,
-      );
+      return Transform.scale(scale: animation.value, child: child);
     case DialogAnimation.SLIDE_BT:
       return SlideTransition(
-          position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
-              .animate(CurvedAnimation(
+        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(
+          CurvedAnimation(
             parent: animation,
             curve: Curves.easeInOutBack,
-          )),
-          child: Opacity(opacity: animation.value, child: child));
+          ),
+        ),
+        child: Opacity(opacity: animation.value, child: child),
+      );
     case DialogAnimation.SLIDE_LR:
       return SlideTransition(
-          position: Tween(begin: Offset(-0.5, 0.0), end: Offset(0, 0))
-              .animate(CurvedAnimation(
+        position: Tween(begin: Offset(-0.5, 0.0), end: Offset(0, 0)).animate(
+          CurvedAnimation(
             parent: animation,
             curve: Curves.easeInOutBack,
-          )),
-          child: Opacity(opacity: animation.value, child: child));
+          ),
+        ),
+        child: Opacity(opacity: animation.value, child: child),
+      );
     case DialogAnimation.SLIDE_RL:
       return SlideTransition(
-          position: Tween(begin: Offset(1, 0), end: Offset(0, 0))
-              .animate(CurvedAnimation(
+        position: Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(
+          CurvedAnimation(
             parent: animation,
             curve: Curves.easeInOutBack,
-          )),
-          child: Opacity(opacity: animation.value, child: child));
+          ),
+        ),
+        child: Opacity(opacity: animation.value, child: child),
+      );
     case DialogAnimation.DEFAULT:
       return child;
   }
