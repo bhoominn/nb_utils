@@ -84,14 +84,22 @@ class GradientBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: GradientPainter(gradient: gradient, strokeWidth: strokeWidth, borderRadius: borderRadius ?? defaultRadius),
-      child: Container(padding: EdgeInsets.all(padding + strokeWidth), child: IntrinsicWidth(child: child)),
+      painter: GradientPainter(
+          gradient: gradient,
+          strokeWidth: strokeWidth,
+          borderRadius: borderRadius ?? defaultRadius),
+      child: Container(
+          padding: EdgeInsets.all(padding + strokeWidth),
+          child: IntrinsicWidth(child: child)),
     );
   }
 }
 
 class GradientPainter extends CustomPainter {
-  GradientPainter({required this.gradient, required this.strokeWidth, required this.borderRadius});
+  GradientPainter(
+      {required this.gradient,
+      required this.strokeWidth,
+      required this.borderRadius});
 
   final Gradient gradient;
   final double strokeWidth;
@@ -100,11 +108,14 @@ class GradientPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Rect innerRect = Rect.fromLTRB(strokeWidth, strokeWidth, size.width - strokeWidth, size.height - strokeWidth);
-    RRect innerRoundedRect = RRect.fromRectAndRadius(innerRect, Radius.circular(borderRadius));
+    Rect innerRect = Rect.fromLTRB(strokeWidth, strokeWidth,
+        size.width - strokeWidth, size.height - strokeWidth);
+    RRect innerRoundedRect =
+        RRect.fromRectAndRadius(innerRect, Radius.circular(borderRadius));
 
     Rect outerRect = Offset.zero & size;
-    RRect outerRoundedRect = RRect.fromRectAndRadius(outerRect, Radius.circular(borderRadius));
+    RRect outerRoundedRect =
+        RRect.fromRectAndRadius(outerRect, Radius.circular(borderRadius));
 
     paintObject.shader = gradient.createShader(outerRect);
     Path borderPath = _calculateBorderPath(outerRoundedRect, innerRoundedRect);
