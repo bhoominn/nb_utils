@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nb_utils/nb_utils.dart';
+import 'package:nb_utils/src/utils/common.dart';
 import 'package:nb_utils/src/utils/text_styles.dart';
+import 'package:nb_utils/src/widgets/ConfirmationDialog.dart';
 import 'package:nb_utils/src/widgets/Loader.dart';
-
-import '../../nb_utils.dart';
 
 /// show confirm dialog box
 Future<bool?> showConfirmDialog<bool>(
@@ -13,33 +13,44 @@ Future<bool?> showConfirmDialog<bool>(
   String positiveText = 'Yes',
   String negativeText = 'No',
   Color? buttonColor,
+  Color? barrierColor,
+  DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
   bool? barrierDismissible,
   Function? onAccept,
 }) async {
-  return showDialog(
+  return await showGeneralDialog(
     context: context,
-    // barrierDismissible: barrierDismissible ?? false,
-    builder: (_) => AlertDialog(
-      title: Text(title.validate(), style: primaryTextStyle()),
-      actions: <Widget>[
-        SimpleDialogOption(
-          child: Text(negativeText.validate(), style: secondaryTextStyle()),
-          onPressed: () {
-            finish(_, false);
-          },
+    // barrierDismissible: barrierDismissible == null ? false : true,
+    barrierColor: barrierColor ?? Color(0x80000000),
+    barrierLabel: '',
+    transitionDuration: Duration(milliseconds: 300),
+    pageBuilder: (context, animation, secondaryAnimation) => Container(),
+    transitionBuilder: (_, animation, secondaryAnimation, child) {
+      return dialogAnimatedWrapperWidget(
+        animation: animation,
+        dialogAnimation: dialogAnimation,
+        child: AlertDialog(
+          title: Text(title.validate(), style: primaryTextStyle()),
+          actions: <Widget>[
+            SimpleDialogOption(
+              child: Text(negativeText.validate(), style: secondaryTextStyle()),
+              onPressed: () {
+                finish(_, false);
+              },
+            ),
+            SimpleDialogOption(
+              onPressed: () {
+                finish(_, true);
+                onAccept?.call();
+              },
+              child: Text(positiveText.validate(),
+                  style: primaryTextStyle(
+                      color: buttonColor ?? Theme.of(_).primaryColor)),
+            ),
+          ],
         ),
-        SimpleDialogOption(
-          onPressed: () {
-            finish(_, true);
-
-            onAccept?.call();
-          },
-          child: Text(positiveText.validate(),
-              style: primaryTextStyle(
-                  color: buttonColor ?? Theme.of(_).primaryColor)),
-        ),
-      ],
-    ),
+      );
+    },
   );
 }
 

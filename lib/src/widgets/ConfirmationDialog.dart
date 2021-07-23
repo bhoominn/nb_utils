@@ -196,12 +196,15 @@ Widget defaultPlaceHolder(
   double? width,
   Color? primaryColor, {
   Widget? child,
+  ShapeBorder? shape,
 }) {
   return Container(
-    color: getDialogPrimaryColor(context, dialogType, primaryColor)
-        .withOpacity(0.2),
     height: height,
     width: width,
+    decoration: ShapeDecoration(
+        shape: shape ?? dialogShape(),
+        color: getDialogPrimaryColor(context, dialogType, primaryColor)
+            .withOpacity(0.2)),
     alignment: Alignment.center,
     child: child ?? getCenteredImage(context, dialogType, primaryColor),
   );
@@ -215,6 +218,7 @@ Widget buildTitleWidget(
   double height,
   double width,
   String? centerImage,
+  ShapeBorder? shape,
 ) {
   if (customCenterWidget != null) {
     return Container(
@@ -231,7 +235,8 @@ Widget buildTitleWidget(
         errorBuilder: (_, object, stack) {
           log(object.toString());
           return defaultPlaceHolder(
-              context, dialogType, height, width, primaryColor);
+              context, dialogType, height, width, primaryColor,
+              shape: shape);
         },
         loadingBuilder: (_, child, loadingProgress) {
           if (loadingProgress == null) {
@@ -243,6 +248,7 @@ Widget buildTitleWidget(
             height,
             width,
             primaryColor,
+            shape: shape,
             child: Loader(
               value: loadingProgress.expectedTotalBytes != null
                   ? loadingProgress.cumulativeBytesLoaded /
@@ -255,12 +261,8 @@ Widget buildTitleWidget(
           topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt());
     } else {
       return defaultPlaceHolder(
-        context,
-        dialogType,
-        height,
-        width,
-        primaryColor,
-      );
+          context, dialogType, height, width, primaryColor,
+          shape: shape);
     }
   }
 }
@@ -298,23 +300,22 @@ Future<bool?> showConfirmDialogCustom(
     barrierLabel: '',
     transitionDuration: Duration(milliseconds: 300),
     transitionBuilder: (_, animation, secondaryAnimation, child) {
-      return _dialogAnimatedWrapperWidget(
+      return dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
         child: AlertDialog(
           shape: shape ?? dialogShape(),
           titlePadding: EdgeInsets.zero,
           backgroundColor: _.cardColor,
-          title: Container(
-            child: buildTitleWidget(
-              _,
-              dialogType,
-              primaryColor,
-              customCenterWidget,
-              height,
-              width,
-              centerImage,
-            ),
+          title: buildTitleWidget(
+            _,
+            dialogType,
+            primaryColor,
+            customCenterWidget,
+            height,
+            width,
+            centerImage,
+            shape,
           ),
           content: Container(
             width: width,
@@ -392,150 +393,4 @@ Future<bool?> showConfirmDialogCustom(
       );
     },
   );
-
-  /*return showDialog(
-    context: context,
-    barrierDismissible: barrierDismissible,
-    builder: (_) => AlertDialog(
-      shape: shape ?? dialogShape(),
-      titlePadding: EdgeInsets.zero,
-      backgroundColor: _.cardColor,
-      title: Container(
-        child: buildTitleWidget(
-          _,
-          dialogType,
-          primaryColor,
-          customCenterWidget,
-          height,
-          width,
-          centerImage,
-        ),
-      ),
-      content: Container(
-        width: width,
-        color: _.cardColor,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              title ?? getTitle(dialogType),
-              style: boldTextStyle(size: 16),
-              textAlign: TextAlign.center,
-            ),
-            8.height.visible(subTitle.validate().isNotEmpty),
-            Text(
-              subTitle.validate(),
-              style: secondaryTextStyle(size: 16),
-              textAlign: TextAlign.center,
-            ).visible(subTitle.validate().isNotEmpty),
-            16.height,
-            Row(
-              children: [
-                AppButton(
-                  elevation: 0,
-                  shapeBorder: RoundedRectangleBorder(
-                    borderRadius: radius(defaultAppButtonRadius),
-                    side: BorderSide(color: viewLineColor),
-                  ),
-                  color: _.scaffoldBackgroundColor,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.close, color: textPrimaryColorGlobal, size: 20),
-                      6.width,
-                      Text(
-                        negativeText ?? 'Cancel',
-                        style: boldTextStyle(color: textPrimaryColorGlobal),
-                      ),
-                    ],
-                  ).fit(),
-                  onTap: () {
-                    if (cancelable) finish(_, false);
-
-                    onCancel?.call(_);
-                  },
-                ).expand(),
-                16.width,
-                AppButton(
-                  elevation: 0,
-                  color: getDialogPrimaryColor(_, dialogType, primaryColor),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      getIcon(dialogType),
-                      6.width,
-                      Text(
-                        positiveText ?? getPositiveText(dialogType),
-                        style: boldTextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ).fit(),
-                  onTap: () {
-                    onAccept.call(_);
-
-                    if (cancelable) finish(_, true);
-                  },
-                ).expand(),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );*/
-}
-
-Widget _dialogAnimatedWrapperWidget({
-  required Animation<double> animation,
-  required Widget child,
-  required DialogAnimation dialogAnimation,
-}) {
-  switch (dialogAnimation) {
-    case DialogAnimation.ROTATE:
-      return Transform.rotate(
-        angle: radians(animation.value * 360),
-        child: Opacity(opacity: animation.value, child: child),
-      );
-    case DialogAnimation.SLIDE_TOP_BOTTOM:
-      final curvedValue = Curves.easeInOutBack.transform(animation.value) - 1.0;
-      return Transform(
-        transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
-        child: Opacity(opacity: animation.value, child: child),
-      );
-    case DialogAnimation.SCALE:
-      return Transform.scale(scale: animation.value, child: child);
-    case DialogAnimation.SLIDE_BOTTOM_TOP:
-      return SlideTransition(
-        position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(
-          CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOutBack,
-          ),
-        ),
-        child: Opacity(opacity: animation.value, child: child),
-      );
-    case DialogAnimation.SLIDE_LEFT_RIGHT:
-      return SlideTransition(
-        position: Tween(begin: Offset(-0.5, 0.0), end: Offset(0, 0)).animate(
-          CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOutBack,
-          ),
-        ),
-        child: Opacity(opacity: animation.value, child: child),
-      );
-    case DialogAnimation.SLIDE_RIGHT_LEFT:
-      return SlideTransition(
-        position: Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(
-          CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOutBack,
-          ),
-        ),
-        child: Opacity(opacity: animation.value, child: child),
-      );
-    case DialogAnimation.DEFAULT:
-      return child;
-  }
 }

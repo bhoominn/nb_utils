@@ -176,18 +176,8 @@ class _HomePageState extends State<HomePage> {
                         AppButton(
                           text: "Confirmation",
                           onTap: () {
-                            showConfirmDialogCustom(
-                              context,
-                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
-                              onAccept: (_) {
-                                snackBar(
-                                  context,
-                                  title: 'Confirmed',
-                                  snackBarAction: SnackBarAction(
-                                      label: 'label', onPressed: () {}),
-                                );
-                              },
-                            );
+                            showConfirmDialog(context, "hehhe",
+                                dialogAnimation: DialogAnimation.ROTATE);
                           },
                         ),
                         AppButton(
