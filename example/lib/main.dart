@@ -41,8 +41,7 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await NBUtils.platformVersion ?? 'Unknown platform version';
+      platformVersion = await NBUtils.platformVersion ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -69,8 +68,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(
         primarySwatch: createMaterialColor(Colors.blue),
       ),
-      themeMode:
-          getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
+      themeMode: getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
       home: HomePage(),
     );
   }
@@ -128,12 +126,10 @@ class _HomePageState extends State<HomePage> {
 
                 /// Gradient Border Widget
                 GradientBorder(
-                  gradient: LinearGradient(
-                      colors: [Colors.orange, Colors.yellow, Colors.pink]),
+                  gradient: LinearGradient(colors: [Colors.orange, Colors.yellow, Colors.pink]),
                   strokeWidth: 4.0,
                   child: Container(
-                    child: Image.network(
-                        "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                    child: Image.network("https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                   ),
                 ).paddingAll(18),
 
@@ -176,8 +172,7 @@ class _HomePageState extends State<HomePage> {
                         AppButton(
                           text: "Confirmation",
                           onTap: () {
-                            showConfirmDialog(context, "hehhe",
-                                dialogAnimation: DialogAnimation.ROTATE);
+                            showInDialog(context, dialogAnimation: DialogAnimation.SCALE);
                           },
                         ),
                         AppButton(
@@ -309,38 +304,30 @@ class _HomePageState extends State<HomePage> {
                     AppButton(
                       text: 'Toast',
                       onTap: () async {
-                        toasty(context, 'Toast',
-                            borderRadius: BorderRadius.circular(1),
-                            textColor: Colors.pinkAccent,
-                            gravity: ToastGravity.CENTER);
+                        toasty(context, 'Toast', borderRadius: BorderRadius.circular(1), textColor: Colors.pinkAccent, gravity: ToastGravity.CENTER);
                       },
                     ),
                   ],
                 ),
                 16.height,
                 SettingSection(
-                  title: Text('Account Management',
-                      style: boldTextStyle(size: 24)),
-                  subTitle: Text('Control your account',
-                      style: primaryTextStyle(size: 16)),
+                  title: Text('Account Management', style: boldTextStyle(size: 24)),
+                  subTitle: Text('Control your account', style: primaryTextStyle(size: 16)),
                   items: [
                     SettingItemWidget(
                       title: 'Hibernate account',
                       subTitle: 'Temporary deactivate your account',
                       decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
+                      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                       onTap: () {
                         //
                       },
                     ),
                     SettingItemWidget(
                       title: 'Close account',
-                      subTitle:
-                          'Learn about your options, and close your account if you wish',
+                      subTitle: 'Learn about your options, and close your account if you wish',
                       decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
+                      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                       onTap: () {
                         HomePage().launch(context);
                       },
