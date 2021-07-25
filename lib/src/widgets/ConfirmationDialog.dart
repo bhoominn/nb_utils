@@ -270,6 +270,7 @@ Widget buildTitleWidget(
 /// show confirm dialog box
 Future<bool?> showConfirmDialogCustom(
   BuildContext context, {
+  required Function(BuildContext) onAccept,
   String? title,
   String? subTitle,
   String? positiveText,
@@ -278,17 +279,15 @@ Future<bool?> showConfirmDialogCustom(
   Widget? customCenterWidget,
   Color? primaryColor,
   ShapeBorder? shape,
-
-  /// Use as function
-  required Function(BuildContext) onAccept,
   Function(BuildContext)? onCancel,
-  DialogType dialogType = DialogType.CONFIRMATION,
-  DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
   bool barrierDismissible = true,
   double height = 140,
-  Color? barrierColor,
   double width = 220,
   bool cancelable = true,
+  Color? barrierColor,
+  DialogType dialogType = DialogType.CONFIRMATION,
+  DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
+  Duration? transitionDuration,
 }) async {
   return showGeneralDialog(
     context: context,
@@ -298,7 +297,7 @@ Future<bool?> showConfirmDialogCustom(
     },
     barrierDismissible: barrierDismissible,
     barrierLabel: '',
-    transitionDuration: Duration(milliseconds: 300),
+    transitionDuration: transitionDuration ?? 500.milliseconds,
     transitionBuilder: (_, animation, secondaryAnimation, child) {
       return dialogAnimatedWrapperWidget(
         animation: animation,
@@ -348,8 +347,11 @@ Future<bool?> showConfirmDialogCustom(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.close,
-                              color: textPrimaryColorGlobal, size: 20),
+                          Icon(
+                            Icons.close,
+                            color: textPrimaryColorGlobal,
+                            size: 20,
+                          ),
                           6.width,
                           Text(
                             negativeText ?? 'Cancel',

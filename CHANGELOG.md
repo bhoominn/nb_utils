@@ -1,3 +1,8 @@
+## 4.4.3
+- Ability to ignore touch RatingBarWidget
+- Added Dialog Animation in showInDialog method
+- Added afterBuildCreated method get context after BuildContext created
+- AfterLayout mixin deprecated now
 ## 4.4.2
 - Added Gradient Border Widget
 - Added Animation in Custom Dialog

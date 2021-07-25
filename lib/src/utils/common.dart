@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -185,7 +186,12 @@ String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
 }
 
 const double degrees2Radians = pi / 180.0;
+
 double radians(double degrees) => degrees * degrees2Radians;
+
+void afterBuildCreated(Function()? onCreated) {
+  SchedulerBinding.instance!.addPostFrameCallback((_) => onCreated?.call());
+}
 
 Widget dialogAnimatedWrapperWidget({
   required Animation<double> animation,

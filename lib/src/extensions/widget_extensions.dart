@@ -92,6 +92,7 @@ extension WidgetExtension on Widget? {
   }
 
   /// set widget visibility
+  @Deprecated('')
   Visibility withVisibility(
     bool visible, {
     Widget? replacement,

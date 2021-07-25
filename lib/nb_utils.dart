@@ -143,6 +143,8 @@ Future<void> initialize({
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
+
+  selectedLanguageDataModel = getSelectedLanguageModel();
 }
 
 class NBUtils {

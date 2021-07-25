@@ -35,9 +35,11 @@ Future<bool?> showConfirmDialog<bool>(
 
             onAccept?.call();
           },
-          child: Text(positiveText.validate(),
-              style: primaryTextStyle(
-                  color: buttonColor ?? Theme.of(_).primaryColor)),
+          child: Text(
+            positiveText.validate(),
+            style: primaryTextStyle(
+                color: buttonColor ?? Theme.of(_).primaryColor),
+          ),
         ),
       ],
     ),

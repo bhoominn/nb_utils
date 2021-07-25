@@ -14,11 +14,9 @@ extension IntExtensions on int? {
   Widget get width => SizedBox(width: this?.toDouble());
 
   /// HTTP status code
-  bool isSuccessful() {
-    return this! >= 200 && this! <= 206;
-  }
+  bool isSuccessful() => this! >= 200 && this! <= 206;
 
-  BorderRadius get borderRadius => radius(this!.toDouble());
+  BorderRadius borderRadius([double? val]) => radius(val);
 
   /// Returns microseconds duration
   /// 5.microseconds
