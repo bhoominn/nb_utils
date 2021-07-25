@@ -35,7 +35,9 @@ Future<bool?> showConfirmDialog<bool>(
 
             onAccept?.call();
           },
-          child: Text(positiveText.validate(), style: primaryTextStyle(color: buttonColor ?? Theme.of(_).primaryColor)),
+          child: Text(positiveText.validate(),
+              style: primaryTextStyle(
+                  color: buttonColor ?? Theme.of(_).primaryColor)),
         ),
       ],
     ),
@@ -78,7 +80,8 @@ Future<T?> showInDialog<T>(
             shape: shape ?? defaultDialogShape,
             title: title,
             titleTextStyle: titleTextStyle,
-            contentPadding: contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+            contentPadding:
+                contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
             //scrollable: scrollable,
             backgroundColor: backgroundColor,
             elevation: elevation ?? 0,
@@ -116,12 +119,16 @@ AppBar appBarWidget(
     title: titleWidget ??
         Text(
           title,
-          style: titleTextStyle ?? (boldTextStyle(color: textColor ?? textPrimaryColorGlobal, size: textSize)),
+          style: titleTextStyle ??
+              (boldTextStyle(
+                  color: textColor ?? textPrimaryColorGlobal, size: textSize)),
         ),
     actions: actions,
     automaticallyImplyLeading: showBack,
     backgroundColor: color ?? appBarBackgroundColorGlobal,
-    leading: showBack ? (backWidget ?? BackButton(color: textColor ?? textPrimaryColorGlobal)) : null,
+    leading: showBack
+        ? (backWidget ?? BackButton(color: textColor ?? textPrimaryColorGlobal))
+        : null,
     shadowColor: shadowColor,
     elevation: elevation ?? defaultAppBarElevation,
     brightness: brightness,
@@ -155,5 +162,6 @@ Widget snapWidgetHelper<T>(
 
 /// Returns true is snapshot is loading
 bool isSnapshotLoading(AsyncSnapshot snap, {bool checkHasData = false}) {
-  return snap.connectionState == ConnectionState.active || snap.connectionState == ConnectionState.waiting;
+  return snap.connectionState == ConnectionState.active ||
+      snap.connectionState == ConnectionState.waiting;
 }
