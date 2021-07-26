@@ -69,7 +69,7 @@ void main() async {
 }
 ```
 
-## Migrating from 4.3.1 to 4.4.0
+## Migrating from 4.3.1 to 4.4.0+
 BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method.
 
 # Examples
@@ -443,6 +443,9 @@ getStringAsync("key");
 
 /// Returns a JSON if exists in SharedPref
 getJSONAsync("key");
+
+/// Remove a key from SharedPref
+await removeKey("key");
 ```
 
 ## Widgets Extensions, Methods

@@ -1,7 +1,7 @@
 name: nb_utils
 description: This package helps you daily usable function and ready made Widgets with ease.
-version: 4.4.3
-homepage: https://bhoominn.github.io
+version: 4.4.4
+#homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
 publish_to: https://pub.dartlang.org

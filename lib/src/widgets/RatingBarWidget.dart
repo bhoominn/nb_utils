@@ -17,7 +17,7 @@ class RatingBarWidget extends StatefulWidget {
   final IconData? halfFilledIconData;
   final IconData? defaultIconData;
   final double spacing;
-  final bool ignore;
+  final bool disable;
 
   RatingBarWidget({
     this.itemCount = 5,
@@ -31,7 +31,7 @@ class RatingBarWidget extends StatefulWidget {
     this.filledIconData,
     this.halfFilledIconData,
     this.allowHalfRating = false,
-    this.ignore = false,
+    this.disable = false,
   });
 
   @override
@@ -102,7 +102,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: widget.ignore,
+      ignoring: widget.disable,
       child: Wrap(
         alignment: WrapAlignment.start,
         spacing: widget.spacing,

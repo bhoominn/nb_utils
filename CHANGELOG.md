@@ -1,5 +1,5 @@
-## 4.4.3
-- Ability to ignore touch RatingBarWidget
+## 4.4.4
+- Ability to disable touch RatingBarWidget
 - Added Dialog Animation in showInDialog method
 - Added afterBuildCreated method get context after BuildContext created
 - AfterLayout mixin deprecated now

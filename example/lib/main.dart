@@ -103,12 +103,17 @@ class _HomePageState extends State<HomePage> {
                 /// Gradient Border Widget
                 GradientBorder(
                   gradient: LinearGradient(
-                      colors: [Colors.orange, Colors.yellow, Colors.pink]),
-                  strokeWidth: 4.0,
-                  child: Container(
-                    child: Image.network(
-                        "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                    colors: [
+                      Colors.orange,
+                      Colors.yellow,
+                      Colors.pink,
+                    ],
                   ),
+                  strokeWidth: 4.0,
+                  child: Image.network(
+                    "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    width: 100,
+                  ).cornerRadiusWithClipRRect(8),
                 ).paddingAll(18),
 
                 ///
@@ -117,6 +122,7 @@ class _HomePageState extends State<HomePage> {
                 RatingBarWidget(
                   rating: rating,
                   size: 40,
+                  disable: true,
                   allowHalfRating: true,
                   onRatingChanged: (e) {
                     rating = e;
@@ -150,8 +156,11 @@ class _HomePageState extends State<HomePage> {
                         AppButton(
                           text: "Confirmation",
                           onTap: () {
-                            showInDialog(context,
-                                dialogAnimation: DialogAnimation.ROTATE);
+                            showConfirmDialogCustom(context,
+                                dialogAnimation: DialogAnimation.ROTATE,
+                                onAccept: (_) {
+                              snackBar(context, title: 'Confirmed');
+                            });
                           },
                         ),
                         AppButton(
