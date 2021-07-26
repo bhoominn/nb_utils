@@ -76,20 +76,18 @@ Future<T?> showInDialog<T>(
       return dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
-        child: Dialog(
-          child: AlertDialog(
-            content: builder != null ? builder.call(_) : child,
-            shape: shape ?? defaultDialogShape,
-            title: title,
-            titleTextStyle: titleTextStyle,
-            contentPadding:
-                contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
-            //scrollable: scrollable,
-            backgroundColor: backgroundColor,
-            elevation: elevation ?? 0,
-            //insetPadding: insetPadding,
-            actions: actions,
-          ),
+        child: AlertDialog(
+          content: builder != null ? builder.call(_) : child,
+          shape: shape ?? defaultDialogShape,
+          title: title,
+          titleTextStyle: titleTextStyle,
+          contentPadding:
+              contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+          //scrollable: scrollable,
+          backgroundColor: backgroundColor,
+          elevation: elevation ?? 0,
+          //insetPadding: insetPadding,
+          actions: actions,
         ),
       );
     },
