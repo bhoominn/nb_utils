@@ -28,7 +28,16 @@ class SnapHelperWidget<T> extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<T> snap) {
         if (!useConnectionStateForLoader) {
           if (snap.hasData) {
-            return onSuccess(snap.data!);
+            if (snap.data != null) {
+              return onSuccess(snap.data!);
+            } else {
+              return snapWidgetHelper(
+                snap,
+                errorWidget: errorWidget,
+                loadingWidget: loadingWidget,
+                defaultErrorMessage: defaultErrorMessage,
+              );
+            }
           } else {
             return snapWidgetHelper(
               snap,
@@ -44,7 +53,16 @@ class SnapHelperWidget<T> extends StatelessWidget {
               return loadingWidget ?? Loader();
             case ConnectionState.done:
               if (snap.hasData) {
-                return onSuccess(snap.data!);
+                if (snap.data != null) {
+                  return onSuccess(snap.data!);
+                } else {
+                  return snapWidgetHelper(
+                    snap,
+                    errorWidget: errorWidget,
+                    loadingWidget: loadingWidget,
+                    defaultErrorMessage: defaultErrorMessage,
+                  );
+                }
               } else {
                 return errorWidget ??
                     Text(defaultErrorMessage ?? snap.error.toString(),

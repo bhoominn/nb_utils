@@ -1,4 +1,4 @@
-## 4.4.4
+## 4.4.5
 - Ability to disable touch RatingBarWidget
 - Added Dialog Animation in showInDialog method
 - Added afterBuildCreated method get context after BuildContext created

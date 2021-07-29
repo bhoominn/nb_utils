@@ -63,7 +63,11 @@ Future<T?> showInDialog<T>(
   //EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
   List<Widget>? actions,
   bool barrierDismissible = true,
+  bool hideSoftKeyboard = true,
+  Duration? transitionDuration,
 }) async {
+  if (hideSoftKeyboard) hideKeyboard(context);
+
   return await showGeneralDialog<T>(
     context: context,
     barrierColor: barrierColor ?? Color(0x80000000),
@@ -72,6 +76,7 @@ Future<T?> showInDialog<T>(
     },
     barrierLabel: '',
     barrierDismissible: barrierDismissible,
+    transitionDuration: transitionDuration ?? 500.milliseconds,
     transitionBuilder: (_, animation, secondaryAnimation, child) {
       return dialogAnimatedWrapperWidget(
         animation: animation,
