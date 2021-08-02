@@ -1,5 +1,7 @@
 ## 4.4.6
--
+- Added getMatchingSharedPrefKeys extension for Shared Preference
+- Updated Animations in showInDialog
+- Updated README.md
 ## 4.4.5
 - Ability to disable touch RatingBarWidget
 - Added Dialog Animation in showInDialog method
