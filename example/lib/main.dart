@@ -69,10 +69,28 @@ class _HomePageState extends State<HomePage> {
     //
   }
 
+  Widget dialogWidget() {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('This is the example of showInDialog method',
+              style: primaryTextStyle()),
+          4.height,
+          Text('Secondary text here', style: secondaryTextStyle()),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget('Home', showBack: Navigator.canPop(context)),
+      appBar: appBarWidget('Home', showBack: false),
+      drawer: Drawer(),
+      drawerEdgeDragWidth: context.width() * 0.2,
+      drawerEnableOpenDragGesture: true,
       body: Container(
         child: SingleChildScrollView(
           child: Form(
@@ -92,12 +110,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 16.height,
 
-                DottedBorderWidget(
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                  ),
-                ),
+                DottedBorderWidget(child: Container(height: 100, width: 100)),
                 16.height,
 
                 /// Gradient Border Widget
@@ -114,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                     "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     width: 100,
                   ).cornerRadiusWithClipRRect(8),
-                ).paddingAll(18),
+                ),
 
                 ///
                 Text('Rating Bar Widget Example', style: primaryTextStyle()),
@@ -122,11 +135,9 @@ class _HomePageState extends State<HomePage> {
                 RatingBarWidget(
                   rating: rating,
                   size: 40,
-                  disable: true,
                   allowHalfRating: true,
                   onRatingChanged: (e) {
                     rating = e;
-                    log(rating);
                   },
                 ),
                 16.height,
@@ -155,12 +166,14 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         AppButton(
                           text: "Confirmation",
-                          onTap: () {
-                            showConfirmDialogCustom(context,
-                                dialogAnimation: DialogAnimation.ROTATE,
-                                onAccept: (_) {
-                              snackBar(context, title: 'Confirmed');
-                            });
+                          onTap: () async {
+                            showConfirmDialogCustom(
+                              context,
+                              dialogAnimation: DialogAnimation.DEFAULT,
+                              onAccept: (_) {
+                                snackBar(context, title: 'Confirmed');
+                              },
+                            );
                           },
                         ),
                         AppButton(
@@ -219,6 +232,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               title: "Do you want to add this item?",
                               dialogType: DialogType.ADD,
+                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
                               onAccept: (_) {
                                 snackBar(context, title: 'Added');
                               },
@@ -227,6 +241,77 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
+                    16.height,
+
+                    /// Hover Widget Example
+                    Text('Dialog Animation Example', style: primaryTextStyle()),
+                    8.height,
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        AppButton(
+                          text: 'Default',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget());
+                          },
+                        ),
+                        AppButton(
+                          text: 'Rotate',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation: DialogAnimation.ROTATE);
+                          },
+                        ),
+                        AppButton(
+                          text: 'Scale',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation: DialogAnimation.SCALE);
+                          },
+                        ),
+                        AppButton(
+                          text: 'Top to Bottom',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_TOP_BOTTOM);
+                          },
+                        ),
+                        AppButton(
+                          text: 'Bottom to Top',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_BOTTOM_TOP);
+                          },
+                        ),
+                        AppButton(
+                          text: 'Left to Right',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_LEFT_RIGHT);
+                          },
+                        ),
+                        AppButton(
+                          text: 'Right to Left',
+                          onTap: () async {
+                            showInDialog(context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_RIGHT_LEFT);
+                          },
+                        ),
+                      ],
+                    ),
+
                     16.height,
                     UL(
                       symbolType: SymbolType.Numbered,
@@ -275,6 +360,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ).paddingAll(16),
+
                 GoogleLogoWidget(size: 30),
                 16.height,
                 Row(

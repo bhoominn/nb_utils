@@ -65,22 +65,24 @@ Future<T?> showInDialog<T>(
   bool barrierDismissible = true,
   bool hideSoftKeyboard = true,
   Duration? transitionDuration,
+  Curve curve = Curves.slowMiddle,
 }) async {
   if (hideSoftKeyboard) hideKeyboard(context);
 
   return await showGeneralDialog<T>(
     context: context,
-    barrierColor: barrierColor ?? Color(0x80000000),
+    barrierColor: barrierColor ?? Colors.black54,
     pageBuilder: (context, animation, secondaryAnimation) {
       return Container();
     },
     barrierLabel: '',
     barrierDismissible: barrierDismissible,
-    transitionDuration: transitionDuration ?? 500.milliseconds,
-    transitionBuilder: (_, animation, secondaryAnimation, child) {
+    transitionDuration: transitionDuration ?? 400.milliseconds,
+    transitionBuilder: (_, animation, secondaryAnimation, c) {
       return dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
+        curve: curve,
         child: AlertDialog(
           content: builder != null ? builder.call(_) : child,
           shape: shape ?? defaultDialogShape,
@@ -90,7 +92,7 @@ Future<T?> showInDialog<T>(
               contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
           //scrollable: scrollable,
           backgroundColor: backgroundColor,
-          elevation: elevation ?? 0,
+          elevation: elevation ?? defaultElevation.toDouble(),
           //insetPadding: insetPadding,
           actions: actions,
         ),

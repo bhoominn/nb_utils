@@ -288,24 +288,27 @@ Future<bool?> showConfirmDialogCustom(
   DialogType dialogType = DialogType.CONFIRMATION,
   DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
   Duration? transitionDuration,
+  Curve curve = Curves.linear,
 }) async {
   return showGeneralDialog(
     context: context,
-    barrierColor: barrierColor ?? Color(0x80000000),
+    barrierColor: barrierColor ?? Colors.black54,
     pageBuilder: (context, animation, secondaryAnimation) {
       return Container();
     },
     barrierDismissible: barrierDismissible,
     barrierLabel: '',
-    transitionDuration: transitionDuration ?? 500.milliseconds,
+    transitionDuration: transitionDuration ?? 400.milliseconds,
     transitionBuilder: (_, animation, secondaryAnimation, child) {
       return dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
+        curve: curve,
         child: AlertDialog(
           shape: shape ?? dialogShape(),
           titlePadding: EdgeInsets.zero,
           backgroundColor: _.cardColor,
+          elevation: defaultElevation.toDouble(),
           title: buildTitleWidget(
             _,
             dialogType,

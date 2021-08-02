@@ -1,3 +1,5 @@
+## 4.4.6
+-
 ## 4.4.5
 - Ability to disable touch RatingBarWidget
 - Added Dialog Animation in showInDialog method

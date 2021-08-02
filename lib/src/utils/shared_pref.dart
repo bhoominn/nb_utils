@@ -13,13 +13,13 @@ Future<bool> setValue(String key, dynamic value) async {
   log('${value.runtimeType} - $key - $value');
 
   if (value is String) {
-    return await sharedPreferences.setString(key, value);
+    return await sharedPreferences.setString(key, value.validate());
   } else if (value is int) {
-    return await sharedPreferences.setInt(key, value);
+    return await sharedPreferences.setInt(key, value.validate());
   } else if (value is bool) {
-    return await sharedPreferences.setBool(key, value);
+    return await sharedPreferences.setBool(key, value.validate());
   } else if (value is double) {
-    return await sharedPreferences.setDouble(key, value);
+    return await sharedPreferences.setDouble(key, value.validate());
   } else if (value is Map<String, dynamic>) {
     return await sharedPreferences.setString(key, jsonEncode(value));
   } else if (value is List<String>) {
@@ -28,6 +28,19 @@ Future<bool> setValue(String key, dynamic value) async {
     throw ArgumentError(
         'Invalid value ${value.runtimeType} - Must be a String, int, bool, double, Map<String, dynamic> or StringList');
   }
+}
+
+/// Returns List of Keys that matches with given Key
+List<String> getMatchingSharedPrefKeys(String key) {
+  List<String> keys = [];
+
+  sharedPreferences.getKeys().forEach((element) {
+    if (element.contains(key)) {
+      keys.add(element);
+    }
+  });
+
+  return keys;
 }
 
 /// Returns a StringList if exists in SharedPref
@@ -79,31 +92,37 @@ Future<bool> clearSharedPref() async {
 /////////////////////////////////////////////////////////////////////// DEPRECATED \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 /// add a Double in SharedPref
+@deprecated
 Future<bool> setDoubleAsync(String key, double value) async {
   return await sharedPreferences.setDouble(key, value);
 }
 
 /// add a Bool in SharedPref
+@deprecated
 Future<bool> setBoolAsync(String key, bool value) async {
   return await sharedPreferences.setBool(key, value);
 }
 
 /// add a Int in SharedPref
+@deprecated
 Future<bool> setIntAsync(String key, int value) async {
   return await sharedPreferences.setInt(key, value);
 }
 
 /// add a String in SharedPref
+@deprecated
 Future<bool> setStringAsync(String key, String value) async {
   return await sharedPreferences.setString(key, value);
 }
 
 /// add a JSON in SharedPref
+@deprecated
 Future<bool> setJSONAsync(String key, String value) async {
   return await sharedPreferences.setString(key, jsonEncode(value));
 }
 
 /// Returns a String if exists in SharedPref
+@deprecated
 Future<String> getString(String key, {defaultValue = ''}) async {
   return await getSharedPref().then((pref) {
     return pref.getString(key) ?? defaultValue;
@@ -111,6 +130,7 @@ Future<String> getString(String key, {defaultValue = ''}) async {
 }
 
 /// Returns a Int if exists in SharedPref
+@deprecated
 Future<int> getInt(String key, {defaultValue = 0}) async {
   return await getSharedPref().then((pref) {
     return pref.getInt(key) ?? defaultValue;
@@ -118,6 +138,7 @@ Future<int> getInt(String key, {defaultValue = 0}) async {
 }
 
 /// Returns a Double if exists in SharedPref
+@deprecated
 Future<double> getDouble(String key, {defaultValue = 0.0}) async {
   return await getSharedPref().then((pref) {
     return pref.getDouble(key) ?? defaultValue;
@@ -125,6 +146,7 @@ Future<double> getDouble(String key, {defaultValue = 0.0}) async {
 }
 
 /// Returns a Bool if exists in SharedPref
+@deprecated
 Future<bool> getBool(String key, {defaultValue = false}) async {
   return await getSharedPref().then((pref) {
     return pref.getBool(key) ?? defaultValue;
@@ -132,6 +154,7 @@ Future<bool> getBool(String key, {defaultValue = false}) async {
 }
 
 /// add a String in SharedPref
+@deprecated
 Future<bool> setString(String key, String value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setString(key, value);
@@ -139,6 +162,7 @@ Future<bool> setString(String key, String value) async {
 }
 
 /// add a Int in SharedPref
+@deprecated
 Future<bool> setInt(String key, int value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setInt(key, value);
@@ -146,6 +170,7 @@ Future<bool> setInt(String key, int value) async {
 }
 
 /// add a Bool in SharedPref
+@deprecated
 Future<bool> setBool(String key, bool value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setBool(key, value);
@@ -153,6 +178,7 @@ Future<bool> setBool(String key, bool value) async {
 }
 
 /// add a Double in SharedPref
+@deprecated
 Future<bool> setDouble(String key, double value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setDouble(key, value);
