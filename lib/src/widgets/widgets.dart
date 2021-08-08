@@ -65,7 +65,7 @@ Future<T?> showInDialog<T>(
   bool barrierDismissible = true,
   bool hideSoftKeyboard = true,
   Duration? transitionDuration,
-  Curve curve = Curves.slowMiddle,
+  Curve curve = Curves.easeInBack,
 }) async {
   if (hideSoftKeyboard) hideKeyboard(context);
 

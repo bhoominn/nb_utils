@@ -1,3 +1,7 @@
+## 4.4.7
+- Added navigatorKey global variable for context
+- Added new animation for page route
+- Code optimization
 ## 4.4.6
 - Added getMatchingSharedPrefKeys extension for Shared Preference
 - Updated Animations in showInDialog

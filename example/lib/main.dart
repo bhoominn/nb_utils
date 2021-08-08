@@ -15,8 +15,6 @@ void main() async {
   defaultToastTextColor = Colors.white;
   defaultToastGravityGlobal = ToastGravity.CENTER;
 
-  selectedLanguageDataModel = getSelectedLanguageModel();
-
   runApp(MyApp());
 }
 
@@ -36,6 +34,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'NB Utils Example',
       debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         primarySwatch: createMaterialColor(Colors.blue),
         scaffoldBackgroundColor: scaffoldLightColor,
@@ -411,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                       trailing: Icon(Icons.keyboard_arrow_right_rounded,
                           color: context.dividerColor),
                       onTap: () {
-                        HomePage().launch(context);
+                        push(HomePage());
                       },
                     ),
                   ],

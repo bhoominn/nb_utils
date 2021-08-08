@@ -201,10 +201,10 @@ Widget defaultPlaceHolder(
   return Container(
     height: height,
     width: width,
-    decoration: ShapeDecoration(
-        shape: shape ?? dialogShape(),
-        color: getDialogPrimaryColor(context, dialogType, primaryColor)
-            .withOpacity(0.2)),
+    decoration: BoxDecoration(
+      color: getDialogPrimaryColor(context, dialogType, primaryColor)
+          .withOpacity(0.2),
+    ),
     alignment: Alignment.center,
     child: child ?? getCenteredImage(context, dialogType, primaryColor),
   );
@@ -257,8 +257,7 @@ Widget buildTitleWidget(
             ),
           );
         },
-      ).cornerRadiusWithClipRRectOnly(
-          topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt());
+      );
     } else {
       return defaultPlaceHolder(
           context, dialogType, height, width, primaryColor,
@@ -281,16 +280,16 @@ Future<bool?> showConfirmDialogCustom(
   ShapeBorder? shape,
   Function(BuildContext)? onCancel,
   bool barrierDismissible = true,
-  double height = 140,
-  double width = 220,
+  double? height,
+  double? width,
   bool cancelable = true,
   Color? barrierColor,
   DialogType dialogType = DialogType.CONFIRMATION,
   DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
   Duration? transitionDuration,
-  Curve curve = Curves.linear,
+  Curve curve = Curves.easeInBack,
 }) async {
-  return showGeneralDialog(
+  return await showGeneralDialog(
     context: context,
     barrierColor: barrierColor ?? Colors.black54,
     pageBuilder: (context, animation, secondaryAnimation) {
@@ -314,13 +313,14 @@ Future<bool?> showConfirmDialogCustom(
             dialogType,
             primaryColor,
             customCenterWidget,
-            height,
-            width,
+            height ?? customDialogHeight,
+            width ?? customDialogWidth,
             centerImage,
             shape,
-          ),
+          ).cornerRadiusWithClipRRectOnly(
+              topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt()),
           content: Container(
-            width: width,
+            width: width ?? customDialogWidth,
             color: _.cardColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

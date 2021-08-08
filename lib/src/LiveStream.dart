@@ -13,8 +13,8 @@ class LiveStream {
 
   /// Sets a new value [value] to the data stream [stream].
   /// If there are active subscribers, the value will be dispatched to them.
-  void emit(String stream, var value) {
-    _mStorage?.setValue(stream, value);
+  void emit(String stream, [var value]) {
+    _mStorage?.setValue(stream, value ?? true);
   }
 
   /// Subscribes to the given stream [stream].

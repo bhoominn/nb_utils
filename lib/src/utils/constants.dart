@@ -3,6 +3,9 @@ var errorSomethingWentWrong = 'Something Went Wrong';
 var errorThisFieldRequired = 'This field is required';
 var errorInternetNotAvailable = 'Your internet is not working';
 
+var customDialogHeight = 140.0;
+var customDialogWidth = 220.0;
+
 const currencyRupee = '₹';
 const currencyDollar = '\$';
 const currencyEuro = '€';

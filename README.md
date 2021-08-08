@@ -69,6 +69,16 @@ void main() async {
 }
 ```
 
+Now, add navigatorKey in your MaterialApp or CupertinoApp
+
+```dart
+return MaterialApp(
+  debugShowCheckedModeBanner: false,
+  navigatorKey: navigatorKey,
+  home: HomePage(),
+);
+```
+
 ## Migrating from 4.3.1 to 4.4.0+
 BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method.
 

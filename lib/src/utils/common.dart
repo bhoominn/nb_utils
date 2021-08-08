@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:nb_utils/src/utils/system_utils.dart';
 
-enum PageRouteAnimation { Fade, Scale, Rotate, Slide }
+enum PageRouteAnimation { Fade, Scale, Rotate, Slide, SlideBottomTop }
 
 bool hasMatch(String? s, String p) {
   return (s == null) ? false : RegExp(p).hasMatch(s);
@@ -16,7 +16,7 @@ bool hasMatch(String? s, String p) {
 /// Toast for default time
 void toast(
   String? value, {
-  ToastGravity gravity = ToastGravity.BOTTOM,
+  ToastGravity? gravity,
   length = Toast.LENGTH_SHORT,
   Color? bgColor,
   Color? textColor,
@@ -256,4 +256,53 @@ Widget dialogAnimatedWrapperWidget({
     case DialogAnimation.DEFAULT:
       return FadeTransition(opacity: animation, child: child);
   }
+}
+
+Route<T> buildPageRoute<T>(
+    Widget child, PageRouteAnimation? pageRouteAnimation, Duration? duration) {
+  if (pageRouteAnimation != null) {
+    if (pageRouteAnimation == PageRouteAnimation.Fade) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) =>
+            FadeTransition(opacity: anim, child: child),
+        transitionDuration: duration ?? 1000.milliseconds,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) =>
+            RotationTransition(child: child, turns: ReverseAnimation(anim)),
+        transitionDuration: duration ?? 700.milliseconds,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) =>
+            ScaleTransition(child: child, scale: anim),
+        transitionDuration: duration ?? 700.milliseconds,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) => SlideTransition(
+          child: child,
+          position: Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0))
+              .animate(anim),
+        ),
+        transitionDuration: duration ?? 500.milliseconds,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.SlideBottomTop) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) => SlideTransition(
+          child: child,
+          position: Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
+              .animate(anim),
+        ),
+        transitionDuration: duration ?? 500.milliseconds,
+      );
+    }
+  }
+  return MaterialPageRoute<T>(builder: (_) => child);
 }

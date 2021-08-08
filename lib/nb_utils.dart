@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nb_utils/src/models/LanguageDataModel.dart';
 import 'package:nb_utils/src/utils/colors.dart';
+import 'package:nb_utils/src/utils/common.dart';
 import 'package:nb_utils/src/utils/constants.dart';
 import 'package:nb_utils/src/utils/decorations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,6 +54,7 @@ export 'src/widgets/ConfirmationDialog.dart';
 export 'src/widgets/DotIndicator.dart';
 export 'src/widgets/DottedBorderWidget.dart';
 export 'src/widgets/GradientBorder.dart';
+export 'src/widgets/GradientBorder.dart';
 export 'src/widgets/HorizontalList.dart';
 export 'src/widgets/HoverWidget.dart';
 export 'src/widgets/LanguageListWidget.dart';
@@ -70,7 +72,6 @@ export 'src/widgets/TextIcon.dart';
 export 'src/widgets/ThemeWidget.dart';
 export 'src/widgets/ULWidget.dart';
 export 'src/widgets/widgets.dart';
-export 'src/widgets/GradientBorder.dart';
 
 //region Global variables - This variables can be changed.
 Color textPrimaryColorGlobal = textPrimaryColor;
@@ -130,10 +131,15 @@ ToastGravity defaultToastGravityGlobal = ToastGravity.CENTER;
 BorderRadius defaultToastBorderRadiusGlobal = radius(30);
 //endregion
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
+get getContext => navigatorKey.currentState?.overlay?.context;
+
 // Must be initialize before using shared preference
 Future<void> initialize({
   double? defaultDialogBorderRadius,
   List<LanguageDataModel>? aLocaleLanguageList,
+  String? defaultLanguage,
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
@@ -144,7 +150,8 @@ Future<void> initialize({
 
   localeLanguageList = aLocaleLanguageList ?? [];
 
-  selectedLanguageDataModel = getSelectedLanguageModel();
+  selectedLanguageDataModel =
+      getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
 class NBUtils {
@@ -154,4 +161,28 @@ class NBUtils {
     final String? version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
+}
+
+/// Redirect to given widget without context
+Future<T?> push<T>(
+  Widget widget, {
+  bool isNewTask = false,
+  PageRouteAnimation? pageRouteAnimation,
+  Duration? duration,
+}) async {
+  if (isNewTask) {
+    return await Navigator.of(getContext).pushAndRemoveUntil(
+      buildPageRoute(widget, pageRouteAnimation, duration),
+      (route) => false,
+    );
+  } else {
+    return await Navigator.of(getContext).push(
+      buildPageRoute(widget, pageRouteAnimation, duration),
+    );
+  }
+}
+
+/// Dispose current screen or close current dialog
+void pop([Object? object]) {
+  Navigator.pop(getContext, object);
 }
