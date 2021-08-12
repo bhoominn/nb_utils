@@ -31,4 +31,4 @@ flutter:
       macos:
         pluginClass: NbUtilsPlugin
       windows:
-        pluginClass: nb_utils_plugin
+        pluginClass: NbUtilsPlugin
