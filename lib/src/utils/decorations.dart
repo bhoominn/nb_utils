@@ -132,6 +132,7 @@ Decoration boxDecorationRoundedWithShadow(
   double? blurRadius,
   double? spreadRadius,
   Offset offset = const Offset(0.0, 0.0),
+  LinearGradient? gradient,
 }) {
   return BoxDecoration(
     boxShadow: defaultBoxShadow(
@@ -141,6 +142,7 @@ Decoration boxDecorationRoundedWithShadow(
       offset: offset,
     ),
     color: backgroundColor,
+    gradient: gradient,
     borderRadius: radius(radiusAll.toDouble()),
   );
 }
