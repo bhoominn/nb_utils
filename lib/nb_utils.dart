@@ -12,7 +12,7 @@ import 'package:nb_utils/src/utils/constants.dart';
 import 'package:nb_utils/src/utils/decorations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-export 'package:connectivity/connectivity.dart';
+export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,6 +47,7 @@ export 'src/utils/shared_pref.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
+export 'src/utils/line_icons.dart';
 export 'src/widgets/AppButton.dart';
 export 'src/widgets/AppTextField.dart';
 export 'src/widgets/CircularProgressGradient.dart';
@@ -124,6 +125,8 @@ String defaultCurrencySymbol = currencyRupee;
 LanguageDataModel? selectedLanguageDataModel;
 List<LanguageDataModel> localeLanguageList = [];
 
+bool forceEnableDebug = false;
+
 // Toast Config
 Color defaultToastBackgroundColor = Colors.grey.shade200;
 Color defaultToastTextColor = Colors.black;
@@ -184,5 +187,5 @@ Future<T?> push<T>(
 
 /// Dispose current screen or close current dialog
 void pop([Object? object]) {
-  Navigator.pop(getContext, object);
+  if (Navigator.canPop(getContext)) Navigator.pop(getContext, object);
 }

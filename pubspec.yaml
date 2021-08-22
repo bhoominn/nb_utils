@@ -1,6 +1,6 @@
 name: nb_utils
 description: This package helps you daily usable function and ready made Widgets with ease.
-version: 4.4.7
+version: 4.4.8
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
@@ -15,8 +15,8 @@ dependencies:
     sdk: flutter
 
   shared_preferences: ^2.0.6
-  fluttertoast: ^8.0.7
-  connectivity: ^3.0.6
+  fluttertoast: ^8.0.8
+  connectivity_plus: ^1.0.8
 
 flutter:
   plugin:
@@ -32,3 +32,9 @@ flutter:
         pluginClass: NbUtilsPlugin
       windows:
         pluginClass: NbUtilsPlugin
+
+  fonts:
+    - family: LineAwesomeIcons
+      fonts:
+        - asset: fonts/LineAwesome.ttf
+          weight: 400

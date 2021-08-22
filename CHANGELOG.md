@@ -1,4 +1,5 @@
-## 4.4.7
+## 4.4.8
+- Added LineIcons
 - Added navigatorKey global variable for context
 - Added new animation for page route
 - Code optimization

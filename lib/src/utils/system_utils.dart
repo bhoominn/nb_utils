@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/src/extensions/color_extensions.dart';
 import 'package:nb_utils/src/extensions/device_extensions.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 /// Go back to previous screen.
-void finish(BuildContext context, [Object? result]) =>
-    Navigator.pop(context, result);
+void finish(BuildContext context, [Object? result]) {
+  if (Navigator.canPop(context)) Navigator.pop(context, result);
+}
 
 /// Go to new screen with provided screen tag.
 ///
@@ -108,5 +110,5 @@ Future<T?> invokeNativeMethod<T>(String channel, String method,
 
 /// Prints only if in debug or profile mode
 void log(Object? value) {
-  if (!kReleaseMode) print(value);
+  if (!kReleaseMode || forceEnableDebug) print(value);
 }

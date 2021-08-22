@@ -92,37 +92,37 @@ Future<bool> clearSharedPref() async {
 /////////////////////////////////////////////////////////////////////// DEPRECATED \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 /// add a Double in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setDoubleAsync(String key, double value) async {
   return await sharedPreferences.setDouble(key, value);
 }
 
 /// add a Bool in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setBoolAsync(String key, bool value) async {
   return await sharedPreferences.setBool(key, value);
 }
 
 /// add a Int in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setIntAsync(String key, int value) async {
   return await sharedPreferences.setInt(key, value);
 }
 
 /// add a String in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setStringAsync(String key, String value) async {
   return await sharedPreferences.setString(key, value);
 }
 
 /// add a JSON in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setJSONAsync(String key, String value) async {
   return await sharedPreferences.setString(key, jsonEncode(value));
 }
 
 /// Returns a String if exists in SharedPref
-@deprecated
+@Deprecated('Use getStringAsync instead without using await')
 Future<String> getString(String key, {defaultValue = ''}) async {
   return await getSharedPref().then((pref) {
     return pref.getString(key) ?? defaultValue;
@@ -130,7 +130,7 @@ Future<String> getString(String key, {defaultValue = ''}) async {
 }
 
 /// Returns a Int if exists in SharedPref
-@deprecated
+@Deprecated('Use getIntAsync instead without using await')
 Future<int> getInt(String key, {defaultValue = 0}) async {
   return await getSharedPref().then((pref) {
     return pref.getInt(key) ?? defaultValue;
@@ -138,7 +138,7 @@ Future<int> getInt(String key, {defaultValue = 0}) async {
 }
 
 /// Returns a Double if exists in SharedPref
-@deprecated
+@Deprecated('Use getDoubleAsync instead without using await')
 Future<double> getDouble(String key, {defaultValue = 0.0}) async {
   return await getSharedPref().then((pref) {
     return pref.getDouble(key) ?? defaultValue;
@@ -146,7 +146,7 @@ Future<double> getDouble(String key, {defaultValue = 0.0}) async {
 }
 
 /// Returns a Bool if exists in SharedPref
-@deprecated
+@Deprecated('Use getBoolAsync instead without using await')
 Future<bool> getBool(String key, {defaultValue = false}) async {
   return await getSharedPref().then((pref) {
     return pref.getBool(key) ?? defaultValue;
@@ -154,7 +154,7 @@ Future<bool> getBool(String key, {defaultValue = false}) async {
 }
 
 /// add a String in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setString(String key, String value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setString(key, value);
@@ -162,7 +162,7 @@ Future<bool> setString(String key, String value) async {
 }
 
 /// add a Int in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setInt(String key, int value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setInt(key, value);
@@ -170,7 +170,7 @@ Future<bool> setInt(String key, int value) async {
 }
 
 /// add a Bool in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setBool(String key, bool value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setBool(key, value);
@@ -178,7 +178,7 @@ Future<bool> setBool(String key, bool value) async {
 }
 
 /// add a Double in SharedPref
-@deprecated
+@Deprecated('Use setValue instead')
 Future<bool> setDouble(String key, double value) async {
   return await getSharedPref().then((pref) async {
     return await pref.setDouble(key, value);

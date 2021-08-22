@@ -82,6 +82,10 @@ return MaterialApp(
 ## Migrating from 4.3.1 to 4.4.0+
 BuildContext parameter is added to onAccept and onCancel in showConfirmDialogCustom method.
 
+## Featured on Google's Dev Library
+<a href="https://devlibrary.withgoogle.com/products/flutter/repos/bhoominn-nb_utils" target="_blank">Checkout here</a>
+<a href="https://devlibrary.withgoogle.com/authors" target="_blank">Dev Library Contributors</a>
+
 # Examples
 
 ## Ready to Use widgets with Optional Parameters

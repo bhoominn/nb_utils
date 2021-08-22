@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+// SnapHelperWidget makes easy implementation for future or stream builder
 class SnapHelperWidget<T> extends StatelessWidget {
   final dynamic initialData;
   final Future<T>? future;

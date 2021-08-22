@@ -19,6 +19,8 @@ const twitterBaseURL = 'https://twitter.com/';
 const youtubeBaseURL = 'https://www.youtube.com/';
 const redditBaseURL = 'https://reddit.com/r/';
 const telegramBaseURL = 'https://t.me/';
+const facebookMessengerURL = 'https://m.me/';
+const whatsappURL = 'https://wa.me/';
 
 const SELECTED_LANGUAGE_CODE = 'selected_language_code';
 const THEME_MODE_INDEX = 'theme_mode_index';

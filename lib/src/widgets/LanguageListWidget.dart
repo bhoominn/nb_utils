@@ -103,6 +103,7 @@ class LanguageListWidgetState extends State<LanguageListWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (data.flag != null) _buildImageWidget(data.flag!),
+                4.width,
                 Text(data.name.validate(), style: primaryTextStyle()),
               ],
             ),

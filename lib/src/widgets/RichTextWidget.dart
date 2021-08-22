@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// RichTextWidget
 class RichTextWidget extends StatelessWidget {
   final List<TextSpan> list;
   final TextOverflow? overflow;

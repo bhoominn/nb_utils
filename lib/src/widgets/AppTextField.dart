@@ -3,7 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:nb_utils/src/utils/text_styles.dart';
 
-enum TextFieldType { EMAIL, PASSWORD, NAME, ADDRESS, OTHER, PHONE, URL }
+enum TextFieldType {
+  EMAIL,
+  PASSWORD,
+  NAME,
+  ADDRESS,
+  OTHER,
+  PHONE,
+  URL,
+  USERNAME
+}
 
 /// Default Text Form Field
 class AppTextField extends StatefulWidget {
@@ -45,6 +54,7 @@ class AppTextField extends StatefulWidget {
   final String? errorInvalidEmail;
   final String? errorMinimumPasswordLength;
   final String? errorInvalidURL;
+  final String? errorInvalidUsername;
 
   AppTextField({
     this.controller,
@@ -83,6 +93,7 @@ class AppTextField extends StatefulWidget {
     this.errorInvalidEmail,
     this.errorMinimumPasswordLength,
     this.errorInvalidURL,
+    this.errorInvalidUsername,
   });
 
   @override
@@ -131,6 +142,17 @@ class _AppTextFieldState extends State<AppTextField> {
                 .validate(value: errorThisFieldRequired);
           if (!s.validateURL()) {
             return widget.errorInvalidURL.validate(value: 'Invalid URL');
+          }
+          return null;
+        };
+      } else if (widget.textFieldType == TextFieldType.USERNAME) {
+        return (s) {
+          if (s!.trim().isEmpty)
+            return widget.errorThisFieldRequired
+                .validate(value: errorThisFieldRequired);
+          if (s.contains(' ')) {
+            return widget.errorInvalidUsername
+                .validate(value: 'Username should not contain space');
           }
           return null;
         };

@@ -159,7 +159,9 @@ enum LinkProvider {
   TWITTER,
   YOUTUBE,
   REDDIT,
-  TELEGRAM
+  TELEGRAM,
+  WHATSAPP,
+  FB_MESSENGER
 }
 
 String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
@@ -182,6 +184,10 @@ String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
       return "$redditBaseURL$url";
     case LinkProvider.TELEGRAM:
       return "$telegramBaseURL$url";
+    case LinkProvider.WHATSAPP:
+      return "$facebookMessengerURL$url";
+    case LinkProvider.FB_MESSENGER:
+      return "$whatsappURL$url";
   }
 }
 
@@ -305,4 +311,14 @@ Route<T> buildPageRoute<T>(
     }
   }
   return MaterialPageRoute<T>(builder: (_) => child);
+}
+
+EdgeInsets dynamicAppButtonPadding(BuildContext context) {
+  if (context.isDesktop()) {
+    return EdgeInsets.symmetric(vertical: 20, horizontal: 20);
+  } else if (context.isTablet()) {
+    return EdgeInsets.symmetric(vertical: 16, horizontal: 16);
+  } else {
+    return EdgeInsets.symmetric(vertical: 14, horizontal: 16);
+  }
 }

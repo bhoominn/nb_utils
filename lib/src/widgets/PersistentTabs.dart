@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@Deprecated('Use IndexedStack instead')
 class PersistentTabs extends StatelessWidget {
   const PersistentTabs({
     required this.widgets,

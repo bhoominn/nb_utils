@@ -104,8 +104,7 @@ class _AppButtonState extends State<AppButton>
   Widget buildButton() {
     return MaterialButton(
       minWidth: widget.width,
-      padding:
-          widget.padding ?? EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      padding: widget.padding ?? dynamicAppButtonPadding(context),
       onPressed: widget.enabled.validate(value: true)
           ? widget.onTap as void Function()?
           : null,
