@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// Google logo created using CustomPaint
 class GoogleLogoWidget extends StatelessWidget {
   final int? size;
 
@@ -16,6 +17,7 @@ class GoogleLogoWidget extends StatelessWidget {
   }
 }
 
+/// Google logo CustomPaint
 class GoogleLogoPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => true;

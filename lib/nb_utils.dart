@@ -157,6 +157,7 @@ Future<void> initialize({
       getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
+/// nb_utils class
 class NBUtils {
   static const MethodChannel _channel = const MethodChannel('nb_utils');
 

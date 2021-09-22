@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Show custom widget on a widget click
 class OverlayCustomWidget extends StatelessWidget {
   final bool showOverlay;
   final Widget Function(BuildContext, Offset anchor) overlayBuilder;

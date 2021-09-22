@@ -15,6 +15,7 @@ class AppButton extends StatefulWidget {
   final Color? hoverColor;
   final Color? splashColor;
   final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final TextStyle? textStyle;
   final ShapeBorder? shapeBorder;
   final Widget? child;
@@ -30,6 +31,7 @@ class AppButton extends StatefulWidget {
     this.color,
     this.textColor,
     this.padding,
+    this.margin,
     this.textStyle,
     this.shapeBorder,
     this.child,
@@ -102,29 +104,32 @@ class _AppButtonState extends State<AppButton>
   }
 
   Widget buildButton() {
-    return MaterialButton(
-      minWidth: widget.width,
-      padding: widget.padding ?? dynamicAppButtonPadding(context),
-      onPressed: widget.enabled.validate(value: true)
-          ? widget.onTap as void Function()?
-          : null,
-      color: widget.color ?? appButtonBackgroundColorGlobal,
-      child: widget.child ??
-          Text(
-            widget.text.validate(),
-            style: widget.textStyle ??
-                boldTextStyle(
-                  color: widget.textColor ?? defaultAppButtonTextColorGlobal,
-                ),
-          ),
-      shape: widget.shapeBorder ?? defaultAppButtonShapeBorder,
-      elevation: widget.elevation ?? defaultAppButtonElevation,
-      animationDuration: Duration(milliseconds: 300),
-      height: widget.height,
-      disabledColor: widget.disabledColor,
-      focusColor: widget.focusColor,
-      hoverColor: widget.hoverColor,
-      splashColor: widget.splashColor,
+    return Padding(
+      padding: widget.margin ?? EdgeInsets.zero,
+      child: MaterialButton(
+        minWidth: widget.width,
+        padding: widget.padding ?? dynamicAppButtonPadding(context),
+        onPressed: widget.enabled.validate(value: true)
+            ? widget.onTap as void Function()?
+            : null,
+        color: widget.color ?? appButtonBackgroundColorGlobal,
+        child: widget.child ??
+            Text(
+              widget.text.validate(),
+              style: widget.textStyle ??
+                  boldTextStyle(
+                    color: widget.textColor ?? defaultAppButtonTextColorGlobal,
+                  ),
+            ),
+        shape: widget.shapeBorder ?? defaultAppButtonShapeBorder,
+        elevation: widget.elevation ?? defaultAppButtonElevation,
+        animationDuration: Duration(milliseconds: 300),
+        height: widget.height,
+        disabledColor: widget.disabledColor,
+        focusColor: widget.focusColor,
+        hoverColor: widget.hoverColor,
+        splashColor: widget.splashColor,
+      ),
     );
   }
 }

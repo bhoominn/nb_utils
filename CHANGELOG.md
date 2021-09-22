@@ -1,3 +1,6 @@
+## 4.4.9
+- Change Loader widget value color
+- Add margin in AppButton
 ## 4.4.8
 - Added LineIcons
 - Added navigatorKey global variable for context
