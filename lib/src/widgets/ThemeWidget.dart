@@ -11,12 +11,14 @@ class ThemeWidget extends StatefulWidget {
   final void Function(int)? onThemeChanged;
   final String? subTitle;
   final Widget? trailing;
+  final EdgeInsets? padding;
 
   ThemeWidget({
     this.scrollPhysics,
     this.onThemeChanged,
     this.subTitle,
     this.trailing,
+    this.padding,
   });
 
   @override
@@ -44,6 +46,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
     return ListView.builder(
       itemCount: ThemeModes.values.length,
       physics: widget.scrollPhysics,
+      padding: widget.padding ?? EdgeInsets.zero,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return SettingItemWidget(

@@ -96,11 +96,6 @@ class _HomePageState extends State<HomePage> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                ThemeWidget(
-                  onThemeChanged: (data) {
-                    log(data);
-                  },
-                ),
                 LanguageListWidget(
                   widgetType: WidgetType.DROPDOWN,
                   onLanguageChange: (data) {
@@ -163,6 +158,21 @@ class _HomePageState extends State<HomePage> {
                       spacing: 16,
                       runSpacing: 16,
                       children: [
+                        AppButton(
+                          text: "Theme",
+                          onTap: () async {
+                            showInDialog(context, builder: (_) {
+                              return SizedBox(
+                                height: 600,width: 500,
+                                child: ThemeWidget(
+                                  onThemeChanged: (data) {
+                                    log(data);
+                                  },
+                                ),
+                              );
+                            }, title: Text('Theme'), contentPadding: EdgeInsets.zero);
+                          },
+                        ),
                         AppButton(
                           text: "Confirmation",
                           onTap: () async {

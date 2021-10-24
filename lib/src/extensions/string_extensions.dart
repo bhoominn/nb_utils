@@ -279,22 +279,9 @@ extension StringExtension on String? {
   }
 
   /// Generate slug of a given String
-  String toSlug() {
-    var words = this.validate().trim().split(RegExp(r'(\s+)'));
-    var slugWord = '';
-
-    if (this.validate().length == 1) {
-      return this!;
-    }
-
-    for (var i = 0; i < this.validate().length; i++) {
-      if (i != this.validate().length - 1) {
-        slugWord += words[i] + '_';
-      } else {
-        slugWord += words[i];
-      }
-    }
-    return slugWord;
+  String toSlug({String delimiter = '_'}) {
+    String text = this.validate().trim().toLowerCase();
+    return text.replaceAll(' ', delimiter);
   }
 
   /// returns searchable array for Firebase Database

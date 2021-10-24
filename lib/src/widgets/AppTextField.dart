@@ -49,6 +49,15 @@ class AppTextField extends StatefulWidget {
   final Function()? onTap;
   final InputCounterWidgetBuilder? buildCounter;
   final List<TextInputFormatter>? inputFormatters;
+  final TextAlignVertical? textAlignVertical;
+  final bool? expands;
+  final bool? showCursor;
+  final TextSelectionControls? selectionControls;
+  final StrutStyle? strutStyle;
+  final String? obscuringCharacter;
+  final String? initialValue;
+  final Brightness? keyboardAppearance;
+  final ToolbarOptions? toolbarOptions;
 
   final String? errorThisFieldRequired;
   final String? errorInvalidEmail;
@@ -94,6 +103,15 @@ class AppTextField extends StatefulWidget {
     this.errorMinimumPasswordLength,
     this.errorInvalidURL,
     this.errorInvalidUsername,
+    this.textAlignVertical,
+    this.expands,
+    this.showCursor,
+    this.selectionControls,
+    this.strutStyle,
+    this.obscuringCharacter,
+    this.initialValue,
+    this.keyboardAppearance,
+    this.toolbarOptions,
   });
 
   @override
@@ -266,6 +284,15 @@ class _AppTextFieldState extends State<AppTextField> {
       scrollPhysics: BouncingScrollPhysics(),
       enableInteractiveSelection: true,
       inputFormatters: widget.inputFormatters,
+      textAlignVertical: widget.textAlignVertical,
+      expands: widget.expands.validate(),
+      showCursor: widget.showCursor,
+      selectionControls: widget.selectionControls,
+      strutStyle: widget.strutStyle,
+      obscuringCharacter: widget.obscuringCharacter.validate(value: '•'),
+      initialValue: widget.initialValue,
+      keyboardAppearance: widget.keyboardAppearance,
+      toolbarOptions: widget.toolbarOptions,
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-const scaffoldLightColor = Color(0xFFFAFAFA);
+const scaffoldLightColor = Color(0xFFEBF2F7);
 const scaffoldDarkColor = Color(0xFF12181B);
 const cardDarkColor = Color(0xFF2A2E35);
 

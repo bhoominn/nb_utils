@@ -9,8 +9,8 @@ Future<SharedPreferences> getSharedPref() async {
 }
 
 /// Add a value in SharedPref based on their type - Must be a String, int, bool, double, Map<String, dynamic> or StringList
-Future<bool> setValue(String key, dynamic value) async {
-  log('${value.runtimeType} - $key - $value');
+Future<bool> setValue(String key, dynamic value, {bool print = true}) async {
+  if (print) log('${value.runtimeType} - $key - $value');
 
   if (value is String) {
     return await sharedPreferences.setString(key, value.validate());

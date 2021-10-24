@@ -4,9 +4,8 @@ import 'package:nb_utils/src/utils/text_styles.dart';
 
 /// SettingItemWidget
 class SettingItemWidget extends StatelessWidget {
-  static String tag = '/SettingItemWidget';
-
   final String title;
+  final double? width;
   final String? subTitle;
   final Widget? leading;
   final Widget? trailing;
@@ -27,6 +26,7 @@ class SettingItemWidget extends StatelessWidget {
   SettingItemWidget({
     required this.title,
     this.onTap,
+    this.width,
     this.subTitle = '',
     this.leading,
     this.trailing,
@@ -47,35 +47,36 @@ class SettingItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       padding: padding ?? EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: decoration ?? BoxDecoration(),
       child: Row(
         children: [
           leading ?? SizedBox(),
-          paddingAfterLeading.width.visible(leading != null),
+          if (leading != null) paddingAfterLeading.width,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title.validate(),
-                style: titleTextStyle ??
-                    boldTextStyle(
-                        color: titleTextColor ?? textPrimaryColorGlobal),
+                style: titleTextStyle ?? boldTextStyle(color: titleTextColor ?? textPrimaryColorGlobal),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
               4.height.visible(subTitle.validate().isNotEmpty),
-              Text(
-                subTitle.validate(),
-                style: subTitleTextStyle ??
-                    secondaryTextStyle(
-                        color: subTitleTextColor ?? textSecondaryColorGlobal),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ).visible(subTitle.validate().isNotEmpty),
+              if (subTitle.validate().isNotEmpty)
+                Text(
+                  subTitle!,
+                  style: subTitleTextStyle ??
+                      secondaryTextStyle(
+                        color: subTitleTextColor ?? textSecondaryColorGlobal,
+                      ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
             ],
           ).expand(),
-          paddingBeforeTrailing.width.visible(trailing != null),
+          if (trailing != null) paddingBeforeTrailing.width,
           trailing ?? SizedBox(),
         ],
       ),

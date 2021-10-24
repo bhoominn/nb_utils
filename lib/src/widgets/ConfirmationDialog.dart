@@ -277,6 +277,8 @@ Future<bool?> showConfirmDialogCustom(
   String? centerImage,
   Widget? customCenterWidget,
   Color? primaryColor,
+  Color? positiveTextColor,
+  Color? negativeTextColor,
   ShapeBorder? shape,
   Function(BuildContext)? onCancel,
   bool barrierDismissible = true,
@@ -289,6 +291,8 @@ Future<bool?> showConfirmDialogCustom(
   Duration? transitionDuration,
   Curve curve = Curves.easeInBack,
 }) async {
+  hideKeyboard(context);
+
   return await showGeneralDialog(
     context: context,
     barrierColor: barrierColor ?? Colors.black54,
@@ -358,7 +362,7 @@ Future<bool?> showConfirmDialogCustom(
                           6.width,
                           Text(
                             negativeText ?? 'Cancel',
-                            style: boldTextStyle(color: textPrimaryColorGlobal),
+                            style: boldTextStyle(color: negativeTextColor ?? textPrimaryColorGlobal),
                           ),
                         ],
                       ).fit(),
@@ -379,7 +383,7 @@ Future<bool?> showConfirmDialogCustom(
                           6.width,
                           Text(
                             positiveText ?? getPositiveText(dialogType),
-                            style: boldTextStyle(color: Colors.white),
+                            style: boldTextStyle(color: positiveTextColor ?? Colors.white),
                           ),
                         ],
                       ).fit(),
