@@ -163,14 +163,17 @@ class _HomePageState extends State<HomePage> {
                           onTap: () async {
                             showInDialog(context, builder: (_) {
                               return SizedBox(
-                                height: 600,width: 500,
+                                height: 600,
+                                width: 500,
                                 child: ThemeWidget(
                                   onThemeChanged: (data) {
                                     log(data);
                                   },
                                 ),
                               );
-                            }, title: Text('Theme'), contentPadding: EdgeInsets.zero);
+                            },
+                                title: Text('Theme'),
+                                contentPadding: EdgeInsets.zero);
                           },
                         ),
                         AppButton(

@@ -59,7 +59,9 @@ class SettingItemWidget extends StatelessWidget {
             children: [
               Text(
                 title.validate(),
-                style: titleTextStyle ?? boldTextStyle(color: titleTextColor ?? textPrimaryColorGlobal),
+                style: titleTextStyle ??
+                    boldTextStyle(
+                        color: titleTextColor ?? textPrimaryColorGlobal),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

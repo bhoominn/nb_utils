@@ -362,7 +362,9 @@ Future<bool?> showConfirmDialogCustom(
                           6.width,
                           Text(
                             negativeText ?? 'Cancel',
-                            style: boldTextStyle(color: negativeTextColor ?? textPrimaryColorGlobal),
+                            style: boldTextStyle(
+                                color: negativeTextColor ??
+                                    textPrimaryColorGlobal),
                           ),
                         ],
                       ).fit(),
@@ -383,7 +385,8 @@ Future<bool?> showConfirmDialogCustom(
                           6.width,
                           Text(
                             positiveText ?? getPositiveText(dialogType),
-                            style: boldTextStyle(color: positiveTextColor ?? Colors.white),
+                            style: boldTextStyle(
+                                color: positiveTextColor ?? Colors.white),
                           ),
                         ],
                       ).fit(),
