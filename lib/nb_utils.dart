@@ -41,13 +41,13 @@ export 'src/utils/constants.dart';
 export 'src/utils/date_time_utils.dart';
 export 'src/utils/decorations.dart';
 export 'src/utils/jwt_decoder.dart';
+export 'src/utils/line_icons.dart';
 export 'src/utils/network_utils.dart';
 export 'src/utils/pattern.dart';
 export 'src/utils/shared_pref.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
-export 'src/utils/line_icons.dart';
 export 'src/widgets/AppButton.dart';
 export 'src/widgets/AppTextField.dart';
 export 'src/widgets/CircularProgressGradient.dart';
@@ -71,6 +71,7 @@ export 'src/widgets/SettingSection.dart';
 export 'src/widgets/SnapHelperWidget.dart';
 export 'src/widgets/TextIcon.dart';
 export 'src/widgets/ThemeWidget.dart';
+export 'src/widgets/TimerWidget.dart';
 export 'src/widgets/ULWidget.dart';
 export 'src/widgets/widgets.dart';
 
@@ -146,15 +147,13 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder =
-      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder = RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
 
-  selectedLanguageDataModel =
-      getSelectedLanguageModel(defaultLanguage: defaultLanguage);
+  selectedLanguageDataModel = getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
 /// nb_utils class

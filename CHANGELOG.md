@@ -1,3 +1,5 @@
+## 4.4.11
+- Added Timer Widget
 ## 4.4.9
 - Change Loader widget value color
 - Add margin in AppButton
