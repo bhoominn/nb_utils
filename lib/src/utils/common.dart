@@ -118,7 +118,7 @@ void snackBar(
         animation: animation,
         width: width,
         shape: shape,
-        duration: 4.seconds,
+        duration: duration ?? 4.seconds,
         behavior: margin != null ? SnackBarBehavior.floating : behavior,
         elevation: elevation,
         onVisible: onVisible?.call(),
