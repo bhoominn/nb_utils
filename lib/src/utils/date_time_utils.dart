@@ -1,4 +1,4 @@
-import '../../nb_utils.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 extension DateTimeExt on DateTime {
   /// Returns Time Ago

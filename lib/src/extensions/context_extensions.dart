@@ -30,7 +30,7 @@ extension ContextExtensions on BuildContext {
   Color get primaryColor => theme.primaryColor;
 
   /// Returns accentColor Color
-  Color get accentColor => theme.accentColor;
+  Color get accentColor => theme.colorScheme.secondary;
 
   /// Returns scaffoldBackgroundColor Color
   Color get scaffoldBackgroundColor => theme.scaffoldBackgroundColor;

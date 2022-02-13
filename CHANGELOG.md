@@ -1,3 +1,5 @@
+## 4.4.12
+- Fix initial delay issue in TimerWidget
 ## 4.4.11
 - Added Timer Widget
 ## 4.4.9

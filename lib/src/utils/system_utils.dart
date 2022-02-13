@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nb_utils/src/extensions/color_extensions.dart';
-import 'package:nb_utils/src/extensions/device_extensions.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 /// Go back to previous screen.

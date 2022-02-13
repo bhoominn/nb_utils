@@ -2,21 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-/// TimerWidget
+/// TimerWidget - Use this widget if you want to do something every X seconds or any duration.
 class TimerWidget extends StatefulWidget {
   final void Function() function;
   final Widget child;
   final Duration duration;
 
   final int? initialDelay;
-  final bool pauseTimerOnAppPause;
+  final bool enableWidgetBindingObserver;
+  final bool enableTimer;
 
   TimerWidget({
     required this.function,
     required this.child,
     required this.duration,
     this.initialDelay,
-    this.pauseTimerOnAppPause = false,
+    this.enableWidgetBindingObserver = false,
+    this.enableTimer = true,
   });
 
   @override
@@ -33,16 +35,16 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
         init();
       });
     } else {
-      init();
+      widget.function.call();
     }
 
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
     super.initState();
   }
 
   void init() async {
     timer = Timer(widget.duration, () {
-      widget.function.call();
+      if (widget.enableTimer) widget.function.call();
 
       init();
     });
@@ -51,7 +53,7 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
   @override
   void dispose() {
     timer?.cancel();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
   }
 
@@ -64,7 +66,7 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
 
-    if (widget.pauseTimerOnAppPause) {
+    if (widget.enableWidgetBindingObserver) {
       if (state == AppLifecycleState.resumed) {
         init();
       } else if (state == AppLifecycleState.paused) {
@@ -74,7 +76,5 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return widget.child;
-  }
+  Widget build(BuildContext context) => widget.child;
 }

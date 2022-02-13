@@ -111,6 +111,17 @@ appBarWidget(
 ```
 
 ```dart
+/// Timer widget
+TimerWidget(
+  function: () {
+    // Do something
+  },
+  child: Text('Your Widget'),
+  duration: 10.seconds,
+),
+```
+
+```dart
 SettingSection(
   title: Text('Account Management', style: boldTextStyle(size: 24)),
   subTitle: Text('Control your account', style: primaryTextStyle()), // Optional
