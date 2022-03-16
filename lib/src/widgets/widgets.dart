@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils/src/utils/common.dart';
-import 'package:nb_utils/src/utils/text_styles.dart';
-import 'package:nb_utils/src/widgets/ConfirmationDialog.dart';
-import 'package:nb_utils/src/widgets/Loader.dart';
 
 /// show confirm dialog box
 Future<bool?> showConfirmDialog<bool>(
@@ -115,7 +111,7 @@ AppBar appBarWidget(
   Color? shadowColor,
   double? elevation,
   Widget? backWidget,
-  Brightness? brightness,
+  @Deprecated('Use systemOverlayStyle instead') Brightness? brightness,
   SystemUiOverlayStyle? systemUiOverlayStyle,
   TextStyle? titleTextStyle,
   PreferredSizeWidget? bottom,
@@ -138,7 +134,6 @@ AppBar appBarWidget(
         : null,
     shadowColor: shadowColor,
     elevation: elevation ?? defaultAppBarElevation,
-    brightness: brightness,
     systemOverlayStyle: systemUiOverlayStyle,
     bottom: bottom,
     flexibleSpace: flexibleSpace,

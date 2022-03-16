@@ -1,3 +1,6 @@
+## 4.4.13
+- Add Google Drive URL for Document Viewer
+- Fix DateTime Functions
 ## 4.4.12
 - Fix initial delay issue in TimerWidget
 ## 4.4.11

@@ -48,12 +48,13 @@ Future<void> setStatusBarColor(
 
 /// This function will show status bar
 Future<void> showStatusBar() async {
-  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: SystemUiOverlay.values);
 }
 
 /// This function will hide status bar
 Future<void> hideStatusBar() async {
-  SystemChrome.setEnabledSystemUIOverlays([]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 }
 
 /// Set orientation to portrait

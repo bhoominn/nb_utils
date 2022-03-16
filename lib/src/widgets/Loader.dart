@@ -60,7 +60,8 @@ class LoaderState extends State<Loader> {
         value: widget.value,
         valueColor: widget.valueColor ??
             AlwaysStoppedAnimation(
-              defaultLoaderAccentColorGlobal ?? Theme.of(context).accentColor,
+              defaultLoaderAccentColorGlobal ??
+                  Theme.of(context).colorScheme.secondary,
             ),
       ),
     ).center();

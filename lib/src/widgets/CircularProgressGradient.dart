@@ -71,10 +71,10 @@ class CircularProgressGradient extends StatelessWidget {
       _offset = asin(stokeWidth / (radius * 2 - stokeWidth));
     }
     List<Color> _colors = colors;
-    if (_colors == null) {
-      Color color = Theme.of(context).accentColor;
+    /*if (_colors == null) {
+      Color color = Theme.of(context).colorScheme.secondary;
       _colors = [color, color];
-    }
+    }*/
     return Transform.rotate(
       angle: -pi / 2.0 - _offset,
       child: CustomPaint(

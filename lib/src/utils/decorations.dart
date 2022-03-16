@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../nb_utils.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 /// returns default InputDecoration for AppTextField widget
 InputDecoration defaultInputDecoration(

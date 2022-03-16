@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:nb_utils/nb_utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// Returns SharedPref Instance
 Future<SharedPreferences> getSharedPref() async {

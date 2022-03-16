@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils/src/utils/constants.dart';
-import 'package:nb_utils/src/widgets/SettingItemWidget.dart';
 
 enum ThemeModes { SystemDefault, Light, Dark }
 

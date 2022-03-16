@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 /// TimerWidget - Use this widget if you want to do something every X seconds or any duration.
 class TimerWidget extends StatefulWidget {
@@ -31,11 +32,13 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
   @override
   void initState() {
     if (widget.initialDelay != null) {
-      Future.delayed(Duration(seconds: widget.initialDelay!)).then((value) {
+      widget.initialDelay!.seconds.delay.then((value) {
         init();
       });
     } else {
-      widget.function.call();
+      1.seconds.delay.then((v) {
+        widget.function.call();
+      });
     }
 
     WidgetsBinding.instance?.addObserver(this);

@@ -3,9 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils/src/utils/system_utils.dart';
 
 enum PageRouteAnimation { Fade, Scale, Rotate, Slide, SlideBottomTop }
 
@@ -161,7 +159,8 @@ enum LinkProvider {
   REDDIT,
   TELEGRAM,
   WHATSAPP,
-  FB_MESSENGER
+  FB_MESSENGER,
+  GOOGLE_DRIVE
 }
 
 String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
@@ -188,6 +187,8 @@ String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
       return "$facebookMessengerURL$url";
     case LinkProvider.FB_MESSENGER:
       return "$whatsappURL$url";
+    case LinkProvider.GOOGLE_DRIVE:
+      return "$googleDriveURL$url";
   }
 }
 

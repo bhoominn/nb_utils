@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils/src/utils/pattern.dart';
 
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
 

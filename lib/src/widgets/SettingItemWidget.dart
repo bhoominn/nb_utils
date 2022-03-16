@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils/src/utils/text_styles.dart';
 
 /// SettingItemWidget
 class SettingItemWidget extends StatelessWidget {
