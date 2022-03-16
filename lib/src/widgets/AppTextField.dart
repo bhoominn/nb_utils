@@ -6,7 +6,9 @@ enum TextFieldType {
   EMAIL,
   PASSWORD,
   NAME,
+  @Deprecated('Use MULTILINE instead. ADDRESS will be removed in major update')
   ADDRESS,
+  MULTILINE,
   OTHER,
   PHONE,
   URL,
@@ -57,6 +59,8 @@ class AppTextField extends StatefulWidget {
   final String? initialValue;
   final Brightness? keyboardAppearance;
   final ToolbarOptions? toolbarOptions;
+  final Widget? suffixPasswordVisibleWidget;
+  final Widget? suffixPasswordInvisibleWidget;
 
   final String? errorThisFieldRequired;
   final String? errorInvalidEmail;
@@ -111,6 +115,8 @@ class AppTextField extends StatefulWidget {
     this.initialValue,
     this.keyboardAppearance,
     this.toolbarOptions,
+    this.suffixPasswordVisibleWidget,
+    this.suffixPasswordInvisibleWidget,
   });
 
   @override
@@ -186,7 +192,8 @@ class _AppTextFieldState extends State<AppTextField> {
       return widget.textCapitalization!;
     } else if (widget.textFieldType == TextFieldType.NAME) {
       return TextCapitalization.words;
-    } else if (widget.textFieldType == TextFieldType.ADDRESS) {
+    } else if (widget.textFieldType == TextFieldType.ADDRESS ||
+        widget.textFieldType == TextFieldType.MULTILINE) {
       return TextCapitalization.sentences;
     } else {
       return TextCapitalization.none;
@@ -196,7 +203,8 @@ class _AppTextFieldState extends State<AppTextField> {
   TextInputAction? applyTextInputAction() {
     if (widget.textInputAction != null) {
       return widget.textInputAction;
-    } else if (widget.textFieldType == TextFieldType.ADDRESS) {
+    } else if (widget.textFieldType == TextFieldType.ADDRESS ||
+        widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputAction.newline;
     } else if (widget.nextFocus != null) {
       return TextInputAction.next;
@@ -210,7 +218,8 @@ class _AppTextFieldState extends State<AppTextField> {
       return widget.keyboardType;
     } else if (widget.textFieldType == TextFieldType.EMAIL) {
       return TextInputType.emailAddress;
-    } else if (widget.textFieldType == TextFieldType.ADDRESS) {
+    } else if (widget.textFieldType == TextFieldType.ADDRESS ||
+        widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputType.multiline;
     } else if (widget.textFieldType == TextFieldType.PASSWORD) {
       return TextInputType.visiblePassword;
@@ -220,6 +229,51 @@ class _AppTextFieldState extends State<AppTextField> {
       return TextInputType.url;
     } else {
       return TextInputType.text;
+    }
+  }
+
+  void onPasswordVisibilityChange(bool val) {
+    isPasswordVisible = val;
+    setState(() {});
+  }
+
+  Widget? suffixIcon() {
+    if (widget.textFieldType == TextFieldType.PASSWORD) {
+      if (widget.suffix != null) {
+        return widget.suffix;
+      } else {
+        if (isPasswordVisible) {
+          if (widget.suffixPasswordVisibleWidget != null) {
+            return widget.suffixPasswordVisibleWidget!.onTap(() {
+              onPasswordVisibilityChange(false);
+            });
+          } else {
+            return Icon(
+              Icons.visibility,
+              color:
+                  widget.suffixIconColor ?? Theme.of(context).iconTheme.color,
+            ).onTap(() {
+              onPasswordVisibilityChange(false);
+            });
+          }
+        } else {
+          if (widget.suffixPasswordInvisibleWidget != null) {
+            return widget.suffixPasswordInvisibleWidget!.onTap(() {
+              onPasswordVisibilityChange(true);
+            });
+          } else {
+            return Icon(
+              Icons.visibility_off,
+              color:
+                  widget.suffixIconColor ?? Theme.of(context).iconTheme.color,
+            ).onTap(() {
+              onPasswordVisibilityChange(true);
+            });
+          }
+        }
+      }
+    } else {
+      return widget.suffix;
     }
   }
 
@@ -241,27 +295,14 @@ class _AppTextFieldState extends State<AppTextField> {
       keyboardType: applyTextInputType(),
       decoration: widget.decoration != null
           ? (widget.decoration!.copyWith(
-              suffixIcon: widget.textFieldType == TextFieldType.PASSWORD
-                  ? widget.suffix != null
-                      ? widget.suffix
-                      : Icon(
-                          isPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: widget.suffixIconColor ??
-                              Theme.of(context).iconTheme.color,
-                        ).onTap(() {
-                          isPasswordVisible = !isPasswordVisible;
-
-                          setState(() {});
-                        })
-                  : widget.suffix,
+              suffixIcon: suffixIcon(),
             ))
           : InputDecoration(),
       focusNode: widget.focus,
       style: widget.textStyle ?? primaryTextStyle(),
       textAlign: widget.textAlign ?? TextAlign.start,
-      maxLines: widget.textFieldType == TextFieldType.ADDRESS
+      maxLines: (widget.textFieldType == TextFieldType.ADDRESS ||
+              widget.textFieldType == TextFieldType.MULTILINE)
           ? null
           : widget.maxLines.validate(value: 1),
       minLines: widget.minLines.validate(value: 1),

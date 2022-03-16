@@ -264,12 +264,14 @@ extension WidgetExtension on Widget? {
       Duration? duration}) async {
     if (isNewTask) {
       return await Navigator.of(context).pushAndRemoveUntil(
-        buildPageRoute(this!, pageRouteAnimation, duration),
+        buildPageRoute(
+            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
         (route) => false,
       );
     } else {
       return await Navigator.of(context).push(
-        buildPageRoute(this!, pageRouteAnimation, duration),
+        buildPageRoute(
+            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
       );
     }
   }

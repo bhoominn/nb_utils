@@ -78,7 +78,7 @@ class _AppButtonState extends State<AppButton>
 
   @override
   Widget build(BuildContext context) {
-    if (_controller != null) {
+    if (_controller != null && widget.enabled.validate(value: true)) {
       _scale = 1 - _controller!.value;
     }
 
@@ -108,7 +108,9 @@ class _AppButtonState extends State<AppButton>
         minWidth: widget.width,
         padding: widget.padding ?? dynamicAppButtonPadding(context),
         onPressed: widget.enabled.validate(value: true)
-            ? widget.onTap as void Function()?
+            ? widget.onTap != null
+                ? widget.onTap as void Function()?
+                : null
             : null,
         color: widget.color ?? appButtonBackgroundColorGlobal,
         child: widget.child ??

@@ -80,7 +80,7 @@ String platformName() {
   if (isMacOS) return 'macOS';
   if (isWindows) return 'Windows';
   if (isAndroid) return 'Android';
-  if (isIos) return 'iOS';
+  if (isIOS) return 'iOS';
   return '';
 }
 

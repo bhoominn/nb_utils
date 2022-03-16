@@ -359,7 +359,7 @@ class _HomePageState extends State<HomePage> {
 
                     /// Address TextField
                     AppTextField(
-                      textFieldType: TextFieldType.ADDRESS,
+                      textFieldType: TextFieldType.MULTILINE,
                       decoration: defaultInputDecoration(label: 'Address'),
                       minLines: 4,
                     ),

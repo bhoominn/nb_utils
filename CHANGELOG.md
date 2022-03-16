@@ -1,3 +1,8 @@
+## 4.4.14
+- Disable AppButton animation if enabled parameter is set to false
+- Added two separate widget parameter for visible and invisible password for suffix in AppTextField
+- Removed String parameter from getNumericOnly() method as it was unnecessary
+- Removed isIos method, User isIOS Instead
 ## 4.4.13
 - Add Google Drive URL for Document Viewer
 - Fix DateTime Functions

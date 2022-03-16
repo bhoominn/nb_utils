@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nb_utils/src/extensions/int_extensions.dart';
 import 'package:nb_utils/src/models/LanguageDataModel.dart';
 import 'package:nb_utils/src/utils/colors.dart';
 import 'package:nb_utils/src/utils/common.dart';
@@ -133,6 +134,9 @@ Color defaultToastBackgroundColor = Colors.grey.shade200;
 Color defaultToastTextColor = Colors.black;
 ToastGravity defaultToastGravityGlobal = ToastGravity.CENTER;
 BorderRadius defaultToastBorderRadiusGlobal = radius(30);
+
+PageRouteAnimation? pageRouteAnimationGlobal;
+Duration transitionDurationGlobal = 700.milliseconds;
 //endregion
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -177,12 +181,14 @@ Future<T?> push<T>(
 }) async {
   if (isNewTask) {
     return await Navigator.of(getContext).pushAndRemoveUntil(
-      buildPageRoute(widget, pageRouteAnimation, duration),
+      buildPageRoute(
+          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
       (route) => false,
     );
   } else {
     return await Navigator.of(getContext).push(
-      buildPageRoute(widget, pageRouteAnimation, duration),
+      buildPageRoute(
+          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
     );
   }
 }

@@ -221,14 +221,14 @@ extension StringExtension on String? {
   }
 
   /// Returns only numbers from a string trim Whitespaces
-  String getNumericOnly(String string, {bool aFirstWordOnly = false}) {
+  String getNumericOnly({bool aFirstWordOnly = false}) {
     String numericOnlyString = '';
 
-    for (var i = 0; i < string.length; i++) {
-      if ((string[i].isDigit())) {
-        numericOnlyString += string[i];
+    for (var i = 0; i < this.validate().length; i++) {
+      if ((this![i].isDigit())) {
+        numericOnlyString += this![i];
       }
-      if (aFirstWordOnly && numericOnlyString.isNotEmpty && string[i] == " ") {
+      if (aFirstWordOnly && numericOnlyString.isNotEmpty && this![i] == " ") {
         break;
       }
     }
