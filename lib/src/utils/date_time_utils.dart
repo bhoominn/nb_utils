@@ -25,7 +25,7 @@ extension DateTimeExt on DateTime {
     final now = DateTime.now();
     final yesterday = DateTime(now.year, now.month, now.day - 1);
 
-    return DateTime(now.year, now.month, now.day + 1) == yesterday;
+    return DateTime(this.year, this.month, this.day + 1) == yesterday;
   }
 }
 
