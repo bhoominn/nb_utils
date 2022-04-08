@@ -1,4 +1,4 @@
-## 4.4.14
+## 4.4.15
 - Disable AppButton animation if enabled parameter is set to false
 - Added two separate widget parameter for visible and invisible password for suffix in AppTextField
 - Removed String parameter from getNumericOnly() method as it was unnecessary

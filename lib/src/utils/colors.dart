@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 const scaffoldLightColor = Color(0xFFEBF2F7);
-const scaffoldDarkColor = Color(0xFF12181B);
-const cardDarkColor = Color(0xFF2A2E35);
+const scaffoldDarkColor = Color(0xFF0E1116);
+const cardDarkColor = Color(0xFF1C1F26);
+const dividerDarkColor = Color(0xFF393D45);
 
 const textPrimaryColor = Color(0xFF2E3033);
 const textSecondaryColor = Color(0xFF757575);

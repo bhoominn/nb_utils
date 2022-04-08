@@ -183,9 +183,9 @@ String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
       return "$redditBaseURL$url";
     case LinkProvider.TELEGRAM:
       return "$telegramBaseURL$url";
-    case LinkProvider.WHATSAPP:
-      return "$facebookMessengerURL$url";
     case LinkProvider.FB_MESSENGER:
+      return "$facebookMessengerURL$url";
+    case LinkProvider.WHATSAPP:
       return "$whatsappURL$url";
     case LinkProvider.GOOGLE_DRIVE:
       return "$googleDriveURL$url";
@@ -273,21 +273,21 @@ Route<T> buildPageRoute<T>(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) =>
             FadeTransition(opacity: anim, child: child),
-        transitionDuration: duration ?? transitionDurationGlobal,
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) =>
             RotationTransition(child: child, turns: ReverseAnimation(anim)),
-        transitionDuration: duration ?? transitionDurationGlobal,
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) =>
             ScaleTransition(child: child, scale: anim),
-        transitionDuration: duration ?? transitionDurationGlobal,
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
       return PageRouteBuilder(
@@ -297,7 +297,7 @@ Route<T> buildPageRoute<T>(
           position: Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0))
               .animate(anim),
         ),
-        transitionDuration: duration ?? transitionDurationGlobal,
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.SlideBottomTop) {
       return PageRouteBuilder(
@@ -307,7 +307,7 @@ Route<T> buildPageRoute<T>(
           position: Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
               .animate(anim),
         ),
-        transitionDuration: duration ?? transitionDurationGlobal,
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     }
   }
