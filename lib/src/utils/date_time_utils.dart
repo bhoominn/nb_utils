@@ -17,15 +17,15 @@ extension DateTimeExt on DateTime {
     final now = DateTime.now();
     final yesterday = DateTime(now.year, now.month, now.day - 1);
 
-    return DateTime(this.year, this.month, this.day - 1) == yesterday;
+    return DateTime(this.year, this.month, this.day) == yesterday;
   }
 
   /// Returns true if given date is tomorrow
   bool get isTomorrow {
     final now = DateTime.now();
-    final yesterday = DateTime(now.year, now.month, now.day - 1);
+    final tomorrow = DateTime(now.year, now.month, now.day + 1);
 
-    return DateTime(this.year, this.month, this.day + 1) == yesterday;
+    return DateTime(this.year, this.month, this.day) == tomorrow;
   }
 }
 
