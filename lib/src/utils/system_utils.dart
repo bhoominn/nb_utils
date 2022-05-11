@@ -111,3 +111,53 @@ Future<T?> invokeNativeMethod<T>(String channel, String method,
 void log(Object? value) {
   if (!kReleaseMode || forceEnableDebug) print(value);
 }
+
+/// Return true if Android OS version is above 12
+Future<bool> isAndroid12Above() async {
+  if (isAndroid) {
+    return (await invokeNativeMethod('nb_utils', 'isAndroid12Above') as bool);
+  } else {
+    return false;
+  }
+}
+
+/// Returns material you colors from Android
+Future<dynamic> getMaterialYouColors() async {
+  if (isAndroid) {
+    return await invokeNativeMethod('nb_utils', 'materialYouColors');
+  } else {
+    return {};
+  }
+}
+
+/// Returns primary color for material you theme
+Future<Color> getMaterialYouPrimaryColor() async {
+  Map colors = await getMaterialYouColors();
+
+  return colors['system_accent1_400'].toString().toColor();
+}
+
+/// Returns material you ThemeData
+Future<ThemeData> getMaterialYouTheme() async {
+  Map colors = await getMaterialYouColors();
+
+  Color accent50 = colors['system_accent1_50'].toString().toColor();
+  Color accent100 = colors['system_accent1_100'].toString().toColor();
+  Color accent200 = colors['system_accent1_200'].toString().toColor();
+  Color accent300 = colors['system_accent1_300'].toString().toColor();
+  Color accent400 = colors['system_accent1_400'].toString().toColor();
+  Color accent500 = colors['system_accent1_500'].toString().toColor();
+  Color accent600 = colors['system_accent1_600'].toString().toColor();
+
+  return ThemeData(
+    //primarySwatch: createMaterialColor(accent300),
+    primaryColor: accent400,
+    //scaffoldBackgroundColor: accent50,
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: createMaterialColor(accent300),
+      cardColor: accent50,
+      //backgroundColor: accent50,
+    ),
+  );
+}

@@ -323,3 +323,13 @@ EdgeInsets dynamicAppButtonPadding(BuildContext context) {
     return EdgeInsets.symmetric(vertical: 14, horizontal: 16);
   }
 }
+
+//TODO
+Future<dynamic> showBottomSheetOrDialog(
+    {context, required Widget child, bool showBottomSheet = true}) {
+  if (showBottomSheet) {
+    return showModalBottomSheet(context: context, builder: (_) => child);
+  } else {
+    return showInDialog(context, builder: (_) => child);
+  }
+}

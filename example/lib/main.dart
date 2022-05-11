@@ -31,20 +31,27 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'NB Utils Example',
-      debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      theme: ThemeData(
-        primarySwatch: createMaterialColor(Colors.blue),
-        scaffoldBackgroundColor: scaffoldLightColor,
-      ),
-      darkTheme: ThemeData(
-        primarySwatch: createMaterialColor(Colors.blue),
-      ),
-      themeMode:
-          getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
-      home: HomePage(),
+    return FutureBuilder<ThemeData>(
+      future: getMaterialYouTheme(),
+      builder: (_, snap) {
+        return MaterialApp(
+          title: 'NB Utils Example',
+          debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
+          theme: snap.data ??
+              ThemeData(
+                primarySwatch: createMaterialColor(Colors.blue),
+                scaffoldBackgroundColor: scaffoldLightColor,
+              ),
+          darkTheme: ThemeData(
+            primarySwatch: createMaterialColor(Colors.blue),
+          ),
+          themeMode: getIntAsync(THEME_MODE_INDEX) == 2
+              ? ThemeMode.dark
+              : ThemeMode.light,
+          home: HomePage(),
+        );
+      },
     );
   }
 }
@@ -56,6 +63,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<FormState> formKey = GlobalKey();
+
   double rating = 2.2;
 
   @override
@@ -86,16 +94,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget('Home', showBack: false),
+      appBar: AppBar(),
       drawer: Drawer(),
       drawerEdgeDragWidth: context.width() * 0.2,
       drawerEnableOpenDragGesture: true,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       body: Container(
         child: SingleChildScrollView(
           child: Form(
             key: formKey,
             child: Column(
               children: <Widget>[
+                SnapHelperWidget(
+                  future: getMaterialYouColors(),
+                  onSuccess: (data) {
+                    //var data1 = (data as Map).values.map((e) => e.toString().toColor()).toList();
+
+                    return Wrap(
+                      children: (data as Map).entries.map((e) {
+                        return Container(
+                            height: 50,
+                            color: e.value.toString().toColor(),
+                            child: Text(e.key));
+                      }).toList(),
+                    );
+                  },
+                ),
+
                 LanguageListWidget(
                   widgetType: WidgetType.DROPDOWN,
                   onLanguageChange: (data) {
@@ -129,6 +157,7 @@ class _HomePageState extends State<HomePage> {
                 RatingBarWidget(
                   rating: rating,
                   size: 40,
+                  activeColor: context.primaryColor,
                   allowHalfRating: true,
                   onRatingChanged: (e) {
                     rating = e;
