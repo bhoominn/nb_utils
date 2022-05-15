@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
               ThemeData(
                 primarySwatch: createMaterialColor(Colors.blue),
                 scaffoldBackgroundColor: scaffoldLightColor,
+                useMaterial3: true,
               ),
           darkTheme: ThemeData(
             primarySwatch: createMaterialColor(Colors.blue),

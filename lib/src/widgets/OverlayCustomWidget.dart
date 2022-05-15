@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 /// Show custom widget on a widget click
 class OverlayCustomWidget extends StatelessWidget {
@@ -56,21 +57,22 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
     super.initState();
 
     if (widget.showOverlay) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) => showOverlay());
+      makeNullable(WidgetsBinding.instance)!
+          .addPostFrameCallback((_) => showOverlay());
     }
   }
 
   @override
   void didUpdateWidget(OverlayBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance!
+    makeNullable(WidgetsBinding.instance)!
         .addPostFrameCallback((_) => syncWidgetAndOverlay());
   }
 
   @override
   void reassemble() {
     super.reassemble();
-    WidgetsBinding.instance!
+    makeNullable(WidgetsBinding.instance)!
         .addPostFrameCallback((_) => syncWidgetAndOverlay());
   }
 

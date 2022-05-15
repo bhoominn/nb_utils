@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 /// Callback after build widget is rendered
 /// CREDIT
@@ -8,7 +9,7 @@ mixin AfterLayoutMixin<T extends StatefulWidget> on State<T> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!
+    makeNullable(WidgetsBinding.instance)!
         .addPostFrameCallback((_) => afterFirstLayout(context));
   }
 

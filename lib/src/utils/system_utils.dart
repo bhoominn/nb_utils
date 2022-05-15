@@ -123,7 +123,7 @@ Future<bool> isAndroid12Above() async {
 
 /// Returns material you colors from Android
 Future<dynamic> getMaterialYouColors() async {
-  if (isAndroid) {
+  if (isAndroid && await isAndroid12Above()) {
     return await invokeNativeMethod('nb_utils', 'materialYouColors');
   } else {
     return {};

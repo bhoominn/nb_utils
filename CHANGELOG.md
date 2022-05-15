@@ -1,3 +1,7 @@
+## 4.5.2
+- Support for Previous Version of Flutter
+## 4.5.1
+- Support For Flutter 3.0.0
 ## 4.5.0
 - Generate Material You Colors
 - Upgrade Gradle Version to 7.0

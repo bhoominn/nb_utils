@@ -197,8 +197,11 @@ const double degrees2Radians = pi / 180.0;
 double radians(double degrees) => degrees * degrees2Radians;
 
 void afterBuildCreated(Function()? onCreated) {
-  SchedulerBinding.instance!.addPostFrameCallback((_) => onCreated?.call());
+  makeNullable(SchedulerBinding.instance)!
+      .addPostFrameCallback((_) => onCreated?.call());
 }
+
+T? makeNullable<T>(T? value) => value;
 
 Widget dialogAnimatedWrapperWidget({
   required Animation<double> animation,

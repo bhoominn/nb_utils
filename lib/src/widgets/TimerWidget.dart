@@ -41,7 +41,7 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
       });
     }
 
-    WidgetsBinding.instance?.addObserver(this);
+    makeNullable(WidgetsBinding.instance)!.addObserver(this);
     super.initState();
   }
 
@@ -56,7 +56,7 @@ class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {
   @override
   void dispose() {
     timer?.cancel();
-    WidgetsBinding.instance?.removeObserver(this);
+    makeNullable(WidgetsBinding.instance)!.removeObserver(this);
     super.dispose();
   }
 
