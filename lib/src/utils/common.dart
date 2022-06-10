@@ -5,6 +5,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+T? makeNullable<T>(T? value) => value;
+
 enum PageRouteAnimation { Fade, Scale, Rotate, Slide, SlideBottomTop }
 
 bool hasMatch(String? s, String p) {
@@ -105,7 +107,7 @@ void snackBar(
   SnackBarBehavior? behavior,
   double? elevation,
 }) {
-  if (title.isEmpty && content != null) {
+  if (title.isEmpty && content == null) {
     log('SnackBar message is empty');
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -200,8 +202,6 @@ void afterBuildCreated(Function()? onCreated) {
   makeNullable(SchedulerBinding.instance)!
       .addPostFrameCallback((_) => onCreated?.call());
 }
-
-T? makeNullable<T>(T? value) => value;
 
 Widget dialogAnimatedWrapperWidget({
   required Animation<double> animation,
@@ -327,10 +327,14 @@ EdgeInsets dynamicAppButtonPadding(BuildContext context) {
   }
 }
 
-//TODO
-Future<dynamic> showBottomSheetOrDialog(
-    {context, required Widget child, bool showBottomSheet = true}) {
-  if (showBottomSheet) {
+enum BottomSheetDialog { Dialog, BottomSheet }
+
+Future<dynamic> showBottomSheetOrDialog({
+  required BuildContext context,
+  required Widget child,
+  BottomSheetDialog bottomSheetDialog = BottomSheetDialog.Dialog,
+}) {
+  if (bottomSheetDialog == BottomSheetDialog.BottomSheet) {
     return showModalBottomSheet(context: context, builder: (_) => child);
   } else {
     return showInDialog(context, builder: (_) => child);

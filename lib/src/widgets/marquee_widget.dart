@@ -18,7 +18,8 @@ class Marquee extends StatelessWidget {
     this.backDuration = const Duration(milliseconds: 5000),
     this.pauseDuration = const Duration(milliseconds: 2000),
     this.directionMarguee = DirectionMarguee.TwoDirection,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final ScrollController scrollController = ScrollController();
 

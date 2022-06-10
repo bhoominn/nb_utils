@@ -41,7 +41,8 @@ class AppButton extends StatefulWidget {
     this.hoverColor,
     this.splashColor,
     this.enableScaleAnimation,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _AppButtonState createState() => _AppButtonState();

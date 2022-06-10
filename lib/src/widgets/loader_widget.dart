@@ -20,7 +20,8 @@ class Loader extends StatefulWidget {
     this.value,
     this.valueColor,
     this.accentColor,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   LoaderState createState() => LoaderState();

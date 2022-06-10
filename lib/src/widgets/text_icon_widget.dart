@@ -23,7 +23,8 @@ class TextIcon extends StatelessWidget {
     this.onTap,
     this.edgeInsets,
     this.expandedText,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,8 @@ class ThemeWidget extends StatefulWidget {
     this.subTitle,
     this.trailing,
     this.padding,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ThemeWidgetState createState() => _ThemeWidgetState();

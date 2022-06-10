@@ -41,7 +41,8 @@ class SettingItemWidget extends StatelessWidget {
     this.hoverColor,
     this.splashColor,
     this.radius,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

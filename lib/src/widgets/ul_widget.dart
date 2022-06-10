@@ -25,7 +25,8 @@ class UL extends StatelessWidget {
     this.customSymbol,
     this.prefixText,
     this.edgeInsets,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -20,7 +20,8 @@ class DottedBorderWidget extends StatefulWidget {
     this.strokeWidth = 1.0,
     required this.child,
     this.padding,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _DottedBorderWidgetState createState() => _DottedBorderWidgetState();

@@ -117,7 +117,8 @@ class AppTextField extends StatefulWidget {
     this.toolbarOptions,
     this.suffixPasswordVisibleWidget,
     this.suffixPasswordInvisibleWidget,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _AppTextFieldState createState() => _AppTextFieldState();

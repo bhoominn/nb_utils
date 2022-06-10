@@ -94,6 +94,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(),
@@ -109,6 +111,27 @@ class _HomePageState extends State<HomePage> {
             key: formKey,
             child: Column(
               children: <Widget>[
+                16.height,
+                RoundedCheckBox(
+                  size: 24,
+                  text: 'Remember me',
+                  onTap: (val) {
+                    //
+                  },
+                ),
+                16.height,
+
+                SizeListener(
+                  onChange: (size) {
+                    log(size);
+                  },
+                  child: Container(
+                    color: blueColor,
+                    height: 50.dynamicHeight,
+                    width: 100.dynamicWidth,
+                  ),
+                ),
+
                 SnapHelperWidget(
                   future: getMaterialYouColors(),
                   onSuccess: (data) {

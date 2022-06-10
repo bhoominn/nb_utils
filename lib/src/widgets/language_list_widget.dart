@@ -17,7 +17,8 @@ class LanguageListWidget extends StatefulWidget {
     this.onLanguageChange,
     this.scrollPhysics,
     this.trailing,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   LanguageListWidgetState createState() => LanguageListWidgetState();

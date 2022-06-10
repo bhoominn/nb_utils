@@ -19,7 +19,8 @@ class SnapHelperWidget<T> extends StatelessWidget {
     this.initialData,
     this.defaultErrorMessage,
     this.useConnectionStateForLoader = false,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

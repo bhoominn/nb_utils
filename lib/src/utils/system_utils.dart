@@ -52,6 +52,17 @@ Future<void> showStatusBar() async {
       overlays: SystemUiOverlay.values);
 }
 
+// Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
+void enterFullScreen() {
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+}
+
+// Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
+void exitFullScreen() {
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: SystemUiOverlay.values);
+}
+
 /// This function will hide status bar
 Future<void> hideStatusBar() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -101,8 +112,11 @@ class SBehavior extends ScrollBehavior {
 }
 
 /// Invoke Native method and get result
-Future<T?> invokeNativeMethod<T>(String channel, String method,
-    [dynamic arguments]) async {
+Future<T?> invokeNativeMethod<T>(
+  String channel,
+  String method, [
+  dynamic arguments,
+]) async {
   var platform = MethodChannel(channel);
   return await platform.invokeMethod<T>(method, arguments);
 }
@@ -110,6 +124,10 @@ Future<T?> invokeNativeMethod<T>(String channel, String method,
 /// Prints only if in debug or profile mode
 void log(Object? value) {
   if (!kReleaseMode || forceEnableDebug) print(value);
+}
+
+Future<Null> onError(Object o) async {
+  log(o.toString());
 }
 
 /// Return true if Android OS version is above 12
@@ -142,12 +160,8 @@ Future<ThemeData> getMaterialYouTheme() async {
   Map colors = await getMaterialYouColors();
 
   Color accent50 = colors['system_accent1_50'].toString().toColor();
-  Color accent100 = colors['system_accent1_100'].toString().toColor();
-  Color accent200 = colors['system_accent1_200'].toString().toColor();
   Color accent300 = colors['system_accent1_300'].toString().toColor();
   Color accent400 = colors['system_accent1_400'].toString().toColor();
-  Color accent500 = colors['system_accent1_500'].toString().toColor();
-  Color accent600 = colors['system_accent1_600'].toString().toColor();
 
   return ThemeData(
     //primarySwatch: createMaterialColor(accent300),

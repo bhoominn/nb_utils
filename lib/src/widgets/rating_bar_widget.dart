@@ -32,7 +32,8 @@ class RatingBarWidget extends StatefulWidget {
     this.halfFilledIconData,
     this.allowHalfRating = false,
     this.disable = false,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _RatingBarWidgetState createState() => _RatingBarWidgetState();

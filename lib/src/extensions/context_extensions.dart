@@ -33,13 +33,13 @@ extension ContextExtensions on BuildContext {
   DefaultTextStyle get defaultTextStyle => DefaultTextStyle.of(this);
 
   /// Returns Form.of(context)
-  FormState? get form => Form.of(this);
+  FormState? get formState => Form.of(this);
 
   /// Returns Scaffold.of(context)
-  ScaffoldState get scaffold => Scaffold.of(this);
+  ScaffoldState get scaffoldState => Scaffold.of(this);
 
   /// Returns Overlay.of(context)
-  OverlayState? get overlay => Overlay.of(this);
+  OverlayState? get overlayState => Overlay.of(this);
 
   /// Returns primaryColor Color
   Color get primaryColor => theme.primaryColor;

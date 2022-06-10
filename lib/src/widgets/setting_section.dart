@@ -21,7 +21,8 @@ class SettingSection extends StatelessWidget {
     this.divider,
     this.title,
     this.subTitle,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

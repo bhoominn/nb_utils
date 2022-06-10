@@ -190,16 +190,23 @@ UL(
 
 ```dart
 /// Use AppTextField on your app to try more properties
+/// Use Form Validate to validate all AppTextField
+
+/// Inbuilt Email Validator, Automatic email keyboard type
 AppTextField(
     controller: TextEditingController(), // Optional
     textFieldType: TextFieldType.EMAIL,
     decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
 ),
+
+/// Default Min Lines 4
 AppTextField(
     controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.ADDRESS,
+    textFieldType: TextFieldType.MULTILINE,
     decoration: InputDecoration(labelText: 'Address', border: OutlineInputBorder()),
 ),
+
+/// Automatic password obscure, Show/Hide Password Option
 AppTextField(
     controller: TextEditingController(), // Optional
     textFieldType: TextFieldType.PASSWORD,
@@ -355,6 +362,12 @@ toast('This is a string');
 
 /// Prints only if in debug or profile mode - (parameter is Object)
 log('Your string');
+
+/// Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
+enterFullScreen();
+
+/// Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
+exitFullScreen();
 
 ```
 

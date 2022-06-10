@@ -1,3 +1,11 @@
+## 4.6.0
+- New - Blur Widget
+- New - Read More Text Widget
+- New - Rounded Check Box Widget
+- New - Size Listener Widget
+- Added More Material You Colors
+- Enter FullScreen Method
+- Exit FullScreen Method
 ## 4.5.2
 - Support for Previous Version of Flutter
 ## 4.5.1
