@@ -33,6 +33,7 @@ export 'src/extensions/scroll_extensions.dart';
 export 'src/extensions/string_extensions.dart';
 export 'src/extensions/widget_extensions.dart';
 export 'src/models/language_data_model.dart';
+export 'src/models/package_info_model.dart';
 export 'src/models/walkthrough_model.dart';
 export 'src/utils/after_layout.dart';
 export 'src/utils/colors.dart';

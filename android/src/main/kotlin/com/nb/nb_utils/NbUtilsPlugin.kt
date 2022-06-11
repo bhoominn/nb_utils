@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.NonNull
 import androidx.core.content.res.ResourcesCompat
+import io.flutter.BuildConfig
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -24,15 +25,33 @@ class NbUtilsPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else if (call.method == "isAndroid12Above") {
-      result.success(android.os.Build.VERSION.SDK_INT >= 31)
-    } else if (call.method == "materialYouColors") {
-      result.success(getMaterialYouColours())
-    } else {
-      result.notImplemented()
+    when (call.method) {
+        "getPlatformVersion" -> {
+          result.success("Android ${android.os.Build.VERSION.RELEASE}")
+        }
+        "isAndroid12Above" -> {
+          result.success(android.os.Build.VERSION.SDK_INT >= 31)
+        }
+        "materialYouColors" -> {
+          result.success(getMaterialYouColours())
+        }
+        "packageInfo" -> {
+          result.success(packageInfo())
+        }
+        else -> {
+          result.notImplemented()
+        }
     }
+  }
+
+  private fun packageInfo() : Map<String, String> {
+    val packageName = appContext!!.packageName
+    val packageInfo = appContext!!.packageManager!!.getPackageInfo(appContext!!.packageName, 0)
+
+    return mapOf(
+      "packageName" to packageName,
+      "versionName" to packageInfo.versionName,
+    )
   }
 
   private fun getMaterialYouColours(): Map<String, String>? {
