@@ -1,7 +1,13 @@
 class PackageInfoData {
+  String? appName;
   String? versionName;
-  String? pacakgeName;
+  String? packageName;
   String? versionCode;
 
-  PackageInfoData({this.versionName, this.pacakgeName, this.versionCode});
+  PackageInfoData({
+    this.appName,
+    this.versionName,
+    this.packageName,
+    this.versionCode,
+  });
 }

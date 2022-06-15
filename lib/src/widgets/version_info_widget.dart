@@ -5,11 +5,13 @@ class VersionInfoWidget extends StatelessWidget {
   final String prefixText;
   final String suffixText;
   final TextStyle? textStyle;
+  final bool showError;
 
   const VersionInfoWidget({
     this.textStyle,
     this.prefixText = '',
     this.suffixText = '',
+    this.showError = false,
     Key? key,
   }) : super(key: key);
 
@@ -25,6 +27,7 @@ class VersionInfoWidget extends StatelessWidget {
           style: textStyle ?? primaryTextStyle(),
         );
       },
+      errorWidget: showError ? null : Offstage(),
     );
   }
 }
