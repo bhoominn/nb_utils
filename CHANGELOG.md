@@ -1,3 +1,5 @@
+## 4.6.1
+- Get Package Info
 ## 4.6.0
 - New - Blur Widget
 - New - Read More Text Widget

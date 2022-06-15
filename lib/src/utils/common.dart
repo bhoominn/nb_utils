@@ -340,3 +340,25 @@ Future<dynamic> showBottomSheetOrDialog({
     return showInDialog(context, builder: (_) => child);
   }
 }
+
+Future<PackageInfoData> getPackageInfo() async {
+  if (isAndroid || isIOS) {
+    var data = await invokeNativeMethod('nb_utils', 'packageInfo');
+
+    if (data != null && data is Map) {
+      return PackageInfoData(
+        packageName: data['packageName'],
+        versionName: data['versionName'],
+        versionCode: data['versionCode'],
+      );
+    } else {
+      throw errorSomethingWentWrong;
+    }
+  } else {
+    throw PlatformException(code: 'platform not supported');
+  }
+}
+
+Future<String> getPackageName() async {
+  return (await getPackageInfo()).packageName.validate();
+}

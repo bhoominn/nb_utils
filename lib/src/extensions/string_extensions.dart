@@ -103,9 +103,10 @@ extension StringExtension on String? {
   }
 
   /// for ex. add comma in price
-  String formatNumberWithComma() {
+  String formatNumberWithComma({String seperator = ','}) {
     return this.validate().replaceAllMapped(
-        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+        (Match m) => '${m[1]}$seperator');
   }
 
   /// Get Color from HEX String

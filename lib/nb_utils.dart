@@ -33,6 +33,7 @@ export 'src/extensions/scroll_extensions.dart';
 export 'src/extensions/string_extensions.dart';
 export 'src/extensions/widget_extensions.dart';
 export 'src/models/language_data_model.dart';
+export 'src/models/package_info_model.dart';
 export 'src/models/walkthrough_model.dart';
 export 'src/utils/after_layout.dart';
 export 'src/utils/colors.dart';
@@ -77,6 +78,7 @@ export 'src/widgets/text_icon_widget.dart';
 export 'src/widgets/theme_widget.dart';
 export 'src/widgets/timer_widget.dart';
 export 'src/widgets/ul_widget.dart';
+export 'src/widgets/version_info_widget.dart';
 export 'src/widgets/widgets.dart';
 
 //region Global variables - This variables can be changed.
