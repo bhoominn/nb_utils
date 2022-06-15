@@ -47,9 +47,7 @@ class _MyAppState extends State<MyApp> {
           darkTheme: ThemeData(
             primarySwatch: createMaterialColor(Colors.blue),
           ),
-          themeMode: getIntAsync(THEME_MODE_INDEX) == 2
-              ? ThemeMode.dark
-              : ThemeMode.light,
+          themeMode: getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
           home: HomePage(),
         );
       },
@@ -74,7 +72,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> init() async {
-    log((await getPackageInfo()).pacakgeName);
+    //
   }
 
   Widget dialogWidget() {
@@ -83,8 +81,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('This is the example of showInDialog method',
-              style: primaryTextStyle()),
+          Text('This is the example of showInDialog method', style: primaryTextStyle()),
           4.height,
           Text('Secondary text here', style: secondaryTextStyle()),
         ],
@@ -139,10 +136,7 @@ class _HomePageState extends State<HomePage> {
 
                     return Wrap(
                       children: (data as Map).entries.map((e) {
-                        return Container(
-                            height: 50,
-                            color: e.value.toString().toColor(),
-                            child: Text(e.key));
+                        return Container(height: 50, color: e.value.toString().toColor(), child: Text(e.key));
                       }).toList(),
                     );
                   },
@@ -224,9 +218,7 @@ class _HomePageState extends State<HomePage> {
                                   },
                                 ),
                               );
-                            },
-                                title: Text('Theme'),
-                                contentPadding: EdgeInsets.zero);
+                            }, title: Text('Theme'), contentPadding: EdgeInsets.zero);
                           },
                         ),
                         AppButton(
@@ -318,60 +310,43 @@ class _HomePageState extends State<HomePage> {
                         AppButton(
                           text: 'Default',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget());
+                            showInDialog(context, builder: (_) => dialogWidget());
                           },
                         ),
                         AppButton(
                           text: 'Rotate',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation: DialogAnimation.ROTATE);
+                            showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.ROTATE);
                           },
                         ),
                         AppButton(
                           text: 'Scale',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation: DialogAnimation.SCALE);
+                            showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SCALE);
                           },
                         ),
                         AppButton(
                           text: 'Top to Bottom',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_TOP_BOTTOM);
+                            showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM);
                           },
                         ),
                         AppButton(
                           text: 'Bottom to Top',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_BOTTOM_TOP);
+                            showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP);
                           },
                         ),
                         AppButton(
                           text: 'Left to Right',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_LEFT_RIGHT);
+                            showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT);
                           },
                         ),
                         AppButton(
                           text: 'Right to Left',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_RIGHT_LEFT);
+                            showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT);
                           },
                         ),
                       ],
@@ -443,38 +418,30 @@ class _HomePageState extends State<HomePage> {
                     AppButton(
                       text: 'Toast',
                       onTap: () async {
-                        toasty(context, 'Toast',
-                            borderRadius: BorderRadius.circular(1),
-                            textColor: Colors.pinkAccent,
-                            gravity: ToastGravity.CENTER);
+                        toasty(context, 'Toast', borderRadius: BorderRadius.circular(1), textColor: Colors.pinkAccent, gravity: ToastGravity.CENTER);
                       },
                     ),
                   ],
                 ),
                 16.height,
                 SettingSection(
-                  title: Text('Account Management',
-                      style: boldTextStyle(size: 24)),
-                  subTitle: Text('Control your account',
-                      style: primaryTextStyle(size: 16)),
+                  title: Text('Account Management', style: boldTextStyle(size: 24)),
+                  subTitle: Text('Control your account', style: primaryTextStyle(size: 16)),
                   items: [
                     SettingItemWidget(
                       title: 'Hibernate account',
                       subTitle: 'Temporary deactivate your account',
                       decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
+                      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                       onTap: () {
                         //
                       },
                     ),
                     SettingItemWidget(
                       title: 'Close account',
-                      subTitle:
-                          'Learn about your options, and close your account if you wish',
+                      subTitle: 'Learn about your options, and close your account if you wish',
                       decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
+                      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                       onTap: () {
                         push(HomePage());
                       },

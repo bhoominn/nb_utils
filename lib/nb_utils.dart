@@ -78,6 +78,7 @@ export 'src/widgets/text_icon_widget.dart';
 export 'src/widgets/theme_widget.dart';
 export 'src/widgets/timer_widget.dart';
 export 'src/widgets/ul_widget.dart';
+export 'src/widgets/version_info_widget.dart';
 export 'src/widgets/widgets.dart';
 
 //region Global variables - This variables can be changed.
