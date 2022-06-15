@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> init() async {
-    //
+    log(await getPackageInfo());
   }
 
   Widget dialogWidget() {

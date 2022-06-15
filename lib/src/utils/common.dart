@@ -307,6 +307,11 @@ Future<PackageInfoData> getPackageInfo() async {
     var data = await invokeNativeMethod('nb_utils', 'packageInfo');
 
     if (data != null && data is Map) {
+
+      log('Package Name ${data['packageName']}');
+      log('Version Name ${data['versionName']}');
+      log('VersionCode Name ${data['versionCode']}');
+
       return PackageInfoData(
         pacakgeName: data['packageName'],
         versionName: data['versionName'],
