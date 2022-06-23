@@ -80,6 +80,9 @@ export 'src/widgets/timer_widget.dart';
 export 'src/widgets/ul_widget.dart';
 export 'src/widgets/version_info_widget.dart';
 export 'src/widgets/widgets.dart';
+export 'src/widgets/animatedList/animated_configurations.dart';
+export 'src/widgets/animatedList/animated_list_view.dart';
+export 'src/widgets/animatedList/animated_wrap.dart';
 
 //region Global variables - This variables can be changed.
 Color textPrimaryColorGlobal = textPrimaryColor;
