@@ -20,7 +20,7 @@ class RoundedCheckBox extends StatefulWidget {
     this.textStyle,
   }) : super(key: key);
 
-  ///Define wether the checkbox is marked or not
+  ///Define weather the checkbox is marked or not
   final bool? isChecked;
 
   ///Define the widget that is shown when Widgets is checked
@@ -51,7 +51,7 @@ class RoundedCheckBox extends StatefulWidget {
   final TextStyle? textStyle;
 
   ///Define Function that os executed when user tap on checkbox
-  ///If onTap is given a null callack, it will be disabled
+  ///If onTap is given a null callback, it will be disabled
   final Function(bool?)? onTap;
 
   ///Define the duration of the animation. If any
@@ -91,8 +91,8 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
     return GestureDetector(
       onTap: widget.onTap != null
           ? () {
-              setState(() => isChecked = !isChecked!);
-              widget.onTap!(isChecked);
+        setState(() => isChecked = !isChecked!);
+              widget.onTap?.call(isChecked);
             }
           : null,
       child: Row(

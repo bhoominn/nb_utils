@@ -12,10 +12,10 @@ class AnimatedItemWidget extends StatelessWidget {
   final ListAnimationType listAnimationType;
   final Widget child;
 
-  final SlideConfiguration slideConfiguration;
-  final FadeInConfiguration fadeInConfiguration;
-  final ScaleConfiguration scaleConfiguration;
-  final FlipConfiguration flipConfiguration;
+  final SlideConfiguration? slideConfiguration;
+  final FadeInConfiguration? fadeInConfiguration;
+  final ScaleConfiguration? scaleConfiguration;
+  final FlipConfiguration? flipConfiguration;
 
   AnimatedItemWidget({
     Key? key,
@@ -25,26 +25,10 @@ class AnimatedItemWidget extends StatelessWidget {
     FadeInConfiguration? fadeInConfiguration,
     ScaleConfiguration? scaleConfiguration,
     FlipConfiguration? flipConfiguration,
-  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide && slideConfiguration == null)
-            ? SlideConfiguration.init()
-            : slideConfiguration != null
-                ? slideConfiguration
-                : SlideConfiguration(),
-        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn && fadeInConfiguration == null)
-            ? FadeInConfiguration.init()
-            : fadeInConfiguration != null
-                ? fadeInConfiguration
-                : FadeInConfiguration(),
-        scaleConfiguration = (listAnimationType == ListAnimationType.Scale && scaleConfiguration == null)
-            ? ScaleConfiguration.init()
-            : scaleConfiguration != null
-                ? scaleConfiguration
-                : ScaleConfiguration(),
-        flipConfiguration = (listAnimationType == ListAnimationType.Flip && flipConfiguration == null)
-            ? FlipConfiguration.init()
-            : flipConfiguration != null
-                ? flipConfiguration
-                : FlipConfiguration(),
+  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide && slideConfiguration == null) ? SlideConfiguration.init() : slideConfiguration!,
+        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn && fadeInConfiguration == null) ? FadeInConfiguration.init() : fadeInConfiguration!,
+        scaleConfiguration = (listAnimationType == ListAnimationType.Scale && scaleConfiguration == null) ? ScaleConfiguration.init() : scaleConfiguration!,
+        flipConfiguration = (listAnimationType == ListAnimationType.Flip && flipConfiguration == null) ? FlipConfiguration.init() : flipConfiguration!,
         super(key: key);
 
   @override
@@ -52,34 +36,34 @@ class AnimatedItemWidget extends StatelessWidget {
     if (listAnimationType == ListAnimationType.FadeIn) {
       return FadeInAnimation(
         child: child,
-        duration: fadeInConfiguration.duration,
-        curve: fadeInConfiguration.curve,
-        delay: fadeInConfiguration.delay,
+        duration: fadeInConfiguration!.duration,
+        curve: fadeInConfiguration!.curve,
+        delay: fadeInConfiguration!.delay,
       );
     } else if (listAnimationType == ListAnimationType.Flip) {
       return FlipAnimation(
         child: child,
-        delay: flipConfiguration.delay,
-        curve: flipConfiguration.curve,
-        duration: flipConfiguration.duration,
-        flipAxis: flipConfiguration.flipAxis,
+        delay: flipConfiguration!.delay,
+        curve: flipConfiguration!.curve,
+        duration: flipConfiguration!.duration,
+        flipAxis: flipConfiguration!.flipAxis,
       );
     } else if (listAnimationType == ListAnimationType.Slide) {
       return SlideAnimation(
         child: child,
-        delay: slideConfiguration.delay,
-        curve: slideConfiguration.curve,
-        duration: slideConfiguration.duration,
-        horizontalOffset: slideConfiguration.horizontalOffset,
-        verticalOffset: slideConfiguration.verticalOffset,
+        delay: slideConfiguration!.delay,
+        curve: slideConfiguration!.curve,
+        duration: slideConfiguration!.duration,
+        horizontalOffset: slideConfiguration!.horizontalOffset,
+        verticalOffset: slideConfiguration!.verticalOffset,
       );
     } else if (listAnimationType == ListAnimationType.Scale) {
       return ScaleAnimation(
         child: child,
-        delay: scaleConfiguration.delay,
-        curve: scaleConfiguration.curve,
-        duration: scaleConfiguration.duration,
-        scale: scaleConfiguration.scale,
+        delay: scaleConfiguration!.delay,
+        curve: scaleConfiguration!.curve,
+        duration: scaleConfiguration!.duration,
+        scale: scaleConfiguration!.scale,
       );
     } else {
       return child;
@@ -179,6 +163,7 @@ class FlipConfiguration {
   }
 }
 
+//region flutter_staggered_animation library
 /// In the context of a scrollable view, your children's animations are only built
 /// as the user scrolls and they appear on the screen.
 ///
@@ -770,3 +755,4 @@ class SlideAnimation extends StatelessWidget {
     );
   }
 }
+//endregion

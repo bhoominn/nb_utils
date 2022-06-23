@@ -19,7 +19,7 @@ class Blur extends StatelessWidget {
     this.width,
     this.blur = 5,
     this.elevation = 0,
-    this.padding = const EdgeInsets.all(8),
+    this.padding = const EdgeInsets.only(),
     this.color = Colors.transparent,
     this.borderRadius = const BorderRadius.all(Radius.circular(20)),
     this.clipBehavior = Clip.antiAlias,

@@ -17,7 +17,6 @@ export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
-export 'src/live_stream.dart';
 export 'src/customPaints/google_logo_painter.dart';
 export 'src/deprecated_widgets.dart';
 export 'src/extensions/bool_extensions.dart';
@@ -32,12 +31,14 @@ export 'src/extensions/num_extensions.dart';
 export 'src/extensions/scroll_extensions.dart';
 export 'src/extensions/string_extensions.dart';
 export 'src/extensions/widget_extensions.dart';
+export 'src/live_stream.dart';
 export 'src/models/language_data_model.dart';
 export 'src/models/package_info_model.dart';
 export 'src/models/walkthrough_model.dart';
 export 'src/utils/after_layout.dart';
 export 'src/utils/colors.dart';
 export 'src/utils/common.dart';
+export 'src/utils/confirmation_dialog.dart';
 export 'src/utils/constants.dart';
 export 'src/utils/date_time_utils.dart';
 export 'src/utils/decorations.dart';
@@ -50,11 +51,14 @@ export 'src/utils/size_config.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
+export 'src/widgets/PersistentTabs.dart';
+export 'src/widgets/animatedList/animated_configurations.dart';
+export 'src/widgets/animatedList/animated_list_view.dart';
+export 'src/widgets/animatedList/animated_wrap.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_text_field.dart';
 export 'src/widgets/blur_widget.dart';
 export 'src/widgets/circular_progress_gradient.dart';
-export 'src/utils/confirmation_dialog.dart';
 export 'src/widgets/dot_indicator.dart';
 export 'src/widgets/dotted_border_widget.dart';
 export 'src/widgets/gradient_border.dart';
@@ -64,7 +68,7 @@ export 'src/widgets/language_list_widget.dart';
 export 'src/widgets/loader_widget.dart';
 export 'src/widgets/marquee_widget.dart';
 export 'src/widgets/overlay_custom_widget.dart';
-export 'src/widgets/PersistentTabs.dart';
+export 'src/widgets/placeholder_widget.dart';
 export 'src/widgets/rating_bar_widget.dart';
 export 'src/widgets/read_more_text.dart';
 export 'src/widgets/responsive_widget.dart';
@@ -80,9 +84,6 @@ export 'src/widgets/timer_widget.dart';
 export 'src/widgets/ul_widget.dart';
 export 'src/widgets/version_info_widget.dart';
 export 'src/widgets/widgets.dart';
-export 'src/widgets/animatedList/animated_configurations.dart';
-export 'src/widgets/animatedList/animated_list_view.dart';
-export 'src/widgets/animatedList/animated_wrap.dart';
 
 //region Global variables - This variables can be changed.
 Color textPrimaryColorGlobal = textPrimaryColor;
@@ -159,15 +160,13 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder =
-      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder = RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
 
-  selectedLanguageDataModel =
-      getSelectedLanguageModel(defaultLanguage: defaultLanguage);
+  selectedLanguageDataModel = getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
 /// nb_utils class
@@ -189,14 +188,12 @@ Future<T?> push<T>(
 }) async {
   if (isNewTask) {
     return await Navigator.of(getContext).pushAndRemoveUntil(
-      buildPageRoute(
-          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      buildPageRoute(widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
       (route) => false,
     );
   } else {
     return await Navigator.of(getContext).push(
-      buildPageRoute(
-          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      buildPageRoute(widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
     );
   }
 }

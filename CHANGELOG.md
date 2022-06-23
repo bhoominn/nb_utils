@@ -1,6 +1,18 @@
+## 4.6.3
+
+- New - PlaceHolderWidget - Set nicely colored PlaceHolder while image is loading
+
+## 4.6.2
+
+- New - Animated ListView
+- New - Animated Wrap
+
 ## 4.6.1
+
 - Get Package Info
+
 ## 4.6.0
+
 - New - Blur Widget
 - New - Read More Text Widget
 - New - Rounded Check Box Widget
@@ -45,8 +57,9 @@
 - Added afterBuildCreated method get context after BuildContext created
 - AfterLayout mixin deprecated now
 ## 4.4.2
-- Added Gradient Border Widget
-- Added Animation in Custom Dialog
+
+- New - Gradient Border Widget
+- New - Animation in Custom Dialog
 ## 4.4.1
 - Added highlight color in onTap extension
 - Added height property in all TextStyles
@@ -58,38 +71,45 @@
 ## 4.3.0
 - Added Circular Progress with Gradient Widget
 ## 4.2.14
+
 - Help widget for FutureBuilder & StreamBuilder with loading and error handling inbuilt
-- Added Overlay widget
-- Added JWT Decoder
+- New - Overlay widget
+- New - JWT Decoder
 - Added builder in showInDialog method to fix context issue (Migrated from child to builder)
 ## 4.2.12
 - Added page route animation
 - Added default input decoration
 ## 4.2.11
-- Added Theme Selection Dialog
-- Added SnackBar function
+
+- New - Theme Selection Dialog
+- New - SnackBar function
 - Dark Mode support for LanguageList DropDown
 ## 4.2.10
+
 - Updated ReadMe
-- Added Language DropDown Widget
+- New - Language DropDown Widget
 - Added onAccept in show confirm dialog
 - Added get selected language function
 - AppButton Scale animation
 ## 4.2.9
-- Added HoverWidget
-- Added DottedBorderWidget
+
+- New - HoverWidget
+- New - DottedBorderWidget
 - Make onTap optional in TextIcon
 - Added customAccentColor in Loader
 ## 4.2.8
-- Added Rating Item Widget, Common Model Class
+
+- New - Rating Item Widget, Common Model Class
 ## 4.2.5
-- Added Setting Section widget
-- Added TextButton Widget
+
+- New - Setting Section widget
+- New - TextButton Widget
 - Added DateTime Extensions
 - Added Default BoxDecoration
 - Added currency symbols
 ## 4.2.2
-- Added Persistent Tabs widget
+
+- New - Persistent Tabs widget
 ## 4.1.0
 - Added new int extensions
 ## 4.0.0
@@ -97,7 +117,8 @@
 ## 3.3.0+13
 - Global AppButton background color, validate null widget, useful Color ext, automatic status bar color brightness, show toast only if string is not empty
 ## 3.3.0+8
-- Added DotsIndicator, Buttons, TextFields, Loader, Setting Item
+
+- New - DotsIndicator, Buttons, TextFields, Loader, Setting Item
 ## 3.2.11+4
 - Update connectivity package version
 ## 3.2.9

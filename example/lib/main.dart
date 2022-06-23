@@ -125,8 +125,7 @@ class _HomePageState extends State<HomePage> {
                   onChange: (size) {
                     log(size);
                   },
-                  child: Container(
-                    color: blueColor,
+                  child: PlaceHolderWidget(
                     height: 50.dynamicHeight,
                     width: 100.dynamicWidth,
                   ),
