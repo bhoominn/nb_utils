@@ -25,10 +25,10 @@ class AnimatedItemWidget extends StatelessWidget {
     FadeInConfiguration? fadeInConfiguration,
     ScaleConfiguration? scaleConfiguration,
     FlipConfiguration? flipConfiguration,
-  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide && slideConfiguration == null) ? SlideConfiguration.init() : slideConfiguration!,
-        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn && fadeInConfiguration == null) ? FadeInConfiguration.init() : fadeInConfiguration!,
-        scaleConfiguration = (listAnimationType == ListAnimationType.Scale && scaleConfiguration == null) ? ScaleConfiguration.init() : scaleConfiguration!,
-        flipConfiguration = (listAnimationType == ListAnimationType.Flip && flipConfiguration == null) ? FlipConfiguration.init() : flipConfiguration!,
+  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide && slideConfiguration != null) ? slideConfiguration : SlideConfiguration.init(),
+        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn && fadeInConfiguration != null) ? fadeInConfiguration : FadeInConfiguration.init(),
+        scaleConfiguration = (listAnimationType == ListAnimationType.Scale && scaleConfiguration != null) ? scaleConfiguration : ScaleConfiguration.init(),
+        flipConfiguration = (listAnimationType == ListAnimationType.Flip && flipConfiguration != null) ? flipConfiguration : FlipConfiguration.init(),
         super(key: key);
 
   @override
