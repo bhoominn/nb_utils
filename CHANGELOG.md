@@ -1,18 +1,11 @@
-## 4.6.3
-
+## 4.6.4
 - New - PlaceHolderWidget - Set nicely colored PlaceHolder while image is loading
-
 ## 4.6.2
-
 - New - Animated ListView
 - New - Animated Wrap
-
 ## 4.6.1
-
 - Get Package Info
-
 ## 4.6.0
-
 - New - Blur Widget
 - New - Read More Text Widget
 - New - Rounded Check Box Widget
