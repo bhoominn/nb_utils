@@ -80,8 +80,7 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
     checkedColor = widget.checkedColor ?? Colors.green;
     uncheckedColor = widget.uncheckedColor;
     borderColor = widget.borderColor ?? Colors.grey;
-    checkedWidget =
-        widget.checkedWidget ?? Icon(Icons.check, color: Colors.white);
+    checkedWidget = widget.checkedWidget ?? Icon(Icons.check, color: Colors.white);
     uncheckedWidget = widget.uncheckedWidget ?? const SizedBox.shrink();
     super.initState();
   }
@@ -120,8 +119,7 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 8.width,
-                Text(widget.text,
-                    style: widget.textStyle ?? primaryTextStyle()),
+                Text(widget.text, style: widget.textStyle ?? primaryTextStyle()),
               ],
             ),
         ],

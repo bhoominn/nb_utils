@@ -1,3 +1,4 @@
+<p align="center">
 [![Pub Package](https://img.shields.io/pub/v/nb_utils.svg)](https://pub.dartlang.org/packages/nb_utils)
 <a href="https://opensource.org/licenses/MIT" target="_blank">
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
@@ -31,6 +32,8 @@
 <a href="https://github.com/sponsors/bhoominn"><img src="https://img.shields.io/github/sponsors/bhoominn" /></a>
 
 <a href="https://www.buymeacoffee.com/bhoominn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bhoominn&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
+</p>
+
 ## Show some love and like to support the project
 
 ## Documentation
@@ -39,7 +42,7 @@
 
 ## Platform Support
 
-| Android | iOS | MacOS  | Web | Linux | Windows |
+| Android | iOS | MacOS | Web | Linux | Windows |
 | :-----: | :-: | :---:  | :-: | :---: | :-----: |
 |   ✔️    | ✔️  |  ✔️   | ✔️  |  ✔️   |   ✔️   |
 
@@ -49,7 +52,7 @@ Add this line to pubspec.yaml
 
 ```yaml
 dependencies:
-    nb_utils: <latest_version>
+  nb_utils: <latest_version>
 ```
 
 Import package
@@ -74,9 +77,9 @@ Now, add navigatorKey in your MaterialApp or CupertinoApp
 
 ```dart
 return MaterialApp(
-  debugShowCheckedModeBanner: false,
-  navigatorKey: navigatorKey,
-  home: HomePage(),
+debugShowCheckedModeBanner: false,
+navigatorKey: navigatorKey,
+home: HomePage(),
 );
 ```
 
@@ -106,46 +109,45 @@ Loader().visible(mIsLoading),
 
 ```dart
 /// AppBar widget
-appBarWidget(
-  "Title",
+appBarWidget("Title",
 ),
 ```
 
 ```dart
 /// Timer widget
 TimerWidget(
-  function: () {
-    // Do something
-  },
-  child: Text('Your Widget'),
-  duration: 10.seconds,
+function: () {
+// Do something
+},
+child: Text('Your Widget'),
+duration: 10.seconds,
 ),
 ```
 
 ```dart
 SettingSection(
-  title: Text('Account Management', style: boldTextStyle(size: 24)),
-  subTitle: Text('Control your account', style: primaryTextStyle()), // Optional
-  items: [
-    SettingItemWidget(
-      title: 'Hibernate account',
-      subTitle: 'Temporary deactivate your account',
-      decoration: BoxDecoration(borderRadius: radius()),
-      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
-      onTap: () {
-        //
-      }
-    ),
-    SettingItemWidget(
-      title: 'Close account',
-      subTitle: 'Learn about your options, and close your account if you wish',
-      decoration: BoxDecoration(borderRadius: radius()),
-      trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
-      onTap: () {
-        //
-      },
-    )
-  ],
+title: Text('Account Management', style: boldTextStyle(size: 24)),
+subTitle: Text('Control your account', style: primaryTextStyle()), // Optional
+items: [
+SettingItemWidget(
+title: 'Hibernate account',
+subTitle: 'Temporary deactivate your account',
+decoration: BoxDecoration(borderRadius: radius()),
+trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
+onTap: () {
+//
+}
+),
+SettingItemWidget(
+title: 'Close account',
+subTitle: 'Learn about your options, and close your account if you wish',
+decoration: BoxDecoration(borderRadius: radius()),
+trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
+onTap: () {
+//
+},
+)
+],
 ),
 ```
 ![SettingSection](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_section_widget.jpg)
@@ -153,13 +155,13 @@ SettingSection(
 ```dart
 //SettingItem
 SettingItemWidget(
-   title: "Title",
-   onTap: () {
-       //Your Logic
-   },
-   trailing: Icon(Icons.home_sharp), // Optional
-   leading: Icon(Icons.arrow_forward_ios_rounded), // Optional
-   subTitle: "Subtitle", // Optional
+title: "Title",
+onTap: () {
+//Your Logic
+},
+trailing: Icon(Icons.home_sharp), // Optional
+leading: Icon(Icons.arrow_forward_ios_rounded), // Optional
+subTitle: "Subtitle", // Optional
 ),
 ```
 ![SettingItemWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_item_widget.jpg)
@@ -168,23 +170,22 @@ SettingItemWidget(
 /// Default AppButton
 /// Use AppButton on your app to try more properties
 AppButton(
-    text: "Submit",
-    color: Colors.green, // Optional
-    onTap: () {
-        //Your logic
-    },
+text: "Submit",
+color: Colors.green, // Optional
+onTap: () {
+//Your logic
+},
 ),
 ```
 ![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.gif)
 
 ```dart
 UL(
-   symbolType: SymbolType.Numbered,
-   children: [
-       Text('Hi', style: primaryTextStyle()),
-       Text('Hello', style: primaryTextStyle()),
-       Text('How are you?', style: primaryTextStyle()),
-   ],
+symbolType: SymbolType.Numbered,children: [
+Text('Hi', style: primaryTextStyle()),
+Text('Hello', style: primaryTextStyle()),
+Text('How are you?', style: primaryTextStyle()),
+],
 ),
 ```
 ![UL](https://github.com/bhoominn/nb_utils/blob/main/screenshots/ul_widget.jpg)
@@ -195,55 +196,51 @@ UL(
 
 /// Inbuilt Email Validator, Automatic email keyboard type
 AppTextField(
-    controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.EMAIL,
-    decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+controller: TextEditingController(), // Optional
+textFieldType: TextFieldType.EMAIL,decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
 ),
 
 /// Default Min Lines 4
 AppTextField(
-    controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.MULTILINE,
-    decoration: InputDecoration(labelText: 'Address', border: OutlineInputBorder()),
+controller: TextEditingController(), // Optional
+textFieldType: TextFieldType.MULTILINE,decoration: InputDecoration(labelText: 'Address', border: OutlineInputBorder()),
 ),
 
 /// Automatic password obscure, Show/Hide Password Option
 AppTextField(
-    controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.PASSWORD,
-    decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+controller: TextEditingController(), // Optional
+textFieldType: TextFieldType.PASSWORD,decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
 ),
 ```
 ![AppTextField](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_text_field_widget.jpg)
 
 ```dart
 HoverWidget(
-    builder: (context, bool isHovering) {
-        return Container(
-            /// isHovering will be true when you hover on it.
+builder: (context, bool isHovering) {
+return Container(
+/// isHovering will be true when you hover on it.
 
-            color: isHovering ? Colors.yellow : Colors.blue,
-        )
-    }
+color: isHovering ? Colors.yellow : Colors.blue,
+)
+}
 ),
 ```
 
 ```dart
 /// Build Horizontal List widget without giving specific height to it.
 HorizontalList(
-    itemBuilder: (BuildContext context, int index) {
-        return AnyWidget();
-    },
-    itemCount: 25,
+itemBuilder: (BuildContext context, int index) {
+return AnyWidget();
+},
+itemCount: 25,
 ),
 ```
 ![HorizontalList](https://github.com/bhoominn/nb_utils/blob/main/screenshots/horizontal_widget.gif)
 ```dart
 RatingBarWidget(
-    rating: initialRating,
-    onRatingChanged: (aRating) {
-        rating = aRating;
-    },
+rating: initialRating,onRatingChanged: (aRating) {
+rating = aRating;
+},
 ),
 ```
 ![RatingBarWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/rating_bar_widget.gif)
@@ -251,25 +248,23 @@ RatingBarWidget(
 ```dart
 /// Make your Flutter App Responsive in any device out there with Responsive widget
 Responsive(
-    mobile: MobileWidget(),
-    tablet: TabletWidget(), // Optional
-    web: WebWidget(), // Optional
+mobile: MobileWidget(),tablet: TabletWidget(), // Optional
+web: WebWidget(), // Optional
 ),
 ```
 ![Responsive](https://github.com/bhoominn/nb_utils/blob/main/screenshots/responsive_widget.gif)
 
 ```dart
 TextIcon(
-    text: 'Your text',
-    prefix: AnyWidget(), // Optional
-    suffix: AnyWidget(), // Optional
+text: 'Your text',
+prefix: AnyWidget(), // Optional
+suffix: AnyWidget(), // Optional
 ),
 ```
 
 ```dart
 DotIndicator(
-    pageController: pageController,
-    pages: list,
+pageController: pageController,pages: list,
 ),
 ```
 ![DotIndicator](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dot_indicator.gif)
@@ -278,29 +273,27 @@ DotIndicator(
 /// Use SnapHelperWidget to handle loading and error widget automatically
 /// Still you can specify custom Loader Widget and Error Widget
 SnapHelperWidget<T>(
-    future: future,
-    onSuccess: (data) {
-        return AnyWidget();
-    },
+future: future,onSuccess: (data) {
+return AnyWidget();
+},
 ),
 ```
 
 ```dart
 DottedBorderWidget(
-    child: Container(
-        height: 100,
-        width: 100,
-    ),
+child: Container(
+height: 100,
+width: 100,
+),
 ),
 ```
 ![DottedBorderWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dotted_border_widget.jpg)
 
 ```dart
 Marquee(
-    direction: Axis.horizontal,
-    animationDuration: Duration(milliseconds: 100),
-    pauseDuration: Duration(milliseconds: 100),
-    child: Text("Please enter a long text to see the effect of the marquee widget"),
+direction: Axis.horizontal,animationDuration: Duration(milliseconds: 100),
+pauseDuration: Duration(milliseconds: 100),
+child: Text("Please enter a long text to see the effect of the marquee widget"),
 ),
 ```
 
@@ -332,11 +325,10 @@ showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: Dia
 /// Show Confirmation Dialog
 /// Second parameter is title
 showConfirmDialog(
-  context,
-  'Do you want to logout from the app?',
-  onAccept: (context) {
-    //
-  },
+context,'Do you want to logout from the app?',
+onAccept: (context) {
+//
+},
 );
 ```
 
@@ -380,14 +372,11 @@ snackBar(context, title: 'Sample toast'),
 ```dart
 // Enhanced
 snackBar(
-  context,
-  title: 'Sample toast',
-  textColor: Colors.blue,
-  backgroundColor: Colors.white,
-  elevation: 8,
-  shape: RoundedRectangleBorder(borderRadius: radius(30)),
-  margin: EdgeInsets.all(16),
-  duration: 3.seconds,
+context,title: 'Sample toast',
+textColor: Colors.blue,backgroundColor: Colors.white,elevation: 8,
+shape: RoundedRectangleBorder(borderRadius: radius(30)),
+margin: EdgeInsets.all(16),
+duration: 3.seconds,
 );
 ```
 
@@ -496,7 +485,7 @@ AnyWidget().center();
 
 /// add tap to parent widget
 AnyWidget().onTap(() {
-  //
+//
 });
 
 /// Wrap with ShaderMask widget
@@ -691,20 +680,20 @@ scrollController.jumpToBottom();
 
 ## TextStyles/ Decorations/ FocusNodes/ Context Methods
 ```dart
- 
+
 /// Apply Bold TextStyle
 Text(item.title.validate(), style: boldTextStyle())
-    
+
 /// Apply Primary TextStyle
 Text(item.title.validate(), style: primaryTextStyle())
-    
+
 /// Apply Secondary TextStyle
 Text(item.title.validate(), style: secondaryTextStyle())
 
 
 /// Apply default BoxDecoration with default shadow and border radius
 Container(
-    decoration: boxDecorationDefault(), // You can modify based on your preference
+decoration: boxDecorationDefault(), // You can modify based on your preference
 ),
 
 /// FocusNode
@@ -718,16 +707,17 @@ return snapWidgetHelper(snap);
 /// See the example below. You can user FutureBuilder or StreamBuilder.
 
 FutureBuilder(
-    builder(_, snap) {
-        if (snap.hasData) {
-            return YourWidget();
-        } else {
-            /// This function will handle loading and error automatically.
-            /// You can modify loading and error widget in parameters.
 
-            return snapWidgetHelper(snap);
-        }
-    }
+builder(_, snap) {
+  if (snap.hasData) {
+    return YourWidget();
+  } else {
+    /// This function will handle loading and error automatically.
+    /// You can modify loading and error widget in parameters.
+
+    return snapWidgetHelper(snap);
+  }
+}
 )
 
 /// return screen width
@@ -735,7 +725,7 @@ context.width();
 
 /// return screen height
 context.height();
-    
+
 /// Theme color or value from context
 context.primaryColor;
 context.theme.text.subtitle.color;
@@ -768,7 +758,7 @@ String timeAgo = DateTime.now().timeAgo;
 ```dart
 /// Change status bar Color and Brightness
 setStatusBarColor(Colors.blue);
-    
+
 /// Show Status Bar
 showStatusBar();
 
@@ -790,93 +780,90 @@ var data = await invokeNativeMethod(CHANNEL_NAME, METHOD_NAME, [dynamic argument
 
 ```dart
 AppButton(
-  text: "Add",
-  onTap: () {
-    showConfirmDialogCustom(
-      context,
-      title: "Do you want to add this item?",
-      dialogType: DialogType.ADD,
-      onAccept: () {
-        snackBar(context, title: 'Added');
-      },
-    );
-  },
+text: "Add",
+onTap: () {
+showConfirmDialogCustom(
+context,
+title: "Do you want to add this item?",
+dialogType: DialogType.ADD,
+onAccept: () {
+snackBar(context, title: 'Added');
+},
+);
+},
 ),
 ```
 ![Add Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/add_confirmation_dialog.gif)
 
 ```dart
 AppButton(
-  text: "Delete",
-  onTap: () {
-    showConfirmDialogCustom(
-      context,
-      title: "Delete 89 files permanent?",
-      dialogType: DialogType.DELETE,
-      onAccept: () {
-        snackBar(context, title: 'Deleted');
-      },
-    );
-  },
+text: "Delete",
+onTap: () {
+showConfirmDialogCustom(
+context,
+title: "Delete 89 files permanent?",
+dialogType: DialogType.DELETE,
+onAccept: () {
+snackBar(context, title: 'Deleted');
+},
+);
+},
 ),
 ```
 ![Delete Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/delete_confirmation_dialog.gif)
 
 ```dart
 AppButton(
-  text: "Update",
-  onTap: () {
-    showConfirmDialogCustom(
-      context,
-      title: "Do you want to update this item?",
-      dialogType: DialogType.UPDATE,
-      onAccept: () {
-        snackBar(context, title: 'Updated');
-      },
-    );
-  },
+text: "Update",
+onTap: () {
+showConfirmDialogCustom(
+context,
+title: "Do you want to update this item?",
+dialogType: DialogType.UPDATE,
+onAccept: () {
+snackBar(context, title: 'Updated');
+},
+);
+},
 ),
 ```
 ![Update Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/update_confirmation_dialog.gif)
 
 ```dart
 AppButton(
-  text: "Confirmation with Custom Image",
-  onTap: () async {
-    showConfirmDialogCustom(
-      context,
-      title: "Do you want to logout from the app?",
-      dialogType: DialogType.CONFIRMATION,
-      centerImage: 'URL',
-      onAccept: () {
-        //
-      },
-      onCancel: () {
-        //
-      },
-      height: 300,
-      width: 400,
-    );
-  },
+text: "Confirmation with Custom Image",
+onTap: () async {showConfirmDialogCustom(
+context,title: "Do you want to logout from the app?",
+dialogType: DialogType.CONFIRMATION,centerImage: 'URL',
+onAccept: () {
+//
+},
+onCancel: () {
+//
+},
+height: 300,
+width: 400,
+);
+},
 ),
 ```
 ![Custom Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/custom_confirmation_dialog.gif)
 
 ```dart
 AppButton(
-  text: "Confirmation",
-  onTap: () {
-    showConfirmDialogCustom(
-      context,
-      onAccept: () {
-        snackBar(
-          context,
-          title: 'Confirmed',
-          snackBarAction: SnackBarAction(label: 'label', onPressed: () {}),
-        );
-      },
-    );
-  },
+text: "Confirmation",
+onTap: () {
+showConfirmDialogCustom(
+context,
+onAccept: () {
+snackBar(
+context,
+title: 'Confirmed',
+snackBarAction: SnackBarAction(label: 'label', onPressed: () {}),
+);
+},
+);
+},
 ),
 ```
 ![Default Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/default_confirmation_dialog.gif)
