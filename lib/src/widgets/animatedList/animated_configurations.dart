@@ -25,10 +25,22 @@ class AnimatedItemWidget extends StatelessWidget {
     FadeInConfiguration? fadeInConfiguration,
     ScaleConfiguration? scaleConfiguration,
     FlipConfiguration? flipConfiguration,
-  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide && slideConfiguration != null) ? slideConfiguration : SlideConfiguration.init(),
-        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn && fadeInConfiguration != null) ? fadeInConfiguration : FadeInConfiguration.init(),
-        scaleConfiguration = (listAnimationType == ListAnimationType.Scale && scaleConfiguration != null) ? scaleConfiguration : ScaleConfiguration.init(),
-        flipConfiguration = (listAnimationType == ListAnimationType.Flip && flipConfiguration != null) ? flipConfiguration : FlipConfiguration.init(),
+  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide &&
+                slideConfiguration != null)
+            ? slideConfiguration
+            : SlideConfiguration.init(),
+        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn &&
+                fadeInConfiguration != null)
+            ? fadeInConfiguration
+            : FadeInConfiguration.init(),
+        scaleConfiguration = (listAnimationType == ListAnimationType.Scale &&
+                scaleConfiguration != null)
+            ? scaleConfiguration
+            : ScaleConfiguration.init(),
+        flipConfiguration = (listAnimationType == ListAnimationType.Flip &&
+                flipConfiguration != null)
+            ? flipConfiguration
+            : FlipConfiguration.init(),
         super(key: key);
 
   @override
@@ -414,9 +426,11 @@ class AnimationConfigurator extends StatelessWidget {
       throw FlutterError.fromParts(
         <DiagnosticsNode>[
           ErrorSummary('Animation not wrapped in an AnimationConfiguration.'),
-          ErrorDescription('This error happens if you use an Animation that is not wrapped in an '
+          ErrorDescription(
+              'This error happens if you use an Animation that is not wrapped in an '
               'AnimationConfiguration.'),
-          ErrorHint('The solution is to wrap your Animation(s) with an AnimationConfiguration. '
+          ErrorHint(
+              'The solution is to wrap your Animation(s) with an AnimationConfiguration. '
               'Reminder: an AnimationConfiguration provides the configuration '
               'used as a base for every children Animation. Configuration made in AnimationConfiguration '
               'can be overridden in Animation children if needed.'),
@@ -432,26 +446,34 @@ class AnimationConfigurator extends StatelessWidget {
     return AnimationExecutor(
       duration: _duration,
       delay: stagger(_position, _duration, _delay, _columnCount),
-      builder: (context, animationController) => animatedChildBuilder(animationController!),
+      builder: (context, animationController) =>
+          animatedChildBuilder(animationController!),
     );
   }
 
-  Duration stagger(int position, Duration duration, Duration? delay, int columnCount) {
-    var delayInMilliseconds = (delay == null ? duration.inMilliseconds ~/ 6 : delay.inMilliseconds);
+  Duration stagger(
+      int position, Duration duration, Duration? delay, int columnCount) {
+    var delayInMilliseconds =
+        (delay == null ? duration.inMilliseconds ~/ 6 : delay.inMilliseconds);
 
     int _computeStaggeredGridDuration() {
-      return (position ~/ columnCount + position % columnCount) * delayInMilliseconds;
+      return (position ~/ columnCount + position % columnCount) *
+          delayInMilliseconds;
     }
 
     int _computeStaggeredListDuration() {
       return position * delayInMilliseconds;
     }
 
-    return Duration(milliseconds: columnCount > 1 ? _computeStaggeredGridDuration() : _computeStaggeredListDuration());
+    return Duration(
+        milliseconds: columnCount > 1
+            ? _computeStaggeredGridDuration()
+            : _computeStaggeredListDuration());
   }
 }
 
-typedef Builder = Widget Function(BuildContext context, AnimationController? animationController);
+typedef Builder = Widget Function(
+    BuildContext context, AnimationController? animationController);
 
 class AnimationExecutor extends StatefulWidget {
   final Duration duration;
@@ -469,7 +491,8 @@ class AnimationExecutor extends StatefulWidget {
   _AnimationExecutorState createState() => _AnimationExecutorState();
 }
 
-class _AnimationExecutorState extends State<AnimationExecutor> with SingleTickerProviderStateMixin {
+class _AnimationExecutorState extends State<AnimationExecutor>
+    with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
   Timer? _timer;
 
@@ -477,7 +500,8 @@ class _AnimationExecutorState extends State<AnimationExecutor> with SingleTicker
   void initState() {
     super.initState();
 
-    _animationController = AnimationController(duration: widget.duration, vsync: this);
+    _animationController =
+        AnimationController(duration: widget.duration, vsync: this);
 
     if (AnimationLimiter.shouldRunAnimation(context) ?? true) {
       _timer = Timer(widget.delay, () => _animationController!.forward());
@@ -737,7 +761,8 @@ class SlideAnimation extends StatelessWidget {
   }
 
   Widget _slideAnimation(Animation<double> animation) {
-    Animation<double> offsetAnimation(double offset, Animation<double> animation) {
+    Animation<double> offsetAnimation(
+        double offset, Animation<double> animation) {
       return Tween<double>(begin: offset, end: 0.0).animate(
         CurvedAnimation(
           parent: animation,
@@ -748,8 +773,12 @@ class SlideAnimation extends StatelessWidget {
 
     return Transform.translate(
       offset: Offset(
-        horizontalOffset == 0.0 ? 0.0 : offsetAnimation(horizontalOffset, animation).value,
-        verticalOffset == 0.0 ? 0.0 : offsetAnimation(verticalOffset, animation).value,
+        horizontalOffset == 0.0
+            ? 0.0
+            : offsetAnimation(horizontalOffset, animation).value,
+        verticalOffset == 0.0
+            ? 0.0
+            : offsetAnimation(verticalOffset, animation).value,
       ),
       child: child,
     );

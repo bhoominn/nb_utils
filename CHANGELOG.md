@@ -1,4 +1,4 @@
-## 4.6.4
+## 4.6.5
 - New - PlaceHolderWidget - Set nicely colored PlaceHolder while image is loading
 ## 4.6.2
 - New - Animated ListView
