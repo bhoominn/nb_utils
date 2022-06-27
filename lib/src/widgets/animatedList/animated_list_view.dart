@@ -66,7 +66,7 @@ class AnimatedListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimationLimiter(
+    return AnimationLimiterClass(
       child: ListView.builder(
         controller: controller,
         physics: physics,
@@ -88,7 +88,7 @@ class AnimatedListView extends StatelessWidget {
         restorationId: restorationId,
         reverse: reverse,
         semanticChildCount: semanticChildCount,
-        itemBuilder: (_, index) => AnimationConfiguration.staggeredList(
+        itemBuilder: (_, index) => AnimationConfigurationClass.staggeredList(
           position: index,
           child: AnimatedItemWidget(
             listAnimationType: listAnimationType,

@@ -47,7 +47,7 @@ class AnimatedWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimationLimiter(
+    return AnimationLimiterWidget(
       child: Wrap(
         clipBehavior: clipBehavior ?? Clip.none,
         crossAxisAlignment: crossAxisAlignment ?? WrapCrossAlignment.start,
@@ -59,7 +59,7 @@ class AnimatedWrap extends StatelessWidget {
         textDirection: textDirection,
         verticalDirection: verticalDirection ?? VerticalDirection.down,
         children: List.generate(itemCount, (index) {
-          return AnimationConfiguration.staggeredGrid(
+          return AnimationConfigurationClass.staggeredGrid(
             position: index,
             columnCount: columnCount,
             child: AnimatedItemWidget(
