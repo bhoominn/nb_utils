@@ -127,13 +127,14 @@ class _HomePageState extends State<HomePage> {
                 16.height,
 
                 SizeListener(
-                  onChange: (size) {
-                    log(size);
+                  builder: (size) {
+                    log(size.width.toString());
+
+                    return PlaceHolderWidget(
+                      height: 50.dynamicHeight,
+                      width: 100.dynamicWidth,
+                    );
                   },
-                  child: PlaceHolderWidget(
-                    height: 50.dynamicHeight,
-                    width: 100.dynamicWidth,
-                  ),
                 ),
 
                 SnapHelperWidget(

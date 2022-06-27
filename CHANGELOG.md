@@ -1,4 +1,6 @@
-## 4.6.6
+## 4.6.8
+- Replace child parameter with builder in SizeListener widget
+## 4.6.7
 - New - PlaceHolderWidget - Set nicely colored PlaceHolder while image is loading
 ## 4.6.2
 - New - Animated ListView

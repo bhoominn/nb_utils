@@ -9,7 +9,7 @@
 <a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
 <a href="https://pub.dev/packages/nb_utils/pub%20points"><img src="https://badges.bar/nb_utils/pub%20points"></a>
 
-<a href="https://saythanks.io/to/bhoominn%40gmail.com" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
+<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
 <a href="https://github.com/bhoominn"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" /></a>
 <a href="https://github.com/bhoominn/nb_utils"><img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" /></a>
 <a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
@@ -171,7 +171,7 @@ AppButton(
 
 ```dart
 /// Use PlaceHolderWidget while your network image is loading
-  PlaceHolderWidget(),
+PlaceHolderWidget(),
 ```
 
 ```dart
@@ -203,10 +203,12 @@ RoundedCheckBox(
 ```dart
 /// Use SizeListener widget to get callback when its child widget size changes
 SizeListener(
-    onChange: (size) {
+    builder: (size) {
       // Do anything with child widget size (height, width)
+      log(size.width.toString());
+    
+      return AnyWidget();
     },
-    child: AnyWidget(),
 ),
 ```
 
@@ -923,6 +925,10 @@ Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: https://github.com/bhoominn/nb_utils/issues
 
+## ⭐ If you like the package, a star to the repo will mean a lot.
+
+## You can also contribute by adding new widgets or helpful methods.
+
 ## If you want to give suggestion, please contact me via email - bhoominn@gmail.com
 
-## Thank you :)
+## Thank you ❤
