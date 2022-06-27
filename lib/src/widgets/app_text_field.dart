@@ -306,7 +306,8 @@ class _AppTextFieldState extends State<AppTextField> {
               widget.textFieldType == TextFieldType.MULTILINE)
           ? null
           : widget.maxLines.validate(value: 1),
-      minLines: widget.minLines.validate(value: widget.textFieldType == TextFieldType.MULTILINE ? 3 : 1),
+      minLines: widget.minLines.validate(
+          value: widget.textFieldType == TextFieldType.MULTILINE ? 3 : 1),
       autofocus: widget.autoFocus ?? false,
       enabled: widget.enabled,
       onChanged: widget.onChanged,

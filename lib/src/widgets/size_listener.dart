@@ -33,8 +33,7 @@ class _SizeListenerState extends State<SizeListener> {
   void postFrameCallback(_) async {
     var context = widgetKey.currentContext!;
 
-    await Future.delayed(
-        widget.delayDuration ?? Duration(milliseconds: 200));
+    await Future.delayed(widget.delayDuration ?? Duration(milliseconds: 200));
     Size newSize = context.size!;
 
     if (newSize == Size.zero) return;
