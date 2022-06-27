@@ -66,7 +66,7 @@ class AnimatedListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimationLimiterClass(
+    return AnimationLimiterWidget(
       child: ListView.builder(
         controller: controller,
         physics: physics,

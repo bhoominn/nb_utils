@@ -188,28 +188,28 @@ class FlipConfiguration {
 /// animated if they don't appear in the first frame where AnimationLimiter is built.
 ///
 /// To be effective, AnimationLimiter musts be a direct parent of your scrollable list of widgets.
-class AnimationLimiterClass extends StatefulWidget {
+class AnimationLimiterWidget extends StatefulWidget {
   /// The child Widget to animate.
   final Widget child;
 
-  /// Creates an [AnimationLimiterClass] that will prevents the children widgets to be
+  /// Creates an [AnimationLimiterWidget] that will prevents the children widgets to be
   /// animated if they don't appear in the first frame where AnimationLimiter is built.
   ///
   /// The [child] argument must not be null.
-  const AnimationLimiterClass({
+  const AnimationLimiterWidget({
     Key? key,
     required this.child,
   }) : super(key: key);
 
   @override
-  _AnimationLimiterClassState createState() => _AnimationLimiterClassState();
+  _AnimationLimiterWidgetState createState() => _AnimationLimiterWidgetState();
 
   static bool? shouldRunAnimation(BuildContext context) {
     return _AnimationLimiterProviderClass.of(context)?.shouldRunAnimation;
   }
 }
 
-class _AnimationLimiterClassState extends State<AnimationLimiterClass> {
+class _AnimationLimiterWidgetState extends State<AnimationLimiterWidget> {
   bool _shouldRunAnimation = true;
 
   @override
@@ -247,7 +247,8 @@ class _AnimationLimiterProviderClass extends InheritedWidget {
   }
 
   static _AnimationLimiterProviderClass? of(BuildContext context) {
-    return context.findAncestorWidgetOfExactType<_AnimationLimiterProviderClass>();
+    return context
+        .findAncestorWidgetOfExactType<_AnimationLimiterProviderClass>();
   }
 }
 
@@ -491,7 +492,8 @@ class AnimationExecutorClass extends StatefulWidget {
   _AnimationExecutorClassState createState() => _AnimationExecutorClassState();
 }
 
-class _AnimationExecutorClassState extends State<AnimationExecutorClass> with SingleTickerProviderStateMixin {
+class _AnimationExecutorClassState extends State<AnimationExecutorClass>
+    with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
   Timer? _timer;
 
@@ -502,7 +504,7 @@ class _AnimationExecutorClassState extends State<AnimationExecutorClass> with Si
     _animationController =
         AnimationController(duration: widget.duration, vsync: this);
 
-    if (AnimationLimiterClass.shouldRunAnimation(context) ?? true) {
+    if (AnimationLimiterWidget.shouldRunAnimation(context) ?? true) {
       _timer = Timer(widget.delay, () => _animationController!.forward());
     } else {
       _animationController!.value = 1.0;
