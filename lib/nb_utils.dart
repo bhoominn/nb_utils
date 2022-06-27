@@ -160,13 +160,15 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder = RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder =
+      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
 
-  selectedLanguageDataModel = getSelectedLanguageModel(defaultLanguage: defaultLanguage);
+  selectedLanguageDataModel =
+      getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
 /// nb_utils class
@@ -188,12 +190,14 @@ Future<T?> push<T>(
 }) async {
   if (isNewTask) {
     return await Navigator.of(getContext).pushAndRemoveUntil(
-      buildPageRoute(widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      buildPageRoute(
+          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
       (route) => false,
     );
   } else {
     return await Navigator.of(getContext).push(
-      buildPageRoute(widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      buildPageRoute(
+          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
     );
   }
 }

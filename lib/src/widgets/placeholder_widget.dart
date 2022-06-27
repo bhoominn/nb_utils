@@ -56,7 +56,8 @@ class PlaceHolderWidget extends StatelessWidget {
       duration: animationDuration ?? 1.seconds,
       width: width,
       decoration: BoxDecoration(
-        color: _placeholderColors[Random.secure().nextInt(_placeholderColors.length)],
+        color: _placeholderColors[
+            Random.secure().nextInt(_placeholderColors.length)],
         shape: shape ?? BoxShape.rectangle,
         borderRadius: borderRadius,
         border: border,
