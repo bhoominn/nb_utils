@@ -203,11 +203,9 @@ RoundedCheckBox(
 ```dart
 /// Use SizeListener widget to get callback when its child widget size changes
 SizeListener(
-    builder: (size) {
-      // Do anything with child widget size (height, width)
+    child: AnyWidget(),
+    onSizeChange: (size) {
       log(size.width.toString());
-    
-      return AnyWidget();
     },
 ),
 ```

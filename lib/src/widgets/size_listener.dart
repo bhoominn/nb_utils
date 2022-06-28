@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-/// [SizeListener] Calculated the size of it's child in runtime.
-/// Simply wrap your widget with [SizeListener] and listen to size changes with [onChange].
+/// [SizeListener] Listen to your child widget's size
 class SizeListener extends StatefulWidget {
-  /// [onChange] will be called when the [Size] changes.
-  /// [onChange] will return the value ONLY once if it didn't change, and it will NOT return a value if it's equals to [Size.zero]
-  final Widget Function(Size) builder;
+  final Widget child;
+  final Function(Size) onSizeChange;
 
   final Duration? delayDuration;
 
   const SizeListener({
     Key? key,
-    required this.builder,
+    required this.child,
+    required this.onSizeChange,
     this.delayDuration,
   }) : super(key: key);
 
@@ -40,7 +39,7 @@ class _SizeListenerState extends State<SizeListener> {
     if (oldSize == newSize) return;
 
     oldSize = newSize;
-    widget.builder.call(newSize);
+    widget.onSizeChange.call(newSize);
   }
 
   @override
@@ -48,7 +47,7 @@ class _SizeListenerState extends State<SizeListener> {
     SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
     return Container(
       key: widgetKey,
-      child: widget.builder.call(oldSize ?? Size.zero),
+      child: widget.child,
     );
   }
 }

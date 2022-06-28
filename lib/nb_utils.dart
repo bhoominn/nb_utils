@@ -145,7 +145,7 @@ ToastGravity defaultToastGravityGlobal = ToastGravity.CENTER;
 BorderRadius defaultToastBorderRadiusGlobal = radius(30);
 
 PageRouteAnimation? pageRouteAnimationGlobal;
-Duration pageRouteTransitionDurationGlobal = 700.milliseconds;
+Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
 //endregion
 
 final navigatorKey = GlobalKey<NavigatorState>();

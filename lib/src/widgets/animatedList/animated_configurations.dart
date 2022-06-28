@@ -25,22 +25,10 @@ class AnimatedItemWidget extends StatelessWidget {
     FadeInConfiguration? fadeInConfiguration,
     ScaleConfiguration? scaleConfiguration,
     FlipConfiguration? flipConfiguration,
-  })  : slideConfiguration = (listAnimationType == ListAnimationType.Slide &&
-                slideConfiguration != null)
-            ? slideConfiguration
-            : SlideConfiguration.init(),
-        fadeInConfiguration = (listAnimationType == ListAnimationType.FadeIn &&
-                fadeInConfiguration != null)
-            ? fadeInConfiguration
-            : FadeInConfiguration.init(),
-        scaleConfiguration = (listAnimationType == ListAnimationType.Scale &&
-                scaleConfiguration != null)
-            ? scaleConfiguration
-            : ScaleConfiguration.init(),
-        flipConfiguration = (listAnimationType == ListAnimationType.Flip &&
-                flipConfiguration != null)
-            ? flipConfiguration
-            : FlipConfiguration.init(),
+  })  : slideConfiguration = slideConfiguration ?? SlideConfiguration(),
+        fadeInConfiguration = fadeInConfiguration ?? FadeInConfiguration(),
+        scaleConfiguration = scaleConfiguration ?? ScaleConfiguration(),
+        flipConfiguration = flipConfiguration ?? FlipConfiguration(),
         super(key: key);
 
   @override
@@ -89,18 +77,10 @@ class FadeInConfiguration {
   final Curve curve;
 
   FadeInConfiguration({
-    this.duration,
-    this.delay,
-    this.curve = Curves.ease,
+    this.duration = defaultAnimationDuration,
+    this.delay = defaultAnimationDelay,
+    this.curve = Curves.easeOutQuart,
   });
-
-  static FadeInConfiguration init() {
-    return FadeInConfiguration(
-      curve: Curves.ease,
-      delay: defaultAnimationDelay,
-      duration: defaultAnimationDuration,
-    );
-  }
 }
 
 class ScaleConfiguration {
@@ -110,20 +90,11 @@ class ScaleConfiguration {
   final double scale;
 
   ScaleConfiguration({
-    this.duration,
-    this.delay,
+    this.duration = const Duration(milliseconds: 400),
+    this.delay = defaultAnimationDelay,
     this.curve = Curves.ease,
     this.scale = 0.0,
   });
-
-  static ScaleConfiguration init() {
-    return ScaleConfiguration(
-      curve: Curves.ease,
-      delay: defaultAnimationDelay,
-      duration: defaultAnimationDuration,
-      scale: 0.0,
-    );
-  }
 }
 
 class SlideConfiguration {
@@ -137,19 +108,9 @@ class SlideConfiguration {
     this.duration = defaultAnimationDuration,
     this.delay = defaultAnimationDelay,
     this.curve = Curves.easeOutQuart,
-    this.verticalOffset = 50.0,
+    this.verticalOffset = 100.0,
     this.horizontalOffset = 0.0,
   });
-
-  static SlideConfiguration init() {
-    return SlideConfiguration(
-      duration: defaultAnimationDuration,
-      delay: defaultAnimationDelay,
-      verticalOffset: 50.0,
-      horizontalOffset: 0.0,
-      curve: Curves.easeOutQuart,
-    );
-  }
 }
 
 class FlipConfiguration {
@@ -159,20 +120,11 @@ class FlipConfiguration {
   final FlipAxisClass flipAxis;
 
   FlipConfiguration({
-    this.duration,
-    this.delay,
-    this.curve = Curves.ease,
+    this.duration = defaultAnimationDuration,
+    this.delay = defaultAnimationDelay,
+    this.curve = Curves.easeOutQuart,
     this.flipAxis = FlipAxisClass.x,
   });
-
-  static FlipConfiguration init() {
-    return FlipConfiguration(
-      curve: Curves.ease,
-      delay: defaultAnimationDelay,
-      duration: defaultAnimationDuration,
-      flipAxis: FlipAxisClass.x,
-    );
-  }
 }
 
 //region flutter_staggered_animation library

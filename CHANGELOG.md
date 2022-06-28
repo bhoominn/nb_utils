@@ -1,4 +1,4 @@
-## 4.6.8
+## 4.6.9
 - Replace child parameter with builder in SizeListener widget
 ## 4.6.7
 - New - PlaceHolderWidget - Set nicely colored PlaceHolder while image is loading
