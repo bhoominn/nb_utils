@@ -41,29 +41,44 @@ class AnimatedItemWidget extends StatelessWidget {
         delay: fadeInConfiguration!.delay,
       );
     } else if (listAnimationType == ListAnimationType.Flip) {
-      return FlipAnimationWidget(
-        child: child,
+      return FadeInAnimationWidget(
         delay: flipConfiguration!.delay,
         curve: flipConfiguration!.curve,
         duration: flipConfiguration!.duration,
-        flipAxis: flipConfiguration!.flipAxis,
+        child: FlipAnimationWidget(
+          child: child,
+          delay: flipConfiguration!.delay,
+          curve: flipConfiguration!.curve,
+          duration: flipConfiguration!.duration,
+          flipAxis: flipConfiguration!.flipAxis,
+        ),
       );
     } else if (listAnimationType == ListAnimationType.Slide) {
-      return SlideAnimationWidget(
-        child: child,
+      return FadeInAnimationWidget(
         delay: slideConfiguration!.delay,
         curve: slideConfiguration!.curve,
         duration: slideConfiguration!.duration,
-        horizontalOffset: slideConfiguration!.horizontalOffset,
-        verticalOffset: slideConfiguration!.verticalOffset,
+        child: SlideAnimationWidget(
+          child: child,
+          delay: slideConfiguration!.delay,
+          curve: slideConfiguration!.curve,
+          duration: slideConfiguration!.duration,
+          horizontalOffset: slideConfiguration!.horizontalOffset,
+          verticalOffset: slideConfiguration!.verticalOffset,
+        ),
       );
     } else if (listAnimationType == ListAnimationType.Scale) {
-      return ScaleAnimationWidget(
-        child: child,
+      return FadeInAnimationWidget(
         delay: scaleConfiguration!.delay,
         curve: scaleConfiguration!.curve,
         duration: scaleConfiguration!.duration,
-        scale: scaleConfiguration!.scale,
+        child: ScaleAnimationWidget(
+          child: child,
+          delay: scaleConfiguration!.delay,
+          curve: scaleConfiguration!.curve,
+          duration: scaleConfiguration!.duration,
+          scale: scaleConfiguration!.scale,
+        ),
       );
     } else {
       return child;
