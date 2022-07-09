@@ -54,6 +54,7 @@ export 'src/utils/time_formatter.dart';
 export 'src/widgets/PersistentTabs.dart';
 export 'src/widgets/animatedList/animated_configurations.dart';
 export 'src/widgets/animatedList/animated_list_view.dart';
+export 'src/widgets/animatedList/animated_scroll_view.dart';
 export 'src/widgets/animatedList/animated_wrap.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_text_field.dart';

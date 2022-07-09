@@ -7,7 +7,7 @@ class AnimatedListViewExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedListView(
+      body: AnimatedScrollView(
         itemCount: 20,
         itemBuilder: (_, index) {
           return Container(
