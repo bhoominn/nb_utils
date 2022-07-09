@@ -1,3 +1,5 @@
+## 4.6.11
+- New - Pagination in AnimatedListView Widget
 ## 4.6.10
 - Replace child parameter with builder in SizeListener widget
 ## 4.6.7

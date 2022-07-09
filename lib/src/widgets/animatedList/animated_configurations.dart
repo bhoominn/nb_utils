@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 
 enum ListAnimationType { FadeIn, Scale, Slide, Flip }
 
-const defaultAnimationDuration = Duration(milliseconds: 700);
-const defaultAnimationDelay = Duration(milliseconds: 200);
+const defaultAnimationDuration = Duration(milliseconds: 500);
+const defaultAnimationDelay = Duration(milliseconds: 50);
 
 class AnimatedItemWidget extends StatelessWidget {
   final ListAnimationType listAnimationType;

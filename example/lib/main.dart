@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:nb_utils_example/animated_listview_example.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -111,6 +112,13 @@ class _HomePageState extends State<HomePage> {
             key: formKey,
             child: Column(
               children: <Widget>[
+                16.height,
+                TextButton(
+                  onPressed: () {
+                    AnimatedListViewExample().launch(context);
+                  },
+                  child: Text('Pagination Example'),
+                ),
                 16.height,
                 ReadMoreText(
                   'Long Text',

@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class AnimatedListView extends StatelessWidget {
+class AnimatedListView extends StatefulWidget {
   /// ListView.builder properties
   final ScrollController? controller;
   final int? itemCount;
@@ -34,6 +34,9 @@ class AnimatedListView extends StatelessWidget {
   final ScaleConfiguration? scaleConfiguration;
   final FlipConfiguration? flipConfiguration;
 
+  final VoidCallback? onNextPage;
+  final VoidCallback? onPageScrollChange;
+
   AnimatedListView({
     Key? key,
     this.controller,
@@ -62,41 +65,86 @@ class AnimatedListView extends StatelessWidget {
     this.fadeInConfiguration,
     this.scaleConfiguration,
     this.flipConfiguration,
+    this.onNextPage,
+    this.onPageScrollChange,
   }) : super(key: key);
+
+  @override
+  State<AnimatedListView> createState() => _AnimatedListViewState();
+}
+
+class _AnimatedListViewState extends State<AnimatedListView> {
+  ScrollController? scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    if (widget.controller != null) {
+      scrollController = widget.controller;
+    } else {
+      scrollController = ScrollController();
+    }
+
+    if (widget.onNextPage != null) {
+      /// Enable Pagination
+
+      scrollController!.addListener(() {
+        if (scrollController!.position.maxScrollExtent ==
+            scrollController!.offset) {
+          widget.onNextPage?.call();
+        }
+
+        if (widget.onPageScrollChange != null) {
+          widget.onPageScrollChange!.call();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    scrollController?.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return AnimationLimiterWidget(
       child: ListView.builder(
-        controller: controller,
-        physics: physics,
-        padding: padding,
-        itemCount: itemCount,
-        shrinkWrap: shrinkWrap,
-        scrollDirection: scrollDirection,
-        addAutomaticKeepAlives: addAutomaticKeepAlives,
-        addRepaintBoundaries: addRepaintBoundaries,
-        addSemanticIndexes: addSemanticIndexes,
-        cacheExtent: cacheExtent,
-        clipBehavior: clipBehavior,
-        dragStartBehavior: dragStartBehavior,
-        findChildIndexCallback: findChildIndexCallback,
-        itemExtent: itemExtent,
-        keyboardDismissBehavior: keyboardDismissBehavior,
-        primary: primary,
-        prototypeItem: prototypeItem,
-        restorationId: restorationId,
-        reverse: reverse,
-        semanticChildCount: semanticChildCount,
+        controller: scrollController,
+        physics: widget.physics,
+        padding: widget.padding,
+        itemCount: widget.itemCount,
+        shrinkWrap: widget.shrinkWrap,
+        scrollDirection: widget.scrollDirection,
+        addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
+        addRepaintBoundaries: widget.addRepaintBoundaries,
+        addSemanticIndexes: widget.addSemanticIndexes,
+        cacheExtent: widget.cacheExtent,
+        clipBehavior: widget.clipBehavior,
+        dragStartBehavior: widget.dragStartBehavior,
+        findChildIndexCallback: widget.findChildIndexCallback,
+        itemExtent: widget.itemExtent,
+        keyboardDismissBehavior: widget.keyboardDismissBehavior,
+        primary: widget.primary,
+        prototypeItem: widget.prototypeItem,
+        restorationId: widget.restorationId,
+        reverse: widget.reverse,
+        semanticChildCount: widget.semanticChildCount,
         itemBuilder: (_, index) => AnimationConfigurationClass.staggeredList(
           position: index,
           child: AnimatedItemWidget(
-            listAnimationType: listAnimationType,
-            fadeInConfiguration: fadeInConfiguration,
-            scaleConfiguration: scaleConfiguration,
-            slideConfiguration: slideConfiguration,
-            flipConfiguration: flipConfiguration,
-            child: itemBuilder.call(_, index),
+            listAnimationType: widget.listAnimationType,
+            fadeInConfiguration: widget.fadeInConfiguration,
+            scaleConfiguration: widget.scaleConfiguration,
+            slideConfiguration: widget.slideConfiguration,
+            flipConfiguration: widget.flipConfiguration,
+            child: widget.itemBuilder.call(_, index),
           ),
         ),
       ),
