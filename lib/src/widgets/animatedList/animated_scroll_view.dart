@@ -1,13 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class AnimatedScrollView extends StatefulWidget {
   /// ListView.builder properties
   final ScrollController? controller;
-  final int? itemCount;
-  final Widget Function(BuildContext, int) itemBuilder;
+  final List<Widget> children;
   final EdgeInsetsGeometry? padding;
   final ScrollPhysics? physics;
   final Clip clipBehavior;
@@ -27,11 +25,11 @@ class AnimatedScrollView extends StatefulWidget {
 
   final VoidCallback? onNextPage;
   final VoidCallback? onPageScrollChange;
+  final bool isLastPage;
 
   AnimatedScrollView({
     Key? key,
     this.controller,
-    this.itemCount,
     this.padding,
     this.physics,
     this.clipBehavior = Clip.hardEdge,
@@ -40,7 +38,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.primary,
     this.restorationId,
     this.reverse = false,
-    required this.itemBuilder,
+    required this.children,
     this.listAnimationType = ListAnimationType.Slide,
     this.slideConfiguration,
     this.fadeInConfiguration,
@@ -48,6 +46,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.flipConfiguration,
     this.onNextPage,
     this.onPageScrollChange,
+    this.isLastPage = false,
   }) : super(key: key);
 
   @override
@@ -74,9 +73,11 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
       /// Enable Pagination
 
       scrollController!.addListener(() {
-        if (scrollController!.position.maxScrollExtent ==
-            scrollController!.offset) {
-          widget.onNextPage?.call();
+        if (!widget.isLastPage) {
+          if (scrollController!.position.maxScrollExtent ==
+              scrollController!.offset) {
+            widget.onNextPage?.call();
+          }
         }
 
         if (widget.onPageScrollChange != null) {
@@ -109,7 +110,7 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
         reverse: widget.reverse,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: List.generate(widget.itemCount.validate(), (index) {
+          children: List.generate(widget.children.length, (index) {
             return AnimationConfigurationClass.staggeredList(
               position: index,
               child: AnimatedItemWidget(
@@ -118,7 +119,7 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
                 scaleConfiguration: widget.scaleConfiguration,
                 slideConfiguration: widget.slideConfiguration,
                 flipConfiguration: widget.flipConfiguration,
-                child: widget.itemBuilder.call(context, index),
+                child: widget.children[index],
               ),
             );
           }),

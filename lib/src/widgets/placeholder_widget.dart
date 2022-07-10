@@ -27,6 +27,7 @@ class PlaceHolderWidget extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final Duration? animationDuration;
+  final Color? color;
 
   final BoxShape? shape;
   final BorderRadiusGeometry? borderRadius;
@@ -40,6 +41,7 @@ class PlaceHolderWidget extends StatelessWidget {
     this.animationDuration,
     this.padding,
     this.margin,
+    this.color,
     this.alignment,
     this.shape,
     this.borderRadius,
@@ -56,8 +58,9 @@ class PlaceHolderWidget extends StatelessWidget {
       duration: animationDuration ?? 1.seconds,
       width: width,
       decoration: BoxDecoration(
-        color: _placeholderColors[
-            Random.secure().nextInt(_placeholderColors.length)],
+        color: color ??
+            _placeholderColors[
+                Random.secure().nextInt(_placeholderColors.length)],
         shape: shape ?? BoxShape.rectangle,
         borderRadius: borderRadius,
         border: border,
