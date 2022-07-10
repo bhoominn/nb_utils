@@ -1,3 +1,5 @@
+## 4.6.12
+- New - AnimatedScrollView
 ## 4.6.11
 - New - Pagination in AnimatedListView Widget
 ## 4.6.10
