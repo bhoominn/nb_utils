@@ -120,10 +120,10 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 8.width,
-                Text(widget.text,
-                    style: widget.textStyle ?? primaryTextStyle()),
+                Text(widget.text, style: widget.textStyle ?? primaryTextStyle())
+                    .flexible(),
               ],
-            ),
+            ).flexible(),
         ],
       ),
     );

@@ -67,9 +67,10 @@ class SnapHelperWidget<T> extends StatelessWidget {
                 }
               } else {
                 return errorWidget ??
-                    Text(defaultErrorMessage ?? snap.error.toString(),
-                            style: primaryTextStyle())
-                        .center();
+                    Text(
+                      defaultErrorMessage ?? snap.error.toString(),
+                      style: primaryTextStyle(),
+                    ).center();
               }
             default:
               return SizedBox();

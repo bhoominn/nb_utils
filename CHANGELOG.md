@@ -1,3 +1,5 @@
+## 4.6.13
+- Fix - Overflow text in RoundedCheckboxWidget
 ## 4.6.12
 - New - AnimatedScrollView
 ## 4.6.11

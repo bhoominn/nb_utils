@@ -36,7 +36,6 @@ class AnimatedListView extends StatefulWidget {
 
   final VoidCallback? onNextPage;
   final VoidCallback? onPageScrollChange;
-  final bool isLastPage;
 
   AnimatedListView({
     Key? key,
@@ -68,7 +67,6 @@ class AnimatedListView extends StatefulWidget {
     this.flipConfiguration,
     this.onNextPage,
     this.onPageScrollChange,
-    this.isLastPage = false,
   }) : super(key: key);
 
   @override
@@ -95,11 +93,9 @@ class _AnimatedListViewState extends State<AnimatedListView> {
       /// Enable Pagination
 
       scrollController!.addListener(() {
-        if (!widget.isLastPage) {
-          if (scrollController!.position.maxScrollExtent ==
-              scrollController!.offset) {
-            widget.onNextPage?.call();
-          }
+        if (scrollController!.position.maxScrollExtent ==
+            scrollController!.offset) {
+          widget.onNextPage?.call();
         }
 
         if (widget.onPageScrollChange != null) {

@@ -25,7 +25,8 @@ class AnimatedScrollView extends StatefulWidget {
 
   final VoidCallback? onNextPage;
   final VoidCallback? onPageScrollChange;
-  final bool isLastPage;
+  final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisSize mainAxisSize;
 
   AnimatedScrollView({
     Key? key,
@@ -46,7 +47,8 @@ class AnimatedScrollView extends StatefulWidget {
     this.flipConfiguration,
     this.onNextPage,
     this.onPageScrollChange,
-    this.isLastPage = false,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisSize = MainAxisSize.max,
   }) : super(key: key);
 
   @override
@@ -73,11 +75,9 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
       /// Enable Pagination
 
       scrollController!.addListener(() {
-        if (!widget.isLastPage) {
-          if (scrollController!.position.maxScrollExtent ==
-              scrollController!.offset) {
-            widget.onNextPage?.call();
-          }
+        if (scrollController!.position.maxScrollExtent ==
+            scrollController!.offset) {
+          widget.onNextPage?.call();
         }
 
         if (widget.onPageScrollChange != null) {
@@ -109,7 +109,8 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
         restorationId: widget.restorationId,
         reverse: widget.reverse,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: widget.mainAxisSize,
+          crossAxisAlignment: widget.crossAxisAlignment,
           children: List.generate(widget.children.length, (index) {
             return AnimationConfigurationClass.staggeredList(
               position: index,
