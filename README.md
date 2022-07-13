@@ -1,3 +1,4 @@
+<div align="center">
 <a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/likes"></a>
 [![Pub Package](https://img.shields.io/pub/v/nb_utils.svg)](https://pub.dartlang.org/packages/nb_utils)
 <a href="https://opensource.org/licenses/MIT" target="_blank">
@@ -16,6 +17,8 @@
 <a href="https://github.com/sponsors/bhoominn"><img src="https://img.shields.io/github/sponsors/bhoominn" /></a>
 
 <a href="https://www.buymeacoffee.com/bhoominn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bhoominn&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
+
+</div>
 
 ## Show some love and like to support the project
 
@@ -91,7 +94,7 @@ return MaterialApp(
   - [int Extensions](#int-extensions)
   - [List Extensions](#list-extensions)
   - [num Extensions](#num-extensions)
-  - [Scroll Controller Extensions](#scrollcontroller-extensions)
+  - [ScrollController Extensions](#scrollcontroller-extensions)
   - [Widget Extensions](#widget-extensions)
 - [System Methods](#systems-methods)
 - [Network Utils](#network-utils)
