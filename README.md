@@ -477,6 +477,21 @@ FutureBuilder(
     }
   }
 ),
+
+// Basic SnackBar
+snackBar(context, title: 'Sample toast'),
+
+// Enhanced
+snackBar(
+  context,
+  title: 'Sample toast',
+  textColor: Colors.blue,
+  backgroundColor: Colors.white,
+  elevation: 8,
+  shape: RoundedRectangleBorder(borderRadius: radius(30)),
+  margin: EdgeInsets.all(16),
+  duration: 3.seconds,
+);
 ```
 
 ## Decorations
@@ -764,25 +779,6 @@ Widget opacity({required double opacity,int durationInSecond = 1,Duration? durat
 Widget rotate({required double angle,bool transformHitTests = true,Offset? origin})
 Widget scale({required double scale,Offset? origin,AlignmentGeometry? alignment,bool transformHitTests = true})
 Widget translate({required Offset offset,bool transformHitTests = true,Key? key})
-```
-
-```dart
-// Basic
-snackBar(context, title: 'Sample toast'),
-```
-
-```dart
-// Enhanced
-snackBar(
-  context,
-  title: 'Sample toast',
-  textColor: Colors.blue,
-  backgroundColor: Colors.white,
-  elevation: 8,
-  shape: RoundedRectangleBorder(borderRadius: radius(30)),
-  margin: EdgeInsets.all(16),
-  duration: 3.seconds,
-);
 ```
 
 ## Systems Methods
