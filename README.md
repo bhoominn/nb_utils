@@ -71,16 +71,14 @@ return MaterialApp(
 
 <a href="https://devlibrary.withgoogle.com/authors" target="_blank">Dev Library Contributors</a>
 
-# Examples
-
 ## Contents
 
-- [Widgets](#widgets)
 - [Shared Preference Example](#shared-preference-example)
 - [Use of TextStyle](#textstyles)
 - [Useful Methods](#useful-methods-or-extensions-you-will-ever-need)
 - [MaterialYou Theme](#materialyou-theme)
 - [Decorations](#decorations)
+- [Widgets](#widgets)
 - [Extensions](#extensions)
   - [String Extensions](#string-extensions)
   - [bool Extensions](#bool-extensions)
@@ -100,6 +98,162 @@ return MaterialApp(
 - [JWT Decoder](#jwt-decoder)
 - [Dialog](#show-dialogs)
 - [Custom Dialogs](#custom-dialogs)
+
+## Shared Preference Example
+```dart
+/// To use SharedPreference, you must call initialize() method in main.dart file as mentioned in Installations section
+
+/// setValue method has (String key, dynamic value) parameters
+
+/// add a Double in SharedPref
+await setValue("key", 20.0);
+
+/// add a bool in SharedPref
+await setValue("key", false);
+
+/// add a int in SharedPref
+await setValue("key", 10);
+
+/// add a String in SharedPref
+await setValue("key", "value");
+
+/// add a String List in SharedPref
+await setValue("key", ['value', 'value', 'value']);
+
+/// Returns a Bool if exists in SharedPref
+/// You can set a default value if it returns null
+getBoolAsync("key");
+
+/// Returns a Double if exists in SharedPref
+getDoubleAsync("key");
+
+/// Returns a Int if exists in SharedPref
+getIntAsync("key");
+
+/// Returns a String if exists in SharedPref
+getStringAsync("key");
+
+/// Returns a JSON if exists in SharedPref
+getJSONAsync("key");
+
+/// Remove a key from SharedPref
+await removeKey("key");
+
+/// Returns List of Keys that matches with given Key
+getMatchingSharedPrefKeys('key')
+```
+
+## TextStyles
+```dart
+
+/// Apply Bold TextStyle
+Text(item.title.validate(), style: boldTextStyle()),
+    
+/// Apply Primary TextStyle
+Text(item.title.validate(), style: primaryTextStyle()),
+    
+/// Apply Secondary TextStyle
+Text(item.title.validate(), style: secondaryTextStyle()),
+
+```
+
+## Useful methods or extensions you will ever need
+```dart
+
+/// Open a new screen
+HomePage().launch(context);
+
+/// Animate the new page (Slide, Rotate, Scale, Fade)
+HomePage().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+
+/// Remove all screens from back stack and opens new screen
+HomePage().launch(context, isNewTask: true);
+
+// Returns to previous Screen
+finish(context);
+
+// Returns to previous Screen with a result
+finish(context, object);
+
+/// Toast a String
+toast('This is a string');
+
+/// Prints only if in debug or profile mode - (parameter is Object)
+log('Your string');
+
+void hideKeyboard(context)
+
+/// If you are opening Dialog in initState method and you want to use BuildContext but yet it is not created,
+/// You can use afterBuildLayout in initState method like this.
+afterBuildLayout(() {
+  // Get Callback after your build widget is rendered
+});
+
+/// Get Package Name from Native Platform (Android, iOS)
+await getPackageName();
+
+/// Get Package Name, Version Code, Version Name (Android, iOS)
+awit getPackageInfo();
+
+/// Return true if Android OS version is above 12
+Future<bool> isAndroid12Above()
+
+///  Handle error and loading widget when using FutureBuilder or StreamBuilder
+/// "snap" is the snapShot value we get from FutureBuilder or StreamBuilder
+return snapWidgetHelper(snap);
+
+/// See the example below. You can Use FutureBuilder or StreamBuilder.
+FutureBuilder(
+  builder(_, snap) {
+    if (snap.hasData) {
+      return YourWidget();
+    } else {
+      /// This function will handle loading and error automatically.
+      /// You can modify loading and error widget in parameters.
+  
+      return snapWidgetHelper(snap);
+    }
+  }
+),
+
+// Basic SnackBar
+snackBar(context, title: 'Sample toast'),
+
+// Enhanced
+snackBar(
+  context,
+  title: 'Sample toast',
+  textColor: Colors.blue,
+  backgroundColor: Colors.white,
+  elevation: 8,
+  shape: RoundedRectangleBorder(borderRadius: radius(30)),
+  margin: EdgeInsets.all(16),
+  duration: 3.seconds,
+);
+```
+
+## MaterialYou Theme
+```dart
+Future<dynamic> getMaterialYouColors()
+Future<Color> getMaterialYouPrimaryColor()
+```
+
+## Decorations
+```dart
+
+BorderRadius radius([double? radius])
+Radius radiusCircular([double? radius])
+BorderRadius radiusOnly({double? topRight,double? topLeft,double? bottomRight,double? bottomLeft,})
+
+ShapeBorder dialogShape([double? borderRadius])
+
+/// Apply default BoxDecoration with default shadow and border radius
+Container(
+    decoration: boxDecorationDefault(), // You can modify based on your preference
+),
+
+InputDecoration defaultInputDecoration({String? hint, String? label, TextStyle? textStyle})
+```
 
 ## Widgets
 
@@ -357,162 +511,6 @@ Marquee(
     pauseDuration: Duration(milliseconds: 100),
     child: Text("Please enter a long text to see the effect of the marquee widget"),
 ),
-```
-
-## Shared Preference Example
-```dart
-/// To use SharedPreference, you must call initialize() method in main.dart file as mentioned in Installations section
-
-/// setValue method has (String key, dynamic value) parameters
-
-/// add a Double in SharedPref
-await setValue("key", 20.0);
-
-/// add a bool in SharedPref
-await setValue("key", false);
-
-/// add a int in SharedPref
-await setValue("key", 10);
-
-/// add a String in SharedPref
-await setValue("key", "value");
-
-/// add a String List in SharedPref
-await setValue("key", ['value', 'value', 'value']);
-
-/// Returns a Bool if exists in SharedPref
-/// You can set a default value if it returns null
-getBoolAsync("key");
-
-/// Returns a Double if exists in SharedPref
-getDoubleAsync("key");
-
-/// Returns a Int if exists in SharedPref
-getIntAsync("key");
-
-/// Returns a String if exists in SharedPref
-getStringAsync("key");
-
-/// Returns a JSON if exists in SharedPref
-getJSONAsync("key");
-
-/// Remove a key from SharedPref
-await removeKey("key");
-
-/// Returns List of Keys that matches with given Key
-getMatchingSharedPrefKeys('key')
-```
-
-## TextStyles
-```dart
-
-/// Apply Bold TextStyle
-Text(item.title.validate(), style: boldTextStyle()),
-    
-/// Apply Primary TextStyle
-Text(item.title.validate(), style: primaryTextStyle()),
-    
-/// Apply Secondary TextStyle
-Text(item.title.validate(), style: secondaryTextStyle()),
-
-```
-
-## Useful methods or extensions you will ever need
-```dart
-
-/// Open a new screen
-HomePage().launch(context);
-
-/// Animate the new page (Slide, Rotate, Scale, Fade)
-HomePage().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
-
-/// Remove all screens from back stack and opens new screen
-HomePage().launch(context, isNewTask: true);
-
-// Returns to previous Screen
-finish(context);
-
-// Returns to previous Screen with a result
-finish(context, object);
-
-/// Toast a String
-toast('This is a string');
-
-/// Prints only if in debug or profile mode - (parameter is Object)
-log('Your string');
-
-void hideKeyboard(context)
-
-/// If you are opening Dialog in initState method and you want to use BuildContext but yet it is not created,
-/// You can use afterBuildLayout in initState method like this.
-afterBuildLayout(() {
-  // Get Callback after your build widget is rendered
-});
-
-/// Get Package Name from Native Platform (Android, iOS)
-await getPackageName();
-
-/// Get Package Name, Version Code, Version Name (Android, iOS)
-awit getPackageInfo();
-
-/// Return true if Android OS version is above 12
-Future<bool> isAndroid12Above()
-
-///  Handle error and loading widget when using FutureBuilder or StreamBuilder
-/// "snap" is the snapShot value we get from FutureBuilder or StreamBuilder
-return snapWidgetHelper(snap);
-
-/// See the example below. You can Use FutureBuilder or StreamBuilder.
-FutureBuilder(
-  builder(_, snap) {
-    if (snap.hasData) {
-      return YourWidget();
-    } else {
-      /// This function will handle loading and error automatically.
-      /// You can modify loading and error widget in parameters.
-  
-      return snapWidgetHelper(snap);
-    }
-  }
-),
-
-// Basic SnackBar
-snackBar(context, title: 'Sample toast'),
-
-// Enhanced
-snackBar(
-  context,
-  title: 'Sample toast',
-  textColor: Colors.blue,
-  backgroundColor: Colors.white,
-  elevation: 8,
-  shape: RoundedRectangleBorder(borderRadius: radius(30)),
-  margin: EdgeInsets.all(16),
-  duration: 3.seconds,
-);
-```
-
-## MaterialYou Theme
-```dart
-Future<dynamic> getMaterialYouColors()
-Future<Color> getMaterialYouPrimaryColor()
-```
-
-## Decorations
-```dart
-
-BorderRadius radius([double? radius])
-Radius radiusCircular([double? radius])
-BorderRadius radiusOnly({double? topRight,double? topLeft,double? bottomRight,double? bottomLeft,})
-
-ShapeBorder dialogShape([double? borderRadius])
-
-/// Apply default BoxDecoration with default shadow and border radius
-Container(
-    decoration: boxDecorationDefault(), // You can modify based on your preference
-),
-
-InputDecoration defaultInputDecoration({String? hint, String? label, TextStyle? textStyle})
 ```
 
 # Extensions
