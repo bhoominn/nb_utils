@@ -22,10 +22,6 @@
 
 ## Show some love and like to support the project
 
-## Documentation
-
-[API Docs](https://pub.dev/documentation/nb_utils/latest/) are available.
-
 ## Platform Support
 
 | Android | iOS | MacOS  | Web | Linux | Windows |
