@@ -9,7 +9,8 @@ class RestartAppWidget extends StatefulWidget {
   @override
   _RestartAppWidgetState createState() => _RestartAppWidgetState();
 
-  static init(BuildContext context) => context.findAncestorStateOfType<_RestartAppWidgetState>()?.restartApp();
+  static init(BuildContext context) =>
+      context.findAncestorStateOfType<_RestartAppWidgetState>()?.restartApp();
 }
 
 class _RestartAppWidgetState extends State<RestartAppWidget> {
@@ -21,5 +22,6 @@ class _RestartAppWidgetState extends State<RestartAppWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => KeyedSubtree(key: _key, child: widget.child);
+  Widget build(BuildContext context) =>
+      KeyedSubtree(key: _key, child: widget.child);
 }

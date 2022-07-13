@@ -44,7 +44,8 @@ class UL extends StatelessWidget {
                   ? Text(
                       '•',
                       style: boldTextStyle(
-                          color: symbolColor ?? textPrimaryColorGlobal, size: 24),
+                          color: symbolColor ?? textPrimaryColorGlobal,
+                          size: 24),
                     )
                   : SizedBox(),
               symbolType == SymbolType.Numbered
