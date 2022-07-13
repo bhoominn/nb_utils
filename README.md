@@ -76,7 +76,7 @@ return MaterialApp(
 ## Contents
 
 - [Widgets](#widgets)
-- [Shared Preference Example](#shared-preferences-example)
+- [Shared Preference Example](#shared-preference-example)
 - [Use of TextStyle](#textstyles)
 - [Useful Methods](#useful-methods-or-extensions-you-will-ever-need)
 - [Decorations](#decorations)
