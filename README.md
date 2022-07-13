@@ -79,6 +79,7 @@ return MaterialApp(
 - [Shared Preference Example](#shared-preference-example)
 - [Use of TextStyle](#textstyles)
 - [Useful Methods](#useful-methods-or-extensions-you-will-ever-need)
+- [MaterialYou Theme](#materialyou-theme)
 - [Decorations](#decorations)
 - [Extensions](#extensions)
   - [String Extensions](#string-extensions)
@@ -442,11 +443,11 @@ log('Your string');
 
 void hideKeyboard(context)
 
-/// Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
-enterFullScreen();
-
-/// Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
-exitFullScreen();
+/// If you are opening Dialog in initState method and you want to use BuildContext but yet it is not created,
+/// You can use afterBuildLayout in initState method like this.
+afterBuildLayout(() {
+  // Get Callback after your build widget is rendered
+});
 
 /// Get Package Name from Native Platform (Android, iOS)
 await getPackageName();
@@ -454,11 +455,8 @@ await getPackageName();
 /// Get Package Name, Version Code, Version Name (Android, iOS)
 awit getPackageInfo();
 
-/// returns how much time ago from timestamp
-String formatTime(int timestamp)
-
-/// Returns a string from Clipboard
-Future<String> paste();
+/// Return true if Android OS version is above 12
+Future<bool> isAndroid12Above()
 
 ///  Handle error and loading widget when using FutureBuilder or StreamBuilder
 /// "snap" is the snapShot value we get from FutureBuilder or StreamBuilder
@@ -492,6 +490,12 @@ snackBar(
   margin: EdgeInsets.all(16),
   duration: 3.seconds,
 );
+```
+
+## MaterialYou Theme
+```dart
+Future<dynamic> getMaterialYouColors()
+Future<Color> getMaterialYouPrimaryColor()
 ```
 
 ## Decorations
@@ -632,6 +636,9 @@ int currentMillisecondsTimeStamp()
 int currentTimeStamp()
 
 bool leapYear(int year)
+
+/// returns how much time ago from timestamp
+String formatTime(int timestamp)
 
 /// returns number of days in given month
 int? daysInMonth(int monthNum, int year)
@@ -785,7 +792,7 @@ Widget translate({required Offset offset,bool transformHitTests = true,Key? key}
 ```dart
 /// Change status bar Color and Brightness
 setStatusBarColor(Colors.blue);
-    
+
 /// Show Status Bar
 showStatusBar();
 
@@ -800,6 +807,15 @@ setOrientationLandscape();
 
 /// Get current PlatformName as a String
 String platformName();
+
+/// Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
+enterFullScreen();
+
+/// Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
+exitFullScreen();
+
+/// Returns a string from Clipboard
+Future<String> paste();
 
 /// Invoke Native method and get result
 var data = await invokeNativeMethod(CHANNEL_NAME, METHOD_NAME, [dynamic arguments]);
