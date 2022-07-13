@@ -31,6 +31,7 @@ class UL extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(children.validate().length, (index) {
         return Container(
           padding: edgeInsets ?? EdgeInsets.zero,
@@ -43,7 +44,7 @@ class UL extends StatelessWidget {
                   ? Text(
                       '•',
                       style: boldTextStyle(
-                          color: textColor ?? textPrimaryColorGlobal, size: 24),
+                          color: symbolColor ?? textPrimaryColorGlobal, size: 24),
                     )
                   : SizedBox(),
               symbolType == SymbolType.Numbered

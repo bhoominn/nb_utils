@@ -50,8 +50,8 @@ bool leapYear(int year) {
 }
 
 /// returns number of days in given month
-int? daysInMonth(int monthNum, int year) {
-  List<int?> monthLength = [];
+int daysInMonth(int monthNum, int year) {
+  List<int> monthLength = [];
 
   monthLength[0] = 31;
   monthLength[2] = 31;
@@ -65,10 +65,11 @@ int? daysInMonth(int monthNum, int year) {
   monthLength[5] = 30;
   monthLength[10] = 30;
 
-  if (leapYear(year) == true)
+  if (leapYear(year)) {
     monthLength[1] = 29;
-  else
+  } else {
     monthLength[1] = 28;
+  }
 
   return monthLength[monthNum - 1];
 }

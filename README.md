@@ -73,27 +73,47 @@ return MaterialApp(
 
 # Examples
 
-## Ready to Use widgets with Optional Parameters
+## Contents
+
+- [Widgets](#widgets)
+- [Shared Preference Example](#shared-preferences-example)
+- [Use of TextStyle](#textstyles)
+- [Useful Methods](#useful-methods-or-extensions-you-will-ever-need)
+- [Decorations](#decorations)
+- [Extensions](#extensions)
+  - [String Extensions](#string-extensions)
+  - [bool Extensions](#bool-extensions)
+  - [Color Extensions](#color-extensions)
+  - [BuildContext Extensions](#buildcontext-extensions)
+  - [DateTime Extensions](#datetime-extensions---utils)
+  - [Device Extensions](#device-extensions)
+  - [double Extensions](#double-extensions)
+  - [Duration Extensions](#duration-extensions)
+  - [int Extensions](#int-extensions)
+  - [List Extensions](#list-extensions)
+  - [num Extensions](#num-extensions)
+  - [Scroll Controller Extensions](#scroll-controller-extensions)
+  - [Widget Extensions](#widget-extensions)
+- [System Methods](#systems-methods)
+- [Network Utils](#network-utils)
+- [Dialog](#show-dialogs)
+- [Custom Dialogs](#custom-dialogs)
+- [JWT Decoder](#jwt-decoder)
+
+## Widgets
 
 ```dart
 /// Add a Google Logo
 /// Add size parameter for custom size - Default is 24
 GoogleLogoWidget(),
 ```
-![GoogleLogoWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/google_logo_widget.gif)
+[Image](#googlelogowidget)
 
 ```dart
 /// You can use your preferred State Management technique
 Loader().visible(mIsLoading),
 ```
-![Loader](https://github.com/bhoominn/nb_utils/blob/main/screenshots/loader_widget.gif)
-
-```dart
-/// AppBar widget
-appBarWidget(
-  'Title',
-),
-```
+[GIF](#loader-widget)
 
 ```dart
 /// Read More Text Widget
@@ -140,7 +160,7 @@ SettingSection(
   ],
 ),
 ```
-![SettingSection](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_section_widget.jpg)
+[Image](#settingsection)
 
 ```dart
 //SettingItem
@@ -154,7 +174,7 @@ SettingItemWidget(
    subTitle: "Subtitle", // Optional
 ),
 ```
-![SettingItemWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_item_widget.jpg)
+[Image](#settingitemwidget)
 
 ```dart
 /// Default AppButton
@@ -167,7 +187,7 @@ AppButton(
     },
 ),
 ```
-![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.gif)
+[GIF](#appbutton)
 
 ```dart
 /// Use PlaceHolderWidget while your network image is loading
@@ -220,7 +240,7 @@ UL(
    ],
 ),
 ```
-![UL](https://github.com/bhoominn/nb_utils/blob/main/screenshots/ul_widget.jpg)
+[Image](#ulwidget)
 
 ```dart
 /// Use AppTextField on your app to try more properties
@@ -247,7 +267,7 @@ AppTextField(
     decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
 ),
 ```
-![AppTextField](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_text_field_widget.jpg)
+[Image](#apptextfield)
 
 ```dart
 HoverWidget(
@@ -270,7 +290,8 @@ HorizontalList(
     itemCount: 25,
 ),
 ```
-![HorizontalList](https://github.com/bhoominn/nb_utils/blob/main/screenshots/horizontal_widget.gif)
+[GIF](#horizontallist-widget)
+
 ```dart
 RatingBarWidget(
     rating: initialRating,
@@ -279,7 +300,7 @@ RatingBarWidget(
     },
 ),
 ```
-![RatingBarWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/rating_bar_widget.gif)
+[Image](#ratingbarwidget)
 
 ```dart
 /// Make your Flutter App Responsive in any device out there with Responsive widget
@@ -289,7 +310,7 @@ Responsive(
     web: WebWidget(), // Optional
 ),
 ```
-![Responsive](https://github.com/bhoominn/nb_utils/blob/main/screenshots/responsive_widget.gif)
+[Image](#responsive-widget)
 
 ```dart
 TextIcon(
@@ -305,7 +326,7 @@ DotIndicator(
     pages: list,
 ),
 ```
-![DotIndicator](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dot_indicator.gif)
+[GIF](#dotindicator-widget)
 
 ```dart
 /// Use SnapHelperWidget to handle loading and error widget automatically
@@ -326,7 +347,7 @@ DottedBorderWidget(
     ),
 ),
 ```
-![DottedBorderWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dotted_border_widget.jpg)
+[Image](#dottedborderwidget)
 
 ```dart
 Marquee(
@@ -335,6 +356,465 @@ Marquee(
     pauseDuration: Duration(milliseconds: 100),
     child: Text("Please enter a long text to see the effect of the marquee widget"),
 ),
+```
+
+## Shared Preference Example
+```dart
+/// To use SharedPreference, you must call initialize() method in main.dart file as mentioned in Installations section
+/// 
+
+/// setValue method has (String key, dynamic value) parameters
+
+/// add a Double in SharedPref
+await setValue("key", 20.0);
+
+/// add a bool in SharedPref
+await setValue("key", false);
+
+/// add a int in SharedPref
+await setValue("key", 10);
+
+/// add a String in SharedPref
+await setValue("key", "value");
+
+/// add a String List in SharedPref
+await setValue("key", ['value', 'value', 'value']);
+
+/// Returns a Bool if exists in SharedPref
+/// You can set a default value if it returns null
+getBoolAsync("key");
+
+/// Returns a Double if exists in SharedPref
+getDoubleAsync("key");
+
+/// Returns a Int if exists in SharedPref
+getIntAsync("key");
+
+/// Returns a String if exists in SharedPref
+getStringAsync("key");
+
+/// Returns a JSON if exists in SharedPref
+getJSONAsync("key");
+
+/// Remove a key from SharedPref
+await removeKey("key");
+
+/// Returns List of Keys that matches with given Key
+getMatchingSharedPrefKeys('key')
+```
+
+## TextStyles
+```dart
+ 
+/// Apply Bold TextStyle
+Text(item.title.validate(), style: boldTextStyle()),
+    
+/// Apply Primary TextStyle
+Text(item.title.validate(), style: primaryTextStyle()),
+    
+/// Apply Secondary TextStyle
+Text(item.title.validate(), style: secondaryTextStyle()),
+
+```
+
+## Useful methods or extensions you will ever need
+```dart
+
+/// Open a new screen
+HomePage().launch(context);
+
+/// Animate the new page (Slide, Rotate, Scale, Fade)
+HomePage().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+
+/// Remove all screens from back stack and opens new screen
+HomePage().launch(context, isNewTask: true);
+
+// Returns to previous Screen
+finish(context);
+
+// Returns to previous Screen with a result
+finish(context, object);
+
+/// Toast a String
+toast('This is a string');
+
+/// Prints only if in debug or profile mode - (parameter is Object)
+log('Your string');
+
+void hideKeyboard(context)
+
+/// Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
+enterFullScreen();
+
+/// Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
+exitFullScreen();
+
+/// Get Package Name from Native Platform (Android, iOS)
+await getPackageName();
+
+/// Get Package Name, Version Code, Version Name (Android, iOS)
+awit getPackageInfo();
+
+/// returns how much time ago from timestamp
+String formatTime(int timestamp)
+
+/// Returns a string from Clipboard
+Future<String> paste();
+
+///  Handle error and loading widget when using FutureBuilder or StreamBuilder
+/// "snap" is the snapShot value we get from FutureBuilder or StreamBuilder
+return snapWidgetHelper(snap);
+
+/// See the example below. You can Use FutureBuilder or StreamBuilder.
+FutureBuilder(
+  builder(_, snap) {
+    if (snap.hasData) {
+      return YourWidget();
+    } else {
+      /// This function will handle loading and error automatically.
+      /// You can modify loading and error widget in parameters.
+  
+      return snapWidgetHelper(snap);
+    }
+  }
+),
+```
+
+## Decorations
+```dart
+
+BorderRadius radius([double? radius])
+Radius radiusCircular([double? radius])
+BorderRadius radiusOnly({double? topRight,double? topLeft,double? bottomRight,double? bottomLeft,})
+
+ShapeBorder dialogShape([double? borderRadius])
+
+/// Apply default BoxDecoration with default shadow and border radius
+Container(
+    decoration: boxDecorationDefault(), // You can modify based on your preference
+),
+
+InputDecoration defaultInputDecoration({String? hint, String? label, TextStyle? textStyle})
+```
+
+# Extensions
+## String Extensions
+```dart
+String validate({String value = ''})
+bool validateEmail()
+bool validatePhone()
+bool validateURL()
+
+bool isDigit()
+bool isAlpha()
+bool isJson()
+
+bool get isInt
+bool get isImage
+bool get isAudio
+bool get isVideo
+bool get isTxt
+bool get isDoc
+bool get isExcel
+bool get isPPT
+bool get isApk
+bool get isPdf
+bool get isHtml
+
+Future<void> copyToClipboard()
+
+String capitalizeFirstLetter()
+String repeat(int n, {String separator = ''})
+String formatNumberWithComma({String seperator = ','})
+String get reverse
+String toYouTubeId({bool trimWhitespaces = true})
+String getYouTubeThumbnail()
+String removeAllWhiteSpace()
+String getNumericOnly({bool aFirstWordOnly = false})
+String toSlug({String delimiter = '_'})
+
+Color toColor({Color? defaultColor})
+
+List<String> toList()
+List<String> setSearchParam()
+
+int toInt({int defaultValue = 0})
+int countWords()
+
+double toDouble({double defaultValue = 0.0})
+double calculateReadTime({int wordsPerMinute = 200})
+```
+
+## bool Extensions
+```dart
+bool validate({bool value = false})
+```
+
+## Color Extensions
+```dart
+String toHex({bool leadingHashSign = true, bool includeAlpha = false})
+
+bool isDark()
+
+bool isLight()
+
+double getBrightness()
+
+double getLuminance()
+```
+
+## BuildContext Extensions
+```dart
+Size size()
+
+/// return screen width
+double width()
+/// return screen height
+double height()
+
+double pixelRatio()
+
+Brightness platformBrightness()
+
+double get statusBarHeight
+double get navigationBarHeight
+
+ThemeData get theme
+TextTheme get textTheme
+DefaultTextStyle get defaultTextStyle
+FormState? get formState
+ScaffoldState get scaffoldState
+OverlayState? get overlayState
+
+Color get primaryColor
+Color get accentColor
+Color get scaffoldBackgroundColor
+Color get cardColor
+Color get dividerColor
+Color get iconColor
+
+void requestFocus(FocusNode focus)
+
+bool isPhone()
+bool isTablet()
+bool isDesktop()
+
+```
+
+## DateTime Extensions - Utils
+```dart
+
+/// You can use .timeAgo on a DateTime object like this
+String result = DateTime.now().timeAgo;
+
+bool get isToday
+bool get isYesterday
+bool get isTomorrow
+
+/// return current time in milliseconds
+int currentMillisecondsTimeStamp()
+
+/// return current timestamp
+int currentTimeStamp()
+
+bool leapYear(int year)
+
+/// returns number of days in given month
+int? daysInMonth(int monthNum, int year)
+```
+
+## Device Extensions
+```dart
+DeviceSize get device
+    
+bool get isWeb
+bool get isMobile
+bool get isDesktop
+bool get isApple
+bool get isGoogle
+bool get isAndroid
+bool get isIOS
+bool get isMacOS
+bool get isLinux
+bool get isWindows
+    
+String get operatingSystemName
+String get operatingSystemVersion
+```
+
+## Double Extensions
+```dart
+double validate({double value = 0.0})
+
+bool isBetween(num first, num second)
+    
+Size get size
+```
+
+## Duration Extensions
+```dart
+///  await Duration(seconds: 1).delay();
+Future<void> get delay
+```
+
+## int Extensions
+```dart
+/// Validate given int is not null and returns given value if null.
+int validate({int value = 0})
+
+/// Leaves given height of space
+Widget get height
+/// Leaves given width of space
+Widget get width
+
+/// HTTP status code
+bool isSuccessful()
+
+BorderRadius borderRadius([double? val])
+
+/// Returns microseconds duration
+/// 5.microseconds
+Duration get microseconds
+Duration get milliseconds
+Duration get seconds
+Duration get minutes
+Duration get hours
+Duration get days
+
+bool isBetween(num first, num second)
+
+Size get size
+
+// return suffix (th,st,nd,rd) of the given month day number
+String toMonthDaySuffix()
+
+// returns month name from the given int
+String toMonthName({bool isHalfName = false})
+
+// returns WeekDay from the given int
+String toWeekDay({bool isHalfName = false})
+```
+
+## List Extensions
+```dart
+  /// Validate given List is not null and returns blank list if null.
+List<T> validate()
+
+/// Generate forEach but gives index for each element
+void forEachIndexed(void action(T element, int index))
+
+int sumBy(int Function(T) selector)
+
+double sumByDouble(num Function(T) selector)
+
+double? averageBy(num Function(T) selector)
+```
+
+## num Extensions
+```dart
+  /// Validate given double is not null and returns given value if null.
+num validate({num value = 0})
+
+/// Returns price with currency
+String toCurrencyAmount()
+```
+
+## Scroll Controller Extensions
+```dart
+ScrollController scrollController = ScrollController();
+
+/// animate to top
+scrollController.animToTop();
+/// animate to Bottom
+scrollController.animToBottom();
+/// animate to specific position
+scrollController.animateToPosition(20.0);
+/// jump to the start of the list without animation
+scrollController.jumpToTop();
+/// jump to the end of the list without animation
+scrollController.jumpToBottom();
+```
+
+## Widget Extensions
+```dart
+Widget onTap(Function? function, {BorderRadius? borderRadius, Color? splashColor,Color? hoverColor, Color? highlightColor})
+Future<T?> launch<T>(BuildContext context,{bool isNewTask = false, PageRouteAnimation? pageRouteAnimation,Duration? duration})
+
+Widget expand({flex = 1})
+Widget flexible({flex = 1, FlexFit? fit})
+Widget fit({BoxFit? fit, AlignmentGeometry? alignment})
+Widget withTooltip({required String msg})
+Widget center({double? heightFactor, double? widthFactor})
+
+SizedBox withSize({double width = 0.0, double height = 0.0})
+SizedBox withWidth(double width)
+SizedBox withHeight(double height)
+Padding paddingTop(double top)
+Padding paddingLeft(double left)
+Padding paddingRight(double right)
+Padding paddingBottom(double bottom
+Padding paddingAll(double padding)
+Padding paddingOnly({double top = 0.0,double left = 0.0,double bottom = 0.0,double right = 0.0})
+Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0})
+Widget visible(bool visible, {Widget? defaultWidget})
+
+ClipRRect cornerRadiusWithClipRRectOnly({int bottomLeft = 0,int bottomRight = 0,int topLeft = 0,int topRight = 0})
+ClipRRect cornerRadiusWithClipRRect(double radius)
+
+Widget opacity({required double opacity,int durationInSecond = 1,Duration? duration})
+Widget rotate({required double angle,bool transformHitTests = true,Offset? origin})
+Widget scale({required double scale,Offset? origin,AlignmentGeometry? alignment,bool transformHitTests = true})
+Widget translate({required Offset offset,bool transformHitTests = true,Key? key})
+```
+
+```dart
+// Basic
+snackBar(context, title: 'Sample toast'),
+```
+
+```dart
+// Enhanced
+snackBar(
+  context,
+  title: 'Sample toast',
+  textColor: Colors.blue,
+  backgroundColor: Colors.white,
+  elevation: 8,
+  shape: RoundedRectangleBorder(borderRadius: radius(30)),
+  margin: EdgeInsets.all(16),
+  duration: 3.seconds,
+);
+```
+
+## Systems Methods
+```dart
+/// Change status bar Color and Brightness
+setStatusBarColor(Colors.blue);
+    
+/// Show Status Bar
+showStatusBar();
+
+/// Hide Status Bar
+hideStatusBar();
+
+/// Set orientation to portrait
+setOrientationPortrait();
+
+/// Set orientation to landscape
+setOrientationLandscape();
+
+/// Get current PlatformName as a String
+String platformName();
+
+/// Invoke Native method and get result
+var data = await invokeNativeMethod(CHANNEL_NAME, METHOD_NAME, [dynamic arguments]);
+```
+
+## Network Utils
+```dart
+Future<bool> isNetworkAvailable()
+Future<bool> isConnectedToMobile()
+Future<bool> isConnectedToWiFi()
 ```
 
 ## Show Dialogs
@@ -373,457 +853,7 @@ showConfirmDialog(
 );
 ```
 
-## Useful methods or extensions you will ever need
-```dart
-
-/// Open a new screen
-HomePage().launch(context);
-
-/// Animate the new page (Slide, Rotate, Scale, Fade)
-HomePage().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
-
-/// Remove all screens from back stack and opens new screen
-HomePage().launch(context, isNewTask: true);
-
-// Returns to previous Screen
-finish(context);
-
-// Returns to previous Screen with a result
-finish(context, object);
-
-/// Toast a String
-toast('This is a string');
-
-/// Prints only if in debug or profile mode - (parameter is Object)
-log('Your string');
-
-/// Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
-enterFullScreen();
-
-/// Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
-exitFullScreen();
-
-```
-
-```dart
-// Basic
-snackBar(context, title: 'Sample toast'),
-```
-
-```dart
-// Enhanced
-snackBar(
-  context,
-  title: 'Sample toast',
-  textColor: Colors.blue,
-  backgroundColor: Colors.white,
-  elevation: 8,
-  shape: RoundedRectangleBorder(borderRadius: radius(30)),
-  margin: EdgeInsets.all(16),
-  duration: 3.seconds,
-);
-```
-
-## Shared Preferences
-```dart
-
-/// Shared Preferences
-/// setValue method has (String key, dynamic value) parameters
-
-/// add a Double in SharedPref
-await setValue("key", 20.0);
-
-/// add a bool in SharedPref
-await setValue("key", false);
-
-/// add a int in SharedPref
-await setValue("key", 10);
-
-/// add a String in SharedPref
-await setValue("key", "value");
-
-/// add a String List in SharedPref
-await setValue("key", ['value', 'value', 'value']);
-
-/// Returns a Bool if exists in SharedPref
-
-/// You can set a default value if it returns null
-getBoolAsync("key");
-
-/// Returns a Double if exists in SharedPref
-getDoubleAsync("key");
-
-/// Returns a Int if exists in SharedPref
-getIntAsync("key");
-
-/// Returns a String if exists in SharedPref
-getStringAsync("key");
-
-/// Returns a JSON if exists in SharedPref
-getJSONAsync("key");
-
-/// Remove a key from SharedPref
-await removeKey("key");
-
-/// Returns List of Keys that matches with given Key
-getMatchingSharedPrefKeys('key')
-```
-
-## Widgets Extensions, Methods
-```dart
-/// With custom height and width
-AnyWidget().withSize(height: 25, width: 50);
-
-/// With custom width
-AnyWidget().withWidth(25);
-
-/// With custom height
-AnyWidget().withHeight(100);
-
-/// return padding top
-AnyWidget().paddingTop(2);
-
-/// return padding left
-AnyWidget().paddingLeft(4);
-
-/// return padding right
-AnyWidget().paddingRight(8);
-
-/// return padding bottom
-AnyWidget().paddingBottom(16);
-
-/// return padding all
-AnyWidget().paddingAll(8);
-
-/// return custom padding from each side
-AnyWidget().paddingOnly();
-
-/// return padding symmetric
-AnyWidget().paddingSymmetric();
-
-/// set visibility
-/// true/false
-AnyWidget().visible(true);
-
-/// add custom corner radius each side
-AnyWidget().cornerRadiusWithClipRRectOnly(topLeft: 10, bottomRight: 12);
-
-/// add corner radius
-AnyWidget().cornerRadiusWithClipRRect(20);
-
-/// set widget visibility
-/// true/false
-AnyWidget().withVisibility(true);
-
-/// add animated opacity to parent widget
-AnyWidget().opacity(opacity: 0.2);
-
-/// add rotation to parent widget
-AnyWidget().rotate(angle: 1.2);
-
-/// add scaling to parent widget
-AnyWidget().scale(scale: 2.0);
-
-/// set parent widget in center
-AnyWidget().center();
-
-/// add tap to parent widget
-AnyWidget().onTap(() {
-  //
-});
-
-/// Wrap with ShaderMask widget
-AnyWidget().withShaderMask([Colors.black, Colors.red]);
-
-/// Wrap with ShaderMask widget Gradient
-AnyWidget().withShaderMaskGradient(LinearGradient(colors: [Colors.black, Colors.red]));
-
-/// add Expanded to parent widget
-AnyWidget().expand();
-
-/// add Flexible to parent widget
-AnyWidget().flexible();
-
-/// add FittedBox to parent widget
-AnyWidget().fit();
-
-/// Validate given widget is not null and returns given value if null.
-AnyWidget().validate();
-
-/// Validate given widget is not null and returns given value if null.
-AnyWidget().withTooltip(msg: "Hello");
-
-
-```
-
-## Time formatter formatTime Extensions, Methods
-```dart
-/// Returns how much time ago from timestamp
-/// The number of milliseconds that have passed since the timestamp
-
-/// You can use .timeAgo on a DateTime object like this
-String result = DateTime.now().timeAgo;
-
-
-int difference = DateTime.now().millisecondsSinceEpoch;
-
-/// Converts the time difference to a number of seconds.
-countSeconds(difference);
-
-/// Converts the time difference to a number of minutes.
-countMinutes(difference);
-
-/// Converts the time difference to a number of hours.
-countHours(difference);
-
-/// Converts the time difference to a number of days.
-countDays(difference);
-
-/// Converts the time difference to a number of weeks.
-countWeeks(difference);
-
-/// Converts the time difference to a number of months.
-countMonths(difference);
-
-/// Converts the time difference to a number of years.
-countYears(difference);
-```
-
-## Strings Extensions, Methods
-```dart
-/// Get Package Name from Native Platform (Android, iOS)
-await getPackageName();
-
-/// Returns True/False
-
-String example = "";
-
-/// Check URL validation
-example.validateURL();
-
-/// Check email validation
-example.validateEmail();
-
-/// Check phone validation
-example.validatePhone();
-
-/// Return true if given String is Digit
-example.isDigit();
-
-/// Check weather String is alpha or not
-example.isAlpha();
-
-/// Check weather String is Json or not
-example.isJson();
-
-/// Copy String to Clipboard
-example.copyToClipboard();
-
-/// for ex. add comma in price
-example.formatNumberWithComma();
-
-/// Get Color from HEX String
-example.toColor();
-
-/// It reverses the String
-example.reverse;
-
-/// Returns list of single character from String
-example.toList();
-
-/// Returns true if given String is null or isEmpty
-example.isEmptyOrNull;
-
-/// Check null string, return given value if null
-example.validate();
-
-/// Capitalize First letter of a given String
-example.capitalizeFirstLetter();
-
-/// Returns if its type image
-example.isImage;
-
-/// Returns if its type Audio
-example.isAudio;
-
-/// Returns if its type Video
-example.isVideo;
-
-/// Returns if its type Txt
-example.isTxt;
-
-/// Returns if its type Doc
-example.isDoc;
-
-/// Returns if its type Excel
-example.isExcel;
-
-/// Returns if its type PPT
-example.isPPT;
-
-/// Returns if its type Apk
-example.isApk;
-
-/// Returns if its type Pdf
-example.isPdf;
-
-/// Returns if its type Html
-example.isHtml;
-
-/// Pass the Pattern
-
-/// Splits from a [pattern] and returns remaining String after that
-example.splitAfter(Patterns.apk);
-
-/// Splits from a [pattern] and returns String before that
-example.splitBefore(Patterns.audio);
-
-/// It matches the String and returns between [startPattern] and [endPattern]
-example.splitBetween("d", "g");
-
-/// Return int value of given string
-example.toInt();
-
-/// Get YouTube Video ID
-example.toYouTubeId();
-
-/// Returns YouTube thumbnail for given video id
-example.getYouTubeThumbnail();
-
-/// Removes white space from given String
-example.removeAllWhiteSpace();
-
-/// Returns only numbers from a string
-example.getNumericOnly(example);
-
-/// Return average read time duration of given String in seconds
-example.calculateReadTime();
-
-/// Return number of words in a given String
-example.countWords();
-
-/// Generate slug of a given String
-example.toSlug();
-
-/// returns searchable array for Firebase Database
-example.setSearchParam();
-```
-
-## Scroll Controller Extensions
-```dart
-ScrollController scrollController = ScrollController();
-
-/// animate to top
-scrollController.animToTop();
-/// animate to Bottom
-scrollController.animToBottom();
-/// animate to specific position
-scrollController.animateToPosition(20.0);
-/// jump to the start of the list without animation
-scrollController.jumpToTop();
-/// jump to the end of the list without animation
-scrollController.jumpToBottom();
-```
-
-## TextStyles/ Decorations/ FocusNodes/ Context Methods
-```dart
- 
-/// Apply Bold TextStyle
-Text(item.title.validate(), style: boldTextStyle())
-    
-/// Apply Primary TextStyle
-Text(item.title.validate(), style: primaryTextStyle())
-    
-/// Apply Secondary TextStyle
-Text(item.title.validate(), style: secondaryTextStyle())
-
-
-/// Apply default BoxDecoration with default shadow and border radius
-Container(
-    decoration: boxDecorationDefault(), // You can modify based on your preference
-),
-
-/// FocusNode
-requestFocus(NODE_VARIABLE);
-nextFocus(NODE_VARIABLE);
-
-///  Handle error and loading widget when using FutureBuilder or StreamBuilder
-/// "snap" is the snapShot value we get from FutureBuilder or StreamBuilder
-return snapWidgetHelper(snap);
-
-/// See the example below. You can Use FutureBuilder or StreamBuilder.
-
-FutureBuilder(
-    builder(_, snap) {
-        if (snap.hasData) {
-            return YourWidget();
-        } else {
-            /// This function will handle loading and error automatically.
-            /// You can modify loading and error widget in parameters.
-
-            return snapWidgetHelper(snap);
-        }
-    }
-)
-
-/// return screen width
-context.width();
-
-/// return screen height
-context.height();
-    
-/// Theme color or value from context
-context.primaryColor;
-context.theme.text.subtitle.color;
-```
-
-## DateTime Extensions, Methods
-```dart
-/// return current time in milliseconds
-int currentMillisecondTimeStamp = currentMillisecondsTimeStamp();
-
-/// return current timestamp
-int currentTimeStamps = currentTimeStamp();
-
-/// return true if given year is an leap year
-/// leapYear(year)
-bool isLeapYear = leapYear(2000);
-
-/// returns number of days in given month
-/// daysInMonth(monthNum, year)
-int dayInMonthTotal = daysInMonth(2, 2000);
-
-/// Returns Time Ago
-/// only on datetime object
-/// Just Now, 2 minutes ago, 1 hour ago, 1 day ago
-
-String timeAgo = DateTime.now().timeAgo;
-```
-
-## Systems Methods
-```dart
-/// Change status bar Color and Brightness
-setStatusBarColor(Colors.blue);
-    
-/// Show Status Bar
-showStatusBar();
-
-/// Hide Status Bar
-hideStatusBar();
-
-/// Set orientation to portrait
-setOrientationPortrait();
-
-/// Set orientation to landscape
-setOrientationLandscape();
-
-/// Get current PlatformName as a String
-platformName();
-
-/// Invoke Native method and get result
-var data = await invokeNativeMethod(CHANNEL_NAME, METHOD_NAME, [dynamic arguments]);
-```
-
+## Custom Dialogs
 ```dart
 AppButton(
   text: "Add",
@@ -916,6 +946,55 @@ AppButton(
 ),
 ```
 ![Default Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/default_confirmation_dialog.gif)
+
+## JWT Decoder
+```dart
+/// Pass your token here to get Map<String, dynamic>
+Map<String, dynamic> JwtDecoder.decode(token);
+
+bool JwtDecoder.isExpired(token);
+DateTime JwtDecoder.getExpirationDate(token);
+Duration JwtDecoder.getTokenTime(token);
+Duration JwtDecoder.getRemainingTime(token);
+```
+
+# Image Previews
+
+## GoogleLogoWidget 
+![GoogleLogoWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/google_logo_widget.gif)
+
+## Loader Widget
+![Loader](https://github.com/bhoominn/nb_utils/blob/main/screenshots/loader_widget.gif)
+
+## SettingSection
+![SettingSection](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_section_widget.jpg)
+
+## SettingItemWidget
+![SettingItemWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/setting_item_widget.jpg)
+
+## AppButton
+![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.gif)
+
+## ULWidget
+![UL](https://github.com/bhoominn/nb_utils/blob/main/screenshots/ul_widget.jpg)
+
+## AppTextField
+![AppTextField](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_text_field_widget.jpg)
+
+## HorizontalList Widget
+![HorizontalList](https://github.com/bhoominn/nb_utils/blob/main/screenshots/horizontal_widget.gif)
+
+## RatingBarWidget
+![RatingBarWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/rating_bar_widget.gif)
+
+## Responsive Widget
+![Responsive](https://github.com/bhoominn/nb_utils/blob/main/screenshots/responsive_widget.gif)
+
+## DotIndicator Widget
+![DotIndicator](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dot_indicator.gif)
+
+## DottedBorderWidget
+![DottedBorderWidget](https://github.com/bhoominn/nb_utils/blob/main/screenshots/dotted_border_widget.jpg)
 
 ## Features and bugs
 

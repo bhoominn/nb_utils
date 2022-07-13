@@ -184,11 +184,7 @@ extension StringExtension on String? {
   }
 
   /// Get YouTube Video ID
-  String toYouTubeId({bool trimWhitespaces = true}) =>
-      convertYouTubeUrlToId(trimWhitespaces: trimWhitespaces);
-
-  /// Get YouTube Video ID
-  String convertYouTubeUrlToId({bool trimWhitespaces = true}) {
+  String toYouTubeId({bool trimWhitespaces = true}) {
     String url = this.validate();
     if (!url.contains("http") && (url.length == 11)) return url;
     if (trimWhitespaces) url = url.trim();
@@ -205,6 +201,12 @@ extension StringExtension on String? {
     }
 
     return '';
+  }
+
+  /// Get YouTube Video ID
+  @Deprecated('Use toYouTubeId Instead')
+  String convertYouTubeUrlToId({bool trimWhitespaces = true}) {
+    return toYouTubeId(trimWhitespaces: trimWhitespaces);
   }
 
   /// Returns YouTube thumbnail for given video id
