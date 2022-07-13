@@ -92,7 +92,7 @@ return MaterialApp(
   - [int Extensions](#int-extensions)
   - [List Extensions](#list-extensions)
   - [num Extensions](#num-extensions)
-  - [Scroll Controller Extensions](#scroll-controller-extensions)
+  - [Scroll Controller Extensions](#scrollcontroller-extensions)
   - [Widget Extensions](#widget-extensions)
 - [System Methods](#systems-methods)
 - [Network Utils](#network-utils)
@@ -240,7 +240,7 @@ UL(
    ],
 ),
 ```
-[Image](#ulwidget)
+[Image](#ul-widget)
 
 ```dart
 /// Use AppTextField on your app to try more properties
@@ -361,7 +361,6 @@ Marquee(
 ## Shared Preference Example
 ```dart
 /// To use SharedPreference, you must call initialize() method in main.dart file as mentioned in Installations section
-/// 
 
 /// setValue method has (String key, dynamic value) parameters
 
@@ -405,7 +404,7 @@ getMatchingSharedPrefKeys('key')
 
 ## TextStyles
 ```dart
- 
+
 /// Apply Bold TextStyle
 Text(item.title.validate(), style: boldTextStyle()),
     
@@ -662,9 +661,9 @@ Future<void> get delay
 /// Validate given int is not null and returns given value if null.
 int validate({int value = 0})
 
-/// Leaves given height of space
+/// Leaves given height of space ex: 16.height,
 Widget get height
-/// Leaves given width of space
+/// Leaves given width of space ex: 16.width,
 Widget get width
 
 /// HTTP status code
@@ -719,7 +718,7 @@ num validate({num value = 0})
 String toCurrencyAmount()
 ```
 
-## Scroll Controller Extensions
+## ScrollController Extensions
 ```dart
 ScrollController scrollController = ScrollController();
 
@@ -975,7 +974,7 @@ Duration JwtDecoder.getRemainingTime(token);
 ## AppButton
 ![AppButton](https://github.com/bhoominn/nb_utils/blob/main/screenshots/app_button.gif)
 
-## ULWidget
+## UL Widget
 ![UL](https://github.com/bhoominn/nb_utils/blob/main/screenshots/ul_widget.jpg)
 
 ## AppTextField
