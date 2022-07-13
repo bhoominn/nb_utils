@@ -73,9 +73,9 @@ return MaterialApp(
 
 ## Contents
 
-- [Shared Preference Example](#shared-preference-example)
-- [Use of TextStyle](#textstyles)
 - [Useful Methods](#useful-methods-or-extensions-you-will-ever-need)
+- [Use of TextStyle](#textstyles)
+- [Shared Preference Example](#shared-preference-example)
 - [MaterialYou Theme](#materialyou-theme)
 - [Decorations](#decorations)
 - [Widgets](#widgets)
@@ -98,64 +98,6 @@ return MaterialApp(
 - [JWT Decoder](#jwt-decoder)
 - [Dialog](#show-dialogs)
 - [Custom Dialogs](#custom-dialogs)
-
-## Shared Preference Example
-```dart
-/// To use SharedPreference, you must call initialize() method in main.dart file as mentioned in Installations section
-
-/// setValue method has (String key, dynamic value) parameters
-
-/// add a Double in SharedPref
-await setValue("key", 20.0);
-
-/// add a bool in SharedPref
-await setValue("key", false);
-
-/// add a int in SharedPref
-await setValue("key", 10);
-
-/// add a String in SharedPref
-await setValue("key", "value");
-
-/// add a String List in SharedPref
-await setValue("key", ['value', 'value', 'value']);
-
-/// Returns a Bool if exists in SharedPref
-/// You can set a default value if it returns null
-getBoolAsync("key");
-
-/// Returns a Double if exists in SharedPref
-getDoubleAsync("key");
-
-/// Returns a Int if exists in SharedPref
-getIntAsync("key");
-
-/// Returns a String if exists in SharedPref
-getStringAsync("key");
-
-/// Returns a JSON if exists in SharedPref
-getJSONAsync("key");
-
-/// Remove a key from SharedPref
-await removeKey("key");
-
-/// Returns List of Keys that matches with given Key
-getMatchingSharedPrefKeys('key')
-```
-
-## TextStyles
-```dart
-
-/// Apply Bold TextStyle
-Text(item.title.validate(), style: boldTextStyle()),
-    
-/// Apply Primary TextStyle
-Text(item.title.validate(), style: primaryTextStyle()),
-    
-/// Apply Secondary TextStyle
-Text(item.title.validate(), style: secondaryTextStyle()),
-
-```
 
 ## Useful methods or extensions you will ever need
 ```dart
@@ -230,6 +172,64 @@ snackBar(
   margin: EdgeInsets.all(16),
   duration: 3.seconds,
 );
+```
+
+## TextStyles
+```dart
+
+/// Apply Bold TextStyle
+Text(item.title.validate(), style: boldTextStyle()),
+    
+/// Apply Primary TextStyle
+Text(item.title.validate(), style: primaryTextStyle()),
+    
+/// Apply Secondary TextStyle
+Text(item.title.validate(), style: secondaryTextStyle()),
+
+```
+
+## Shared Preference Example
+```dart
+/// To use SharedPreference, you must call initialize() method in main.dart file as mentioned in Installations section
+
+/// setValue method has (String key, dynamic value) parameters
+
+/// add a Double in SharedPref
+await setValue("key", 20.0);
+
+/// add a bool in SharedPref
+await setValue("key", false);
+
+/// add a int in SharedPref
+await setValue("key", 10);
+
+/// add a String in SharedPref
+await setValue("key", "value");
+
+/// add a String List in SharedPref
+await setValue("key", ['value', 'value', 'value']);
+
+/// Returns a Bool if exists in SharedPref
+/// You can set a default value if it returns null
+getBoolAsync("key");
+
+/// Returns a Double if exists in SharedPref
+getDoubleAsync("key");
+
+/// Returns a Int if exists in SharedPref
+getIntAsync("key");
+
+/// Returns a String if exists in SharedPref
+getStringAsync("key");
+
+/// Returns a JSON if exists in SharedPref
+getJSONAsync("key");
+
+/// Remove a key from SharedPref
+await removeKey("key");
+
+/// Returns List of Keys that matches with given Key
+getMatchingSharedPrefKeys('key')
 ```
 
 ## MaterialYou Theme
