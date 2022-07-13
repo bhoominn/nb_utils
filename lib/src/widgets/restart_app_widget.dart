@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// RestartAppWidget
 class RestartAppWidget extends StatefulWidget {
   final Widget child;
 

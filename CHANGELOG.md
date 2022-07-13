@@ -1,3 +1,7 @@
+## 4.6.14
+- New - RestartApp Widget
+- New - DoublePressBack Widget
+- Updated README.md
 ## 4.6.13
 - Fix - Overflow text in RoundedCheckboxWidget
 ## 4.6.12

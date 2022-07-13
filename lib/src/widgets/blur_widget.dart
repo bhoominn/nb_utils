@@ -2,6 +2,7 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
 
+/// Blur any widget
 class Blur extends StatelessWidget {
   final Widget? child;
   final double? height;

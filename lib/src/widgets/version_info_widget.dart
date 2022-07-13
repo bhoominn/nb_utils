@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// VersionInfoWidget
 class VersionInfoWidget extends StatelessWidget {
   final String prefixText;
   final String suffixText;

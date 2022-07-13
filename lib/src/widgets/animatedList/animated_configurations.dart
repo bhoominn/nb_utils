@@ -225,12 +225,12 @@ class _AnimationLimiterProviderClass extends InheritedWidget {
 /// Depending on the scenario in which you will present your animations,
 /// you should use one of [AnimationConfigurationClass]'s named constructors.
 ///
-/// [AnimationConfiguration.synchronized] if you want to launch all the children's animations at the same time.
+/// [AnimationConfigurationClass.synchronized] if you want to launch all the children's animations at the same time.
 ///
-/// [AnimationConfiguration.staggeredList] if you want to delay the animation of each child
+/// [AnimationConfigurationClass.staggeredList] if you want to delay the animation of each child
 /// to produce a single-axis staggered animations (from top to bottom or from left to right).
 ///
-/// [AnimationConfiguration.staggeredGrid] if you want to delay the animation of each child
+/// [AnimationConfigurationClass.staggeredGrid] if you want to delay the animation of each child
 /// to produce a dual-axis staggered animations (from left to right and top to bottom).
 class AnimationConfigurationClass extends InheritedWidget {
   /// Index used as a factor to calculate the delay of each child's animation.
@@ -325,7 +325,7 @@ class AnimationConfigurationClass extends InheritedWidget {
   /// Helper method to apply a staggered animation to the children of a [Column] or [Row].
   ///
   /// It maps every child with an index and calls
-  /// [AnimationConfiguration.staggeredList] constructor under the hood.
+  /// [AnimationConfigurationClass.staggeredList] constructor under the hood.
   ///
   /// Default value for [duration] is 225ms.
   ///

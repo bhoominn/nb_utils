@@ -3,6 +3,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 DateTime? _currentBackPressTime;
 
+/// DoublePressBackWidget
 class DoublePressBackWidget extends StatelessWidget {
   final Widget child;
   final String? message;

@@ -6,6 +6,7 @@ enum TrimMode {
   Line,
 }
 
+/// Add read more button to a long text
 class ReadMoreText extends StatefulWidget {
   const ReadMoreText(
     this.data, {
