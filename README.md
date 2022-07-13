@@ -96,9 +96,9 @@ return MaterialApp(
   - [Widget Extensions](#widget-extensions)
 - [System Methods](#systems-methods)
 - [Network Utils](#network-utils)
+- [JWT Decoder](#jwt-decoder)
 - [Dialog](#show-dialogs)
 - [Custom Dialogs](#custom-dialogs)
-- [JWT Decoder](#jwt-decoder)
 
 ## Widgets
 
@@ -816,6 +816,17 @@ Future<bool> isConnectedToMobile()
 Future<bool> isConnectedToWiFi()
 ```
 
+## JWT Decoder
+```dart
+/// Pass your token here to get Map<String, dynamic>
+Map<String, dynamic> JwtDecoder.decode(token);
+
+bool JwtDecoder.isExpired(token);
+DateTime JwtDecoder.getExpirationDate(token);
+Duration JwtDecoder.getTokenTime(token);
+Duration JwtDecoder.getRemainingTime(token);
+```
+
 ## Show Dialogs
 ```dart
 
@@ -945,17 +956,6 @@ AppButton(
 ),
 ```
 ![Default Confirmation Dialog](https://github.com/bhoominn/nb_utils/blob/main/screenshots/default_confirmation_dialog.gif)
-
-## JWT Decoder
-```dart
-/// Pass your token here to get Map<String, dynamic>
-Map<String, dynamic> JwtDecoder.decode(token);
-
-bool JwtDecoder.isExpired(token);
-DateTime JwtDecoder.getExpirationDate(token);
-Duration JwtDecoder.getTokenTime(token);
-Duration JwtDecoder.getRemainingTime(token);
-```
 
 # Image Previews
 
