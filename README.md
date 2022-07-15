@@ -134,7 +134,7 @@ afterBuildLayout(() {
 await getPackageName();
 
 /// Get Package Name, Version Code, Version Name (Android, iOS)
-awit getPackageInfo();
+await getPackageInfo();
 
 /// Return true if Android OS version is above 12
 Future<bool> isAndroid12Above()
@@ -255,6 +255,32 @@ InputDecoration defaultInputDecoration({String? hint, String? label, TextStyle? 
 ```
 
 ## Widgets
+```dart
+/// Give Blur effect to any widget
+/// Use Blur widget to know more properies
+Blur(
+  child: AnyWidget(),
+)
+```
+
+```dart
+/// Making an app for Web? You must have to perform something on mouse hover event.
+/// Use HoverWidget to get your widget is being hovering or not
+HoverWidget(
+  builder: (_, isHovering) {
+    return AnyWidget();
+  },
+),
+```
+
+```dart
+/// Wrap MaterialApp Widget with RestartAppWidget
+/// Use: RestartAppWidget.init(context);
+/// Call above line any where to restart your Flutter app.
+RestartAppWidget(
+  child: MaterialApp(),
+)
+```
 
 ```dart
 /// Add a Google Logo
@@ -424,14 +450,9 @@ AppTextField(
 [Image](#apptextfield)
 
 ```dart
-HoverWidget(
-    builder: (context, bool isHovering) {
-        return Container(
-            /// isHovering will be true when you hover on it.
-
-            color: isHovering ? Colors.yellow : Colors.blue,
-        )
-    }
+/// Add read more button to a long text
+ReadMoreText(
+  'Long Text'
 ),
 ```
 

@@ -347,6 +347,7 @@ Future<PackageInfoData> getPackageInfo() async {
 
     if (data != null && data is Map) {
       return PackageInfoData(
+        appName: data['appName'],
         packageName: data['packageName'],
         versionName: data['versionName'],
         versionCode: data['versionCode'],
