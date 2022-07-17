@@ -12,7 +12,8 @@
 <a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/pub%20points"></a>
 <a href="https://github.com/bhoominn"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" /></a>
 <a href="https://github.com/bhoominn/nb_utils"><img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" /></a>
-<a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
+
+Follow Me on Twitter <a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
 
 <a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
 <a href="https://github.com/sponsors/bhoominn"><img src="https://img.shields.io/github/sponsors/bhoominn" /></a>
