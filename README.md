@@ -22,6 +22,9 @@
 
 ## Show some love and like to support the project
 
+### Say Thanks Here
+<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
+
 ### Follow Me on Twitter 
 <a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
 
