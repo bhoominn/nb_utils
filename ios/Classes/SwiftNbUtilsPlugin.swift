@@ -9,6 +9,13 @@ public class SwiftNbUtilsPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    //result("iOS " + UIDevice.current.systemVersion)
+
+    if(call.method == "packageInfo") {
+        self.packInfo = ["packageName": Bundle.main.bundleIdentifier!,"versionCode": Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String, "versionName": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String];
+        result(self.packInfo);
+    } else {
+        result("")
+    }
   }
 }

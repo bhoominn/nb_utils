@@ -1,19 +1,19 @@
 <div align="center">
 <a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/likes"></a>
 <a href="https://pub.dev/packages/nb_utils/"><img src="https://img.shields.io/pub/v/nb_utils.svg" /></a>
-<a href="https://opensource.org/licenses/MIT" target="_blank">
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
+<a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
 <a href="https://opensource.org/licenses/Apache-2.0" target="_blank"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102"/></a>
 <a href="https://github.com/bhoominn/nb_utils/issues" target="_blank"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/issues-raw/bhoominn/nb_utils?style=flat" /></a>
 <img src="https://img.shields.io/tokei/lines/github/bhoominn/nb_utils" />
 <img src="https://img.shields.io/github/last-commit/bhoominn/nb_utils" />
-<a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
 
-<a href="https://pub.dev/packages/nb_utils/pub%20points"><img src="https://badges.bar/nb_utils/pub%20points"></a>
-<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
+<a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
+<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/popularity"></a>
+<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/pub%20points"></a>
 <a href="https://github.com/bhoominn"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" /></a>
 <a href="https://github.com/bhoominn/nb_utils"><img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" /></a>
-<a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
+
+<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
 <a href="https://github.com/sponsors/bhoominn"><img src="https://img.shields.io/github/sponsors/bhoominn" /></a>
 
 <a href="https://www.buymeacoffee.com/bhoominn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bhoominn&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
@@ -21,6 +21,12 @@
 </div>
 
 ## Show some love and like to support the project
+
+### Say Thanks Here
+<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
+
+### Follow Me on Twitter 
+<a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
 
 ## Platform Support
 
@@ -100,7 +106,6 @@ return MaterialApp(
 
 ## Useful methods or extensions you will ever need
 ```dart
-
 /// Open a new screen
 HomePage().launch(context);
 
@@ -134,7 +139,7 @@ afterBuildLayout(() {
 await getPackageName();
 
 /// Get Package Name, Version Code, Version Name (Android, iOS)
-awit getPackageInfo();
+await getPackageInfo();
 
 /// Return true if Android OS version is above 12
 Future<bool> isAndroid12Above()
@@ -175,7 +180,6 @@ snackBar(
 
 ## TextStyles
 ```dart
-
 /// Apply Bold TextStyle
 Text(item.title.validate(), style: boldTextStyle()),
     
@@ -184,7 +188,6 @@ Text(item.title.validate(), style: primaryTextStyle()),
     
 /// Apply Secondary TextStyle
 Text(item.title.validate(), style: secondaryTextStyle()),
-
 ```
 
 ## Shared Preference Example
@@ -255,6 +258,39 @@ InputDecoration defaultInputDecoration({String? hint, String? label, TextStyle? 
 ```
 
 ## Widgets
+```dart
+/// Give Blur effect to any widget
+/// Use Blur widget to know more properies
+Blur(
+  child: AnyWidget(),
+)
+```
+
+```dart
+/// Making an app for Web? You must have to perform something on mouse hover event.
+/// Use HoverWidget to get your widget is being hovering or not
+HoverWidget(
+  builder: (_, isHovering) {
+    return AnyWidget();
+  },
+),
+```
+
+```dart
+/// Wrap MaterialApp Widget with RestartAppWidget
+/// Use: RestartAppWidget.init(context);
+/// Call above line any where to restart your Flutter app.
+RestartAppWidget(
+  child: MaterialApp(),
+)
+```
+
+```dart
+DoublePressBackWidget(
+  child: AnyWidget(),
+  message: 'Your message' // Optional
+),
+```
 
 ```dart
 /// Add a Google Logo
@@ -273,7 +309,7 @@ Loader().visible(mIsLoading),
 /// Read More Text Widget
 /// Use ReadMoreText Widget in your project to get more familiar with other properties 
 ReadMoreText(
-    'Long Text',
+  'Long Text',
 ),
 ```
 
@@ -334,11 +370,11 @@ SettingItemWidget(
 /// Default AppButton
 /// Use AppButton on your app to try more properties
 AppButton(
-    text: "Submit",
-    color: Colors.green, // Optional
-    onTap: () {
-        //Your logic
-    },
+  text: "Submit",
+  color: Colors.green, // Optional
+  onTap: () {
+      //Your logic
+  },
 ),
 ```
 [GIF](#appbutton)
@@ -367,20 +403,20 @@ GradientBorder(
 /// Use RoundedCheckBox widget to get nicely rounded check box
 /// It has many optional parameters to get personalized check box widget
 RoundedCheckBox(
-    text: 'Remember me',
-    onTap: (val) {
-      //
-    },
+  text: 'Remember me',
+  onTap: (val) {
+    //
+  },
 ),
 ```
 
 ```dart
 /// Use SizeListener widget to get callback when its child widget size changes
 SizeListener(
-    child: AnyWidget(),
-    onSizeChange: (size) {
-      log(size.width.toString());
-    },
+  child: AnyWidget(),
+  onSizeChange: (size) {
+    log(size.width.toString());
+  },
 ),
 ```
 
@@ -402,56 +438,51 @@ UL(
 
 /// Inbuilt Email Validator, Automatic email keyboard type
 AppTextField(
-    controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.EMAIL,
-    decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+  controller: TextEditingController(), // Optional
+  textFieldType: TextFieldType.EMAIL,
+  decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
 ),
 
 /// Default Min Lines 4
 AppTextField(
-    controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.MULTILINE,
-    decoration: InputDecoration(labelText: 'Address', border: OutlineInputBorder()),
+  controller: TextEditingController(), // Optional
+  textFieldType: TextFieldType.MULTILINE,
+  decoration: InputDecoration(labelText: 'Address', border: OutlineInputBorder()),
 ),
 
 /// Automatic password obscure, Show/Hide Password Option
 AppTextField(
-    controller: TextEditingController(), // Optional
-    textFieldType: TextFieldType.PASSWORD,
-    decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+  controller: TextEditingController(), // Optional
+  textFieldType: TextFieldType.PASSWORD,
+  decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
 ),
 ```
 [Image](#apptextfield)
 
 ```dart
-HoverWidget(
-    builder: (context, bool isHovering) {
-        return Container(
-            /// isHovering will be true when you hover on it.
-
-            color: isHovering ? Colors.yellow : Colors.blue,
-        )
-    }
+/// Add read more button to a long text
+ReadMoreText(
+  'Long Text',
 ),
 ```
 
 ```dart
 /// Build Horizontal List widget without giving specific height to it.
 HorizontalList(
-    itemBuilder: (BuildContext context, int index) {
-        return AnyWidget();
-    },
-    itemCount: 25,
+  itemBuilder: (BuildContext context, int index) {
+      return AnyWidget();
+  },
+  itemCount: 25,
 ),
 ```
 [GIF](#horizontallist-widget)
 
 ```dart
 RatingBarWidget(
-    rating: initialRating,
-    onRatingChanged: (aRating) {
-        rating = aRating;
-    },
+  rating: initialRating,
+  onRatingChanged: (aRating) {
+      rating = aRating;
+  },
 ),
 ```
 [Image](#ratingbarwidget)
@@ -459,25 +490,25 @@ RatingBarWidget(
 ```dart
 /// Make your Flutter App Responsive in any device out there with Responsive widget
 Responsive(
-    mobile: MobileWidget(),
-    tablet: TabletWidget(), // Optional
-    web: WebWidget(), // Optional
+  mobile: MobileWidget(),
+  tablet: TabletWidget(), // Optional
+  web: WebWidget(), // Optional
 ),
 ```
 [Image](#responsive-widget)
 
 ```dart
 TextIcon(
-    text: 'Your text',
-    prefix: AnyWidget(), // Optional
-    suffix: AnyWidget(), // Optional
+  text: 'Your text',
+  prefix: AnyWidget(), // Optional
+  suffix: AnyWidget(), // Optional
 ),
 ```
 
 ```dart
 DotIndicator(
-    pageController: pageController,
-    pages: list,
+  pageController: pageController,
+  pages: list,
 ),
 ```
 [GIF](#dotindicator-widget)
@@ -486,29 +517,29 @@ DotIndicator(
 /// Use SnapHelperWidget to handle loading and error widget automatically
 /// Still you can specify custom Loader Widget and Error Widget
 SnapHelperWidget<T>(
-    future: future,
-    onSuccess: (data) {
-        return AnyWidget();
-    },
+  future: future,
+  onSuccess: (data) {
+      return AnyWidget();
+  },
 ),
 ```
 
 ```dart
 DottedBorderWidget(
-    child: Container(
-        height: 100,
-        width: 100,
-    ),
+  child: Container(
+      height: 100,
+      width: 100,
+  ),
 ),
 ```
 [Image](#dottedborderwidget)
 
 ```dart
 Marquee(
-    direction: Axis.horizontal,
-    animationDuration: Duration(milliseconds: 100),
-    pauseDuration: Duration(milliseconds: 100),
-    child: Text("Please enter a long text to see the effect of the marquee widget"),
+  direction: Axis.horizontal,
+  animationDuration: Duration(milliseconds: 100),
+  pauseDuration: Duration(milliseconds: 100),
+  child: Text("Please enter a long text to see the effect of the marquee widget"),
 ),
 ```
 
@@ -536,12 +567,13 @@ bool get isApk
 bool get isPdf
 bool get isHtml
 
+String get reverse
+
 Future<void> copyToClipboard()
 
 String capitalizeFirstLetter()
 String repeat(int n, {String separator = ''})
 String formatNumberWithComma({String seperator = ','})
-String get reverse
 String toYouTubeId({bool trimWhitespaces = true})
 String getYouTubeThumbnail()
 String removeAllWhiteSpace()
@@ -638,7 +670,7 @@ bool leapYear(int year)
 String formatTime(int timestamp)
 
 /// returns number of days in given month
-int? daysInMonth(int monthNum, int year)
+int daysInMonth(int monthNum, int year)
 ```
 
 ## Device Extensions
@@ -671,7 +703,7 @@ Size get size
 
 ## Duration Extensions
 ```dart
-///  await Duration(seconds: 1).delay();
+/// await Duration(seconds: 1).delay();
 Future<void> get delay
 ```
 
@@ -715,7 +747,7 @@ String toWeekDay({bool isHalfName = false})
 
 ## List Extensions
 ```dart
-  /// Validate given List is not null and returns blank list if null.
+/// Validate given List is not null and returns blank list if null.
 List<T> validate()
 
 /// Generate forEach but gives index for each element
@@ -730,7 +762,7 @@ double? averageBy(num Function(T) selector)
 
 ## num Extensions
 ```dart
-  /// Validate given double is not null and returns given value if null.
+/// Validate given double is not null and returns given value if null.
 num validate({num value = 0})
 
 /// Returns price with currency
@@ -763,6 +795,7 @@ Widget flexible({flex = 1, FlexFit? fit})
 Widget fit({BoxFit? fit, AlignmentGeometry? alignment})
 Widget withTooltip({required String msg})
 Widget center({double? heightFactor, double? widthFactor})
+Widget visible(bool visible, {Widget? defaultWidget})
 
 SizedBox withSize({double width = 0.0, double height = 0.0})
 SizedBox withWidth(double width)
@@ -774,8 +807,8 @@ Padding paddingBottom(double bottom
 Padding paddingAll(double padding)
 Padding paddingOnly({double top = 0.0,double left = 0.0,double bottom = 0.0,double right = 0.0})
 Padding paddingSymmetric({double vertical = 0.0, double horizontal = 0.0})
-Widget visible(bool visible, {Widget? defaultWidget})
 
+/// Make Image Circular with these extension
 ClipRRect cornerRadiusWithClipRRectOnly({int bottomLeft = 0,int bottomRight = 0,int topLeft = 0,int topRight = 0})
 ClipRRect cornerRadiusWithClipRRect(double radius)
 
@@ -840,29 +873,28 @@ Duration JwtDecoder.getRemainingTime(token);
 ```dart
 
 /// Show Dialog with Default Animation
-showInDialog(context, builder: (context) => dialogWidget());
+showInDialog(context, builder: (context) => AnyWidget());
 
 /// Show Dialog with Rotate Animation
-showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: DialogAnimation.ROTATE);
+showInDialog(context, builder: (context) => AnyWidget(), dialogAnimation: DialogAnimation.ROTATE);
 
 /// Show Dialog with Scale Animation
-showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: DialogAnimation.SCALE);
+showInDialog(context, builder: (context) => AnyWidget(), dialogAnimation: DialogAnimation.SCALE);
 
 /// Show Dialog with Top to Bottom Animation
-showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM);
+showInDialog(context, builder: (context) => AnyWidget(), dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM);
 
 /// Show Dialog with Bottom to Top Animation
-showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP);
+showInDialog(context, builder: (context) => AnyWidget(), dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP);
 
 /// Show Dialog with Left to Right Animation
-showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT);
+showInDialog(context, builder: (context) => AnyWidget(), dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT);
 
 /// Show Dialog with Right to Left Animation
-showInDialog(context, builder: (context) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT);
-
+showInDialog(context, builder: (context) => AnyWidget(), dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT);
 
 /// Show Confirmation Dialog
-/// Second parameter is title
+/// Second parameter is Title
 showConfirmDialog(
   context,
   'Do you want to logout from the app?',

@@ -1,4 +1,4 @@
-## 4.6.14
+## 4.6.15
 - New - RestartApp Widget
 - New - DoublePressBack Widget
 - Updated README.md
