@@ -1,21 +1,21 @@
 <div align="center">
 <a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/likes"></a>
 <a href="https://pub.dev/packages/nb_utils/"><img src="https://img.shields.io/pub/v/nb_utils.svg" /></a>
-<a href="https://opensource.org/licenses/MIT" target="_blank">
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
+<a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
 <a href="https://opensource.org/licenses/Apache-2.0" target="_blank"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102"/></a>
 <a href="https://github.com/bhoominn/nb_utils/issues" target="_blank"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/issues-raw/bhoominn/nb_utils?style=flat" /></a>
 <img src="https://img.shields.io/tokei/lines/github/bhoominn/nb_utils" />
 <img src="https://img.shields.io/github/last-commit/bhoominn/nb_utils" />
-<a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
 
-<a href="https://pub.dev/packages/nb_utils/pub%20points"><img src="https://badges.bar/nb_utils/pub%20points"></a>
-<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
+<a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
+<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/popularity"></a>
+<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/pub%20points"></a>
 <a href="https://github.com/bhoominn"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" /></a>
 <a href="https://github.com/bhoominn/nb_utils"><img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" /></a>
 <a href="https://twitter.com/bhoominnaik" target="_blank"><img src="https://img.shields.io/twitter/follow/bhoominnaik?color=1DA1F2&label=Followers&logo=twitter" /></a>
-<a href="https://github.com/sponsors/bhoominn"><img src="https://img.shields.io/github/sponsors/bhoominn" /></a>
 
+<a href="https://saythanks.io/to/bhoominn" target="_blank"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg"/></a>
+<a href="https://github.com/sponsors/bhoominn"><img src="https://img.shields.io/github/sponsors/bhoominn" /></a>
 <a href="https://www.buymeacoffee.com/bhoominn"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=bhoominn&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
 
 </div>
