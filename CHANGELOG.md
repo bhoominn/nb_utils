@@ -1,3 +1,5 @@
+## 4.6.16
+- Fix iOS Package Info Issue
 ## 4.6.15
 - New - RestartApp Widget
 - New - DoublePressBack Widget
