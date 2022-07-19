@@ -75,7 +75,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> init() async {
-    //
+    getPackageInfo().then((value) {
+      log(value.appName);
+    });
   }
 
   Widget dialogWidget() {
