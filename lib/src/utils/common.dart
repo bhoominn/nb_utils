@@ -363,3 +363,25 @@ Future<PackageInfoData> getPackageInfo() async {
 Future<String> getPackageName() async {
   return (await getPackageInfo()).packageName.validate();
 }
+
+Uri mailTo({
+  required List<String> to,
+  String subject = '',
+  String body = '',
+  List<String> cc = const [],
+  List<String> bcc = const [],
+}) {
+  String _subject = '';
+  if (subject.isNotEmpty) _subject = '&subject=$subject';
+
+  String _body = '';
+  if (body.isNotEmpty) _body = '&body=$body';
+
+  String _cc = '';
+  if (cc.isNotEmpty) _cc = '&cc=${cc.join(',')}';
+
+  String _bcc = '';
+  if (bcc.isNotEmpty) _bcc = '&bcc=${bcc.join(',')}';
+
+  return Uri(scheme: 'mailto', query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc');
+}
