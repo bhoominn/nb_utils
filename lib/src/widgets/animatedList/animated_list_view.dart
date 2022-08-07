@@ -36,6 +36,7 @@ class AnimatedListView extends StatefulWidget {
 
   final VoidCallback? onNextPage;
   final VoidCallback? onPageScrollChange;
+  final RefreshCallback? onSwipeRefresh;
 
   AnimatedListView({
     Key? key,
@@ -67,6 +68,7 @@ class AnimatedListView extends StatefulWidget {
     this.flipConfiguration,
     this.onNextPage,
     this.onPageScrollChange,
+    this.onSwipeRefresh,
   }) : super(key: key);
 
   @override
@@ -112,8 +114,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
     scrollController?.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _widget() {
     return AnimationLimiterWidget(
       child: ListView.builder(
         controller: scrollController,
@@ -149,5 +150,17 @@ class _AnimatedListViewState extends State<AnimatedListView> {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.onSwipeRefresh != null) {
+      return RefreshIndicator(
+        child: _widget(),
+        onRefresh: widget.onSwipeRefresh!,
+      );
+    } else {
+      return _widget();
+    }
   }
 }

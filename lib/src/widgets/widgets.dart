@@ -147,9 +147,13 @@ Widget snapWidgetHelper<T>(
   Widget? loadingWidget,
   String? defaultErrorMessage,
   @Deprecated('Do not use this') bool checkHasData = false,
+  Widget Function(String)? errorBuilder,
 }) {
   if (snap.hasError) {
     log(snap.error);
+    if (errorBuilder != null) {
+      return errorBuilder.call(defaultErrorMessage ?? snap.error.toString());
+    }
     return errorWidget ??
         Text(
           defaultErrorMessage ?? snap.error.toString(),

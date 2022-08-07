@@ -28,6 +28,8 @@ class AnimatedScrollView extends StatefulWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
 
+  final RefreshCallback? onSwipeRefresh;
+
   AnimatedScrollView({
     Key? key,
     this.controller,
@@ -49,6 +51,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.onPageScrollChange,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
+    this.onSwipeRefresh,
   }) : super(key: key);
 
   @override
@@ -94,8 +97,7 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
     scrollController?.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _widget() {
     return AnimationLimiterWidget(
       child: SingleChildScrollView(
         controller: scrollController,
@@ -127,5 +129,17 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.onSwipeRefresh != null) {
+      return RefreshIndicator(
+        child: _widget(),
+        onRefresh: widget.onSwipeRefresh!,
+      );
+    } else {
+      return _widget();
+    }
   }
 }

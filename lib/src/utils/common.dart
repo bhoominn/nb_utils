@@ -351,12 +351,13 @@ Future<PackageInfoData> getPackageInfo() async {
         packageName: data['packageName'],
         versionName: data['versionName'],
         versionCode: data['versionCode'],
+        androidSDKVersion: data['androidSDKVersion'],
       );
     } else {
       throw errorSomethingWentWrong;
     }
   } else {
-    throw PlatformException(code: 'platform not supported');
+    return PackageInfoData();
   }
 }
 
@@ -383,5 +384,6 @@ Uri mailTo({
   String _bcc = '';
   if (bcc.isNotEmpty) _bcc = '&bcc=${bcc.join(',')}';
 
-  return Uri(scheme: 'mailto', query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc');
+  return Uri(
+      scheme: 'mailto', query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc');
 }

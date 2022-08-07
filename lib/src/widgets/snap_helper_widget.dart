@@ -10,6 +10,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
   final Widget? errorWidget;
   final String? defaultErrorMessage;
   final bool useConnectionStateForLoader;
+  final Widget Function(String)? errorBuilder;
 
   SnapHelperWidget({
     required this.future,
@@ -18,6 +19,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
     this.errorWidget,
     this.initialData,
     this.defaultErrorMessage,
+    this.errorBuilder,
     this.useConnectionStateForLoader = false,
     Key? key,
   }) : super(key: key);
@@ -38,6 +40,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
                 errorWidget: errorWidget,
                 loadingWidget: loadingWidget,
                 defaultErrorMessage: defaultErrorMessage,
+                errorBuilder: errorBuilder,
               );
             }
           } else {
@@ -46,6 +49,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
               errorWidget: errorWidget,
               loadingWidget: loadingWidget,
               defaultErrorMessage: defaultErrorMessage,
+              errorBuilder: errorBuilder,
             );
           }
         } else {
@@ -63,9 +67,14 @@ class SnapHelperWidget<T> extends StatelessWidget {
                     errorWidget: errorWidget,
                     loadingWidget: loadingWidget,
                     defaultErrorMessage: defaultErrorMessage,
+                    errorBuilder: errorBuilder,
                   );
                 }
               } else {
+                if (errorBuilder != null) {
+                  return errorBuilder!
+                      .call(defaultErrorMessage ?? snap.error.toString());
+                }
                 return errorWidget ??
                     Text(
                       defaultErrorMessage ?? snap.error.toString(),

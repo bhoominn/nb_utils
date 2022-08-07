@@ -43,7 +43,7 @@ class NbUtilsPlugin : FlutterPlugin, MethodCallHandler {
         }
     }
 
-    private fun packageInfo(): Map<String, String> {
+    private fun packageInfo(): Map<String, Any> {
         val packageManager = appContext!!.packageManager
         val packageInfo = packageManager.getPackageInfo(appContext!!.packageName, 0)
 
@@ -62,6 +62,7 @@ class NbUtilsPlugin : FlutterPlugin, MethodCallHandler {
             "packageName" to packageInfo.packageName,
             "versionName" to packageInfo.versionName,
             "versionCode" to getLongVersionCode(packageInfo).toString(),
+            "androidSDKVersion" to Build.VERSION.SDK_INT,
         )
     }
 

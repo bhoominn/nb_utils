@@ -75,9 +75,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> init() async {
-    getPackageInfo().then((value) {
-      log(value.appName);
-    });
+    //
   }
 
   Widget dialogWidget() {
@@ -101,12 +99,13 @@ class _HomePageState extends State<HomePage> {
 
     return DoublePressBackWidget(
       child: Scaffold(
-        appBar: AppBar(),
-        drawer: Drawer(),
+        appBar: AppBar(backgroundColor: transparentColor),
         drawerEdgeDragWidth: context.width() * 0.2,
         drawerEnableOpenDragGesture: true,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            //
+          },
           child: Icon(Icons.add),
         ),
         body: Container(
@@ -116,15 +115,20 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: <Widget>[
                   16.height,
+                  OTPTextField(
+                    onChanged: (text) {
+                      log(text);
+                    },
+                    onCompleted: (s) {
+                      toast('onCompleted $s');
+                    },
+                  ),
+                  16.height,
                   TextButton(
                     onPressed: () {
                       AnimatedListViewExample().launch(context);
                     },
                     child: Text('Pagination Example'),
-                  ),
-                  16.height,
-                  ReadMoreText(
-                    'Long Text',
                   ),
 
                   16.height,
@@ -135,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                       //
                     },
                   ),
-                  16.height,
 
+                  /*16.height,
                   SizeListener(
                     child: PlaceHolderWidget(
                       height: 50.dynamicHeight,
@@ -145,8 +149,20 @@ class _HomePageState extends State<HomePage> {
                     onSizeChange: (size) {
                       log(size.width.toString());
                     },
+                  ),*/
+
+                  16.height,
+                  Wrap(
+                    children: lightColors.map((e) {
+                      return Container(
+                        height: 50,
+                        color: e.value.toString().toColor(),
+                        child: Text(e.toHex()),
+                      );
+                    }).toList(),
                   ),
 
+                  16.height,
                   SnapHelperWidget(
                     future: getMaterialYouColors(),
                     onSuccess: (data) {
@@ -155,23 +171,26 @@ class _HomePageState extends State<HomePage> {
                       return Wrap(
                         children: (data as Map).entries.map((e) {
                           return Container(
-                              height: 50,
-                              color: e.value.toString().toColor(),
-                              child: Text(e.key));
+                            height: 50,
+                            color: e.value.toString().toColor(),
+                            child: Text(e.key),
+                          );
                         }).toList(),
                       );
                     },
                   ),
 
+                  16.height,
                   LanguageListWidget(
                     widgetType: WidgetType.DROPDOWN,
                     onLanguageChange: (data) {
                       log(data.name);
                     },
                   ),
-                  16.height,
 
+                  16.height,
                   DottedBorderWidget(child: Container(height: 100, width: 100)),
+
                   16.height,
 
                   /// Gradient Border Widget
@@ -190,9 +209,8 @@ class _HomePageState extends State<HomePage> {
                     ).cornerRadiusWithClipRRect(8),
                   ),
 
-                  ///
+                  16.height,
                   Text('Rating Bar Widget Example', style: primaryTextStyle()),
-                  8.height,
                   RatingBarWidget(
                     rating: rating,
                     size: 40,
@@ -202,11 +220,11 @@ class _HomePageState extends State<HomePage> {
                       rating = e;
                     },
                   ),
+
                   16.height,
 
                   /// Hover Widget Example
                   Text('Hover Widget Example', style: primaryTextStyle()),
-                  8.height,
                   HoverWidget(
                     builder: (_, isHovering) {
                       return AnimatedContainer(
@@ -220,6 +238,8 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ),
+
+                  16.height,
                   Column(
                     children: [
                       Wrap(
@@ -446,7 +466,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ).paddingAll(16),
 
+                  16.height,
                   GoogleLogoWidget(size: 30),
+
                   16.height,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -471,6 +493,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+
                   16.height,
                   SettingSection(
                     title: Text('Account Management',

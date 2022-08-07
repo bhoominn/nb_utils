@@ -12,6 +12,7 @@ enum TextFieldType {
   OTHER,
   PHONE,
   URL,
+  NUMBER,
   USERNAME
 }
 
@@ -152,7 +153,8 @@ class _AppTextFieldState extends State<AppTextField> {
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.NAME ||
-          widget.textFieldType == TextFieldType.PHONE) {
+          widget.textFieldType == TextFieldType.PHONE ||
+          widget.textFieldType == TextFieldType.NUMBER) {
         return (s) {
           if (s!.trim().isEmpty)
             return widget.errorThisFieldRequired
@@ -224,7 +226,8 @@ class _AppTextFieldState extends State<AppTextField> {
       return TextInputType.multiline;
     } else if (widget.textFieldType == TextFieldType.PASSWORD) {
       return TextInputType.visiblePassword;
-    } else if (widget.textFieldType == TextFieldType.PHONE) {
+    } else if (widget.textFieldType == TextFieldType.PHONE ||
+        widget.textFieldType == TextFieldType.NUMBER) {
       return TextInputType.number;
     } else if (widget.textFieldType == TextFieldType.URL) {
       return TextInputType.url;

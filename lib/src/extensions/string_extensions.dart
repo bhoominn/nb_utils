@@ -186,7 +186,7 @@ extension StringExtension on String? {
   /// Get YouTube Video ID
   String toYouTubeId({bool trimWhitespaces = true}) {
     String url = this.validate();
-    if (!url.contains("http") && (url.length == 11)) return url;
+    if (!url.contains('http') && (url.length == 11)) return url;
     if (trimWhitespaces) url = url.trim();
 
     for (var exp in [
@@ -210,8 +210,8 @@ extension StringExtension on String? {
   }
 
   /// Returns YouTube thumbnail for given video id
-  String getYouTubeThumbnail() {
-    return 'https://img.youtube.com/vi/${this.convertYouTubeUrlToId()}/maxresdefault.jpg';
+  String getYouTubeThumbnail({bool trimWhitespaces = true}) {
+    return 'https://img.youtube.com/vi/${this.toYouTubeId(trimWhitespaces: trimWhitespaces)}/maxresdefault.jpg';
   }
 
   /// Removes white space from given String
@@ -291,7 +291,7 @@ extension StringExtension on String? {
     String word = this.validate();
 
     List<String> caseSearchList = [];
-    String temp = "";
+    String temp = '';
 
     for (int i = 0; i < word.length; i++) {
       temp = temp + word[i];

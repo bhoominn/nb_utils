@@ -1,3 +1,3 @@
-enum HttpResponseType { FULL_RESPONSE, JSON_RESPONSE, BODY_BYTES, STRING_RESPONSE }
+enum HttpResponseType { FULL_RESPONSE, JSON, BODY_BYTES, STRING }
 
 enum HttpMethodType { GET, POST, DELETE, PUT }

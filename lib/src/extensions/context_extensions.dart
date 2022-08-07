@@ -64,6 +64,11 @@ extension ContextExtensions on BuildContext {
     FocusScope.of(this).requestFocus(focus);
   }
 
+  /// Request focus to given FocusNode
+  void unFocus(FocusNode focus) {
+    focus.unfocus();
+  }
+
   bool isPhone() => MediaQuery.of(this).size.width < tabletBreakpointGlobal;
 
   bool isTablet() =>

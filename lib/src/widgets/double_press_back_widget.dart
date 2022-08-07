@@ -7,9 +7,14 @@ DateTime? _currentBackPressTime;
 class DoublePressBackWidget extends StatelessWidget {
   final Widget child;
   final String? message;
+  final WillPopCallback? onWillPop;
 
-  DoublePressBackWidget({Key? key, required this.child, this.message})
-      : super(key: key);
+  DoublePressBackWidget({
+    Key? key,
+    required this.child,
+    this.message,
+    this.onWillPop,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +23,7 @@ class DoublePressBackWidget extends StatelessWidget {
       onWillPop: () {
         DateTime now = DateTime.now();
 
+        onWillPop?.call();
         if (_currentBackPressTime == null ||
             now.difference(_currentBackPressTime!) > Duration(seconds: 2)) {
           _currentBackPressTime = now;

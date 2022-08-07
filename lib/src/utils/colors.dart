@@ -209,3 +209,21 @@ Color getColorFromHex(String hexColor, {Color? defaultColor}) {
   }
   return Color(int.parse(hexColor, radix: 16));
 }
+
+/// Light Colors
+List<Color> lightColors = [
+  mistyRose,
+  whiteSmoke,
+  linen,
+  Color(0xffcffada),
+  Color(0xFFf0efeb),
+  Color(0xffd4dffa),
+  Color(0xfff8eadf),
+  Color(0xfffcdce1),
+  Color(0xffddf8fa),
+  Color(0xfffcfade),
+  Color(0xffe2f8d8),
+  Color(0xfffdf2e8),
+  Color(0xffece8fd),
+  Color(0xffdcfaf2),
+];

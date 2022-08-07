@@ -1,3 +1,8 @@
+## 4.6.17
+- New - OTP Text Field Widget
+- New - No Data Widget with Retry Callback
+- New - HyperLink Widget
+- Update - Added errorBuilder with error String
 ## 4.6.16
 - Fix iOS Package Info Issue
 ## 4.6.15

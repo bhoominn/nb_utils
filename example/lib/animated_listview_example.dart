@@ -7,6 +7,7 @@ class AnimatedListViewExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: AnimatedListView(
         itemCount: 20,
         itemBuilder: (_, index) {
@@ -17,6 +18,9 @@ class AnimatedListViewExample extends StatelessWidget {
         },
         onNextPage: () {
           log('Call your next page data');
+        },
+        onSwipeRefresh: () async {
+          return await 1.seconds.delay;
         },
       ),
     );

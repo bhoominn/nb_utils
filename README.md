@@ -4,7 +4,6 @@
 <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
 <a href="https://opensource.org/licenses/Apache-2.0" target="_blank"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102"/></a>
 <a href="https://github.com/bhoominn/nb_utils/issues" target="_blank"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/issues-raw/bhoominn/nb_utils?style=flat" /></a>
-<img src="https://img.shields.io/tokei/lines/github/bhoominn/nb_utils" />
 <img src="https://img.shields.io/github/last-commit/bhoominn/nb_utils" />
 
 <a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
@@ -403,6 +402,7 @@ GradientBorder(
 /// Use RoundedCheckBox widget to get nicely rounded check box
 /// It has many optional parameters to get personalized check box widget
 RoundedCheckBox(
+  isChecked: true,
   text: 'Remember me',
   onTap: (val) {
     //

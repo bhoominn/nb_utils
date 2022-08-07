@@ -4,14 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nb_utils/src/extensions/int_extensions.dart';
-import 'package:nb_utils/src/models/language_data_model.dart';
-import 'package:nb_utils/src/utils/colors.dart';
-import 'package:nb_utils/src/utils/common.dart';
-import 'package:nb_utils/src/utils/constants.dart';
-import 'package:nb_utils/src/utils/decorations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:fluttertoast/fluttertoast.dart';
@@ -66,10 +59,13 @@ export 'src/widgets/double_press_back_widget.dart';
 export 'src/widgets/gradient_border.dart';
 export 'src/widgets/horizontal_list.dart';
 export 'src/widgets/hover_widget.dart';
+export 'src/widgets/hyper_link_widget.dart';
 export 'src/widgets/language_list_widget.dart';
 export 'src/widgets/loader_widget.dart';
 export 'src/widgets/marquee_widget.dart';
+export 'src/widgets/no_data_widget.dart';
 export 'src/widgets/overlay_custom_widget.dart';
+export 'src/widgets/otp_text_field.dart';
 export 'src/widgets/placeholder_widget.dart';
 export 'src/widgets/rating_bar_widget.dart';
 export 'src/widgets/read_more_text.dart';
@@ -154,6 +150,8 @@ Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
 final navigatorKey = GlobalKey<NavigatorState>();
 
 get getContext => navigatorKey.currentState?.overlay?.context;
+
+LiveStream liveStream = LiveStream();
 
 // Must be initialize before using shared preference
 Future<void> initialize({
