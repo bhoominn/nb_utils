@@ -343,7 +343,7 @@ Future<dynamic> showBottomSheetOrDialog({
 
 Future<PackageInfoData> getPackageInfo() async {
   if (isAndroid || isIOS) {
-    var data = await invokeNativeMethod('nb_utils', 'packageInfo');
+    var data = await invokeNativeMethod(channelName, 'packageInfo');
 
     if (data != null && data is Map) {
       return PackageInfoData(

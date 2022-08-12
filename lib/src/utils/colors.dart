@@ -1,10 +1,15 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+import 'color_extractor.dart';
 
 const scaffoldLightColor = Color(0xFFEBF2F7);
 const scaffoldDarkColor = Color(0xFF0E1116);
 const cardDarkColor = Color(0xFF1C1F26);
 const dividerDarkColor = Color(0xFF393D45);
+const cardLightColor = Color(0xFFF6F7F9);
 
 const textPrimaryColor = Color(0xFF2E3033);
 const textSecondaryColor = Color(0xFF757575);
@@ -227,3 +232,10 @@ List<Color> lightColors = [
   Color(0xffece8fd),
   Color(0xffdcfaf2),
 ];
+
+Future<List<int>?> getColorFromImage(ui.Image image, [int quality = 10]) async {
+  final palette = await getPaletteFromImage(image, 5, quality);
+  if (palette == null) return null;
+
+  return palette[0];
+}

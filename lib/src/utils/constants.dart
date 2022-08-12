@@ -10,6 +10,9 @@ const currencyRupee = '₹';
 const currencyDollar = '\$';
 const currencyEuro = '€';
 
+const MAIL_TO_PREFIX = 'mailto:';
+const TEL_PREFIX = 'tel:';
+
 const playStoreBaseURL = 'https://play.google.com/store/apps/details?id=';
 const appStoreBaseURL = 'https://apps.apple.com/in/app/';
 const facebookBaseURL = 'https://www.facebook.com/';

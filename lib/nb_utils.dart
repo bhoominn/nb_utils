@@ -35,6 +35,7 @@ export 'src/utils/common.dart';
 export 'src/utils/confirmation_dialog.dart';
 export 'src/utils/constants.dart';
 export 'src/utils/decorations.dart';
+export 'src/utils/enums.dart';
 export 'src/utils/jwt_decoder.dart';
 export 'src/utils/line_icons.dart';
 export 'src/utils/network_utils.dart';
@@ -147,6 +148,7 @@ PageRouteAnimation? pageRouteAnimationGlobal;
 Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
 //endregion
 
+const channelName = 'nb_utils';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 get getContext => navigatorKey.currentState?.overlay?.context;

@@ -81,9 +81,9 @@ class _DataStore {
 
   // Sets/Adds the new callback to the given data stream.
   void setCallback(String key, Function(Object) callback) {
-    if (_mDataItemsMap.containsKey(key)) {
+    /*if (_mDataItemsMap.containsKey(key)) {
       return;
-    }
+    }*/
     // Retrieve existing data item from the map.
     _DataItem? item = _mDataItemsMap[key];
 

@@ -46,10 +46,32 @@ Future<void> setStatusBarColor(
   );
 }
 
+void setDarkStatusBar() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.black,
+    systemNavigationBarIconBrightness: Brightness.light,
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.dark,
+  ));
+}
+
+void setLightStatusBar() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.white,
+    systemNavigationBarIconBrightness: Brightness.dark,
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
+  ));
+}
+
 /// This function will show status bar
 Future<void> showStatusBar() async {
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-      overlays: SystemUiOverlay.values);
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: SystemUiOverlay.values,
+  );
 }
 
 // Enter FullScreen Mode (Hides Status Bar and Navigation Bar)
@@ -59,8 +81,10 @@ void enterFullScreen() {
 
 // Unset Full Screen to normal state (Now Status Bar and Navigation Bar Are Visible)
 void exitFullScreen() {
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-      overlays: SystemUiOverlay.values);
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: SystemUiOverlay.values,
+  );
 }
 
 /// This function will hide status bar
@@ -133,7 +157,7 @@ Future<Null> onError(Object o) async {
 /// Return true if Android OS version is above 12
 Future<bool> isAndroid12Above() async {
   if (isAndroid) {
-    return (await invokeNativeMethod('nb_utils', 'isAndroid12Above') as bool);
+    return (await invokeNativeMethod(channelName, 'isAndroid12Above') as bool);
   } else {
     return false;
   }
@@ -142,7 +166,7 @@ Future<bool> isAndroid12Above() async {
 /// Returns material you colors from Android
 Future<dynamic> getMaterialYouColors() async {
   if (isAndroid && await isAndroid12Above()) {
-    return await invokeNativeMethod('nb_utils', 'materialYouColors');
+    return await invokeNativeMethod(channelName, 'materialYouColors');
   } else {
     return {};
   }

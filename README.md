@@ -823,6 +823,9 @@ Widget translate({required Offset offset,bool transformHitTests = true,Key? key}
 /// Change status bar Color and Brightness
 setStatusBarColor(Colors.blue);
 
+setDarkStatusBar();
+setLightStatusBar();
+
 /// Show Status Bar
 showStatusBar();
 

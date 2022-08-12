@@ -1,3 +1,5 @@
+## 4.6.18
+- New - Get Color From Image
 ## 4.6.17
 - New - OTP Text Field Widget
 - New - No Data Widget with Retry Callback
