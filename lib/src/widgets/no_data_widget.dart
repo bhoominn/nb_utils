@@ -33,17 +33,17 @@ class NoDataWidget extends StatelessWidget {
         _imageWidget(),
         16.height,
         if (title.validate().isNotEmpty)
-          Text(title!, style: boldTextStyle(size: 22)),
+          Text(title!, style: primaryTextStyle()),
         4.height,
         if (subTitle.validate().isNotEmpty)
-          Text(subTitle!, style: secondaryTextStyle(size: 16)),
+          Text(subTitle!, style: secondaryTextStyle()),
         16.height,
         if (onRetry != null)
           AppButton(
             onTap: () {
               onRetry?.call();
             },
-            text: retryText ?? 'Retry',
+            text: retryText ?? 'Try again',
             textColor: white,
             padding: EdgeInsets.zero,
             color: context.primaryColor,

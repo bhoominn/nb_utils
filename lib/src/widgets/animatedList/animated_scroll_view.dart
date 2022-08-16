@@ -29,6 +29,7 @@ class AnimatedScrollView extends StatefulWidget {
   final MainAxisSize mainAxisSize;
 
   final RefreshCallback? onSwipeRefresh;
+  final bool disposeScrollController;
 
   AnimatedScrollView({
     Key? key,
@@ -52,6 +53,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
     this.onSwipeRefresh,
+    this.disposeScrollController = true,
   }) : super(key: key);
 
   @override
@@ -83,9 +85,7 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
           widget.onNextPage?.call();
         }
 
-        if (widget.onPageScrollChange != null) {
-          widget.onPageScrollChange!.call();
-        }
+        widget.onPageScrollChange?.call();
       });
     }
   }
@@ -94,7 +94,7 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
   void dispose() {
     super.dispose();
 
-    scrollController?.dispose();
+    if (widget.disposeScrollController) scrollController?.dispose();
   }
 
   Widget _widget() {

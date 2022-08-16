@@ -1,4 +1,4 @@
-## 4.6.18
+## 4.6.20
 - New - Get Color From Image
 ## 4.6.17
 - New - OTP Text Field Widget

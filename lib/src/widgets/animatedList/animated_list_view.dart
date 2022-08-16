@@ -37,6 +37,7 @@ class AnimatedListView extends StatefulWidget {
   final VoidCallback? onNextPage;
   final VoidCallback? onPageScrollChange;
   final RefreshCallback? onSwipeRefresh;
+  final bool disposeScrollController;
 
   AnimatedListView({
     Key? key,
@@ -69,6 +70,7 @@ class AnimatedListView extends StatefulWidget {
     this.onNextPage,
     this.onPageScrollChange,
     this.onSwipeRefresh,
+    this.disposeScrollController = true,
   }) : super(key: key);
 
   @override
@@ -100,9 +102,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
           widget.onNextPage?.call();
         }
 
-        if (widget.onPageScrollChange != null) {
-          widget.onPageScrollChange!.call();
-        }
+        widget.onPageScrollChange?.call();
       });
     }
   }
@@ -111,7 +111,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
   void dispose() {
     super.dispose();
 
-    scrollController?.dispose();
+    if (widget.disposeScrollController) scrollController?.dispose();
   }
 
   Widget _widget() {

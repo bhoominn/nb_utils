@@ -176,7 +176,7 @@ Future<void> initialize({
 
 /// nb_utils class
 class NBUtils {
-  static const MethodChannel _channel = const MethodChannel('nb_utils');
+  static const MethodChannel _channel = const MethodChannel(channelName);
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');
