@@ -350,4 +350,9 @@ extension WidgetExtension on Widget? {
   Widget withTooltip({required String msg}) {
     return Tooltip(message: msg, child: this);
   }
+
+  /// Make your any widget refreshable with RefreshIndicator on top
+  Widget get makeRefreshable {
+    return Stack(children: [ListView(), this!]);
+  }
 }

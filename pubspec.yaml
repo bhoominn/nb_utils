@@ -1,9 +1,12 @@
 name: nb_utils
 description: Collection of Widgets and helpful Methods that every developer needs.
-version: 4.6.20
+version: 4.6.21
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
+funding:
+  - https://www.buymeacoffee.com/bhoominn
+  - https://www.github.com/sponsors/bhoominn
 
 platforms:
   android:

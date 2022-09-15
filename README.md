@@ -1,5 +1,4 @@
 <div align="center">
-<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/likes"></a>
 <a href="https://pub.dev/packages/nb_utils/"><img src="https://img.shields.io/pub/v/nb_utils.svg" /></a>
 <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
 <a href="https://opensource.org/licenses/Apache-2.0" target="_blank"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=102"/></a>
@@ -7,8 +6,6 @@
 <img src="https://img.shields.io/github/last-commit/bhoominn/nb_utils" />
 
 <a href="https://discord.com/channels/854023838136533063/854023838576672839" target="_blank"><img src="https://img.shields.io/discord/854023838136533063" /></a>
-<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/popularity"></a>
-<a href="https://pub.dev/packages/nb_utils/score"><img src="https://badges.bar/nb_utils/pub%20points"></a>
 <a href="https://github.com/bhoominn"><img alt="GitHub: bhoominn" src="https://img.shields.io/github/followers/bhoominn?label=Follow&style=social" /></a>
 <a href="https://github.com/bhoominn/nb_utils"><img src="https://img.shields.io/github/stars/bhoominn/nb_utils?style=social" /></a>
 
