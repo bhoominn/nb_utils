@@ -17,7 +17,7 @@ List<List<int>> _createPixelArray(
     b = pixels[offset + 2];
     a = pixels[offset + 3];
 
-    if (a == null || a >= 125) {
+    if (a >= 125) {
       if (!(r > 250 && g > 250 && b > 250)) {
         pixelArray.add([r, g, b]);
       }

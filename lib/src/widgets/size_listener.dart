@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 /// [SizeListener] Listen to your child widget's size
@@ -50,7 +51,7 @@ class _SizeListenerState extends State<SizeListener> {
 
   @override
   Widget build(BuildContext context) {
-    //SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
+    SchedulerBinding.instance.addPostFrameCallback(postFrameCallback);
     return Container(
       key: widgetKey,
       child: widget.child,

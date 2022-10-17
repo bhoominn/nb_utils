@@ -1,3 +1,5 @@
+## 4.6.22
+- Updated fluttertoast Library
 ## 4.6.21
 - New - Widget Extension to Make your any widget refreshable with RefreshIndicator on top
 ## 4.6.20

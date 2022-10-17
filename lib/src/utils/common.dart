@@ -45,7 +45,7 @@ void toasty(
   Color? textColor,
   bool print = false,
   bool removeQueue = false,
-  Duration? duration,
+  Duration duration = const Duration(seconds: 2),
   BorderRadius? borderRadius,
   EdgeInsets? padding,
 }) {
