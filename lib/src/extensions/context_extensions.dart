@@ -76,4 +76,32 @@ extension ContextExtensions on BuildContext {
       MediaQuery.of(this).size.width >= tabletBreakpointGlobal;
 
   bool isDesktop() => MediaQuery.of(this).size.width >= desktopBreakpointGlobal;
+
+  Orientation get orientation => MediaQuery.of(this).orientation;
+
+  bool get isLandscape => orientation == Orientation.landscape;
+
+  bool get isPortrait => orientation == Orientation.portrait;
+
+  bool get canPop => Navigator.canPop(this);
+
+  void pop<T extends Object>([T? result]) => Navigator.pop(this, result);
+
+  TargetPlatform get platform => Theme.of(this).platform;
+
+  bool get isAndroid => this.platform == TargetPlatform.android;
+
+  bool get isIOS => this.platform == TargetPlatform.iOS;
+
+  bool get isMacOS => this.platform == TargetPlatform.macOS;
+
+  bool get isWindows => this.platform == TargetPlatform.windows;
+
+  bool get isFuchsia => this.platform == TargetPlatform.fuchsia;
+
+  bool get isLinux => this.platform == TargetPlatform.linux;
+
+  void openDrawer() => Scaffold.of(this).openDrawer();
+
+  void openEndDrawer() => Scaffold.of(this).openEndDrawer();
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' as service;
 import 'package:nb_utils/nb_utils.dart';
 
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
@@ -98,7 +99,8 @@ extension StringExtension on String? {
 
   // Copy String to Clipboard
   Future<void> copyToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: this.validate()));
+    await service.Clipboard.setData(
+        service.ClipboardData(text: this.validate()));
   }
 
   /// for ex. add comma in price

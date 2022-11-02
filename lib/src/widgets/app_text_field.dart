@@ -195,8 +195,7 @@ class _AppTextFieldState extends State<AppTextField> {
       return widget.textCapitalization!;
     } else if (widget.textFieldType == TextFieldType.NAME) {
       return TextCapitalization.words;
-    } else if (widget.textFieldType == TextFieldType.ADDRESS ||
-        widget.textFieldType == TextFieldType.MULTILINE) {
+    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextCapitalization.sentences;
     } else {
       return TextCapitalization.none;
@@ -206,8 +205,7 @@ class _AppTextFieldState extends State<AppTextField> {
   TextInputAction? applyTextInputAction() {
     if (widget.textInputAction != null) {
       return widget.textInputAction;
-    } else if (widget.textFieldType == TextFieldType.ADDRESS ||
-        widget.textFieldType == TextFieldType.MULTILINE) {
+    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputAction.newline;
     } else if (widget.nextFocus != null) {
       return TextInputAction.next;
@@ -221,8 +219,7 @@ class _AppTextFieldState extends State<AppTextField> {
       return widget.keyboardType;
     } else if (widget.textFieldType == TextFieldType.EMAIL) {
       return TextInputType.emailAddress;
-    } else if (widget.textFieldType == TextFieldType.ADDRESS ||
-        widget.textFieldType == TextFieldType.MULTILINE) {
+    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputType.multiline;
     } else if (widget.textFieldType == TextFieldType.PASSWORD) {
       return TextInputType.visiblePassword;
@@ -305,8 +302,7 @@ class _AppTextFieldState extends State<AppTextField> {
       focusNode: widget.focus,
       style: widget.textStyle ?? primaryTextStyle(),
       textAlign: widget.textAlign ?? TextAlign.start,
-      maxLines: (widget.textFieldType == TextFieldType.ADDRESS ||
-              widget.textFieldType == TextFieldType.MULTILINE)
+      maxLines: widget.textFieldType == TextFieldType.MULTILINE
           ? null
           : widget.maxLines.validate(value: 1),
       minLines: widget.minLines.validate(
