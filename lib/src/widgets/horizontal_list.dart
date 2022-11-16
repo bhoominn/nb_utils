@@ -30,22 +30,22 @@ class HorizontalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
-        physics: physics,
-        padding: padding ?? EdgeInsets.all(8),
-        scrollDirection: Axis.horizontal,
-        reverse: reverse,
-        controller: controller,
-        child: Wrap(
-          spacing: spacing ?? 8,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          direction: Axis.horizontal,
-          runAlignment: wrapAlignment ?? WrapAlignment.start,
-          crossAxisAlignment: crossAxisAlignment ?? WrapCrossAlignment.start,
-          runSpacing: runSpacing ?? 8,
-          children:
-              List.generate(itemCount, (index) => itemBuilder(context, index)),
+    return SingleChildScrollView(
+      physics: physics,
+      padding: padding ?? EdgeInsets.all(8),
+      scrollDirection: Axis.horizontal,
+      reverse: reverse,
+      controller: controller,
+      child: Wrap(
+        spacing: spacing ?? 8,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        direction: Axis.horizontal,
+        runAlignment: wrapAlignment ?? WrapAlignment.start,
+        crossAxisAlignment: crossAxisAlignment ?? WrapCrossAlignment.start,
+        runSpacing: runSpacing ?? 8,
+        children: List.generate(
+          itemCount,
+          (index) => itemBuilder(context, index),
         ),
       ),
     );

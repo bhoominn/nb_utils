@@ -10,6 +10,9 @@ class NoDataWidget extends StatelessWidget {
   final String? title;
   final String? subTitle;
 
+  final TextStyle? titleTextStyle;
+  final TextStyle? subTitleTextStyle;
+
   final VoidCallback? onRetry;
   final String? retryText;
 
@@ -22,6 +25,8 @@ class NoDataWidget extends StatelessWidget {
     this.subTitle,
     this.onRetry,
     this.retryText,
+    this.titleTextStyle,
+    this.subTitleTextStyle,
     Key? key,
   }) : super(key: key);
 
@@ -33,10 +38,10 @@ class NoDataWidget extends StatelessWidget {
         _imageWidget(),
         16.height,
         if (title.validate().isNotEmpty)
-          Text(title!, style: primaryTextStyle()),
+          Text(title!, style: titleTextStyle ?? primaryTextStyle(), textAlign: TextAlign.center),
         4.height,
         if (subTitle.validate().isNotEmpty)
-          Text(subTitle!, style: secondaryTextStyle()),
+          Text(subTitle!, style: subTitleTextStyle ?? secondaryTextStyle(), textAlign: TextAlign.center),
         16.height,
         if (onRetry != null)
           AppButton(

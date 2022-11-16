@@ -278,6 +278,15 @@ class _AppTextFieldState extends State<AppTextField> {
     }
   }
 
+  Iterable<String>? applyAutofillHints() {
+    if (widget.textFieldType == TextFieldType.EMAIL) {
+      return [AutofillHints.email];
+    } else if (widget.textFieldType == TextFieldType.PASSWORD) {
+      return [AutofillHints.password];
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -315,7 +324,7 @@ class _AppTextFieldState extends State<AppTextField> {
       readOnly: widget.readOnly.validate(),
       maxLength: widget.maxLength,
       enableSuggestions: widget.enableSuggestions.validate(value: true),
-      autofillHints: widget.autoFillHints,
+      autofillHints: widget.autoFillHints ?? applyAutofillHints(),
       scrollPadding: widget.scrollPadding ?? EdgeInsets.all(20),
       cursorWidth: widget.cursorWidth.validate(value: 2.0),
       cursorHeight: widget.cursorHeight,

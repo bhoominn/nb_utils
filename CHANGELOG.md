@@ -1,3 +1,7 @@
+## 4.6.24
+- Add AutofillHints in AppTextField
+- Make Text Align Center in NoDataWidget
+- Update in SizeListener Widget
 ## 4.6.23
 - Updated fluttertoast Library
 ## 4.6.21

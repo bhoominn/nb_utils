@@ -101,7 +101,6 @@ class _GradientCircularProgressPainter extends CustomPainter {
     this.radius,
     this.total = 2 * pi,
     required this.colors,
-    this.stops,
     this.value,
   });
 
@@ -112,7 +111,6 @@ class _GradientCircularProgressPainter extends CustomPainter {
   final List<Color> colors;
   final double total;
   final double? radius;
-  final List<double>? stops;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -150,7 +148,6 @@ class _GradientCircularProgressPainter extends CustomPainter {
         startAngle: 0.0,
         endAngle: _value,
         colors: colors,
-        stops: stops,
       ).createShader(rect);
 
       canvas.drawArc(rect, _start, _value, false, paint);
