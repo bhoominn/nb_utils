@@ -6,6 +6,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
 
+// String Extensions
 extension StringExtension on String? {
   /// Check email validation
   bool validateEmail() => hasMatch(this, Patterns.email);

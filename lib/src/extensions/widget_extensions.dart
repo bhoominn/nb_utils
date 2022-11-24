@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+// Widget Extensions
 extension WidgetExtension on Widget? {
   /// With custom height and width
   SizedBox withSize({double width = 0.0, double height = 0.0}) {

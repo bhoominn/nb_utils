@@ -38,10 +38,14 @@ class NoDataWidget extends StatelessWidget {
         _imageWidget(),
         16.height,
         if (title.validate().isNotEmpty)
-          Text(title!, style: titleTextStyle ?? primaryTextStyle(), textAlign: TextAlign.center),
+          Text(title!,
+              style: titleTextStyle ?? primaryTextStyle(),
+              textAlign: TextAlign.center),
         4.height,
         if (subTitle.validate().isNotEmpty)
-          Text(subTitle!, style: subTitleTextStyle ?? secondaryTextStyle(), textAlign: TextAlign.center),
+          Text(subTitle!,
+              style: subTitleTextStyle ?? secondaryTextStyle(),
+              textAlign: TextAlign.center),
         16.height,
         if (onRetry != null)
           AppButton(

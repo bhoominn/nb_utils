@@ -1,5 +1,7 @@
+## 4.6.25
+- New - Splash Delay function for Android 12
 ## 4.6.24
-- Add AutofillHints in AppTextField
+- Added AutofillHints in AppTextField
 - Make Text Align Center in NoDataWidget
 - Update in SizeListener Widget
 ## 4.6.23

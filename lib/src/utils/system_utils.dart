@@ -46,6 +46,7 @@ Future<void> setStatusBarColor(
   );
 }
 
+/// Dark Status Bar
 void setDarkStatusBar() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.black,
@@ -56,6 +57,7 @@ void setDarkStatusBar() {
   ));
 }
 
+/// Light Status Bar
 void setLightStatusBar() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.white,
@@ -150,6 +152,7 @@ void log(Object? value) {
   if (!kReleaseMode || forceEnableDebug) print(value);
 }
 
+/// use this for catchError in Future functions
 Future<Null> onError(Object o) async {
   log(o.toString());
 }

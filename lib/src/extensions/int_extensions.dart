@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+// int Extensions
 extension IntExtensions on int? {
   /// Validate given int is not null and returns given value if null.
   int validate({int value = 0}) {

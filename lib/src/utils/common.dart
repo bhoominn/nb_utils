@@ -5,10 +5,13 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// Make any variable nullable
 T? makeNullable<T>(T? value) => value;
 
+/// Enum for page route
 enum PageRouteAnimation { Fade, Scale, Rotate, Slide, SlideBottomTop }
 
+/// has match return bool for pattern matching
 bool hasMatch(String? s, String p) {
   return (s == null) ? false : RegExp(p).hasMatch(s);
 }
@@ -36,6 +39,7 @@ void toast(
   }
 }
 
+/// Toast with Context
 void toasty(
   BuildContext context,
   String? text, {
@@ -150,6 +154,7 @@ Future<dynamic> pasteObject() async {
   return data;
 }
 
+/// Enum for Link Provider
 enum LinkProvider {
   PLAY_STORE,
   APPSTORE,
@@ -165,6 +170,7 @@ enum LinkProvider {
   GOOGLE_DRIVE
 }
 
+/// Use getSocialMediaLink function to build social media links
 String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
   switch (linkProvider) {
     case LinkProvider.PLAY_STORE:
@@ -214,8 +220,9 @@ Widget dialogAnimatedWrapperWidget({
       return Transform.rotate(
         angle: radians(animation.value * 360),
         child: Opacity(
-            opacity: animation.value,
-            child: FadeTransition(opacity: animation, child: child)),
+          opacity: animation.value,
+          child: FadeTransition(opacity: animation, child: child),
+        ),
       );
 
     case DialogAnimation.SLIDE_TOP_BOTTOM:
@@ -224,14 +231,16 @@ Widget dialogAnimatedWrapperWidget({
       return Transform(
         transform: Matrix4.translationValues(0.0, curvedValue * 300, 0.0),
         child: Opacity(
-            opacity: animation.value,
-            child: FadeTransition(opacity: animation, child: child)),
+          opacity: animation.value,
+          child: FadeTransition(opacity: animation, child: child),
+        ),
       );
 
     case DialogAnimation.SCALE:
       return Transform.scale(
-          scale: animation.value,
-          child: FadeTransition(opacity: animation, child: child));
+        scale: animation.value,
+        child: FadeTransition(opacity: animation, child: child),
+      );
 
     case DialogAnimation.SLIDE_BOTTOM_TOP:
       return SlideTransition(
@@ -239,8 +248,9 @@ Widget dialogAnimatedWrapperWidget({
             .chain(CurveTween(curve: curve))
             .animate(animation),
         child: Opacity(
-            opacity: animation.value,
-            child: FadeTransition(opacity: animation, child: child)),
+          opacity: animation.value,
+          child: FadeTransition(opacity: animation, child: child),
+        ),
       );
 
     case DialogAnimation.SLIDE_LEFT_RIGHT:
@@ -249,8 +259,9 @@ Widget dialogAnimatedWrapperWidget({
             .chain(CurveTween(curve: curve))
             .animate(animation),
         child: Opacity(
-            opacity: animation.value,
-            child: FadeTransition(opacity: animation, child: child)),
+          opacity: animation.value,
+          child: FadeTransition(opacity: animation, child: child),
+        ),
       );
 
     case DialogAnimation.SLIDE_RIGHT_LEFT:
@@ -259,8 +270,9 @@ Widget dialogAnimatedWrapperWidget({
             .chain(CurveTween(curve: curve))
             .animate(animation),
         child: Opacity(
-            opacity: animation.value,
-            child: FadeTransition(opacity: animation, child: child)),
+          opacity: animation.value,
+          child: FadeTransition(opacity: animation, child: child),
+        ),
       );
 
     case DialogAnimation.DEFAULT:
@@ -269,47 +281,62 @@ Widget dialogAnimatedWrapperWidget({
 }
 
 Route<T> buildPageRoute<T>(
-    Widget child, PageRouteAnimation? pageRouteAnimation, Duration? duration) {
+  Widget child,
+  PageRouteAnimation? pageRouteAnimation,
+  Duration? duration,
+) {
   if (pageRouteAnimation != null) {
     if (pageRouteAnimation == PageRouteAnimation.Fade) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
-        transitionsBuilder: (c, anim, a2, child) =>
-            FadeTransition(opacity: anim, child: child),
+        transitionsBuilder: (c, anim, a2, child) {
+          return FadeTransition(opacity: anim, child: child);
+        },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
-        transitionsBuilder: (c, anim, a2, child) =>
-            RotationTransition(child: child, turns: ReverseAnimation(anim)),
+        transitionsBuilder: (c, anim, a2, child) {
+          return RotationTransition(
+              child: child, turns: ReverseAnimation(anim));
+        },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
-        transitionsBuilder: (c, anim, a2, child) =>
-            ScaleTransition(child: child, scale: anim),
+        transitionsBuilder: (c, anim, a2, child) {
+          return ScaleTransition(child: child, scale: anim);
+        },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
-        transitionsBuilder: (c, anim, a2, child) => SlideTransition(
-          child: child,
-          position: Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0))
-              .animate(anim),
-        ),
+        transitionsBuilder: (c, anim, a2, child) {
+          return SlideTransition(
+            child: child,
+            position: Tween(
+              begin: Offset(1.0, 0.0),
+              end: Offset(0.0, 0.0),
+            ).animate(anim),
+          );
+        },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.SlideBottomTop) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
-        transitionsBuilder: (c, anim, a2, child) => SlideTransition(
-          child: child,
-          position: Tween(begin: Offset(0.0, 1.0), end: Offset(0.0, 0.0))
-              .animate(anim),
-        ),
+        transitionsBuilder: (c, anim, a2, child) {
+          return SlideTransition(
+            child: child,
+            position: Tween(
+              begin: Offset(0.0, 1.0),
+              end: Offset(0.0, 0.0),
+            ).animate(anim),
+          );
+        },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     }
@@ -361,10 +388,12 @@ Future<PackageInfoData> getPackageInfo() async {
   }
 }
 
+/// Get Package Name
 Future<String> getPackageName() async {
   return (await getPackageInfo()).packageName.validate();
 }
 
+/// mailto: function to open native email app
 Uri mailTo({
   required List<String> to,
   String subject = '',
@@ -385,5 +414,16 @@ Uri mailTo({
   if (bcc.isNotEmpty) _bcc = '&bcc=${bcc.join(',')}';
 
   return Uri(
-      scheme: 'mailto', query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc');
+    scheme: 'mailto',
+    query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc',
+  );
+}
+
+/// Use this if you want to skip splash delay above Android 12
+Future<void> splashDelay({int second = 2}) async {
+  if (await isAndroid12Above()) {
+    await 300.milliseconds.delay;
+  } else {
+    await second.seconds.delay;
+  }
 }

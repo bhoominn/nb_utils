@@ -233,6 +233,7 @@ List<Color> lightColors = [
   Color(0xffdcfaf2),
 ];
 
+/// get colors used in image
 Future<List<int>?> getColorFromImage(ui.Image image, [int quality = 10]) async {
   final palette = await getPaletteFromImage(image, 5, quality);
   if (palette == null) return null;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// Model class for Locales
 class LanguageDataModel {
   int? id;
   String? name;

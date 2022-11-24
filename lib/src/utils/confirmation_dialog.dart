@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// Enum for Dialog Type
 enum DialogType { CONFIRMATION, ACCEPT, DELETE, UPDATE, ADD, RETRY }
 
+/// Enum for Dialog Animation
 enum DialogAnimation {
   DEFAULT,
   ROTATE,
@@ -13,6 +15,7 @@ enum DialogAnimation {
   SCALE
 }
 
+/// dialog primary color
 Color getDialogPrimaryColor(
   BuildContext context,
   DialogType dialogType,
@@ -40,6 +43,7 @@ Color getDialogPrimaryColor(
   return color;
 }
 
+/// build positive text for dialog
 String getPositiveText(DialogType dialogType) {
   String positiveText = "";
 
@@ -66,6 +70,7 @@ String getPositiveText(DialogType dialogType) {
   return positiveText;
 }
 
+/// Build title
 String getTitle(DialogType dialogType) {
   String titleText = "";
 
@@ -92,6 +97,7 @@ String getTitle(DialogType dialogType) {
   return titleText;
 }
 
+/// get icon for dialog
 Widget getIcon(DialogType dialogType, {double? size}) {
   Icon icon;
 
@@ -115,8 +121,12 @@ Widget getIcon(DialogType dialogType, {double? size}) {
   return icon;
 }
 
+/// Build center image for dialog
 Widget? getCenteredImage(
-    BuildContext context, DialogType dialogType, Color? primaryColor) {
+  BuildContext context,
+  DialogType dialogType,
+  Color? primaryColor,
+) {
   Widget? widget;
 
   switch (dialogType) {
@@ -127,33 +137,41 @@ Widget? getCenteredImage(
               .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
-        child: Icon(Icons.warning_amber_rounded,
-            color: getDialogPrimaryColor(context, dialogType, primaryColor),
-            size: 40),
+        child: Icon(
+          Icons.warning_amber_rounded,
+          color: getDialogPrimaryColor(context, dialogType, primaryColor),
+          size: 40,
+        ),
         padding: EdgeInsets.all(16),
       );
       break;
     case DialogType.DELETE:
       widget = Container(
         decoration: BoxDecoration(
-            color: getDialogPrimaryColor(context, dialogType, primaryColor)
-                .withOpacity(0.2),
-            shape: BoxShape.circle),
-        child: Icon(Icons.close,
-            color: getDialogPrimaryColor(context, dialogType, primaryColor),
-            size: 40),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor)
+              .withOpacity(0.2),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          Icons.close,
+          color: getDialogPrimaryColor(context, dialogType, primaryColor),
+          size: 40,
+        ),
         padding: EdgeInsets.all(16),
       );
       break;
     case DialogType.UPDATE:
       widget = Container(
         decoration: BoxDecoration(
-            color: getDialogPrimaryColor(context, dialogType, primaryColor)
-                .withOpacity(0.2),
-            shape: BoxShape.circle),
-        child: Icon(Icons.edit_outlined,
-            color: getDialogPrimaryColor(context, dialogType, primaryColor),
-            size: 40),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor)
+              .withOpacity(0.2),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          Icons.edit_outlined,
+          color: getDialogPrimaryColor(context, dialogType, primaryColor),
+          size: 40,
+        ),
         padding: EdgeInsets.all(16),
       );
       break;
@@ -165,21 +183,30 @@ Widget? getCenteredImage(
               .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
-        child: Icon(Icons.done_outline,
-            color: getDialogPrimaryColor(context, dialogType, primaryColor),
-            size: 40),
+        child: Icon(
+          Icons.done_outline,
+          color: getDialogPrimaryColor(context, dialogType, primaryColor),
+          size: 40,
+        ),
         padding: EdgeInsets.all(16),
       );
       break;
     case DialogType.RETRY:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+          color: getDialogPrimaryColor(
+            context,
+            dialogType,
+            primaryColor,
+          ).withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(Icons.refresh_rounded,
-            color: getDialogPrimaryColor(context, dialogType, primaryColor),
+            color: getDialogPrimaryColor(
+              context,
+              dialogType,
+              primaryColor,
+            ),
             size: 40),
         padding: EdgeInsets.all(16),
       );
@@ -188,6 +215,7 @@ Widget? getCenteredImage(
   return widget;
 }
 
+/// placeholder for dialog
 Widget defaultPlaceHolder(
   BuildContext context,
   DialogType dialogType,
@@ -209,6 +237,7 @@ Widget defaultPlaceHolder(
   );
 }
 
+/// title for dialog
 Widget buildTitleWidget(
   BuildContext context,
   DialogType dialogType,
@@ -234,8 +263,13 @@ Widget buildTitleWidget(
         errorBuilder: (_, object, stack) {
           log(object.toString());
           return defaultPlaceHolder(
-              context, dialogType, height, width, primaryColor,
-              shape: shape);
+            context,
+            dialogType,
+            height,
+            width,
+            primaryColor,
+            shape: shape,
+          );
         },
         loadingBuilder: (_, child, loadingProgress) {
           if (loadingProgress == null) {
@@ -259,8 +293,13 @@ Widget buildTitleWidget(
       );
     } else {
       return defaultPlaceHolder(
-          context, dialogType, height, width, primaryColor,
-          shape: shape);
+        context,
+        dialogType,
+        height,
+        width,
+        primaryColor,
+        shape: shape,
+      );
     }
   }
 }

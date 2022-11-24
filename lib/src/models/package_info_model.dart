@@ -1,3 +1,4 @@
+/// Model class for package info
 class PackageInfoData {
   String? appName;
   String? versionName;

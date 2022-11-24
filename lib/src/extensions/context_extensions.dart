@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+// Context Extensions
 extension ContextExtensions on BuildContext {
   /// return screen size
   Size size() => MediaQuery.of(this).size;

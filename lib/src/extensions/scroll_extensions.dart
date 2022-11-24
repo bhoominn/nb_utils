@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ScrollController Extensions
 extension ScrollExtension on ScrollController {
   /// Scroll to top with given animation duration
   Future<void> animToTop({milliseconds = 300}) async {
