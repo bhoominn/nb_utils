@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nb.nb_utils">
-   <application
-        android:label="nb_utils"
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:label="NB Utils Example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

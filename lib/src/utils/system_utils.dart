@@ -131,8 +131,8 @@ Widget Function(BuildContext, Widget?)? scrollBehaviour() {
 /// Custom scroll behaviour widget
 class SBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails axisDirection) {
     return child;
   }
 }

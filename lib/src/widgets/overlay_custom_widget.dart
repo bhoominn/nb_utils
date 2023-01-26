@@ -96,7 +96,7 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
   }
 
   void addToOverlay(OverlayEntry entry) async {
-    Overlay.of(context)!.insert(entry);
+    Overlay.of(context).insert(entry);
   }
 
   void hideOverlay() {

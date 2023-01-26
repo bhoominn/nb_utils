@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-enum ListAnimationType { FadeIn, Scale, Slide, Flip }
+enum ListAnimationType { None, FadeIn, Scale, Slide, Flip }
 
 const defaultAnimationDuration = Duration(milliseconds: 500);
 const defaultAnimationDelay = Duration(milliseconds: 50);

@@ -1,3 +1,6 @@
+## 5.0.0
+- Support for Dart 3.0
+- Added None in Animated Listview if you want to disable animations
 ## 4.6.25
 - New - Splash Delay function for Android 12
 ## 4.6.24

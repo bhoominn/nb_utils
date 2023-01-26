@@ -60,9 +60,9 @@ class AppTextField extends StatefulWidget {
   final String? obscuringCharacter;
   final String? initialValue;
   final Brightness? keyboardAppearance;
-  final ToolbarOptions? toolbarOptions;
   final Widget? suffixPasswordVisibleWidget;
   final Widget? suffixPasswordInvisibleWidget;
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
 
   final String? errorThisFieldRequired;
   final String? errorInvalidEmail;
@@ -116,9 +116,9 @@ class AppTextField extends StatefulWidget {
     this.obscuringCharacter,
     this.initialValue,
     this.keyboardAppearance,
-    this.toolbarOptions,
     this.suffixPasswordVisibleWidget,
     this.suffixPasswordInvisibleWidget,
+    this.contextMenuBuilder,
     Key? key,
   }) : super(key: key);
 
@@ -181,6 +181,13 @@ class _AppTextFieldState extends State<AppTextField> {
             return widget.errorInvalidUsername
                 .validate(value: 'Username should not contain space');
           }
+          return null;
+        };
+      } else if (widget.textFieldType == TextFieldType.MULTILINE) {
+        return (s) {
+          if (s!.trim().isEmpty)
+            return widget.errorThisFieldRequired
+                .validate(value: errorThisFieldRequired);
           return null;
         };
       } else {
@@ -343,7 +350,7 @@ class _AppTextFieldState extends State<AppTextField> {
       obscuringCharacter: widget.obscuringCharacter.validate(value: '•'),
       initialValue: widget.initialValue,
       keyboardAppearance: widget.keyboardAppearance,
-      toolbarOptions: widget.toolbarOptions,
+      contextMenuBuilder: widget.contextMenuBuilder,
     );
   }
 }

@@ -113,7 +113,7 @@ extension StringExtension on String? {
 
   /// Get Color from HEX String
   Color toColor({Color? defaultColor}) {
-    return getColorFromHex(this!, defaultColor: defaultColor);
+    return getColorFromHex(this.validate(), defaultColor: defaultColor);
   }
 
   /// It reverses the String

@@ -200,7 +200,7 @@ MaterialColor createMaterialColor(Color color) {
 /// returns default color if not able to parse given hex
 /// ```
 Color getColorFromHex(String hexColor, {Color? defaultColor}) {
-  if (hexColor.validate().isEmpty) {
+  if (hexColor.isEmpty) {
     if (defaultColor != null) {
       return defaultColor;
     } else {

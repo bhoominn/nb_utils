@@ -95,8 +95,8 @@ class CircularProgressGradient extends StatelessWidget {
 
 class _GradientCircularProgressPainter extends CustomPainter {
   _GradientCircularProgressPainter({
-    this.stokeWidth: 10.0,
-    this.strokeCapRound: false,
+    this.stokeWidth = 10.0,
+    this.strokeCapRound = false,
     this.backgroundColor = const Color(0xFFEEEEEE),
     this.radius,
     this.total = 2 * pi,

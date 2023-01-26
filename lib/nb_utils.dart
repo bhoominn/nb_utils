@@ -136,6 +136,8 @@ String defaultCurrencySymbol = currencyRupee;
 LanguageDataModel? selectedLanguageDataModel;
 List<LanguageDataModel> localeLanguageList = [];
 
+/// If forceEnableDebug if true, you will be able to see log in the logcat in release build also.
+/// By default, your log will not seen in logcat in release mode.
 bool forceEnableDebug = false;
 
 // Toast Config

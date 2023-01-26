@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:nb_utils_example/animated_listview_example.dart';
 
+const APP_NAME = 'NB Utils Example';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -15,6 +17,7 @@ void main() async {
   defaultToastBackgroundColor = Colors.black;
   defaultToastTextColor = Colors.white;
   defaultToastGravityGlobal = ToastGravity.CENTER;
+  defaultRadius = 16;
 
   runApp(MyApp());
 }
@@ -36,17 +39,15 @@ class _MyAppState extends State<MyApp> {
       future: getMaterialYouTheme(),
       builder: (_, snap) {
         return MaterialApp(
-          title: 'NB Utils Example',
+          title: APP_NAME,
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
           theme: snap.data ??
-              ThemeData(
-                primarySwatch: createMaterialColor(Colors.blue),
-                scaffoldBackgroundColor: scaffoldLightColor,
+              ThemeData.light(
                 useMaterial3: true,
               ),
-          darkTheme: ThemeData(
-            primarySwatch: createMaterialColor(Colors.blue),
+          darkTheme: ThemeData.dark(
+            useMaterial3: true,
           ),
           themeMode: getIntAsync(THEME_MODE_INDEX) == 2
               ? ThemeMode.dark
@@ -152,17 +153,6 @@ class _HomePageState extends State<HomePage> {
                   ),*/
 
                   16.height,
-                  Wrap(
-                    children: lightColors.map((e) {
-                      return Container(
-                        height: 50,
-                        color: e.value.toString().toColor(),
-                        child: Text(e.toHex()),
-                      );
-                    }).toList(),
-                  ),
-
-                  16.height,
                   SnapHelperWidget(
                     future: getMaterialYouColors(),
                     onSuccess: (data) {
@@ -251,10 +241,11 @@ class _HomePageState extends State<HomePage> {
                             onTap: () async {
                               showInDialog(context, builder: (_) {
                                 return SizedBox(
-                                  height: 600,
+                                  height: 400,
                                   width: 500,
                                   child: ThemeWidget(
                                     onThemeChanged: (data) {
+                                      setState(() {});
                                       log(data);
                                     },
                                   ),

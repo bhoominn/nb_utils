@@ -13,6 +13,7 @@ class UL extends StatelessWidget {
   final Color? textColor;
   final EdgeInsets? edgeInsets;
   final Widget? customSymbol;
+  final CrossAxisAlignment? symbolCrossAxisAlignment;
   final String? prefixText; // Used when SymbolType is Numbered
 
   UL({
@@ -25,6 +26,7 @@ class UL extends StatelessWidget {
     this.customSymbol,
     this.prefixText,
     this.edgeInsets,
+    this.symbolCrossAxisAlignment,
     Key? key,
   }) : super(key: key);
 
@@ -36,9 +38,8 @@ class UL extends StatelessWidget {
         return Container(
           padding: edgeInsets ?? EdgeInsets.zero,
           child: Row(
-            crossAxisAlignment: symbolType == SymbolType.Numbered
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.center,
+            crossAxisAlignment:
+                symbolCrossAxisAlignment ?? CrossAxisAlignment.start,
             children: [
               symbolType == SymbolType.Bullet
                   ? Text(

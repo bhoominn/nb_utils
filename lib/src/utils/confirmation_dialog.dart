@@ -363,7 +363,7 @@ Future<bool?> showConfirmDialogCustom(
               topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt()),
           content: Container(
             width: width ?? customDialogWidth,
-            color: _.cardColor,
+            color: Colors.transparent,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -388,7 +388,7 @@ Future<bool?> showConfirmDialogCustom(
                         borderRadius: radius(defaultAppButtonRadius),
                         side: BorderSide(color: viewLineColor),
                       ),
-                      color: _.scaffoldBackgroundColor,
+                      color: _.cardColor,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
