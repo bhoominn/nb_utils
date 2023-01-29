@@ -3,8 +3,9 @@ import 'package:nb_utils/nb_utils.dart';
 
 class AnimatedWrap extends StatelessWidget {
   /// Wrap properties
+  /// Used only when you use with itemBuilder, not used when you use children
   final int itemCount;
-  final Widget Function(BuildContext, int) itemBuilder;
+  final Widget Function(BuildContext, int)? itemBuilder;
   final Clip? clipBehavior;
   final WrapCrossAlignment? crossAxisAlignment;
   final double? runSpacing;
@@ -24,10 +25,12 @@ class AnimatedWrap extends StatelessWidget {
   final ScaleConfiguration? scaleConfiguration;
   final FlipConfiguration? flipConfiguration;
 
+  final List<Widget>? children;
+
   AnimatedWrap({
     Key? key,
     this.itemCount = 0,
-    required this.itemBuilder,
+    this.itemBuilder,
     this.clipBehavior,
     this.crossAxisAlignment,
     this.runSpacing,
@@ -38,15 +41,57 @@ class AnimatedWrap extends StatelessWidget {
     this.textDirection,
     this.verticalDirection,
     this.columnCount = 1,
-    this.listAnimationType = ListAnimationType.Slide,
+    this.listAnimationType = ListAnimationType.Scale,
     this.slideConfiguration,
     this.fadeInConfiguration,
     this.scaleConfiguration,
     this.flipConfiguration,
-  }) : super(key: key);
+    this.children,
+  })  : assert(
+          (itemBuilder == null && children != null) ||
+              (itemBuilder != null && children == null),
+          'You must have to use children or itemBuilder',
+        ),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _buildChildren() {
+      if (children != null) {
+        return List.generate(children!.length, (index) {
+          return AnimationConfigurationClass.staggeredGrid(
+            position: index,
+            columnCount: columnCount,
+            child: AnimatedItemWidget(
+              listAnimationType: listAnimationType,
+              fadeInConfiguration: fadeInConfiguration,
+              scaleConfiguration: scaleConfiguration,
+              slideConfiguration: slideConfiguration,
+              flipConfiguration: flipConfiguration,
+              child: children![index],
+            ),
+          );
+        });
+      } else if (itemBuilder != null) {
+        return List.generate(itemCount, (index) {
+          return AnimationConfigurationClass.staggeredGrid(
+            position: index,
+            columnCount: columnCount,
+            child: AnimatedItemWidget(
+              listAnimationType: listAnimationType,
+              fadeInConfiguration: fadeInConfiguration,
+              scaleConfiguration: scaleConfiguration,
+              slideConfiguration: slideConfiguration,
+              flipConfiguration: flipConfiguration,
+              child: itemBuilder!.call(context, index),
+            ),
+          );
+        });
+      } else {
+        return List.empty();
+      }
+    }
+
     return AnimationLimiterWidget(
       child: Wrap(
         clipBehavior: clipBehavior ?? Clip.none,
@@ -58,20 +103,7 @@ class AnimatedWrap extends StatelessWidget {
         direction: direction ?? Axis.horizontal,
         textDirection: textDirection,
         verticalDirection: verticalDirection ?? VerticalDirection.down,
-        children: List.generate(itemCount, (index) {
-          return AnimationConfigurationClass.staggeredGrid(
-            position: index,
-            columnCount: columnCount,
-            child: AnimatedItemWidget(
-              listAnimationType: listAnimationType,
-              fadeInConfiguration: fadeInConfiguration,
-              scaleConfiguration: scaleConfiguration,
-              slideConfiguration: slideConfiguration,
-              flipConfiguration: flipConfiguration,
-              child: itemBuilder.call(context, index),
-            ),
-          );
-        }),
+        children: _buildChildren(),
       ),
     );
   }

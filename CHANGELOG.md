@@ -1,3 +1,7 @@
+## 5.0.3
+- New - You can now use children in AnimatedWrap Widget as you used in original Wrap Widget
+- Update - Support for Marquee Text in TextIcon Widget
+- Fix - Remove radius from Blur Widget
 ## 5.0.0
 - Support for Dart 3.0
 - Added None in Animated Listview if you want to disable animations

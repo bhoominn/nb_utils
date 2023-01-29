@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 import 'color_extractor.dart';
 

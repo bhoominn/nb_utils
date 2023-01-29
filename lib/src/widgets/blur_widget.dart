@@ -11,7 +11,7 @@ class Blur extends StatelessWidget {
   final double blur;
   final EdgeInsetsGeometry padding;
   final Color color;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final Clip clipBehavior;
 
   const Blur({
@@ -22,7 +22,7 @@ class Blur extends StatelessWidget {
     this.elevation = 0,
     this.padding = const EdgeInsets.only(),
     this.color = Colors.transparent,
-    this.borderRadius = const BorderRadius.all(Radius.circular(20)),
+    this.borderRadius,
     this.clipBehavior = Clip.antiAlias,
     Key? key,
   }) : super(key: key);
