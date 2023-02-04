@@ -52,7 +52,7 @@ bool leapYear(int year) {
 
 /// returns number of days in given month
 int daysInMonth(int monthNum, int year) {
-  List<int> monthLength = [];
+  List<int> monthLength = List.filled(12, 0);
 
   monthLength[0] = 31;
   monthLength[2] = 31;
