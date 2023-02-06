@@ -11,8 +11,10 @@ class GoogleLogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: GoogleLogoPainter(),
-      size: Size(size.validate(value: 24).toDouble(),
-          size.validate(value: 24).toDouble()),
+      size: Size(
+        size.validate(value: 24).toDouble(),
+        size.validate(value: 24).toDouble(),
+      ),
     );
   }
 }

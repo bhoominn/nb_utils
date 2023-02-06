@@ -122,6 +122,8 @@ double defaultBlurRadius = 4.0;
 double defaultSpreadRadius = 1.0;
 double defaultAppBarElevation = 4.0;
 
+double? maxScreenWidth;
+
 double tabletBreakpointGlobal = 600.0;
 double desktopBreakpointGlobal = 720.0;
 

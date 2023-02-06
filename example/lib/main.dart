@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                     rating: rating,
                     size: 40,
                     activeColor: context.primaryColor,
-                    allowHalfRating: true,
+                    //allowHalfRating: true,
                     onRatingChanged: (e) {
                       rating = e;
                     },

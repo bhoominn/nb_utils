@@ -45,11 +45,14 @@ class TextIcon extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           prefix != null ? Row(children: [prefix!, spacing.width]) : SizedBox(),
-          expandedText
-              ? buildText().expand()
-              : useMarquee
-                  ? Marquee(child: buildText())
-                  : buildText(),
+          if (expandedText && useMarquee)
+            Marquee(child: buildText()).expand()
+          else if (useMarquee)
+            Marquee(child: buildText())
+          else if (expandedText)
+            buildText().expand()
+          else
+            buildText(),
           suffix != null ? Row(children: [spacing.width, suffix!]) : SizedBox(),
         ],
       ),

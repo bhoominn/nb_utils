@@ -7,7 +7,7 @@ extension ContextExtensions on BuildContext {
   Size size() => MediaQuery.of(this).size;
 
   /// return screen width
-  double width() => MediaQuery.of(this).size.width;
+  double width() => maxScreenWidth ?? MediaQuery.of(this).size.width;
 
   /// return screen height
   double height() => MediaQuery.of(this).size.height;

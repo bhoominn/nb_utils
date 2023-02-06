@@ -1,4 +1,7 @@
-## 5.0.3
+## 5.0.5
+- Use global max screen width with media query width
+- Merge #35 - Fix exception in daysInMonth
+## 5.0.4
 - New - You can now use children in AnimatedWrap Widget as you used in original Wrap Widget
 - Update - Support for Marquee Text in TextIcon Widget
 - Fix - Remove radius from Blur Widget
