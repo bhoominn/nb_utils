@@ -21,14 +21,14 @@ class VersionInfoWidget extends StatelessWidget {
     return SnapHelperWidget<PackageInfoData>(
       future: getPackageInfo(),
       onSuccess: (data) {
-        if (data.versionName.validate().isEmpty) return Offstage();
+        if (data.versionName.validate().isEmpty) return const Offstage();
 
         return Text(
           '$prefixText${data.versionName.validate()}$suffixText',
           style: textStyle ?? primaryTextStyle(),
         );
       },
-      errorWidget: showError ? null : Offstage(),
+      errorWidget: showError ? null : const Offstage(),
     );
   }
 }

@@ -16,10 +16,11 @@ String formatTime(int timestamp) {
     result = countWeeks(difference);
   } else if (difference / 1000 < 31536000) {
     result = countMonths(difference);
-  } else
+  } else {
     result = countYears(difference);
+  }
 
-  return !result.startsWith("J") ? result + ' ago' : result;
+  return !result.startsWith('J') ? '$result ago' : result;
 }
 
 /// Converts the time difference to a number of seconds.
@@ -27,7 +28,7 @@ String formatTime(int timestamp) {
 ///   returns ("Just now" OR "X seconds")
 String countSeconds(int difference) {
   int count = (difference / 1000).truncate();
-  return count > 1 ? count.toString() + ' seconds' : 'Just now';
+  return count > 1 ? '$count seconds' : 'Just now';
 }
 
 /// Converts the time difference to a number of minutes.

@@ -10,7 +10,7 @@ class RichTextWidget extends StatelessWidget {
   final StrutStyle? strutStyle;
   final Locale? locale;
 
-  RichTextWidget({
+  const RichTextWidget({
     required this.list,
     this.overflow,
     this.maxLines,

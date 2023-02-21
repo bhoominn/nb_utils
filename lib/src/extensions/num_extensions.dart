@@ -6,5 +6,5 @@ extension NumExt on num? {
   num validate({num value = 0}) => this ?? value;
 
   /// Returns price with currency
-  String toCurrencyAmount() => "$defaultCurrencySymbol${this.validate()}";
+  String toCurrencyAmount() => '$defaultCurrencySymbol${validate()}';
 }

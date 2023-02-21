@@ -27,7 +27,7 @@ class AnimatedWrap extends StatelessWidget {
 
   final List<Widget>? children;
 
-  AnimatedWrap({
+  const AnimatedWrap({
     Key? key,
     this.itemCount = 0,
     this.itemBuilder,
@@ -41,7 +41,7 @@ class AnimatedWrap extends StatelessWidget {
     this.textDirection,
     this.verticalDirection,
     this.columnCount = 1,
-    this.listAnimationType = ListAnimationType.Scale,
+    this.listAnimationType = ListAnimationType.scale,
     this.slideConfiguration,
     this.fadeInConfiguration,
     this.scaleConfiguration,
@@ -56,7 +56,7 @@ class AnimatedWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _buildChildren() {
+    List<Widget> buildChildren() {
       if (children != null) {
         return List.generate(children!.length, (index) {
           return AnimationConfigurationClass.staggeredGrid(
@@ -103,7 +103,7 @@ class AnimatedWrap extends StatelessWidget {
         direction: direction ?? Axis.horizontal,
         textDirection: textDirection,
         verticalDirection: verticalDirection ?? VerticalDirection.down,
-        children: _buildChildren(),
+        children: buildChildren(),
       ),
     );
   }

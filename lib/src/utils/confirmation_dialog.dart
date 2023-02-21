@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 /// Enum for Dialog Type
-enum DialogType { CONFIRMATION, ACCEPT, DELETE, UPDATE, ADD, RETRY }
+enum DialogType { confirmation, accept, delete, update, add, retry }
 
 /// Enum for Dialog Animation
 enum DialogAnimation {
-  DEFAULT,
-  ROTATE,
-  SLIDE_TOP_BOTTOM,
-  SLIDE_BOTTOM_TOP,
-  SLIDE_LEFT_RIGHT,
-  SLIDE_RIGHT_LEFT,
-  SCALE
+  defaultAnimation,
+  rotate,
+  slideTopBottom,
+  slideBottomTop,
+  slideLeftRight,
+  slideRightLet,
+  scale
 }
 
 /// dialog primary color
@@ -25,18 +25,18 @@ Color getDialogPrimaryColor(
   Color color;
 
   switch (dialogType) {
-    case DialogType.DELETE:
+    case DialogType.delete:
       color = Colors.red;
       break;
-    case DialogType.UPDATE:
+    case DialogType.update:
       color = Colors.amber;
       break;
-    case DialogType.CONFIRMATION:
-    case DialogType.ADD:
-    case DialogType.RETRY:
+    case DialogType.confirmation:
+    case DialogType.add:
+    case DialogType.retry:
       color = Colors.blue;
       break;
-    case DialogType.ACCEPT:
+    case DialogType.accept:
       color = Colors.green;
       break;
   }
@@ -45,26 +45,26 @@ Color getDialogPrimaryColor(
 
 /// build positive text for dialog
 String getPositiveText(DialogType dialogType) {
-  String positiveText = "";
+  String positiveText = '';
 
   switch (dialogType) {
-    case DialogType.CONFIRMATION:
-      positiveText = "Yes";
+    case DialogType.confirmation:
+      positiveText = 'Yes';
       break;
-    case DialogType.DELETE:
-      positiveText = "Delete";
+    case DialogType.delete:
+      positiveText = 'Delete';
       break;
-    case DialogType.UPDATE:
-      positiveText = "Update";
+    case DialogType.update:
+      positiveText = 'Update';
       break;
-    case DialogType.ADD:
-      positiveText = "Add";
+    case DialogType.add:
+      positiveText = 'Add';
       break;
-    case DialogType.ACCEPT:
-      positiveText = "Accept";
+    case DialogType.accept:
+      positiveText = 'Accept';
       break;
-    case DialogType.RETRY:
-      positiveText = "Retry";
+    case DialogType.retry:
+      positiveText = 'Retry';
       break;
   }
   return positiveText;
@@ -72,26 +72,26 @@ String getPositiveText(DialogType dialogType) {
 
 /// Build title
 String getTitle(DialogType dialogType) {
-  String titleText = "";
+  String titleText = '';
 
   switch (dialogType) {
-    case DialogType.CONFIRMATION:
-      titleText = "Are you sure want to perform this action?";
+    case DialogType.confirmation:
+      titleText = 'Are you sure want to perform this action?';
       break;
-    case DialogType.DELETE:
-      titleText = "Do you want to delete?";
+    case DialogType.delete:
+      titleText = 'Do you want to delete?';
       break;
-    case DialogType.UPDATE:
-      titleText = "Do you want to update?";
+    case DialogType.update:
+      titleText = 'Do you want to update?';
       break;
-    case DialogType.ADD:
-      titleText = "Do you want to add?";
+    case DialogType.add:
+      titleText = 'Do you want to add?';
       break;
-    case DialogType.ACCEPT:
-      titleText = "Do you want to accept?";
+    case DialogType.accept:
+      titleText = 'Do you want to accept?';
       break;
-    case DialogType.RETRY:
-      titleText = "Click to retry";
+    case DialogType.retry:
+      titleText = 'Click to retry';
       break;
   }
   return titleText;
@@ -102,19 +102,19 @@ Widget getIcon(DialogType dialogType, {double? size}) {
   Icon icon;
 
   switch (dialogType) {
-    case DialogType.CONFIRMATION:
-    case DialogType.RETRY:
-    case DialogType.ACCEPT:
+    case DialogType.confirmation:
+    case DialogType.retry:
+    case DialogType.accept:
       icon = Icon(Icons.done, size: size ?? 20, color: Colors.white);
       break;
-    case DialogType.DELETE:
+    case DialogType.delete:
       icon = Icon(Icons.delete_forever_outlined,
           size: size ?? 20, color: Colors.white);
       break;
-    case DialogType.UPDATE:
+    case DialogType.update:
       icon = Icon(Icons.edit, size: size ?? 20, color: Colors.white);
       break;
-    case DialogType.ADD:
+    case DialogType.add:
       icon = Icon(Icons.add, size: size ?? 20, color: Colors.white);
       break;
   }
@@ -130,68 +130,68 @@ Widget? getCenteredImage(
   Widget? widget;
 
   switch (dialogType) {
-    case DialogType.CONFIRMATION:
+    case DialogType.confirmation:
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
               .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
+        padding: const EdgeInsets.all(16),
         child: Icon(
           Icons.warning_amber_rounded,
           color: getDialogPrimaryColor(context, dialogType, primaryColor),
           size: 40,
         ),
-        padding: EdgeInsets.all(16),
       );
       break;
-    case DialogType.DELETE:
+    case DialogType.delete:
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
               .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
+        padding: const EdgeInsets.all(16),
         child: Icon(
           Icons.close,
           color: getDialogPrimaryColor(context, dialogType, primaryColor),
           size: 40,
         ),
-        padding: EdgeInsets.all(16),
       );
       break;
-    case DialogType.UPDATE:
+    case DialogType.update:
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
               .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
+        padding: const EdgeInsets.all(16),
         child: Icon(
           Icons.edit_outlined,
           color: getDialogPrimaryColor(context, dialogType, primaryColor),
           size: 40,
         ),
-        padding: EdgeInsets.all(16),
       );
       break;
-    case DialogType.ADD:
-    case DialogType.ACCEPT:
+    case DialogType.add:
+    case DialogType.accept:
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
               .withOpacity(0.2),
           shape: BoxShape.circle,
         ),
+        padding: const EdgeInsets.all(16),
         child: Icon(
           Icons.done_outline,
           color: getDialogPrimaryColor(context, dialogType, primaryColor),
           size: 40,
         ),
-        padding: EdgeInsets.all(16),
       );
       break;
-    case DialogType.RETRY:
+    case DialogType.retry:
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(
@@ -201,6 +201,7 @@ Widget? getCenteredImage(
           ).withOpacity(0.2),
           shape: BoxShape.circle,
         ),
+        padding: const EdgeInsets.all(16),
         child: Icon(Icons.refresh_rounded,
             color: getDialogPrimaryColor(
               context,
@@ -208,7 +209,6 @@ Widget? getCenteredImage(
               primaryColor,
             ),
             size: 40),
-        padding: EdgeInsets.all(16),
       );
       break;
   }
@@ -250,8 +250,8 @@ Widget buildTitleWidget(
 ) {
   if (customCenterWidget != null) {
     return Container(
-      child: customCenterWidget,
       constraints: BoxConstraints(maxHeight: height, maxWidth: width),
+      child: customCenterWidget,
     );
   } else {
     if (centerImage != null) {
@@ -324,8 +324,8 @@ Future<bool?> showConfirmDialogCustom(
   double? width,
   bool cancelable = true,
   Color? barrierColor,
-  DialogType dialogType = DialogType.CONFIRMATION,
-  DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
+  DialogType dialogType = DialogType.confirmation,
+  DialogAnimation dialogAnimation = DialogAnimation.defaultAnimation,
   Duration? transitionDuration,
   Curve curve = Curves.easeInBack,
 }) async {
@@ -386,7 +386,7 @@ Future<bool?> showConfirmDialogCustom(
                       elevation: 0,
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: radius(defaultAppButtonRadius),
-                        side: BorderSide(color: viewLineColor),
+                        side: const BorderSide(color: viewLineColor),
                       ),
                       color: _.cardColor,
                       child: Row(

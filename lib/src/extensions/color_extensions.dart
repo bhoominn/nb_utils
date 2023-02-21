@@ -11,15 +11,15 @@ extension Hex on Color {
       '${blue.toRadixString(16).padLeft(2, '0')}';
 
   /// Return true if given Color is dark
-  bool isDark() => this.getBrightness() < 128.0;
+  bool isDark() => getBrightness() < 128.0;
 
   /// Return true if given Color is light
-  bool isLight() => !this.isDark();
+  bool isLight() => !isDark();
 
   /// Returns Brightness of give Color
   double getBrightness() =>
-      (this.red * 299 + this.green * 587 + this.blue * 114) / 1000;
+      (red * 299 + green * 587 + blue * 114) / 1000;
 
   /// Returns Luminance of give Color
-  double getLuminance() => this.computeLuminance();
+  double getLuminance() => computeLuminance();
 }

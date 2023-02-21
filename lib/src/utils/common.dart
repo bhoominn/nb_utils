@@ -9,7 +9,7 @@ import 'package:nb_utils/nb_utils.dart';
 T? makeNullable<T>(T? value) => value;
 
 /// Enum for page route
-enum PageRouteAnimation { Fade, Scale, Rotate, Slide, SlideBottomTop }
+enum PageRouteAnimation { fade, scale, rotate, slide, slideBottomTop }
 
 /// has match return bool for pattern matching
 bool hasMatch(String? s, String p) {
@@ -58,14 +58,15 @@ void toasty(
 
   FToast().showToast(
     child: Container(
-      child: Text(text.validate(),
-          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
       decoration: BoxDecoration(
         color: bgColor ?? defaultToastBackgroundColor,
         boxShadow: defaultBoxShadow(),
         borderRadius: borderRadius ?? defaultToastBorderRadiusGlobal,
       ),
-      padding: padding ?? EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+      padding:
+          padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+      child: Text(text.validate(),
+          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
     ),
     gravity: gravity ?? defaultToastGravityGlobal,
     toastDuration: duration,
@@ -128,7 +129,7 @@ void snackBar(
         onVisible: onVisible?.call(),
         content: content ??
             Padding(
-              padding: padding ?? EdgeInsets.symmetric(vertical: 4),
+              padding: padding ?? const EdgeInsets.symmetric(vertical: 4),
               child: Text(
                 title,
                 style: primaryTextStyle(color: textColor ?? Colors.white),
@@ -145,7 +146,7 @@ void hideKeyboard(context) => FocusScope.of(context).requestFocus(FocusNode());
 /// Returns a string from Clipboard
 Future<String> paste() async {
   ClipboardData? data = await Clipboard.getData('text/plain');
-  return data?.text?.toString() ?? "";
+  return data?.text?.toString() ?? '';
 }
 
 /// Returns a string from Clipboard
@@ -156,47 +157,47 @@ Future<dynamic> pasteObject() async {
 
 /// Enum for Link Provider
 enum LinkProvider {
-  PLAY_STORE,
-  APPSTORE,
-  FACEBOOK,
-  INSTAGRAM,
-  LINKEDIN,
-  TWITTER,
-  YOUTUBE,
-  REDDIT,
-  TELEGRAM,
-  WHATSAPP,
-  FB_MESSENGER,
-  GOOGLE_DRIVE
+  playStore,
+  appStore,
+  facebook,
+  instagram,
+  linkedIn,
+  twitter,
+  youTube,
+  reddit,
+  telegram,
+  whatsapp,
+  facebookMessenger,
+  googleDrive
 }
 
 /// Use getSocialMediaLink function to build social media links
 String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
   switch (linkProvider) {
-    case LinkProvider.PLAY_STORE:
-      return "$playStoreBaseURL$url";
-    case LinkProvider.APPSTORE:
-      return "$appStoreBaseURL$url";
-    case LinkProvider.FACEBOOK:
-      return "$facebookBaseURL$url";
-    case LinkProvider.INSTAGRAM:
-      return "$instagramBaseURL$url";
-    case LinkProvider.LINKEDIN:
-      return "$linkedinBaseURL$url";
-    case LinkProvider.TWITTER:
-      return "$twitterBaseURL$url";
-    case LinkProvider.YOUTUBE:
-      return "$youtubeBaseURL$url";
-    case LinkProvider.REDDIT:
-      return "$redditBaseURL$url";
-    case LinkProvider.TELEGRAM:
-      return "$telegramBaseURL$url";
-    case LinkProvider.FB_MESSENGER:
-      return "$facebookMessengerURL$url";
-    case LinkProvider.WHATSAPP:
-      return "$whatsappURL$url";
-    case LinkProvider.GOOGLE_DRIVE:
-      return "$googleDriveURL$url";
+    case LinkProvider.playStore:
+      return '$playStoreBaseURL$url';
+    case LinkProvider.appStore:
+      return '$appStoreBaseURL$url';
+    case LinkProvider.facebook:
+      return '$facebookBaseURL$url';
+    case LinkProvider.instagram:
+      return '$instagramBaseURL$url';
+    case LinkProvider.linkedIn:
+      return '$linkedinBaseURL$url';
+    case LinkProvider.twitter:
+      return '$twitterBaseURL$url';
+    case LinkProvider.youTube:
+      return '$youtubeBaseURL$url';
+    case LinkProvider.reddit:
+      return '$redditBaseURL$url';
+    case LinkProvider.telegram:
+      return '$telegramBaseURL$url';
+    case LinkProvider.facebookMessenger:
+      return '$facebookMessengerURL$url';
+    case LinkProvider.whatsapp:
+      return '$whatsappURL$url';
+    case LinkProvider.googleDrive:
+      return '$googleDriveURL$url';
   }
 }
 
@@ -216,7 +217,7 @@ Widget dialogAnimatedWrapperWidget({
   required Curve curve,
 }) {
   switch (dialogAnimation) {
-    case DialogAnimation.ROTATE:
+    case DialogAnimation.rotate:
       return Transform.rotate(
         angle: radians(animation.value * 360),
         child: Opacity(
@@ -225,7 +226,7 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    case DialogAnimation.SLIDE_TOP_BOTTOM:
+    case DialogAnimation.slideTopBottom:
       final curvedValue = curve.transform(animation.value) - 1.0;
 
       return Transform(
@@ -236,15 +237,15 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    case DialogAnimation.SCALE:
+    case DialogAnimation.scale:
       return Transform.scale(
         scale: animation.value,
         child: FadeTransition(opacity: animation, child: child),
       );
 
-    case DialogAnimation.SLIDE_BOTTOM_TOP:
+    case DialogAnimation.slideBottomTop:
       return SlideTransition(
-        position: Tween(begin: Offset(0, 1), end: Offset.zero)
+        position: Tween(begin: const Offset(0, 1), end: Offset.zero)
             .chain(CurveTween(curve: curve))
             .animate(animation),
         child: Opacity(
@@ -253,9 +254,9 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    case DialogAnimation.SLIDE_LEFT_RIGHT:
+    case DialogAnimation.slideLeftRight:
       return SlideTransition(
-        position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero)
+        position: Tween(begin: const Offset(1.0, 0.0), end: Offset.zero)
             .chain(CurveTween(curve: curve))
             .animate(animation),
         child: Opacity(
@@ -264,9 +265,9 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    case DialogAnimation.SLIDE_RIGHT_LEFT:
+    case DialogAnimation.slideRightLet:
       return SlideTransition(
-        position: Tween(begin: Offset(-1, 0), end: Offset.zero)
+        position: Tween(begin: const Offset(-1, 0), end: Offset.zero)
             .chain(CurveTween(curve: curve))
             .animate(animation),
         child: Opacity(
@@ -275,7 +276,7 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    case DialogAnimation.DEFAULT:
+    case DialogAnimation.defaultAnimation:
       return FadeTransition(opacity: animation, child: child);
   }
 }
@@ -286,7 +287,7 @@ Route<T> buildPageRoute<T>(
   Duration? duration,
 ) {
   if (pageRouteAnimation != null) {
-    if (pageRouteAnimation == PageRouteAnimation.Fade) {
+    if (pageRouteAnimation == PageRouteAnimation.fade) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -294,47 +295,47 @@ Route<T> buildPageRoute<T>(
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
+    } else if (pageRouteAnimation == PageRouteAnimation.rotate) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return RotationTransition(
-              child: child, turns: ReverseAnimation(anim));
+              turns: ReverseAnimation(anim), child: child);
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
+    } else if (pageRouteAnimation == PageRouteAnimation.scale) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
-          return ScaleTransition(child: child, scale: anim);
+          return ScaleTransition(scale: anim, child: child);
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
+    } else if (pageRouteAnimation == PageRouteAnimation.slide) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
-            child: child,
             position: Tween(
-              begin: Offset(1.0, 0.0),
-              end: Offset(0.0, 0.0),
+              begin: const Offset(1.0, 0.0),
+              end: const Offset(0.0, 0.0),
             ).animate(anim),
+            child: child,
           );
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.SlideBottomTop) {
+    } else if (pageRouteAnimation == PageRouteAnimation.slideBottomTop) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
-            child: child,
             position: Tween(
-              begin: Offset(0.0, 1.0),
-              end: Offset(0.0, 0.0),
+              begin: const Offset(0.0, 1.0),
+              end: const Offset(0.0, 0.0),
             ).animate(anim),
+            child: child,
           );
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
@@ -346,22 +347,22 @@ Route<T> buildPageRoute<T>(
 
 EdgeInsets dynamicAppButtonPadding(BuildContext context) {
   if (context.isDesktop()) {
-    return EdgeInsets.symmetric(vertical: 20, horizontal: 20);
+    return const EdgeInsets.symmetric(vertical: 20, horizontal: 20);
   } else if (context.isTablet()) {
-    return EdgeInsets.symmetric(vertical: 16, horizontal: 16);
+    return const EdgeInsets.symmetric(vertical: 16, horizontal: 16);
   } else {
-    return EdgeInsets.symmetric(vertical: 14, horizontal: 16);
+    return const EdgeInsets.symmetric(vertical: 14, horizontal: 16);
   }
 }
 
-enum BottomSheetDialog { Dialog, BottomSheet }
+enum BottomSheetDialog { dialog, bottomSheet }
 
 Future<dynamic> showBottomSheetOrDialog({
   required BuildContext context,
   required Widget child,
-  BottomSheetDialog bottomSheetDialog = BottomSheetDialog.Dialog,
+  BottomSheetDialog bottomSheetDialog = BottomSheetDialog.dialog,
 }) {
-  if (bottomSheetDialog == BottomSheetDialog.BottomSheet) {
+  if (bottomSheetDialog == BottomSheetDialog.bottomSheet) {
     return showModalBottomSheet(context: context, builder: (_) => child);
   } else {
     return showInDialog(context, builder: (_) => child);
@@ -401,21 +402,21 @@ Uri mailTo({
   List<String> cc = const [],
   List<String> bcc = const [],
 }) {
-  String _subject = '';
-  if (subject.isNotEmpty) _subject = '&subject=$subject';
+  String subject0 = '';
+  if (subject.isNotEmpty) subject0 = '&subject=$subject';
 
-  String _body = '';
-  if (body.isNotEmpty) _body = '&body=$body';
+  String body0 = '';
+  if (body.isNotEmpty) body0 = '&body=$body';
 
-  String _cc = '';
-  if (cc.isNotEmpty) _cc = '&cc=${cc.join(',')}';
+  String cc0 = '';
+  if (cc.isNotEmpty) cc0 = '&cc=${cc.join(',')}';
 
-  String _bcc = '';
-  if (bcc.isNotEmpty) _bcc = '&bcc=${bcc.join(',')}';
+  String bcc0 = '';
+  if (bcc.isNotEmpty) bcc0 = '&bcc=${bcc.join(',')}';
 
   return Uri(
     scheme: 'mailto',
-    query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc',
+    query: 'to=${to.join(',')}$subject0$body0$cc0$bcc0',
   );
 }
 

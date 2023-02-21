@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-enum WidgetType { DROPDOWN, LIST }
+enum WidgetType { dropdown, list }
 
 /// Use SELECTED_LANGUAGE_CODE Pref key to get selected language code
 class LanguageListWidget extends StatefulWidget {
@@ -12,8 +12,8 @@ class LanguageListWidget extends StatefulWidget {
   final ScrollPhysics? scrollPhysics;
   final void Function(LanguageDataModel)? onLanguageChange;
 
-  LanguageListWidget({
-    this.widgetType = WidgetType.LIST,
+  const LanguageListWidget({
+    this.widgetType = WidgetType.list,
     this.onLanguageChange,
     this.scrollPhysics,
     this.trailing,
@@ -40,8 +40,9 @@ class LanguageListWidgetState extends State<LanguageListWidget> {
     if (mounted) super.setState(fn);
   }
 
+  @override
   Widget build(BuildContext context) {
-    Widget _buildImageWidget(String imagePath) {
+    Widget buildImageWidget(String imagePath) {
       if (imagePath.startsWith('http')) {
         return Image.network(imagePath, width: 24);
       } else {
@@ -49,40 +50,38 @@ class LanguageListWidgetState extends State<LanguageListWidget> {
       }
     }
 
-    if (widget.widgetType == WidgetType.LIST) {
-      return Container(
-        child: ListView.builder(
-          itemBuilder: (_, index) {
-            LanguageDataModel data = localeLanguageList[index];
+    if (widget.widgetType == WidgetType.list) {
+      return ListView.builder(
+        itemBuilder: (_, index) {
+          LanguageDataModel data = localeLanguageList[index];
 
-            return SettingItemWidget(
-              title: data.name.validate(),
-              subTitle: data.subTitle,
-              leading:
-                  (data.flag != null) ? _buildImageWidget(data.flag!) : null,
-              trailing: Container(
-                child: widget.trailing ??
-                    Container(
-                      padding: EdgeInsets.all(2),
-                      decoration: boxDecorationDefault(shape: BoxShape.circle),
-                      child: Icon(Icons.check, size: 15, color: Colors.black),
-                    ),
-              ).visible(getStringAsync(SELECTED_LANGUAGE_CODE) ==
-                  data.languageCode.validate()),
-              onTap: () async {
-                await setValue(SELECTED_LANGUAGE_CODE, data.languageCode);
+          return SettingItemWidget(
+            title: data.name.validate(),
+            subTitle: data.subTitle,
+            leading: (data.flag != null) ? buildImageWidget(data.flag!) : null,
+            trailing: Container(
+              child: widget.trailing ??
+                  Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: boxDecorationDefault(shape: BoxShape.circle),
+                    child:
+                        const Icon(Icons.check, size: 15, color: Colors.black),
+                  ),
+            ).visible(getStringAsync(selectedLanguageCode) ==
+                data.languageCode.validate()),
+            onTap: () async {
+              await setValue(selectedLanguageCode, data.languageCode);
 
-                selectedLanguageDataModel = data;
+              selectedLanguageDataModel = data;
 
-                setState(() {});
-                widget.onLanguageChange?.call(data);
-              },
-            );
-          },
-          shrinkWrap: true,
-          physics: widget.scrollPhysics,
-          itemCount: localeLanguageList.length,
-        ),
+              setState(() {});
+              widget.onLanguageChange?.call(data);
+            },
+          );
+        },
+        shrinkWrap: true,
+        physics: widget.scrollPhysics,
+        itemCount: localeLanguageList.length,
       );
     } else {
       return DropdownButton<LanguageDataModel>(
@@ -92,22 +91,22 @@ class LanguageListWidgetState extends State<LanguageListWidget> {
         onChanged: (LanguageDataModel? data) async {
           selectedLanguageDataModel = data;
 
-          await setValue(SELECTED_LANGUAGE_CODE, data!.languageCode.validate());
+          await setValue(selectedLanguageCode, data!.languageCode.validate());
 
           setState(() {});
           widget.onLanguageChange?.call(data);
         },
         items: localeLanguageList.map((data) {
           return DropdownMenuItem<LanguageDataModel>(
+            value: data,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (data.flag != null) _buildImageWidget(data.flag!),
+                if (data.flag != null) buildImageWidget(data.flag!),
                 4.width,
                 Text(data.name.validate(), style: primaryTextStyle()),
               ],
             ),
-            value: data,
           );
         }).toList(),
       );

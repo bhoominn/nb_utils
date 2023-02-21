@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-enum ThemeModes { SystemDefault, Light, Dark }
+enum ThemeModes { systemDefault, light, dark }
 
 // ThemeWidget
 class ThemeWidget extends StatefulWidget {
@@ -11,7 +11,7 @@ class ThemeWidget extends StatefulWidget {
   final Widget? trailing;
   final EdgeInsets? padding;
 
-  ThemeWidget({
+  const ThemeWidget({
     this.scrollPhysics,
     this.onThemeChanged,
     this.subTitle,
@@ -21,7 +21,7 @@ class ThemeWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ThemeWidgetState createState() => _ThemeWidgetState();
+  State<ThemeWidget> createState() => _ThemeWidgetState();
 }
 
 class _ThemeWidgetState extends State<ThemeWidget> {
@@ -54,13 +54,13 @@ class _ThemeWidgetState extends State<ThemeWidget> {
           trailing: Container(
             child: widget.trailing ??
                 Container(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   decoration: boxDecorationDefault(shape: BoxShape.circle),
-                  child: Icon(Icons.check, size: 15, color: Colors.black),
+                  child: const Icon(Icons.check, size: 15, color: Colors.black),
                 ),
-          ).visible(getIntAsync(THEME_MODE_INDEX) == index),
+          ).visible(getIntAsync(themeModeIndex) == index),
           onTap: () async {
-            await setValue(THEME_MODE_INDEX, index);
+            await setValue(themeModeIndex, index);
             setState(() {});
 
             widget.onThemeChanged?.call(index);
@@ -74,13 +74,13 @@ class _ThemeWidgetState extends State<ThemeWidget> {
 String _getName(ThemeModes themeModes) {
   String name = '';
   switch (themeModes) {
-    case ThemeModes.Light:
+    case ThemeModes.light:
       name = 'Light';
       break;
-    case ThemeModes.Dark:
+    case ThemeModes.dark:
       name = 'Dark';
       break;
-    case ThemeModes.SystemDefault:
+    case ThemeModes.systemDefault:
       name = 'System Default';
       break;
   }
@@ -90,11 +90,11 @@ String _getName(ThemeModes themeModes) {
 String? get getSelectedThemeMode {
   String? data;
 
-  ThemeModes.values.forEach((element) {
-    if (ThemeModes.values.indexOf(element) == getIntAsync(THEME_MODE_INDEX)) {
+  for (var element in ThemeModes.values) {
+    if (ThemeModes.values.indexOf(element) == getIntAsync(themeModeIndex)) {
       data = _getName(element);
     }
-  });
+  }
 
   return data;
 }

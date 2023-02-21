@@ -39,7 +39,7 @@ class AnimatedListView extends StatefulWidget {
   final RefreshCallback? onSwipeRefresh;
   final bool disposeScrollController;
 
-  AnimatedListView({
+  const AnimatedListView({
     Key? key,
     this.controller,
     this.itemCount,
@@ -62,7 +62,7 @@ class AnimatedListView extends StatefulWidget {
     this.semanticChildCount,
     required this.itemBuilder,
     this.shrinkWrap = false,
-    this.listAnimationType = ListAnimationType.Slide,
+    this.listAnimationType = ListAnimationType.slide,
     this.slideConfiguration,
     this.fadeInConfiguration,
     this.scaleConfiguration,
@@ -156,8 +156,8 @@ class _AnimatedListViewState extends State<AnimatedListView> {
   Widget build(BuildContext context) {
     if (widget.onSwipeRefresh != null) {
       return RefreshIndicator(
-        child: _widget(),
         onRefresh: widget.onSwipeRefresh!,
+        child: _widget(),
       );
     } else {
       return _widget();

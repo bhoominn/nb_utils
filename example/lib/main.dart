@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
           darkTheme: ThemeData.dark(
             useMaterial3: true,
           ),
-          themeMode: getIntAsync(THEME_MODE_INDEX) == 2
+          themeMode: getIntAsync(themeModeIndex) == 2
               ? ThemeMode.dark
               : ThemeMode.light,
           home: HomePage(),
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
 
                   16.height,
                   LanguageListWidget(
-                    widgetType: WidgetType.DROPDOWN,
+                    widgetType: WidgetType.dropdown,
                     onLanguageChange: (data) {
                       log(data.name);
                     },
@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     strokeWidth: 4.0,
                     child: Image.network(
-                      "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                      'https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                       width: 100,
                     ).cornerRadiusWithClipRRect(8),
                   ),
@@ -237,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                         runSpacing: 16,
                         children: [
                           AppButton(
-                            text: "Theme",
+                            text: 'Theme',
                             onTap: () async {
                               showInDialog(context, builder: (_) {
                                 return SizedBox(
@@ -256,11 +256,12 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                           AppButton(
-                            text: "Confirmation",
+                            text: 'Confirmation',
                             onTap: () async {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation: DialogAnimation.DEFAULT,
+                                dialogAnimation:
+                                    DialogAnimation.defaultAnimation,
                                 onAccept: (_) {
                                   snackBar(context, title: 'Confirmed');
                                 },
@@ -268,14 +269,13 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                           AppButton(
-                            text: "Confirmation with Custom Image",
+                            text: 'Confirmation with Custom Image',
                             onTap: () async {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_RIGHT_LEFT,
-                                title: "Do you want to logout from the app?",
-                                dialogType: DialogType.CONFIRMATION,
+                                dialogAnimation: DialogAnimation.slideRightLet,
+                                title: 'Do you want to logout from the app?',
+                                dialogType: DialogType.confirmation,
                                 centerImage:
                                     'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
                                 onAccept: (_) {
@@ -290,14 +290,13 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                           AppButton(
-                            text: "Update",
+                            text: 'Update',
                             onTap: () {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_BOTTOM_TOP,
-                                title: "Do you want to update this item?",
-                                dialogType: DialogType.UPDATE,
+                                dialogAnimation: DialogAnimation.slideBottomTop,
+                                title: 'Do you want to update this item?',
+                                dialogType: DialogType.update,
                                 onAccept: (_) {
                                   snackBar(context, title: 'Updated');
                                 },
@@ -305,14 +304,13 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                           AppButton(
-                            text: "Delete",
+                            text: 'Delete',
                             onTap: () {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_LEFT_RIGHT,
-                                title: "Delete 89 files permanent?",
-                                dialogType: DialogType.DELETE,
+                                dialogAnimation: DialogAnimation.slideLeftRight,
+                                title: 'Delete 89 files permanent?',
+                                dialogType: DialogType.delete,
                                 onAccept: (_) {
                                   snackBar(context, title: 'Deleted');
                                 },
@@ -320,14 +318,13 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                           AppButton(
-                            text: "Add",
+                            text: 'Add',
                             onTap: () {
                               showConfirmDialogCustom(
                                 context,
-                                title: "Do you want to add this item?",
-                                dialogType: DialogType.ADD,
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_TOP_BOTTOM,
+                                title: 'Do you want to add this item?',
+                                dialogType: DialogType.add,
+                                dialogAnimation: DialogAnimation.slideTopBottom,
                                 onAccept: (_) {
                                   snackBar(context, title: 'Added');
                                 },
@@ -358,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                             onTap: () async {
                               showInDialog(context,
                                   builder: (_) => dialogWidget(),
-                                  dialogAnimation: DialogAnimation.ROTATE);
+                                  dialogAnimation: DialogAnimation.rotate);
                             },
                           ),
                           AppButton(
@@ -366,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                             onTap: () async {
                               showInDialog(context,
                                   builder: (_) => dialogWidget(),
-                                  dialogAnimation: DialogAnimation.SCALE);
+                                  dialogAnimation: DialogAnimation.scale);
                             },
                           ),
                           AppButton(
@@ -375,7 +372,7 @@ class _HomePageState extends State<HomePage> {
                               showInDialog(context,
                                   builder: (_) => dialogWidget(),
                                   dialogAnimation:
-                                      DialogAnimation.SLIDE_TOP_BOTTOM);
+                                      DialogAnimation.slideTopBottom);
                             },
                           ),
                           AppButton(
@@ -384,7 +381,7 @@ class _HomePageState extends State<HomePage> {
                               showInDialog(context,
                                   builder: (_) => dialogWidget(),
                                   dialogAnimation:
-                                      DialogAnimation.SLIDE_BOTTOM_TOP);
+                                      DialogAnimation.slideBottomTop);
                             },
                           ),
                           AppButton(
@@ -393,7 +390,7 @@ class _HomePageState extends State<HomePage> {
                               showInDialog(context,
                                   builder: (_) => dialogWidget(),
                                   dialogAnimation:
-                                      DialogAnimation.SLIDE_LEFT_RIGHT);
+                                      DialogAnimation.slideLeftRight);
                             },
                           ),
                           AppButton(
@@ -402,7 +399,7 @@ class _HomePageState extends State<HomePage> {
                               showInDialog(context,
                                   builder: (_) => dialogWidget(),
                                   dialogAnimation:
-                                      DialogAnimation.SLIDE_RIGHT_LEFT);
+                                      DialogAnimation.slideRightLet);
                             },
                           ),
                         ],
@@ -410,7 +407,7 @@ class _HomePageState extends State<HomePage> {
 
                       16.height,
                       UL(
-                        symbolType: SymbolType.Numbered,
+                        symbolType: SymbolType.numbered,
                         children: [
                           Text('Hi', style: primaryTextStyle()),
                           Text('Hello', style: primaryTextStyle()),
@@ -429,21 +426,21 @@ class _HomePageState extends State<HomePage> {
 
                       /// Default AppTextField
                       AppTextField(
-                        textFieldType: TextFieldType.OTHER,
+                        textFieldType: TextFieldType.other,
                         decoration: defaultInputDecoration(),
                       ),
                       8.height,
 
                       /// Email TextField
                       AppTextField(
-                        textFieldType: TextFieldType.EMAIL,
+                        textFieldType: TextFieldType.email,
                         decoration: defaultInputDecoration(label: 'Email'),
                       ),
                       8.height,
 
                       /// Address TextField
                       AppTextField(
-                        textFieldType: TextFieldType.MULTILINE,
+                        textFieldType: TextFieldType.multiline,
                         decoration: defaultInputDecoration(label: 'Address'),
                         minLines: 4,
                       ),
@@ -451,7 +448,7 @@ class _HomePageState extends State<HomePage> {
 
                       /// Password TextField
                       AppTextField(
-                        textFieldType: TextFieldType.PASSWORD,
+                        textFieldType: TextFieldType.password,
                         decoration: defaultInputDecoration(label: 'Password'),
                       ),
                     ],

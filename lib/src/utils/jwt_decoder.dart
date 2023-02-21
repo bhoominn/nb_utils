@@ -4,9 +4,9 @@ import 'dart:convert';
 class JwtDecoder {
   //Decode a string JWT token into a `Map<String, dynamic>`
   static Map<String, dynamic>? decode(String token) {
-    final splitToken = token.split(".");
+    final splitToken = token.split('.');
     if (splitToken.length != 3) {
-      throw FormatException('Invalid token');
+      throw const FormatException('Invalid token');
     }
     try {
       final payloadBase64 = splitToken[1];
@@ -16,7 +16,7 @@ class JwtDecoder {
 
       return decodedPayload;
     } catch (error) {
-      throw FormatException('Invalid payload');
+      throw const FormatException('Invalid payload');
     }
   }
 
@@ -50,7 +50,7 @@ class JwtDecoder {
     final decodedToken = decode(token)!;
 
     final issuedAtDate = DateTime.fromMillisecondsSinceEpoch(0)
-        .add(Duration(seconds: decodedToken["iat"]));
+        .add(Duration(seconds: decodedToken['iat']));
     return DateTime.now().difference(issuedAtDate);
   }
 

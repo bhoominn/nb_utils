@@ -11,7 +11,7 @@ class Responsive extends StatelessWidget {
   final double? minHeight;
   final Widget? defaultWidget;
 
-  Responsive({
+  const Responsive({
     this.web,
     required this.mobile,
     this.tablet,
@@ -43,7 +43,7 @@ class Responsive extends StatelessWidget {
                     ? null
                     : BoxConstraints(
                         maxWidth: width ?? (context.width() * 0.9)),
-                child: web ?? SizedBox(),
+                child: web ?? const SizedBox(),
               ),
             );
           }

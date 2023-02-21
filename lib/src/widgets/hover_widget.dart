@@ -8,14 +8,14 @@ class HoverWidget extends StatefulWidget {
   final BoolWidgetBuilder builder;
   final bool? opaque;
 
-  HoverWidget({
+  const HoverWidget({
     required this.builder,
     this.opaque,
     Key? key,
   }) : super(key: key);
 
   @override
-  _HoverWidgetState createState() => _HoverWidgetState();
+  State<HoverWidget> createState() => _HoverWidgetState();
 }
 
 class _HoverWidgetState extends State<HoverWidget> {

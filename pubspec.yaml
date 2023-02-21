@@ -27,6 +27,9 @@ dependencies:
   fluttertoast: ^8.1.2
   connectivity_plus: ^3.0.2
 
+dev_dependencies:
+  flutter_lints: ^2.0.1
+
 flutter:
   plugin:
     platforms:

@@ -31,7 +31,7 @@ class AnimatedScrollView extends StatefulWidget {
   final RefreshCallback? onSwipeRefresh;
   final bool disposeScrollController;
 
-  AnimatedScrollView({
+  const AnimatedScrollView({
     Key? key,
     this.controller,
     this.padding,
@@ -43,7 +43,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.restorationId,
     this.reverse = false,
     required this.children,
-    this.listAnimationType = ListAnimationType.Slide,
+    this.listAnimationType = ListAnimationType.slide,
     this.slideConfiguration,
     this.fadeInConfiguration,
     this.scaleConfiguration,
@@ -135,8 +135,8 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
   Widget build(BuildContext context) {
     if (widget.onSwipeRefresh != null) {
       return RefreshIndicator(
-        child: _widget(),
         onRefresh: widget.onSwipeRefresh!,
+        child: _widget(),
       );
     } else {
       return _widget();

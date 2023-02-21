@@ -9,7 +9,7 @@ class DoublePressBackWidget extends StatelessWidget {
   final String? message;
   final WillPopCallback? onWillPop;
 
-  DoublePressBackWidget({
+  const DoublePressBackWidget({
     Key? key,
     required this.child,
     this.message,
@@ -25,7 +25,7 @@ class DoublePressBackWidget extends StatelessWidget {
 
         onWillPop?.call();
         if (_currentBackPressTime == null ||
-            now.difference(_currentBackPressTime!) > Duration(seconds: 2)) {
+            now.difference(_currentBackPressTime!) > const Duration(seconds: 2)) {
           _currentBackPressTime = now;
           toast(message ?? 'Press back again to exit');
 

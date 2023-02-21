@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-typedef void RatingChangeCallback(double rating);
+typedef RatingChangeCallback = void Function(double rating);
 
 /// RatingBarWidget
 // ignore: must_be_immutable
@@ -37,7 +37,7 @@ class RatingBarWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RatingBarWidgetState createState() => _RatingBarWidgetState();
+  State<RatingBarWidget> createState() => _RatingBarWidgetState();
 }
 
 class _RatingBarWidgetState extends State<RatingBarWidget> {
@@ -45,24 +45,21 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
     Icon icon;
     if (index >= widget.rating) {
       icon = Icon(
-        widget.defaultIconData != null
-            ? widget.defaultIconData
-            : (widget.halfFilledIconData ?? Icons.star_border),
+        widget.defaultIconData ??
+            (widget.halfFilledIconData ?? Icons.star_border),
         color: widget.inActiveColor ?? Colors.grey,
         size: widget.size,
       );
     } else if (index > widget.rating - (widget.allowHalfRating ? 0.5 : 1.0) &&
         index < widget.rating) {
       icon = Icon(
-        widget.halfFilledIconData != null
-            ? widget.halfFilledIconData
-            : Icons.star_half,
+        widget.halfFilledIconData ?? Icons.star_half,
         color: widget.activeColor ?? Colors.grey,
         size: widget.size,
       );
     } else {
       icon = Icon(
-        widget.filledIconData != null ? widget.filledIconData : Icons.star,
+        widget.filledIconData ?? Icons.star,
         color: widget.activeColor ?? Colors.grey,
         size: widget.size,
       );
@@ -72,16 +69,17 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
       onTap: () {
         widget.rating = index + 1.0;
 
-        if (this.widget.onRatingChanged != null)
+        if (widget.onRatingChanged != null) {
           widget.onRatingChanged!(widget.rating);
+        }
 
         setState(() {});
       },
       onHorizontalDragUpdate: (dragDetails) {
         RenderBox box = context.findRenderObject() as RenderBox;
-        var _pos = box.globalToLocal(dragDetails.globalPosition);
+        var pos = box.globalToLocal(dragDetails.globalPosition);
 
-        var i = _pos.dx / widget.size;
+        var i = pos.dx / widget.size;
         var newRating = widget.allowHalfRating ? i : i.round().toDouble();
         if (newRating > widget.itemCount) {
           newRating = widget.itemCount.toDouble();
@@ -92,8 +90,9 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
 
         widget.rating = newRating;
 
-        if (this.widget.onRatingChanged != null)
+        if (widget.onRatingChanged != null) {
           widget.onRatingChanged!(newRating);
+        }
 
         setState(() {});
       },

@@ -33,37 +33,37 @@ extension IntExtensions on int? {
 
   /// Returns microseconds duration
   /// 5.microseconds
-  Duration get microseconds => Duration(microseconds: this.validate());
+  Duration get microseconds => Duration(microseconds: validate());
 
   /// Returns milliseconds duration
   /// ```dart
   /// 5.milliseconds
   /// ```
-  Duration get milliseconds => Duration(milliseconds: this.validate());
+  Duration get milliseconds => Duration(milliseconds: validate());
 
   /// Returns seconds duration
   /// ```dart
   /// 5.seconds
   /// ```
-  Duration get seconds => Duration(seconds: this.validate());
+  Duration get seconds => Duration(seconds: validate());
 
   /// Returns minutes duration
   /// ```dart
   /// 5.minutes
   /// ```
-  Duration get minutes => Duration(minutes: this.validate());
+  Duration get minutes => Duration(minutes: validate());
 
   /// Returns hours duration
   /// ```dart
   /// 5.hours
   /// ```
-  Duration get hours => Duration(hours: this.validate());
+  Duration get hours => Duration(hours: validate());
 
   /// Returns days duration
   /// ```dart
   /// 5.days
   /// ```
-  Duration get days => Duration(days: this.validate());
+  Duration get days => Duration(days: validate());
 
   /// Returns if a number is between `first` and `second`
   /// ```dart
@@ -72,9 +72,9 @@ extension IntExtensions on int? {
   /// ```
   bool isBetween(num first, num second) {
     if (first <= second) {
-      return this.validate() >= first && this.validate() <= second;
+      return validate() >= first && validate() <= second;
     } else {
-      return this.validate() >= second && this.validate() <= first;
+      return validate() >= second && validate() <= first;
     }
   }
 
@@ -145,19 +145,19 @@ extension IntExtensions on int? {
     String weekName = '';
 
     if (this == 1) {
-      return weekName = isHalfName ? "Mon" : "Monday";
+      return weekName = isHalfName ? 'Mon' : 'Monday';
     } else if (this == 2) {
-      return weekName = isHalfName ? "Tue" : "Tuesday";
+      return weekName = isHalfName ? 'Tue' : 'Tuesday';
     } else if (this == 3) {
-      return weekName = isHalfName ? "Wed" : "Wednesday";
+      return weekName = isHalfName ? 'Wed' : 'Wednesday';
     } else if (this == 4) {
-      return weekName = isHalfName ? "Thu" : "Thursday";
+      return weekName = isHalfName ? 'Thu' : 'Thursday';
     } else if (this == 5) {
-      return weekName = isHalfName ? "Fri" : "Friday";
+      return weekName = isHalfName ? 'Fri' : 'Friday';
     } else if (this == 6) {
-      return weekName = isHalfName ? "Sat" : "Saturday";
+      return weekName = isHalfName ? 'Sat' : 'Saturday';
     } else if (this == 7) {
-      return weekName = isHalfName ? "Sun" : "Sunday";
+      return weekName = isHalfName ? 'Sun' : 'Sunday';
     }
     return weekName;
   }

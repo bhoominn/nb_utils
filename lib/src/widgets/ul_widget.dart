@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-enum SymbolType { Bullet, Numbered, Custom }
+enum SymbolType { bullet, numbered, custom }
 
 /// Add UL to its children
 class UL extends StatelessWidget {
@@ -16,11 +16,11 @@ class UL extends StatelessWidget {
   final CrossAxisAlignment? symbolCrossAxisAlignment;
   final String? prefixText; // Used when SymbolType is Numbered
 
-  UL({
+  const UL({
     this.children,
     this.padding = 8,
     this.spacing = 8,
-    this.symbolType = SymbolType.Bullet,
+    this.symbolType = SymbolType.bullet,
     this.symbolColor,
     this.textColor,
     this.customSymbol,
@@ -41,22 +41,22 @@ class UL extends StatelessWidget {
             crossAxisAlignment:
                 symbolCrossAxisAlignment ?? CrossAxisAlignment.start,
             children: [
-              symbolType == SymbolType.Bullet
+              symbolType == SymbolType.bullet
                   ? Text(
                       '•',
                       style: boldTextStyle(
                           color: symbolColor ?? textPrimaryColorGlobal,
                           size: 24),
                     )
-                  : SizedBox(),
-              symbolType == SymbolType.Numbered
+                  : const SizedBox(),
+              symbolType == SymbolType.numbered
                   ? Text('${prefixText.validate()} ${index + 1}.',
                       style: boldTextStyle(
                           color: symbolColor ?? textPrimaryColorGlobal))
-                  : SizedBox(),
-              (symbolType == SymbolType.Custom && customSymbol != null)
+                  : const SizedBox(),
+              (symbolType == SymbolType.custom && customSymbol != null)
                   ? customSymbol!
-                  : SizedBox(),
+                  : const SizedBox(),
               SizedBox(width: padding),
               children![index].expand(),
             ],

@@ -9,7 +9,7 @@ InputDecoration defaultInputDecoration(
     hintText: hint,
     hintStyle: textStyle ?? primaryTextStyle(),
     labelStyle: textStyle ?? secondaryTextStyle(),
-    border: OutlineInputBorder(),
+    border: const OutlineInputBorder(),
     alignLabelWithHint: true,
   );
 }

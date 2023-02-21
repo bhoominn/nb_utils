@@ -45,7 +45,7 @@ export 'src/utils/size_config.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
-export 'src/widgets/PersistentTabs.dart';
+export 'src/widgets/persistent_tabs.dart';
 export 'src/widgets/animatedList/animated_configurations.dart';
 export 'src/widgets/animatedList/animated_list_view.dart';
 export 'src/widgets/animatedList/animated_scroll_view.dart';
@@ -180,7 +180,7 @@ Future<void> initialize({
 
 /// nb_utils class
 class NBUtils {
-  static const MethodChannel _channel = const MethodChannel(channelName);
+  static const MethodChannel _channel = MethodChannel(channelName);
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');

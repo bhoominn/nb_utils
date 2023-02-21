@@ -16,7 +16,7 @@ class SizeListener extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SizeListenerState createState() => _SizeListenerState();
+  State<SizeListener> createState() => _SizeListenerState();
 }
 
 class _SizeListenerState extends State<SizeListener> {
@@ -27,8 +27,10 @@ class _SizeListenerState extends State<SizeListener> {
     BuildContext? context = widgetKey.currentContext;
     if (context == null) return;
 
-    await Future.delayed(widget.delayDuration ?? Duration(milliseconds: 0));
+    await Future.delayed(
+        widget.delayDuration ?? const Duration(milliseconds: 0));
 
+    if (!mounted) return;
     var newSize = context.size;
     if (oldSize == newSize || newSize == null) return;
 

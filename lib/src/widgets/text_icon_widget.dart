@@ -14,7 +14,7 @@ class TextIcon extends StatelessWidget {
   final bool expandedText;
   final bool useMarquee;
 
-  TextIcon({
+  const TextIcon({
     this.text,
     this.textStyle,
     this.prefix,
@@ -40,11 +40,11 @@ class TextIcon extends StatelessWidget {
     }
 
     return Container(
-      padding: edgeInsets ?? EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: edgeInsets ?? const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          prefix != null ? Row(children: [prefix!, spacing.width]) : SizedBox(),
+          prefix != null ? Row(children: [prefix!, spacing.width]) : const SizedBox(),
           if (expandedText && useMarquee)
             Marquee(child: buildText()).expand()
           else if (useMarquee)
@@ -53,7 +53,7 @@ class TextIcon extends StatelessWidget {
             buildText().expand()
           else
             buildText(),
-          suffix != null ? Row(children: [spacing.width, suffix!]) : SizedBox(),
+          suffix != null ? Row(children: [spacing.width, suffix!]) : const SizedBox(),
         ],
       ),
     ).onTap(onTap);

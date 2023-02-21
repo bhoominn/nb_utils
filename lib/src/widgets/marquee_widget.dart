@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum DirectionMarguee { oneDirection, TwoDirection }
+enum DirectionMarguee { oneDirection, twoDirection }
 
 /// Marquee Text
 class Marquee extends StatelessWidget {
@@ -17,7 +17,7 @@ class Marquee extends StatelessWidget {
     this.animationDuration = const Duration(milliseconds: 5000),
     this.backDuration = const Duration(milliseconds: 5000),
     this.pauseDuration = const Duration(milliseconds: 2000),
-    this.directionMarguee = DirectionMarguee.TwoDirection,
+    this.directionMarguee = DirectionMarguee.twoDirection,
     Key? key,
   }) : super(key: key);
 
@@ -27,24 +27,26 @@ class Marquee extends StatelessWidget {
     while (true) {
       if (scrollController.hasClients) {
         await Future.delayed(pauseDuration);
-        if (scrollController.hasClients)
+        if (scrollController.hasClients) {
           await scrollController.animateTo(
               scrollController.position.maxScrollExtent,
               duration: animationDuration,
               curve: Curves.easeIn);
+        }
         await Future.delayed(pauseDuration);
-        if (scrollController.hasClients)
+        if (scrollController.hasClients) {
           switch (directionMarguee) {
             case DirectionMarguee.oneDirection:
               scrollController.jumpTo(
                 0.0,
               );
               break;
-            case DirectionMarguee.TwoDirection:
+            case DirectionMarguee.twoDirection:
               await scrollController.animateTo(0.0,
                   duration: backDuration, curve: Curves.easeOut);
               break;
           }
+        }
       } else {
         await Future.delayed(pauseDuration);
       }
@@ -57,9 +59,9 @@ class Marquee extends StatelessWidget {
     return Directionality(
       textDirection: textDirection,
       child: SingleChildScrollView(
-        child: child,
         scrollDirection: direction,
         controller: scrollController,
+        child: child,
       ),
     );
   }

@@ -19,7 +19,7 @@ class DotIndicator<T> extends StatefulWidget {
   final BorderRadiusGeometry? borderRadius;
   final BorderRadiusGeometry? currentBorderRadius;
 
-  DotIndicator({
+  const DotIndicator({
     required this.pageController,
     required this.pages,
     this.indicatorColor,
@@ -77,7 +77,7 @@ class DotIndicatorState extends State<DotIndicator> {
           int idx = entry.key;
 
           return AnimatedContainer(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             height: selectedIndex == idx
                 ? (widget.currentDotWidth ??
                     widget.currentDotSize.validate(value: 14))
@@ -85,7 +85,7 @@ class DotIndicatorState extends State<DotIndicator> {
             width: selectedIndex == idx
                 ? widget.currentDotSize.validate(value: 14)
                 : widget.dotSize.validate(value: 8),
-            margin: EdgeInsets.all(4),
+            margin: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               shape: selectedIndex == idx
                   ? widget.currentBoxShape ?? BoxShape.circle
@@ -100,7 +100,7 @@ class DotIndicatorState extends State<DotIndicator> {
           ).onTap(() {
             selectedIndex = idx;
             widget.pageController.animateToPage(idx,
-                duration: Duration(milliseconds: 300), curve: Curves.linear);
+                duration: const Duration(milliseconds: 300), curve: Curves.linear);
 
             setState(() {});
 

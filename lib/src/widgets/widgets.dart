@@ -53,7 +53,7 @@ Future<T?> showInDialog<T>(
   EdgeInsetsGeometry? contentPadding,
   //bool scrollable = false,
   Color? backgroundColor,
-  DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
+  DialogAnimation dialogAnimation = DialogAnimation.defaultAnimation,
   double? elevation,
   Color? barrierColor,
   //EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
@@ -84,8 +84,8 @@ Future<T?> showInDialog<T>(
           shape: shape ?? defaultDialogShape,
           title: title,
           titleTextStyle: titleTextStyle,
-          contentPadding:
-              contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+          contentPadding: contentPadding ??
+              const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
           //scrollable: scrollable,
           backgroundColor: backgroundColor,
           elevation: elevation ?? defaultElevation.toDouble(),
@@ -160,9 +160,9 @@ Widget snapWidgetHelper<T>(
           style: primaryTextStyle(),
         ).center();
   } else if (!snap.hasData) {
-    return loadingWidget ?? Loader();
+    return loadingWidget ?? const Loader();
   } else {
-    return SizedBox();
+    return const SizedBox();
   }
 }
 

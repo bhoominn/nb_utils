@@ -7,30 +7,29 @@ class OverlayCustomWidget extends StatelessWidget {
   final Widget Function(BuildContext, Offset anchor) overlayBuilder;
   final Widget child;
 
-  OverlayCustomWidget({
+  const OverlayCustomWidget({
+    Key? key,
     this.showOverlay = false,
     required this.overlayBuilder,
     required this.child,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return OverlayBuilder(
-            showOverlay: showOverlay,
-            overlayBuilder: (BuildContext overlayContext) {
-              RenderBox box = context.findRenderObject() as RenderBox;
-              final center =
-                  box.size.center(box.localToGlobal(const Offset(0.0, 0.0)));
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return OverlayBuilder(
+          showOverlay: showOverlay,
+          overlayBuilder: (BuildContext overlayContext) {
+            RenderBox box = context.findRenderObject() as RenderBox;
+            final center =
+                box.size.center(box.localToGlobal(const Offset(0.0, 0.0)));
 
-              return overlayBuilder(overlayContext, center);
-            },
-            child: child,
-          );
-        },
-      ),
+            return overlayBuilder(overlayContext, center);
+          },
+          child: child,
+        );
+      },
     );
   }
 }
@@ -40,14 +39,15 @@ class OverlayBuilder extends StatefulWidget {
   final Widget Function(BuildContext)? overlayBuilder;
   final Widget? child;
 
-  OverlayBuilder({
+  const OverlayBuilder({
+    Key? key,
     this.showOverlay = false,
     this.overlayBuilder,
     this.child,
-  });
+  }) : super(key: key);
 
   @override
-  _OverlayBuilderState createState() => _OverlayBuilderState();
+  State<OverlayBuilder> createState() => _OverlayBuilderState();
 }
 
 class _OverlayBuilderState extends State<OverlayBuilder> {
@@ -122,10 +122,11 @@ class OverlayOffsetWidget extends StatelessWidget {
   final Offset? position;
   final Widget? child;
 
-  OverlayOffsetWidget({
+  const OverlayOffsetWidget({
+    Key? key,
     this.position,
     this.child,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

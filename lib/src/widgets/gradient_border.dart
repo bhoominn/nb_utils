@@ -9,7 +9,7 @@ class GradientBorder extends StatelessWidget {
   final double? borderRadius;
   final double padding;
 
-  GradientBorder({
+  const GradientBorder({
     required this.gradient,
     required this.child,
     this.strokeWidth = 1,

@@ -12,7 +12,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
   final bool useConnectionStateForLoader;
   final Widget Function(String)? errorBuilder;
 
-  SnapHelperWidget({
+  const SnapHelperWidget({
     required this.future,
     required this.onSuccess,
     this.loadingWidget,
@@ -33,7 +33,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
         if (!useConnectionStateForLoader) {
           if (snap.hasData) {
             if (snap.data != null) {
-              return onSuccess(snap.data!);
+              return onSuccess(snap.data as T);
             } else {
               return snapWidgetHelper(
                 snap,
@@ -56,11 +56,11 @@ class SnapHelperWidget<T> extends StatelessWidget {
           switch (snap.connectionState) {
             case ConnectionState.waiting:
             case ConnectionState.active:
-              return loadingWidget ?? Loader();
+              return loadingWidget ?? const Loader();
             case ConnectionState.done:
               if (snap.hasData) {
                 if (snap.data != null) {
-                  return onSuccess(snap.data!);
+                  return onSuccess(snap.data as T);
                 } else {
                   return snapWidgetHelper(
                     snap,
@@ -82,7 +82,7 @@ class SnapHelperWidget<T> extends StatelessWidget {
                     ).center();
               }
             default:
-              return SizedBox();
+              return const SizedBox();
           }
         }
       },

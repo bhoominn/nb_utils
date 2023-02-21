@@ -14,7 +14,7 @@ class HorizontalList extends StatelessWidget {
   final WrapAlignment? wrapAlignment;
   final WrapCrossAlignment? crossAxisAlignment;
 
-  HorizontalList({
+  const HorizontalList({
     required this.itemCount,
     required this.itemBuilder,
     this.spacing,
@@ -32,7 +32,7 @@ class HorizontalList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: physics,
-      padding: padding ?? EdgeInsets.all(8),
+      padding: padding ?? const EdgeInsets.all(8),
       scrollDirection: Axis.horizontal,
       reverse: reverse,
       controller: controller,

@@ -58,7 +58,7 @@ class RoundedCheckBox extends StatefulWidget {
   final Duration? animationDuration;
 
   @override
-  _RoundedCheckBoxState createState() => _RoundedCheckBoxState();
+  State<RoundedCheckBox> createState() => _RoundedCheckBoxState();
 }
 
 class _RoundedCheckBoxState extends State<RoundedCheckBox> {
@@ -75,7 +75,8 @@ class _RoundedCheckBoxState extends State<RoundedCheckBox> {
   @override
   void initState() {
     isChecked = widget.isChecked ?? false;
-    animationDuration = widget.animationDuration ?? Duration(milliseconds: 500);
+    animationDuration =
+        widget.animationDuration ?? const Duration(milliseconds: 500);
     size = widget.size ?? 24.0;
     checkedColor = widget.checkedColor ?? Colors.green;
     uncheckedColor = widget.uncheckedColor;
