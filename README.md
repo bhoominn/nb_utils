@@ -32,11 +32,10 @@
 
 ## Installation
 
-Add this line to pubspec.yaml
+Add this package to `pubspec.yaml` as follows:
 
-```yaml
-dependencies:
-    nb_utils: <latest_version>
+```console
+$ flutter pub add nb_utils
 ```
 
 Import package
