@@ -591,6 +591,8 @@ double calculateReadTime({int wordsPerMinute = 200})
 ## bool Extensions
 ```dart
 bool validate({bool value = false})
+
+int getIntBool({bool value = false})
 ```
 
 ## Color Extensions

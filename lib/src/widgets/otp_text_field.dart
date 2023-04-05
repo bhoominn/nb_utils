@@ -8,9 +8,10 @@ class OTPTextField extends StatefulWidget {
   final Function(String)? onCompleted;
 
   final bool showUnderline;
-  final Decoration? decoration;
+  final InputDecoration? decoration;
 
   final double fieldWidth;
+  final TextStyle? textStyle;
 
   OTPTextField({
     this.pinLength = 4,
@@ -19,6 +20,7 @@ class OTPTextField extends StatefulWidget {
     this.onCompleted,
     this.showUnderline = false,
     this.decoration,
+    this.textStyle,
     Key? key,
   }) : super(key: key);
 
@@ -30,13 +32,16 @@ class OTPTextFieldState extends State<OTPTextField> {
   List<OTPLengthModel> list = [];
   FocusNode focusNode = FocusNode();
 
+  int currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
     list.addAll(List.generate(widget.pinLength, (index) {
       return OTPLengthModel(
-          textEditingController: TextEditingController(),
-          focusNode: FocusNode());
+        textEditingController: TextEditingController(),
+        focusNode: FocusNode(),
+      );
     }).toList());
   }
 
@@ -80,6 +85,8 @@ class OTPTextFieldState extends State<OTPTextField> {
   }
 
   void setTextSelection(int index) {
+    currentIndex = index;
+
     list[index].textEditingController!.selection = TextSelection(
       baseOffset: 0,
       extentOffset: list[index].textEditingController!.text.length,
@@ -110,9 +117,10 @@ class OTPTextFieldState extends State<OTPTextField> {
           margin: EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
             border: Border.all(
-                color: list[index].focusNode!.hasFocus
-                    ? context.primaryColor
-                    : Colors.grey.shade300),
+              color: list[index].focusNode!.hasFocus
+                  ? context.primaryColor
+                  : Colors.grey.shade300,
+            ),
             borderRadius: radius(),
           ),
           alignment: Alignment.center,
@@ -120,15 +128,17 @@ class OTPTextFieldState extends State<OTPTextField> {
             controller: list[index].textEditingController,
             focusNode: list[index].focusNode,
             keyboardType: TextInputType.number,
+            style: widget.textStyle,
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp('[0-9]')),
             ],
             maxLength: 1,
-            decoration: InputDecoration(
-              border: widget.showUnderline ? null : InputBorder.none,
-              counter: Offstage(),
-              contentPadding: EdgeInsets.zero,
-            ),
+            decoration: widget.decoration ??
+                InputDecoration(
+                  border: widget.showUnderline ? null : InputBorder.none,
+                  counter: Offstage(),
+                  contentPadding: EdgeInsets.zero,
+                ),
             textAlign: TextAlign.center,
             onSubmitted: (s) {
               if (s.isEmpty) {

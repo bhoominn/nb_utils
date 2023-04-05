@@ -319,9 +319,8 @@ class _AppTextFieldState extends State<AppTextField> {
       focusNode: widget.focus,
       style: widget.textStyle ?? primaryTextStyle(),
       textAlign: widget.textAlign ?? TextAlign.start,
-      maxLines: widget.textFieldType == TextFieldType.MULTILINE
-          ? null
-          : widget.maxLines.validate(value: 1),
+      maxLines: widget.maxLines.validate(
+          value: widget.textFieldType == TextFieldType.MULTILINE ? 10 : 1),
       minLines: widget.minLines.validate(
           value: widget.textFieldType == TextFieldType.MULTILINE ? 3 : 1),
       autofocus: widget.autoFocus ?? false,
@@ -345,7 +344,8 @@ class _AppTextFieldState extends State<AppTextField> {
       textAlignVertical: widget.textAlignVertical,
       expands: widget.expands.validate(),
       showCursor: widget.showCursor,
-      selectionControls: widget.selectionControls,
+      selectionControls:
+          widget.selectionControls ?? MaterialTextSelectionControls(),
       strutStyle: widget.strutStyle,
       obscuringCharacter: widget.obscuringCharacter.validate(value: '•'),
       initialValue: widget.initialValue,

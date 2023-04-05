@@ -1,3 +1,9 @@
+## 5.0.7
+- Added InputDecoration and TextStyle in OTPTextField widget
+- Added MaterialTextSelectionControl in AppTextField widget
+- New bool extension getIntBool 
+## 5.0.6
+- Added Empty Widget in AnimatedListView 
 ## 5.0.5
 - Use global max screen width with media query width
 - Merge #35 - Fix exception in daysInMonth

@@ -39,6 +39,8 @@ class AnimatedListView extends StatefulWidget {
   final RefreshCallback? onSwipeRefresh;
   final bool disposeScrollController;
 
+  final Widget? emptyWidget;
+
   AnimatedListView({
     Key? key,
     this.controller,
@@ -71,6 +73,7 @@ class AnimatedListView extends StatefulWidget {
     this.onPageScrollChange,
     this.onSwipeRefresh,
     this.disposeScrollController = true,
+    this.emptyWidget,
   }) : super(key: key);
 
   @override
@@ -115,6 +118,10 @@ class _AnimatedListViewState extends State<AnimatedListView> {
   }
 
   Widget _widget() {
+    if (widget.itemCount.validate() == 0 && widget.emptyWidget != null) {
+      return widget.emptyWidget!;
+    }
+
     return AnimationLimiterWidget(
       child: ListView.builder(
         controller: scrollController,
