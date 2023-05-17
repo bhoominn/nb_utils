@@ -161,4 +161,12 @@ extension IntExtensions on int? {
     }
     return weekName;
   }
+
+  /// Returns true if given value is 1, else returns false
+  bool getBoolInt() {
+    if (this == 1) {
+      return true;
+    }
+    return false;
+  }
 }

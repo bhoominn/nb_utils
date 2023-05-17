@@ -9,6 +9,7 @@ class OTPTextField extends StatefulWidget {
 
   final bool showUnderline;
   final InputDecoration? decoration;
+  final BoxDecoration? boxDecoration;
 
   final double fieldWidth;
   final TextStyle? textStyle;
@@ -20,6 +21,7 @@ class OTPTextField extends StatefulWidget {
     this.onCompleted,
     this.showUnderline = false,
     this.decoration,
+    this.boxDecoration,
     this.textStyle,
     Key? key,
   }) : super(key: key);
@@ -65,6 +67,7 @@ class OTPTextFieldState extends State<OTPTextField> {
     } else {
       context.unFocus(list[index].focusNode!);
       context.requestFocus(list[index + 1].focusNode!);
+      list[index + 1].textEditingController!.text = ' ';
 
       setTextSelection(index + 1);
     }
@@ -115,14 +118,16 @@ class OTPTextFieldState extends State<OTPTextField> {
         return Container(
           width: widget.fieldWidth,
           margin: EdgeInsets.symmetric(horizontal: 8),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: list[index].focusNode!.hasFocus
-                  ? context.primaryColor
-                  : Colors.grey.shade300,
-            ),
-            borderRadius: radius(),
-          ),
+          decoration: widget.boxDecoration ??
+              BoxDecoration(
+                border: Border.all(
+                  color: list[index].focusNode!.hasFocus
+                      ? context.primaryColor
+                      : Colors.white54,
+                  width: list[index].focusNode!.hasFocus ? 2 : 1,
+                ),
+                borderRadius: radius(4),
+              ),
           alignment: Alignment.center,
           child: TextField(
             controller: list[index].textEditingController,
@@ -144,6 +149,10 @@ class OTPTextFieldState extends State<OTPTextField> {
               if (s.isEmpty) {
                 moveToPreviousFocus(index);
               } else if (s.length == 1) {
+                if (s.contains(' ')) {
+                  list[index].textEditingController!.text = '';
+                  return;
+                }
                 moveToNextFocus(index);
               }
             },
@@ -151,6 +160,9 @@ class OTPTextFieldState extends State<OTPTextField> {
               if (s.isEmpty) {
                 moveToPreviousFocus(index);
               } else if (s.length == 1) {
+                if (s.contains(' ')) {
+                  list[index].textEditingController!.text = '';
+                }
                 moveToNextFocus(index);
               }
               widget.onChanged?.call(concatText);

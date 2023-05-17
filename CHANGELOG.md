@@ -1,4 +1,8 @@
-## 5.0.7
+## 5.0.8-dart3-beta-1
+- Update Dart & Kotlin version
+- Added BoxDecoration in OTPTextField widget
+- Added highlightColor in SettingItemWidget widget
+## 5.0.8
 - Added InputDecoration and TextStyle in OTPTextField widget
 - Added MaterialTextSelectionControl in AppTextField widget
 - New bool extension getIntBool 

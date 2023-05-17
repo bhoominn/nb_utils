@@ -18,6 +18,7 @@ class SettingItemWidget extends StatelessWidget {
   final Color? subTitleTextColor;
   final Color? hoverColor;
   final Color? splashColor;
+  final Color? highlightColor;
   final Decoration? decoration;
   final double? borderRadius;
   final BorderRadius? radius;
@@ -40,6 +41,7 @@ class SettingItemWidget extends StatelessWidget {
     this.borderRadius,
     this.hoverColor,
     this.splashColor,
+    this.highlightColor,
     this.radius,
     Key? key,
   }) : super(key: key);
@@ -87,6 +89,7 @@ class SettingItemWidget extends StatelessWidget {
       borderRadius: radius ?? (BorderRadius.circular(borderRadius.validate())),
       hoverColor: hoverColor,
       splashColor: splashColor,
+      highlightColor: highlightColor,
     );
   }
 }
