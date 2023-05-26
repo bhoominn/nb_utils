@@ -13,6 +13,7 @@ class TextIcon extends StatelessWidget {
   final EdgeInsets? edgeInsets;
   final bool expandedText;
   final bool useMarquee;
+  final BoxDecoration? boxDecoration;
 
   TextIcon({
     this.text,
@@ -25,6 +26,7 @@ class TextIcon extends StatelessWidget {
     this.edgeInsets,
     this.expandedText = false,
     this.useMarquee = false,
+    this.boxDecoration,
     Key? key,
   }) : super(key: key);
 
@@ -41,6 +43,7 @@ class TextIcon extends StatelessWidget {
 
     return Container(
       padding: edgeInsets ?? EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: boxDecoration,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

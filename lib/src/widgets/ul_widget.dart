@@ -45,14 +45,17 @@ class UL extends StatelessWidget {
                   ? Text(
                       '•',
                       style: boldTextStyle(
-                          color: symbolColor ?? textPrimaryColorGlobal,
-                          size: 24),
+                        color: symbolColor ?? textPrimaryColorGlobal,
+                        size: 24,
+                      ),
                     )
                   : SizedBox(),
               symbolType == SymbolType.Numbered
-                  ? Text('${prefixText.validate()} ${index + 1}.',
+                  ? Text(
+                      '${prefixText.validate()} ${index + 1}.',
                       style: boldTextStyle(
-                          color: symbolColor ?? textPrimaryColorGlobal))
+                          color: symbolColor ?? textPrimaryColorGlobal),
+                    )
                   : SizedBox(),
               (symbolType == SymbolType.Custom && customSymbol != null)
                   ? customSymbol!

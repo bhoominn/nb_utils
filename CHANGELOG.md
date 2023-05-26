@@ -1,3 +1,7 @@
+## 5.0.8-beta2
+- Added new enhanced email pattern which supports '-' after '@'
+- Added new String extensions
+- Added BoxDecoration in TextIcon widget
 ## 5.0.8-dart3-beta-1
 - Update Dart & Kotlin version
 - Added BoxDecoration in OTPTextField widget

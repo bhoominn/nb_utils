@@ -5,6 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 /// Enum for Text Field
 enum TextFieldType {
   EMAIL,
+  EMAIL_ENHANCED,
   PASSWORD,
   NAME,
   @Deprecated('Use MULTILINE instead. ADDRESS will be removed in major update')
@@ -142,6 +143,15 @@ class _AppTextFieldState extends State<AppTextField> {
             return widget.errorInvalidEmail.validate(value: 'Email is invalid');
           return null;
         };
+      } else if (widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
+        return (s) {
+          if (s!.trim().isEmpty)
+            return widget.errorThisFieldRequired
+                .validate(value: errorThisFieldRequired);
+          if (!s.trim().validateEmailEnhanced())
+            return widget.errorInvalidEmail.validate(value: 'Email is invalid');
+          return null;
+        };
       } else if (widget.textFieldType == TextFieldType.PASSWORD) {
         return (s) {
           if (s!.trim().isEmpty)
@@ -225,7 +235,8 @@ class _AppTextFieldState extends State<AppTextField> {
   TextInputType? applyTextInputType() {
     if (widget.keyboardType != null) {
       return widget.keyboardType;
-    } else if (widget.textFieldType == TextFieldType.EMAIL) {
+    } else if (widget.textFieldType == TextFieldType.EMAIL ||
+        widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
       return TextInputType.emailAddress;
     } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputType.multiline;
@@ -287,7 +298,8 @@ class _AppTextFieldState extends State<AppTextField> {
   }
 
   Iterable<String>? applyAutofillHints() {
-    if (widget.textFieldType == TextFieldType.EMAIL) {
+    if (widget.textFieldType == TextFieldType.EMAIL ||
+        widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
       return [AutofillHints.email];
     } else if (widget.textFieldType == TextFieldType.PASSWORD) {
       return [AutofillHints.password];

@@ -11,6 +11,9 @@ extension StringExtension on String? {
   /// Check email validation
   bool validateEmail() => hasMatch(this, Patterns.email);
 
+  /// Check email validation
+  bool validateEmailEnhanced() => hasMatch(this, Patterns.emailEnhanced);
+
   /// Check phone validation
   bool validatePhone() => hasMatch(this, Patterns.phone);
 
@@ -309,5 +312,33 @@ extension StringExtension on String? {
       return true;
     }
     return false;
+  }
+
+  ///  eg. Text("${VARIABLE_NAME} /-"); =>  Text("VARIABLE_NAME.suffixText("/-")");
+  String suffixText({required String value}) {
+    return '$value$this';
+  }
+
+  ///  eg. Text("Dr. ${VARIABLE_NAME}"); =>  Text("VARIABLE_NAME.prefixText("Dr.")");
+  String prefixText({required String value}) {
+    return '$this$value';
+  }
+
+  /// This function returns given string with each word capital
+  String capitalizeEachWord() {
+    if (this.validate().isEmpty) {
+      return '';
+    }
+
+    final capitalizedWords = this!.split(' ').map((word) {
+      if (word.isEmpty) {
+        return word;
+      }
+      final firstLetter = word[0].toUpperCase();
+      final remainingLetters = word.substring(1).toLowerCase();
+      return '$firstLetter$remainingLetters';
+    });
+
+    return capitalizedWords.join(' ');
   }
 }
