@@ -1,9 +1,10 @@
-## 5.0.8-beta2
+## 6.0.0
+- Updated Dart & Kotlin version
+- Added child property in PlaceHolderWidget
+- Added default padding in Button in NoDataWidget
 - Added new enhanced email pattern which supports '-' after '@'
 - Added new String extensions
 - Added BoxDecoration in TextIcon widget
-## 5.0.8-dart3-beta-1
-- Update Dart & Kotlin version
 - Added BoxDecoration in OTPTextField widget
 - Added highlightColor in SettingItemWidget widget
 ## 5.0.8

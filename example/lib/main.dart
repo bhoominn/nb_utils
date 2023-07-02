@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:nb_utils_example/animated_listview_example.dart';
+
+import 'animated_listview_example.dart';
 
 const APP_NAME = 'NB Utils Example';
 

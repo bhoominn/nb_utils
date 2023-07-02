@@ -19,7 +19,7 @@ class AppButton extends StatefulWidget {
   final Widget? child;
   final double? elevation;
   final double? height;
-  final bool? enabled;
+  final bool enabled;
   final bool? enableScaleAnimation;
 
   AppButton({
@@ -34,7 +34,7 @@ class AppButton extends StatefulWidget {
     this.shapeBorder,
     this.child,
     this.elevation,
-    this.enabled,
+    this.enabled = true,
     this.height,
     this.disabledColor,
     this.focusColor,
@@ -79,7 +79,7 @@ class _AppButtonState extends State<AppButton>
 
   @override
   Widget build(BuildContext context) {
-    if (_controller != null && widget.enabled.validate(value: true)) {
+    if (_controller != null && widget.enabled) {
       _scale = 1 - _controller!.value;
     }
 
@@ -108,7 +108,7 @@ class _AppButtonState extends State<AppButton>
       child: MaterialButton(
         minWidth: widget.width,
         padding: widget.padding ?? dynamicAppButtonPadding(context),
-        onPressed: widget.enabled.validate(value: true)
+        onPressed: widget.enabled
             ? widget.onTap != null
                 ? widget.onTap as void Function()?
                 : null

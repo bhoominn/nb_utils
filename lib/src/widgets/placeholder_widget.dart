@@ -19,6 +19,8 @@ class PlaceHolderWidget extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final Gradient? gradient;
 
+  final Widget? child;
+
   PlaceHolderWidget({
     this.height,
     this.width,
@@ -32,6 +34,7 @@ class PlaceHolderWidget extends StatelessWidget {
     this.border,
     this.boxShadow,
     this.gradient,
+    this.child,
     Key? key,
   }) : super(key: key);
 
@@ -39,7 +42,7 @@ class PlaceHolderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       height: height,
-      duration: animationDuration ?? 1.seconds,
+      duration: animationDuration ?? 500.milliseconds,
       width: width,
       decoration: BoxDecoration(
         color:
@@ -53,6 +56,7 @@ class PlaceHolderWidget extends StatelessWidget {
       alignment: alignment,
       padding: padding,
       margin: margin,
+      child: child,
     );
   }
 }

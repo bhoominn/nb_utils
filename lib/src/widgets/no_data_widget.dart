@@ -15,6 +15,7 @@ class NoDataWidget extends StatelessWidget {
 
   final VoidCallback? onRetry;
   final String? retryText;
+  final EdgeInsets? buttonPadding;
 
   NoDataWidget({
     this.image,
@@ -27,6 +28,7 @@ class NoDataWidget extends StatelessWidget {
     this.retryText,
     this.titleTextStyle,
     this.subTitleTextStyle,
+    this.buttonPadding,
     Key? key,
   }) : super(key: key);
 
@@ -36,25 +38,28 @@ class NoDataWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         _imageWidget(),
-        16.height,
         if (title.validate().isNotEmpty)
-          Text(title!,
-              style: titleTextStyle ?? primaryTextStyle(),
-              textAlign: TextAlign.center),
-        4.height,
+          Text(
+            title!,
+            style: titleTextStyle ?? primaryTextStyle(),
+            textAlign: TextAlign.center,
+          ).paddingTop(16),
         if (subTitle.validate().isNotEmpty)
-          Text(subTitle!,
-              style: subTitleTextStyle ?? secondaryTextStyle(),
-              textAlign: TextAlign.center),
-        16.height,
+          Text(
+            subTitle!,
+            style: subTitleTextStyle ?? secondaryTextStyle(),
+            textAlign: TextAlign.center,
+          ).paddingTop(4),
         if (onRetry != null)
           AppButton(
+            margin: EdgeInsets.only(top: 16),
             onTap: () {
               onRetry?.call();
             },
             text: retryText ?? 'Try again',
             textColor: white,
-            padding: EdgeInsets.zero,
+            padding: buttonPadding ??
+                EdgeInsets.symmetric(horizontal: 16, vertical: 2),
             color: context.primaryColor,
           ),
       ],
