@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// RestartAppWidget
+/// RestartAppWidget helps you to restart your Flutter app
 class RestartAppWidget extends StatefulWidget {
   final Widget child;
 

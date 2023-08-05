@@ -53,10 +53,8 @@ class NoDataWidget extends StatelessWidget {
         if (onRetry != null)
           AppButton(
             margin: EdgeInsets.only(top: 16),
-            onTap: () {
-              onRetry?.call();
-            },
-            text: retryText ?? 'Try again',
+            onTap: onRetry,
+            text: retryText ?? 'Reload',
             textColor: white,
             padding: buttonPadding ??
                 EdgeInsets.symmetric(horizontal: 16, vertical: 2),
@@ -68,7 +66,7 @@ class NoDataWidget extends StatelessWidget {
 
   Widget _imageWidget() {
     if (imageWidget != null) return imageWidget!;
-    if (image == null) return Offstage();
+    if (image.validate().isEmpty) return Offstage();
 
     if (image.validate().startsWith('http')) {
       return Image.network(

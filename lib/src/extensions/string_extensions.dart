@@ -314,13 +314,13 @@ extension StringExtension on String? {
     return false;
   }
 
-  ///  eg. Text("${VARIABLE_NAME} /-"); =>  Text("VARIABLE_NAME.suffixText("/-")");
-  String suffixText({required String value}) {
+  ///  eg. Text("Dr. ${VARIABLE_NAME}"); =>  Text("VARIABLE_NAME.prefixText("Dr.")");
+  String prefixText({required String value}) {
     return '$value$this';
   }
 
-  ///  eg. Text("Dr. ${VARIABLE_NAME}"); =>  Text("VARIABLE_NAME.prefixText("Dr.")");
-  String prefixText({required String value}) {
+  ///  eg. Text("${VARIABLE_NAME} /-"); =>  Text("VARIABLE_NAME.suffixText("/-")");
+  String suffixText({required String value}) {
     return '$this$value';
   }
 

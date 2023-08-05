@@ -41,6 +41,7 @@ class RatingBarWidget extends StatefulWidget {
 }
 
 class _RatingBarWidgetState extends State<RatingBarWidget> {
+  /// Build rating bar widget
   Widget _buildItem(BuildContext context, int index) {
     Icon icon;
     if (index >= widget.rating) {
@@ -109,7 +110,9 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
         alignment: WrapAlignment.start,
         spacing: widget.spacing,
         children: List.generate(
-            widget.itemCount, (index) => _buildItem(context, index)),
+          widget.itemCount,
+          (index) => _buildItem(context, index),
+        ),
       ),
     );
   }

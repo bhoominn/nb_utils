@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
+/// HyperLinkWidget
 class HyperLinkWidget extends StatefulWidget {
   final TextSpan text;
   final TextStyle? style;
@@ -8,7 +10,7 @@ class HyperLinkWidget extends StatefulWidget {
   HyperLinkWidget({
     Key? key,
     required this.text,
-    required this.style,
+    this.style,
     this.maxLines = 1,
   }) : super(key: key);
 
@@ -26,7 +28,8 @@ class _HyperLinkWidgetState extends State<HyperLinkWidget> {
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
         style: widget.style,
-        children: widget.text.children!
+        children: widget.text.children
+            .validate()
             .map(
               (e) => TextSpan(
                 text: (e as TextSpan).text,

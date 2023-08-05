@@ -35,6 +35,7 @@ class GradientBorder extends StatelessWidget {
   }
 }
 
+/// GradientPainter
 class GradientPainter extends CustomPainter {
   final Gradient gradient;
   final double strokeWidth;

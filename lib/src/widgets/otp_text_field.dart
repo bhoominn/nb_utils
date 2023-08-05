@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// OTPTextField widget helps you to enter your OTP
 class OTPTextField extends StatefulWidget {
   final int pinLength;
   final Function(String)? onChanged;

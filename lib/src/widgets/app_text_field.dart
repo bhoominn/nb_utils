@@ -71,6 +71,10 @@ class AppTextField extends StatefulWidget {
   final String? errorInvalidURL;
   final String? errorInvalidUsername;
 
+  final String? title;
+  final TextStyle? titleTextStyle;
+  final int? spacingBetweenTitleAndTextFormField;
+
   AppTextField({
     this.controller,
     required this.textFieldType,
@@ -120,6 +124,9 @@ class AppTextField extends StatefulWidget {
     this.suffixPasswordVisibleWidget,
     this.suffixPasswordInvisibleWidget,
     this.contextMenuBuilder,
+    this.title,
+    this.titleTextStyle,
+    this.spacingBetweenTitleAndTextFormField = 4,
     Key? key,
   }) : super(key: key);
 
@@ -307,8 +314,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return null;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget textFormFieldWidget() {
     return TextFormField(
       controller: widget.controller,
       obscureText:
@@ -364,5 +370,24 @@ class _AppTextFieldState extends State<AppTextField> {
       keyboardAppearance: widget.keyboardAppearance,
       contextMenuBuilder: widget.contextMenuBuilder,
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.title.validate().isNotEmpty) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.title!,
+            style: widget.textStyle ?? primaryTextStyle(),
+          ),
+          widget.spacingBetweenTitleAndTextFormField.height,
+          textFormFieldWidget(),
+        ],
+      );
+    }
+
+    return textFormFieldWidget();
   }
 }

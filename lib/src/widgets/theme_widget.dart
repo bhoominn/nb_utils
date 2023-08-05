@@ -71,6 +71,7 @@ class _ThemeWidgetState extends State<ThemeWidget> {
   }
 }
 
+/// returns theme name
 String _getName(ThemeModes themeModes) {
   String name = '';
   switch (themeModes) {
@@ -87,6 +88,7 @@ String _getName(ThemeModes themeModes) {
   return name;
 }
 
+/// returns current app theme mode
 String? get getSelectedThemeMode {
   String? data;
 

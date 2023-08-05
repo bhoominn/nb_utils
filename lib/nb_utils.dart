@@ -45,7 +45,6 @@ export 'src/utils/size_config.dart';
 export 'src/utils/system_utils.dart';
 export 'src/utils/text_styles.dart';
 export 'src/utils/time_formatter.dart';
-export 'src/widgets/PersistentTabs.dart';
 export 'src/widgets/animatedList/animated_configurations.dart';
 export 'src/widgets/animatedList/animated_list_view.dart';
 export 'src/widgets/animatedList/animated_scroll_view.dart';

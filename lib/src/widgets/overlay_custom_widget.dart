@@ -35,6 +35,7 @@ class OverlayCustomWidget extends StatelessWidget {
   }
 }
 
+/// OverlayBuilder widget
 class OverlayBuilder extends StatefulWidget {
   final bool showOverlay;
   final Widget Function(BuildContext)? overlayBuilder;
@@ -118,6 +119,7 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
   }
 }
 
+/// OverlayOffsetWidget
 class OverlayOffsetWidget extends StatelessWidget {
   final Offset? position;
   final Widget? child;

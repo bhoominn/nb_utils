@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -118,6 +119,10 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   16.height,
                   OTPTextField(
+                    boxDecoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: radius(4),
+                    ),
                     onChanged: (text) {
                       log(text);
                     },
@@ -125,7 +130,6 @@ class _HomePageState extends State<HomePage> {
                       toast('onCompleted $s');
                     },
                   ),
-                  16.height,
                   16.height,
                   TextButton(
                     onPressed: () {
@@ -440,6 +444,7 @@ class _HomePageState extends State<HomePage> {
                       AppTextField(
                         textFieldType: TextFieldType.EMAIL,
                         decoration: defaultInputDecoration(label: 'Email'),
+                        title: 'Email',
                       ),
                       8.height,
 

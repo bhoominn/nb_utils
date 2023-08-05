@@ -1,3 +1,7 @@
+## 6.0.1
+- Added Title widget support in AppTextField widget
+- Update prefix and suffix String extensions
+- Removed PersistentTabs widget
 ## 6.0.0
 - Updated Dart & Kotlin version
 - Added child property in PlaceHolderWidget

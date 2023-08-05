@@ -32,15 +32,6 @@ class TextIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget buildText() {
-      return Text(
-        text.validate(),
-        style: textStyle ?? primaryTextStyle(),
-        maxLines: maxLine,
-        overflow: TextOverflow.ellipsis,
-      );
-    }
-
     return Container(
       padding: edgeInsets ?? EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: boxDecoration,
@@ -60,5 +51,15 @@ class TextIcon extends StatelessWidget {
         ],
       ),
     ).onTap(onTap);
+  }
+
+  /// build Text widget
+  Widget buildText() {
+    return Text(
+      text.validate(),
+      style: textStyle ?? primaryTextStyle(),
+      maxLines: maxLine,
+      overflow: TextOverflow.ellipsis,
+    );
   }
 }

@@ -35,31 +35,13 @@ class UL extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(children.validate().length, (index) {
-        return Container(
+        return Padding(
           padding: edgeInsets ?? EdgeInsets.zero,
           child: Row(
             crossAxisAlignment:
                 symbolCrossAxisAlignment ?? CrossAxisAlignment.start,
             children: [
-              symbolType == SymbolType.Bullet
-                  ? Text(
-                      '•',
-                      style: boldTextStyle(
-                        color: symbolColor ?? textPrimaryColorGlobal,
-                        size: 24,
-                      ),
-                    )
-                  : SizedBox(),
-              symbolType == SymbolType.Numbered
-                  ? Text(
-                      '${prefixText.validate()} ${index + 1}.',
-                      style: boldTextStyle(
-                          color: symbolColor ?? textPrimaryColorGlobal),
-                    )
-                  : SizedBox(),
-              (symbolType == SymbolType.Custom && customSymbol != null)
-                  ? customSymbol!
-                  : SizedBox(),
+              symbolWidget(index),
               SizedBox(width: padding),
               children![index].expand(),
             ],
@@ -67,5 +49,29 @@ class UL extends StatelessWidget {
         );
       }),
     );
+  }
+
+  /// Returns a symbol widget
+  Widget symbolWidget(int index) {
+    if (symbolType == SymbolType.Numbered && customSymbol != null) {
+      return customSymbol!;
+    } else if (symbolType == SymbolType.Bullet) {
+      return Text(
+        '•',
+        style: boldTextStyle(
+          color: symbolColor ?? textPrimaryColorGlobal,
+          //size: 24,
+        ),
+      );
+    } else if (symbolType == SymbolType.Numbered) {
+      return Text(
+        '${prefixText.validate()} ${index + 1}.',
+        style: boldTextStyle(
+          color: symbolColor ?? textPrimaryColorGlobal,
+        ),
+      );
+    }
+
+    return Offstage();
   }
 }
