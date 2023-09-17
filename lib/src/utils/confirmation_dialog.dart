@@ -416,6 +416,9 @@ Future<bool?> showConfirmDialogCustom(
                     AppButton(
                       elevation: 0,
                       color: getDialogPrimaryColor(_, dialogType, primaryColor),
+                      shapeBorder: RoundedRectangleBorder(
+                        borderRadius: radius(defaultAppButtonRadius),
+                      ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [

@@ -56,24 +56,24 @@ extension TextExtension on Text {
     );
 
     return Text(
-      this.data!,
+      data!,
       style: style,
-      textAlign: this.textAlign,
-      strutStyle: this.strutStyle,
-      softWrap: this.softWrap,
-      semanticsLabel: this.semanticsLabel,
+      textAlign: textAlign,
+      strutStyle: strutStyle,
+      softWrap: softWrap,
+      semanticsLabel: semanticsLabel,
       locale: this.locale,
-      overflow: this.overflow,
-      textWidthBasis: this.textWidthBasis,
-      textDirection: this.textDirection,
-      textScaleFactor: this.textScaleFactor,
-      maxLines: this.maxLines,
+      overflow: overflow,
+      textWidthBasis: textWidthBasis,
+      textDirection: textDirection,
+      textScaleFactor: textScaleFactor,
+      maxLines: maxLines,
     );
   }
 }
 
 extension S on String? {
-  @deprecated
+  @Deprecated('Use Flutter Text widget instead')
   Text text({
     String defaultValue = '',
     TextStyle? style,
@@ -89,7 +89,7 @@ extension S on String? {
     TextWidthBasis? textWidthBasis,
   }) {
     return Text(
-      this.validate(value: defaultValue),
+      validate(value: defaultValue),
       style: style,
       maxLines: maxLines,
       overflow: overflow,
@@ -112,7 +112,5 @@ extension S on String? {
   /// Returns a list of chars from a String
   @Deprecated('Use toList() instead')
   List<String> toCharArray() =>
-      this != null && this.validate().trim().isNotEmpty
-          ? this.validate().split('')
-          : [];
+      this != null && validate().trim().isNotEmpty ? validate().split('') : [];
 }

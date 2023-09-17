@@ -21,6 +21,7 @@ class AppButton extends StatefulWidget {
   final double? height;
   final bool enabled;
   final bool? enableScaleAnimation;
+  final Color? disabledTextColor;
 
   AppButton({
     this.onTap,
@@ -41,6 +42,7 @@ class AppButton extends StatefulWidget {
     this.hoverColor,
     this.splashColor,
     this.enableScaleAnimation,
+    this.disabledTextColor,
     Key? key,
   }) : super(key: key);
 
@@ -130,6 +132,7 @@ class _AppButtonState extends State<AppButton>
         focusColor: widget.focusColor,
         hoverColor: widget.hoverColor,
         splashColor: widget.splashColor,
+        disabledTextColor: widget.disabledTextColor,
       ),
     );
   }

@@ -34,7 +34,7 @@ class Blur extends StatelessWidget {
       color: Colors.transparent,
       borderRadius: borderRadius,
       child: ClipRRect(
-        borderRadius: borderRadius,
+        borderRadius: borderRadius ?? BorderRadius.zero,
         clipBehavior: clipBehavior,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),

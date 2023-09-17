@@ -73,7 +73,7 @@ class AppTextField extends StatefulWidget {
 
   final String? title;
   final TextStyle? titleTextStyle;
-  final int? spacingBetweenTitleAndTextFormField;
+  final int spacingBetweenTitleAndTextFormField;
 
   AppTextField({
     this.controller,
@@ -380,7 +380,7 @@ class _AppTextFieldState extends State<AppTextField> {
         children: [
           Text(
             widget.title!,
-            style: widget.textStyle ?? primaryTextStyle(),
+            style: widget.titleTextStyle ?? primaryTextStyle(),
           ),
           widget.spacingBetweenTitleAndTextFormField.height,
           textFormFieldWidget(),

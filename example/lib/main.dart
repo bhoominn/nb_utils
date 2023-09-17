@@ -20,6 +20,7 @@ void main() async {
   defaultToastTextColor = Colors.white;
   defaultToastGravityGlobal = ToastGravity.CENTER;
   defaultRadius = 16;
+  defaultAppButtonRadius = 16;
 
   runApp(MyApp());
 }
