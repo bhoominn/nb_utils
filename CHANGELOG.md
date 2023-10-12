@@ -1,3 +1,5 @@
+## 6.0.6
+- Added subTitleMaxLine in SettingItemWidget
 ## 6.0.5
 - Upgraded connectivity_plus to 5.0.0
 ## 6.0.4

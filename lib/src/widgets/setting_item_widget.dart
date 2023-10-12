@@ -22,6 +22,7 @@ class SettingItemWidget extends StatelessWidget {
   final Decoration? decoration;
   final double? borderRadius;
   final BorderRadius? radius;
+  final int subTitleMaxLine;
 
   SettingItemWidget({
     required this.title,
@@ -43,6 +44,7 @@ class SettingItemWidget extends StatelessWidget {
     this.splashColor,
     this.highlightColor,
     this.radius,
+    this.subTitleMaxLine = 2,
     Key? key,
   }) : super(key: key);
 
@@ -75,7 +77,7 @@ class SettingItemWidget extends StatelessWidget {
                       secondaryTextStyle(
                         color: subTitleTextColor ?? textSecondaryColorGlobal,
                       ),
-                  maxLines: 2,
+                  maxLines: subTitleMaxLine,
                   overflow: TextOverflow.ellipsis,
                 ),
             ],
