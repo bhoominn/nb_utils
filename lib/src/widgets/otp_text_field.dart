@@ -15,6 +15,8 @@ class OTPTextField extends StatefulWidget {
   final double fieldWidth;
   final TextStyle? textStyle;
 
+  final Color? cursorColor;
+
   OTPTextField({
     this.pinLength = 4,
     this.fieldWidth = 40,
@@ -24,6 +26,7 @@ class OTPTextField extends StatefulWidget {
     this.decoration,
     this.boxDecoration,
     this.textStyle,
+    this.cursorColor,
     Key? key,
   }) : super(key: key);
 
@@ -51,13 +54,13 @@ class OTPTextFieldState extends State<OTPTextField> {
   String get concatText {
     String text = '';
 
-    list.forEach((element) {
+    for (var element in list) {
       if (text.isEmpty) {
         text = element.textEditingController!.text;
       } else {
         text = '$text${element.textEditingController!.text}';
       }
-    });
+    }
 
     return text;
   }
@@ -100,10 +103,10 @@ class OTPTextFieldState extends State<OTPTextField> {
   @override
   void dispose() {
     super.dispose();
-    list.forEach((element) {
+    for (var element in list) {
       element.textEditingController?.dispose();
       element.focusNode?.dispose();
-    });
+    }
   }
 
   @override
@@ -139,6 +142,7 @@ class OTPTextFieldState extends State<OTPTextField> {
               FilteringTextInputFormatter.allow(RegExp('[0-9]')),
             ],
             maxLength: 1,
+            cursorColor: widget.cursorColor,
             decoration: widget.decoration ??
                 InputDecoration(
                   border: widget.showUnderline ? null : InputBorder.none,

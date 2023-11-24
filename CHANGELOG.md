@@ -1,3 +1,5 @@
+## 6.0.7
+- Added Cursor Color in OTP Text Field
 ## 6.0.6
 - Added subTitleMaxLine in SettingItemWidget
 ## 6.0.5

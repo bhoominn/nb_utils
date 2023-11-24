@@ -1,6 +1,6 @@
 name: nb_utils
 description: Collection of Widgets and helpful Methods that every developer needs.
-version: 6.0.6
+version: 6.0.7
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
@@ -23,9 +23,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  shared_preferences: ^2.2.1
-  fluttertoast: ^8.2.2
-  connectivity_plus: ^5.0.0
+  shared_preferences: ^2.2.2
+  fluttertoast: ^8.2.4
+  connectivity_plus: ^5.0.2
 
 flutter:
   plugin:
