@@ -53,7 +53,9 @@ class _MyAppState extends State<MyApp> {
           darkTheme: ThemeData.dark(
             useMaterial3: true,
           ),
-          themeMode: getIntAsync(THEME_MODE_INDEX) == 2 ? ThemeMode.dark : ThemeMode.light,
+          themeMode: getIntAsync(THEME_MODE_INDEX) == 2
+              ? ThemeMode.dark
+              : ThemeMode.light,
           home: HomePage(),
         );
       },
@@ -89,7 +91,8 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('This is the example of showInDialog method', style: primaryTextStyle()),
+          Text('This is the example of showInDialog method',
+              style: primaryTextStyle()),
           4.height,
           Text('Secondary text here', style: secondaryTextStyle()),
         ],
@@ -257,7 +260,9 @@ class _HomePageState extends State<HomePage> {
                                     },
                                   ),
                                 );
-                              }, title: Text('Theme'), contentPadding: EdgeInsets.zero);
+                              },
+                                  title: Text('Theme'),
+                                  contentPadding: EdgeInsets.zero);
                             },
                           ),
                           AppButton(
@@ -277,10 +282,12 @@ class _HomePageState extends State<HomePage> {
                             onTap: () async {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_RIGHT_LEFT,
                                 title: "Do you want to logout from the app?",
                                 dialogType: DialogType.CONFIRMATION,
-                                centerImage: 'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
+                                centerImage:
+                                    'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
                                 onAccept: (_) {
                                   //
                                 },
@@ -297,7 +304,8 @@ class _HomePageState extends State<HomePage> {
                             onTap: () {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_BOTTOM_TOP,
                                 title: "Do you want to update this item?",
                                 dialogType: DialogType.UPDATE,
                                 onAccept: (_) {
@@ -311,7 +319,8 @@ class _HomePageState extends State<HomePage> {
                             onTap: () {
                               showConfirmDialogCustom(
                                 context,
-                                dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_LEFT_RIGHT,
                                 title: "Delete 89 files permanent?",
                                 dialogType: DialogType.DELETE,
                                 onAccept: (_) {
@@ -327,7 +336,8 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 title: "Do you want to add this item?",
                                 dialogType: DialogType.ADD,
-                                dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_TOP_BOTTOM,
                                 onAccept: (_) {
                                   snackBar(context, title: 'Added');
                                 },
@@ -339,7 +349,8 @@ class _HomePageState extends State<HomePage> {
                       16.height,
 
                       /// Hover Widget Example
-                      Text('Dialog Animation Example', style: primaryTextStyle()),
+                      Text('Dialog Animation Example',
+                          style: primaryTextStyle()),
                       8.height,
                       Wrap(
                         spacing: 8,
@@ -348,43 +359,60 @@ class _HomePageState extends State<HomePage> {
                           AppButton(
                             text: 'Default',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget());
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget());
                             },
                           ),
                           AppButton(
                             text: 'Rotate',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.ROTATE);
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget(),
+                                  dialogAnimation: DialogAnimation.ROTATE);
                             },
                           ),
                           AppButton(
                             text: 'Scale',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SCALE);
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget(),
+                                  dialogAnimation: DialogAnimation.SCALE);
                             },
                           ),
                           AppButton(
                             text: 'Top to Bottom',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM);
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget(),
+                                  dialogAnimation:
+                                      DialogAnimation.SLIDE_TOP_BOTTOM);
                             },
                           ),
                           AppButton(
                             text: 'Bottom to Top',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP);
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget(),
+                                  dialogAnimation:
+                                      DialogAnimation.SLIDE_BOTTOM_TOP);
                             },
                           ),
                           AppButton(
                             text: 'Left to Right',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT);
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget(),
+                                  dialogAnimation:
+                                      DialogAnimation.SLIDE_LEFT_RIGHT);
                             },
                           ),
                           AppButton(
                             text: 'Right to Left',
                             onTap: () async {
-                              showInDialog(context, builder: (_) => dialogWidget(), dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT);
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget(),
+                                  dialogAnimation:
+                                      DialogAnimation.SLIDE_RIGHT_LEFT);
                             },
                           ),
                         ],
@@ -421,25 +449,28 @@ class _HomePageState extends State<HomePage> {
                         controller: textCont,
                         textFieldType: TextFieldType.OTHER,
                         enableChatGPT: true,
+                        testWithoutKeyChatGPT: true,
                         suffixChatGPTicon: Transform.flip(
                           flipX: true,
                           child: Image.asset(
-                            "package/nb_utils/assets/icons/ic_beautify.png",
+                            "assets/icons/ic_beautify.png",
                             height: 22,
                             width: 22,
                             fit: BoxFit.cover,
                             color: context.primaryColor,
-                            errorBuilder: (context, error, stackTrace) => Transform.flip(
+                            errorBuilder: (context, error, stackTrace) =>
+                                Transform.flip(
                               flipX: true,
                               child: Text(
                                 "AI",
-                                style: boldTextStyle(color: context.primaryColor, size: 16),
+                                style: boldTextStyle(
+                                    color: context.primaryColor, size: 16),
                               ),
                             ),
                           ),
                         ),
                         loadingChatGPT: Lottie.asset(
-                          "package/nb_utils/assets/lottie/typing.json",
+                          "assets/lottie/typing.json",
                           width: context.width() * 0.35,
                           height: 30,
                           fit: BoxFit.contain,
@@ -456,7 +487,6 @@ class _HomePageState extends State<HomePage> {
                       /// Email TextField
                       AppTextField(
                         textFieldType: TextFieldType.EMAIL,
-                        enableChatGPT: true,
                         decoration: defaultInputDecoration(label: 'Email'),
                         title: 'Email',
                       ),
@@ -465,7 +495,6 @@ class _HomePageState extends State<HomePage> {
                       /// Address TextField
                       AppTextField(
                         textFieldType: TextFieldType.MULTILINE,
-                        enableChatGPT: true,
                         decoration: defaultInputDecoration(label: 'Address'),
                         minLines: 4,
                       ),
@@ -498,7 +527,10 @@ class _HomePageState extends State<HomePage> {
                       AppButton(
                         text: 'Toast',
                         onTap: () async {
-                          toasty(context, 'Toast', borderRadius: BorderRadius.circular(1), textColor: Colors.pinkAccent, gravity: ToastGravity.CENTER);
+                          toasty(context, 'Toast',
+                              borderRadius: BorderRadius.circular(1),
+                              textColor: Colors.pinkAccent,
+                              gravity: ToastGravity.CENTER);
                         },
                       ),
                     ],
@@ -506,23 +538,28 @@ class _HomePageState extends State<HomePage> {
 
                   16.height,
                   SettingSection(
-                    title: Text('Account Management', style: boldTextStyle(size: 24)),
-                    subTitle: Text('Control your account', style: primaryTextStyle(size: 16)),
+                    title: Text('Account Management',
+                        style: boldTextStyle(size: 24)),
+                    subTitle: Text('Control your account',
+                        style: primaryTextStyle(size: 16)),
                     items: [
                       SettingItemWidget(
                         title: 'Hibernate account',
                         subTitle: 'Temporary deactivate your account',
                         decoration: BoxDecoration(borderRadius: radius()),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
+                            color: context.dividerColor),
                         onTap: () {
                           //
                         },
                       ),
                       SettingItemWidget(
                         title: 'Close account',
-                        subTitle: 'Learn about your options, and close your account if you wish',
+                        subTitle:
+                            'Learn about your options, and close your account if you wish',
                         decoration: BoxDecoration(borderRadius: radius()),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
+                            color: context.dividerColor),
                         onTap: () {
                           push(HomePage());
                         },
