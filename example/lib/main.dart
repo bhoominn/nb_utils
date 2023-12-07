@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'animated_listview_example.dart';
@@ -69,6 +70,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController textCont = TextEditingController();
+  List<String> recentChat = [];
 
   double rating = 2.2;
 
@@ -441,9 +444,47 @@ class _HomePageState extends State<HomePage> {
                       ),
                       8.height,
 
+                      /// Default AppTextField With ChatGPT
+                      AppTextField(
+                        controller: textCont,
+                        textFieldType: TextFieldType.OTHER,
+                        enableChatGPT: true,
+                        suffixChatGPTicon: Transform.flip(
+                          flipX: true,
+                          child: Image.asset(
+                            "package/nb_utils/assets/icons/ic_beautify.png",
+                            height: 22,
+                            width: 22,
+                            fit: BoxFit.cover,
+                            color: context.primaryColor,
+                            errorBuilder: (context, error, stackTrace) => Transform.flip(
+                              flipX: true,
+                              child: Text(
+                                "AI",
+                                style: boldTextStyle(color: context.primaryColor, size: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                        loadingChatGPT: Lottie.asset(
+                          "package/nb_utils/assets/lottie/typing.json",
+                          width: context.width() * 0.35,
+                          height: 30,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) => Text(
+                            "Loading...",
+                            style: boldTextStyle(color: white),
+                          ).paddingSymmetric(horizontal: 8),
+                        ),
+                        recentListChatGPT: recentChat,
+                        decoration: defaultInputDecoration(),
+                      ),
+                      8.height,
+
                       /// Email TextField
                       AppTextField(
                         textFieldType: TextFieldType.EMAIL,
+                        enableChatGPT: true,
                         decoration: defaultInputDecoration(label: 'Email'),
                         title: 'Email',
                       ),
@@ -452,6 +493,7 @@ class _HomePageState extends State<HomePage> {
                       /// Address TextField
                       AppTextField(
                         textFieldType: TextFieldType.MULTILINE,
+                        enableChatGPT: true,
                         decoration: defaultInputDecoration(label: 'Address'),
                         minLines: 4,
                       ),
@@ -484,10 +526,7 @@ class _HomePageState extends State<HomePage> {
                       AppButton(
                         text: 'Toast',
                         onTap: () async {
-                          toasty(context, 'Toast',
-                              borderRadius: BorderRadius.circular(1),
-                              textColor: Colors.pinkAccent,
-                              gravity: ToastGravity.CENTER);
+                          toasty(context, 'Toast', borderRadius: BorderRadius.circular(1), textColor: Colors.pinkAccent, gravity: ToastGravity.CENTER);
                         },
                       ),
                     ],
@@ -495,27 +534,21 @@ class _HomePageState extends State<HomePage> {
 
                   16.height,
                   SettingSection(
-                    title: Text('Account Management',
-                        style: boldTextStyle(size: 24)),
-                    subTitle: Text('Control your account',
-                        style: primaryTextStyle(size: 16)),
+                    title: Text('Account Management', style: boldTextStyle(size: 24)),
                     items: [
                       SettingItemWidget(
                         title: 'Hibernate account',
                         subTitle: 'Temporary deactivate your account',
                         decoration: BoxDecoration(borderRadius: radius()),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                            color: context.dividerColor),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded, color: context.dividerColor),
                         onTap: () {
                           //
                         },
                       ),
                       SettingItemWidget(
                         title: 'Close account',
-                        subTitle:
-                            'Learn about your options, and close your account if you wish',
+                        subTitle: 'Learn about your options, and close your account if you wish',
                         decoration: BoxDecoration(borderRadius: radius()),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
                             color: context.dividerColor),
                         onTap: () {
                           push(HomePage());
