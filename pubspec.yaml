@@ -26,6 +26,9 @@ dependencies:
   shared_preferences: ^2.2.2
   fluttertoast: ^8.2.4
   connectivity_plus: ^5.0.2
+  animated_text_kit: ^4.2.2
+  lottie: ^2.7.0
+  http: ^1.1.0
 
 flutter:
   plugin:
@@ -41,12 +44,18 @@ flutter:
         pluginClass: NbUtilsPlugin
       windows:
         pluginClass: NbUtilsPlugin
-
+    
   fonts:
     - family: LineAwesomeIcons
       fonts:
         - asset: fonts/LineAwesome.ttf
           weight: 400
+
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/lottie/
+
 
 topics:
   - widgets

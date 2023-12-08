@@ -149,6 +149,10 @@ BorderRadius defaultToastBorderRadiusGlobal = radius(30);
 
 PageRouteAnimation? pageRouteAnimationGlobal;
 Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
+
+//ChatGpt Key
+String? chatGptApikey;
+
 //endregion
 
 const channelName = 'nb_utils';
