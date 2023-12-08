@@ -26,8 +26,6 @@ dependencies:
   shared_preferences: ^2.2.2
   fluttertoast: ^8.2.4
   connectivity_plus: ^5.0.2
-  animated_text_kit: ^4.2.2
-  lottie: ^2.7.0
   http: ^1.1.0
 
 flutter:

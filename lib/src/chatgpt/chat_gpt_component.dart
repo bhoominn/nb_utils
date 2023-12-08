@@ -1,39 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'chatgpt.dart';
-import 'chatgpt_strings.dart';
 
-class ChatGPTSheetBottomSheet extends StatefulWidget {
+class ChatGPTSheetComponent extends StatefulWidget {
+  final String initialPrompt;
   final ScrollController scrollController;
   final List<String> recentList;
-  final bool showDebugLogs;
   final bool shortReply;
   final bool testWithoutKey;
-  final Widget? loading;
+  final Widget? loaderWidget;
   final InputDecoration? promptFieldInputDecoration;
-  ChatGPTSheetBottomSheet({
+  final String promptPrefix;
+
+  final ChatGPTModuleStrings gptModuleStrings;
+
+  ChatGPTSheetComponent({
     super.key,
+    this.initialPrompt = '',
     required this.recentList,
-    this.showDebugLogs = false,
     this.shortReply = false,
     this.testWithoutKey = false,
     this.promptFieldInputDecoration,
     required this.scrollController,
-    this.loading,
+    this.loaderWidget,
+    this.promptPrefix = 'Tune this',
+    required this.gptModuleStrings,
   });
 
   @override
-  State<ChatGPTSheetBottomSheet> createState() => _ChatGPTSheetBottomSheetState();
+  State<ChatGPTSheetComponent> createState() => _ChatGPTSheetComponentState();
 }
 
-class _ChatGPTSheetBottomSheetState extends State<ChatGPTSheetBottomSheet> {
+class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
   TextEditingController promptCont = TextEditingController();
   TextEditingController answerCont = TextEditingController();
 
   bool displayGeneratedText = false;
   bool isTextAnimationCompleted = false;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    if (widget.initialPrompt.isNotEmpty) {
+      promptCont.text = widget.initialPrompt;
+    }
+  }
+
+  void handleGenerateClick(BuildContext context) async {
+    if (isLoading || (answerCont.text.isNotEmpty && !isTextAnimationCompleted)) {
+      toast(widget.gptModuleStrings.pleaseWaitGeneratingContent);
+      return;
+    }
+    if (promptCont.text.isEmpty) {
+      toast(widget.gptModuleStrings.pleaseEnterTextToGenerate);
+      return;
+    }
+
+    hideKeyboard(context);
+    isLoading = true;
+    displayGeneratedText = false;
+    isTextAnimationCompleted = false;
+    setState(() {});
+
+    await generateWithChatGPT(
+      prompt: promptCont.text,
+      promptPrefix: widget.promptPrefix,
+      shortReply: widget.shortReply,
+      testWithoutKey: widget.testWithoutKey,
+      gptModuleStrings: widget.gptModuleStrings,
+    ).then((value) async {
+      answerCont.text = value.trim();
+
+      await 350.milliseconds.delay;
+
+      displayGeneratedText = true;
+    }).catchError((e) {
+      toast(e.toString());
+    }).whenComplete(() {});
+
+    isLoading = false;
+    setState(() {});
+  }
 
   @override
   void setState(fn) {
@@ -47,12 +98,15 @@ class _ChatGPTSheetBottomSheetState extends State<ChatGPTSheetBottomSheet> {
         children: [
           Container(
             margin: EdgeInsets.only(top: context.height() * 0.04),
-            decoration: boxDecorationWithRoundedCorners(borderRadius: radiusOnly(topLeft: defaultRadius, topRight: defaultRadius), backgroundColor: context.scaffoldBackgroundColor),
+            decoration: boxDecorationWithRoundedCorners(
+              borderRadius: radiusOnly(topLeft: defaultRadius, topRight: defaultRadius),
+              // backgroundColor: context.cardColor,
+            ),
             padding: EdgeInsets.all(16),
             child: Column(
               children: [
                 SingleChildScrollView(
-                  controller: widget.scrollController,
+                  // controller: widget.scrollController,
                   physics: NeverScrollableScrollPhysics(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,139 +114,152 @@ class _ChatGPTSheetBottomSheetState extends State<ChatGPTSheetBottomSheet> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(GPTModuleStrings.generateUsingAI, style: boldTextStyle(color: context.primaryColor, size: 16)).expand(),
-                          CloseButton(color: context.primaryColor),
+                          Text(
+                            widget.gptModuleStrings.generateUsingAI,
+                            style: boldTextStyle(size: 16),
+                          ).expand(),
+                          CloseButton(color: context.iconColor),
                         ],
                       ),
                       AppTextField(
                         textFieldType: TextFieldType.MULTILINE,
                         controller: promptCont,
-                        decoration: widget.promptFieldInputDecoration ?? defaultInputDecoration(hint: GPTModuleStrings.writeTextHere),
+                        decoration: widget.promptFieldInputDecoration ??
+                            defaultInputDecoration(
+                              hint: widget.gptModuleStrings.writeTextHere,
+                            ),
                       ),
                       32.height,
                       Column(
                         children: [
                           AppButton(
-                            text: answerCont.text.isNotEmpty ? GPTModuleStrings.reGenerate : GPTModuleStrings.generate,
+                            child: isLoading
+                                ? (widget.loaderWidget ?? Text(widget.gptModuleStrings.loading, style: boldTextStyle(color: white)))
+                                : Text(answerCont.text.isNotEmpty ? widget.gptModuleStrings.reGenerate : widget.gptModuleStrings.generate, style: boldTextStyle(color: white)),
                             color: context.primaryColor,
                             textStyle: boldTextStyle(color: white),
                             width: context.width(),
+                            elevation: defaultAppButtonElevation,
                             onTap: () {
                               handleGenerateClick(context);
                             },
                           ),
-                          16.height,
-                          if (isTextAnimationCompleted)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          if (displayGeneratedText)
+                            Column(
                               children: [
-                                TextButton(
-                                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(context.primaryColor.withOpacity(0.1)), padding: MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 12, vertical: 2))),
-                                  onPressed: () {
-                                    finish(context, answerCont.text);
-                                  },
-                                  child: Text(
-                                    GPTModuleStrings.useThis,
-                                    style: boldTextStyle(color: context.primaryColor),
-                                  ),
-                                ),
-                                TextButton(
-                                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(context.primaryColor.withOpacity(0.1)), padding: MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 12, vertical: 2))),
-                                  onPressed: () {
-                                    finish(context, promptCont.text);
-                                  },
-                                  child: Text(
-                                    GPTModuleStrings.useMyText,
-                                    style: boldTextStyle(color: context.primaryColor),
+                                Container(
+                                  margin: EdgeInsets.only(top: 20),
+                                  padding: EdgeInsets.all(8),
+                                  width: context.width(),
+                                  decoration: boxDecorationWithRoundedCorners(borderRadius: radius(defaultRadius), border: Border.all(color: Colors.grey.shade200)),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      DefaultTextStyle(
+                                        style: primaryTextStyle(),
+                                        child: AnimatedTextKit(
+                                          repeatForever: false,
+                                          totalRepeatCount: 1,
+                                          isRepeatingAnimation: false,
+                                          onFinished: () {
+                                            if (!isTextAnimationCompleted) {
+                                              widget.recentList.insert(0, answerCont.text);
+                                            }
+                                            isTextAnimationCompleted = true;
+                                            setState(() {});
+                                          },
+                                          animatedTexts: [
+                                            TypewriterAnimatedText(
+                                              answerCont.text,
+                                              speed: Duration(
+                                                milliseconds: isTextAnimationCompleted ? 0 : 30,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ).expand(),
+                                      if (isTextAnimationCompleted)
+                                        IconButton(
+                                          onPressed: () {
+                                            answerCont.text.copyToClipboard();
+                                            toast(widget.gptModuleStrings.copied);
+
+                                            finish(context, answerCont.text);
+                                          },
+                                          icon: Icon(Icons.copy_outlined, color: context.iconColor, size: 18),
+                                        ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                          16.height,
-                          isLoading
-                              ? autoTypingView(context, loading: widget.loading)
-                              : Container(
-                                  padding: EdgeInsets.all(8),
-                                  width: context.width(),
-                                  decoration: boxDecorationWithRoundedCorners(borderRadius: radius(defaultRadius), backgroundColor: displayGeneratedText ? context.primaryColor.withOpacity(0.1) : transparentColor),
-                                  child: DefaultTextStyle(
-                                    style: primaryTextStyle(),
-                                    child: AnimatedTextKit(
-                                      repeatForever: false,
-                                      totalRepeatCount: 1,
-                                      isRepeatingAnimation: false,
-                                      onFinished: () {
-                                        if (!isTextAnimationCompleted) {
-                                          widget.recentList.insert(0, answerCont.text);
-                                        }
-                                        isTextAnimationCompleted = true;
-                                        setState(() {});
-                                      },
-                                      animatedTexts: [
-                                        TypewriterAnimatedText(answerCont.text, speed: Duration(milliseconds: isTextAnimationCompleted ? 0 : 30)),
-                                      ],
+                          if (widget.recentList.isNotEmpty && widget.recentList.length > 1 && !isLoading)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                8.height,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      widget.gptModuleStrings.recent,
+                                      style: primaryTextStyle(
+                                        size: 16,
+                                      ),
                                     ),
-                                  ).visible(displayGeneratedText),
+                                    IconButton(
+                                      icon: Icon(Icons.clear_all_rounded, color: context.iconColor.withOpacity(0.6)),
+                                      onPressed: () async {
+                                        showConfirmDialogCustom(
+                                          context,
+                                          onAccept: (_) async {
+                                            widget.recentList.clear();
+                                            setState(() {});
+                                          },
+                                          primaryColor: context.primaryColor,
+                                          negativeText: widget.gptModuleStrings.no,
+                                          positiveText: widget.gptModuleStrings.yes,
+                                          title: widget.gptModuleStrings.doYouWantClearRecent,
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              16.height,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(GPTModuleStrings.recents, style: boldTextStyle(color: context.primaryColor, size: 16)),
-                                  IconButton(
-                                    icon: Icon(Icons.clear_all_rounded, color: context.primaryColor),
-                                    onPressed: () async {
-                                      showConfirmDialogCustom(
-                                        context,
-                                        onAccept: (_) async {
-                                          widget.recentList.clear();
-                                          setState(() {});
+                                Container(
+                                  height: context.height() * 0.42,
+                                  child: AnimatedListView(
+                                    shrinkWrap: true,
+                                    itemCount: widget.recentList.take(6).length,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    listAnimationType: ListAnimationType.FadeIn,
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          finish(context, widget.recentList[index]);
                                         },
-                                        primaryColor: context.primaryColor,
-                                        negativeText: GPTModuleStrings.no,
-                                        positiveText: GPTModuleStrings.yes,
-                                        title: GPTModuleStrings.doYouWantClearRecents,
+                                        behavior: HitTestBehavior.translucent,
+                                        child: Container(
+                                          margin: EdgeInsets.only(bottom: 12),
+                                          padding: EdgeInsets.all(8),
+                                          decoration: boxDecorationWithRoundedCorners(
+                                            borderRadius: radius(defaultRadius),
+                                            border: Border.all(color: Colors.grey.shade200),
+                                          ),
+                                          child: Text(
+                                            widget.recentList[index],
+                                            textAlign: TextAlign.left,
+                                            style: secondaryTextStyle(size: 14),
+                                            locale: Localizations.localeOf(context),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
                                       );
                                     },
                                   ),
-                                ],
-                              ),
-                              Container(
-                                height: context.height() * 0.42,
-                                child: AnimatedListView(
-                                  shrinkWrap: true,
-                                  itemCount: widget.recentList.take(6).length,
-                                  physics: AlwaysScrollableScrollPhysics(),
-                                  listAnimationType: ListAnimationType.FadeIn,
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        finish(context, widget.recentList[index]);
-                                      },
-                                      behavior: HitTestBehavior.translucent,
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 12),
-                                        padding: EdgeInsets.all(8),
-                                        decoration: boxDecorationWithRoundedCorners(borderRadius: radius(defaultRadius), backgroundColor: context.primaryColor.withOpacity(0.05)),
-                                        child: ReadMoreText(
-                                          widget.recentList[index],
-                                          trimLines: 3,
-                                          textAlign: TextAlign.left,
-                                          style: secondaryTextStyle(size: 14),
-                                          colorClickableText: context.primaryColor,
-                                          trimMode: TrimMode.Line,
-                                          locale: Localizations.localeOf(context),
-                                        ),
-                                      ),
-                                    );
-                                  },
                                 ),
-                              ),
-                            ],
-                          ).visible(widget.recentList.isNotEmpty)
+                              ],
+                            ),
                         ],
                       )
                     ],
@@ -204,37 +271,5 @@ class _ChatGPTSheetBottomSheetState extends State<ChatGPTSheetBottomSheet> {
         ],
       ),
     );
-  }
-
-  void handleGenerateClick(BuildContext context) async {
-    if (isLoading || (answerCont.text.isNotEmpty && !isTextAnimationCompleted)) {
-      toast(GPTModuleStrings.pleaseWaitGeneratingContent);
-      return;
-    }
-    if (promptCont.text.isEmpty) {
-      toast(GPTModuleStrings.pleaseEnterTextToGenerate);
-      return;
-    }
-    hideKeyboard(context);
-    isLoading = true;
-    displayGeneratedText = false;
-    isTextAnimationCompleted = false;
-    setState(() {});
-
-    generateWithChatGpt(
-      "${promptCont.text} \n Make this proper ",
-      shortReply: widget.shortReply,
-      showDebugLogs: widget.showDebugLogs,
-      testWithoutKey: widget.testWithoutKey,
-    ).then((value) async {
-      answerCont.text = value.trim();
-      await 350.milliseconds.delay;
-      displayGeneratedText = true;
-      setState(() {});
-    }).catchError((e) {
-      toast(e.toString());
-    }).whenComplete(() {
-      isLoading = false;
-    });
   }
 }

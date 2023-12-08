@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import 'animated_listview_example.dart';
@@ -71,7 +69,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController textCont = TextEditingController();
-  List<String> recentChat = [];
 
   double rating = 2.2;
 
@@ -450,36 +447,6 @@ class _HomePageState extends State<HomePage> {
                         textFieldType: TextFieldType.OTHER,
                         enableChatGPT: true,
                         testWithoutKeyChatGPT: true,
-                        suffixChatGPTicon: Transform.flip(
-                          flipX: true,
-                          child: Image.asset(
-                            "assets/icons/ic_beautify.png",
-                            height: 22,
-                            width: 22,
-                            fit: BoxFit.cover,
-                            color: context.primaryColor,
-                            errorBuilder: (context, error, stackTrace) =>
-                                Transform.flip(
-                              flipX: true,
-                              child: Text(
-                                "AI",
-                                style: boldTextStyle(
-                                    color: context.primaryColor, size: 16),
-                              ),
-                            ),
-                          ),
-                        ),
-                        loadingChatGPT: Lottie.asset(
-                          "assets/lottie/typing.json",
-                          width: context.width() * 0.35,
-                          height: 30,
-                          fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) => Text(
-                            "Loading...",
-                            style: boldTextStyle(color: white),
-                          ).paddingSymmetric(horizontal: 8),
-                        ),
-                        recentListChatGPT: recentChat,
                         decoration: defaultInputDecoration(),
                       ),
                       8.height,
