@@ -24,13 +24,20 @@ Future<String> generateWithChatGPT({
 }) async {
   if (testWithoutKey) {
     //=========================================For Test Without Api==============================================
-    ChatGPTAnswerResponseModel gptAnsResModel = ChatGPTAnswerResponseModel.fromJson(jsonDecode(jsonEncode({
+    ChatGPTAnswerResponseModel gptAnsResModel =
+        ChatGPTAnswerResponseModel.fromJson(jsonDecode(jsonEncode({
       "id": "cmpl-6biNrkL5FlEhzIoGojdKPiRG6ZGN3",
       "object": "text_completion",
       "created": 1674446767,
       "model": chatGPTConfigGlobal.chatGPTModel,
       "choices": [
-        {"text": "I am ChatGPT, a large language model trained by OpenAI, based on the GPT-3.5 architecture.", "index": 0, "logprobs": null, "finish_reason": "stop"}
+        {
+          "text":
+              "I am ChatGPT, a large language model trained by OpenAI, based on the GPT-3.5 architecture.",
+          "index": 0,
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
       ],
       "usage": {"prompt_tokens": 7, "completion_tokens": 61, "total_tokens": 68}
     })));
@@ -38,20 +45,25 @@ Future<String> generateWithChatGPT({
     log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.choices[0].text}');
 
     await 3.seconds.delay;
-    if (gptAnsResModel.choices.isNotEmpty && gptAnsResModel.choices[0].text.isNotEmpty) {
+    if (gptAnsResModel.choices.isNotEmpty &&
+        gptAnsResModel.choices[0].text.isNotEmpty) {
       return gptAnsResModel.choices[0].text.trim();
     } else {
       throw gptModuleStrings.noDataFromChatGPT;
     }
     //=========================================Api==============================================
   } else {
-    Map<String, String> header = {'Content-Type': 'application/json', 'Authorization': 'Bearer $chatGPTAPIkey'};
+    Map<String, String> header = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $chatGPTAPIkey'
+    };
 
     if (forceEnableDebug) log('CHAT GPT API HEADER: $header');
 
     Map jsonBodyData = {
       "model": chatGPTConfigGlobal.chatGPTModel,
-      "prompt": "$promptPrefix $prompt${shortReply ? ", Please reply in 1-2 line only" : ""}",
+      "prompt":
+          "$promptPrefix $prompt${shortReply ? ", Please reply in 1-2 line only" : ""}",
       "temperature": chatGPTConfigGlobal.temperature,
       "max_tokens": chatGPTConfigGlobal.maxTokens,
       "top_p": chatGPTConfigGlobal.topP,
@@ -63,19 +75,30 @@ Future<String> generateWithChatGPT({
 
     if (prompt.isNotEmpty) {
       try {
-        var response = await http.post(Uri.parse(chatGPTConfigGlobal.chatGPTAPIEndPoint), body: json.encode(jsonBodyData), headers: header);
+        var response = await http.post(
+            Uri.parse(chatGPTConfigGlobal.chatGPTAPIEndPoint),
+            body: json.encode(jsonBodyData),
+            headers: header);
 
         var jsonResponse = json.decode(response.body);
 
-        if (forceEnableDebug) log('getAnswerChatGPTApi JSON RESPONSE: $jsonResponse');
+        if (forceEnableDebug) {
+          log('getAnswerChatGPTApi JSON RESPONSE: $jsonResponse');
+        }
 
         if (response.statusCode == HttpStatus.ok) {
-          ChatGPTAnswerResponseModel gptAnsResModel = ChatGPTAnswerResponseModel.fromJson(jsonResponse);
+          ChatGPTAnswerResponseModel gptAnsResModel =
+              ChatGPTAnswerResponseModel.fromJson(jsonResponse);
 
-          if (forceEnableDebug) log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
-          if (forceEnableDebug) log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.choices[0].text}');
+          if (forceEnableDebug) {
+            log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
+          }
+          if (forceEnableDebug) {
+            log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.choices[0].text}');
+          }
 
-          if (gptAnsResModel.choices.isNotEmpty && gptAnsResModel.choices[0].text.isNotEmpty) {
+          if (gptAnsResModel.choices.isNotEmpty &&
+              gptAnsResModel.choices[0].text.isNotEmpty) {
             return gptAnsResModel.choices[0].text.trim();
           } else {
             throw gptModuleStrings.noDataFromChatGPT;
@@ -144,17 +167,22 @@ class ChatGPTWidget extends StatelessWidget {
           builder: (_) {
             return DraggableScrollableSheet(
               initialChildSize: 0.8,
-              maxChildSize: 1,
+              minChildSize: 0.8,
+              expand: false,
+              maxChildSize: 0.96,
               builder: (context, scrollController) {
-                return ChatGPTSheetComponent(
-                  scrollController: scrollController,
-                  initialPrompt: initialPrompt,
-                  recentList: recentList ?? [],
-                  promptFieldInputDecoration: promptFieldInputDecoration,
-                  shortReply: shortReply,
-                  testWithoutKey: testWithoutKey,
-                  loaderWidget: loaderWidget,
-                  gptModuleStrings: chatGPTModuleStrings,
+                return SingleChildScrollView(
+                  controller: scrollController,
+                  child: ChatGPTSheetComponent(
+                    scrollController: scrollController,
+                    initialPrompt: initialPrompt,
+                    recentList: recentList ?? [],
+                    promptFieldInputDecoration: promptFieldInputDecoration,
+                    shortReply: shortReply,
+                    testWithoutKey: testWithoutKey,
+                    loaderWidget: loaderWidget,
+                    gptModuleStrings: chatGPTModuleStrings,
+                  ),
                 );
               },
             );
