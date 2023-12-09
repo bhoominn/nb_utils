@@ -154,6 +154,8 @@ class ChatGPTWidget extends StatelessWidget {
       icon: child,
       color: context.iconColor,
       onPressed: () async {
+        hideKeyboard(context);
+
         String? res = await showModalBottomSheet(
           backgroundColor: Colors.transparent,
           context: context,

@@ -1,6 +1,6 @@
 name: nb_utils
 description: Collection of Widgets and helpful Methods that every developer needs.
-version: 6.0.7
+version: 6.1.0
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
@@ -28,6 +28,9 @@ dependencies:
   connectivity_plus: ^5.0.2
   http: ^1.1.0
 
+dev_dependencies:
+  lints: ^2.1.1
+
 flutter:
   plugin:
     platforms:
@@ -54,10 +57,8 @@ flutter:
     - assets/icons/
     - assets/lottie/
 
-
 topics:
   - widgets
   - extensions
   - utils
-dev_dependencies:
-  lints: ^2.1.1
+  - chatgpt

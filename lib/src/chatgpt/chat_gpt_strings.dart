@@ -28,7 +28,7 @@ class ChatGPTModuleStrings {
     this.pleaseWaitGeneratingContent =
         "Please wait while it's generating content!",
     this.pleaseEnterTextToGenerate =
-        'Please enter some text about, which type of content you want to generate!',
+        'Please enter some text about which type of content you want to generate!',
     this.writeTextHere = 'Write text here...',
     this.noDataFromChatGPT = 'No data from Chat GPT',
     this.errorCode = 'Error Code',

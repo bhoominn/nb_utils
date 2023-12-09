@@ -247,7 +247,8 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                   widget.recentList.clear();
                                   setState(() {});
                                 },
-                                primaryColor: context.primaryColor.withOpacity(0.85),
+                                primaryColor:
+                                    context.primaryColor.withOpacity(0.85),
                                 negativeText: widget.gptModuleStrings.no,
                                 positiveText: widget.gptModuleStrings.yes,
                                 title: widget

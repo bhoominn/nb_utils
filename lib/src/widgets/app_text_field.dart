@@ -324,7 +324,7 @@ class _AppTextFieldState extends State<AppTextField> {
               "assets/icons/ic_beautify.png",
               height: 22,
               package: channelName,
-              width: 22, 
+              width: 22,
               color: context.iconColor,
               fit: BoxFit.cover,
               // color: context.primaryColor,
