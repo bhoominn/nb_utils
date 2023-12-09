@@ -113,11 +113,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                 Text(
                   "${widget.gptModuleStrings.generateUsingAI} 🤖",
                   style: boldTextStyle(
-                    size: 16,
-                    color: context.platformBrightness() == Brightness.dark
-                        ? whiteColor
-                        : null,
-                  ),
+                      size: 16, color: context.primaryColor.withOpacity(0.85)),
                 ).expand(),
                 CloseButton(color: context.iconColor),
               ],
@@ -125,42 +121,53 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
             AppTextField(
               textFieldType: TextFieldType.MULTILINE,
               controller: promptCont,
-              textStyle: primaryTextStyle(
-                color: context.platformBrightness() == Brightness.dark
-                    ? whiteColor
-                    : null,
-              ),
               decoration: widget.promptFieldInputDecoration ??
                   defaultInputDecoration(
                     hint: widget.gptModuleStrings.writeTextHere,
-                    textStyle: secondaryTextStyle(
-                      color: context.platformBrightness() == Brightness.dark
-                          ? whiteColor
-                          : null,
-                    ),
                   ),
             ),
             32.height,
             Column(
               children: [
-                AppButton(
-                  child: isLoading
-                      ? (widget.loaderWidget ??
-                          Text(widget.gptModuleStrings.loading,
-                              style: boldTextStyle(color: white)))
-                      : Text(
-                          answerCont.text.isNotEmpty
-                              ? widget.gptModuleStrings.reGenerate
-                              : widget.gptModuleStrings.generate,
-                          style: boldTextStyle(color: white)),
-                  color: context.primaryColor,
-                  textStyle: boldTextStyle(color: white),
-                  width: context.width(),
-                  elevation: defaultAppButtonElevation,
-                  onTap: () {
-                    handleGenerateClick(context);
-                  },
-                ),
+                isLoading
+                    ? Center(
+                        child: widget.loaderWidget ??
+                            Container(
+                              width: context.width() * 0.35,
+                              height: 37,
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 5,
+                                horizontal: 10,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 5,
+                              ),
+                              decoration: BoxDecoration(
+                                color: context.primaryColor.withOpacity(0.85),
+                                borderRadius: BorderRadius.circular(10),
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: Text(
+                                widget.gptModuleStrings.loading,
+                                style: boldTextStyle(color: white),
+                              ).paddingSymmetric(horizontal: 8),
+                            ),
+                      )
+                    : AppButton(
+                        child: Text(
+                            answerCont.text.isNotEmpty
+                                ? widget.gptModuleStrings.reGenerate
+                                : widget.gptModuleStrings.generate,
+                            style: boldTextStyle(color: white)),
+                        color: context.primaryColor.withOpacity(0.85),
+                        textStyle: boldTextStyle(color: white),
+                        width: context.width(),
+                        elevation: defaultAppButtonElevation,
+                        onTap: () {
+                          handleGenerateClick(context);
+                        },
+                      ),
                 if (displayGeneratedText)
                   Column(
                     children: [
@@ -170,46 +177,35 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                         width: context.width(),
                         decoration: boxDecorationWithRoundedCorners(
                           borderRadius: radius(defaultRadius),
-                          backgroundColor:
-                              context.platformBrightness() == Brightness.dark
-                                  ? context.cardColor
-                                  : whiteColor,
+                          backgroundColor: context.cardColor,
                           border: Border.all(
-                            color: Colors.grey.shade200,
+                            color: Colors.grey.shade300,
                           ),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            DefaultTextStyle(
-                              style: primaryTextStyle(
-                                color: context.platformBrightness() ==
-                                        Brightness.dark
-                                    ? whiteColor
-                                    : null,
-                              ),
-                              child: AnimatedTextKit(
-                                repeatForever: false,
-                                totalRepeatCount: 1,
-                                isRepeatingAnimation: false,
-                                onFinished: () {
-                                  if (!isTextAnimationCompleted) {
-                                    widget.recentList
-                                        .insert(0, answerCont.text);
-                                  }
-                                  isTextAnimationCompleted = true;
-                                  setState(() {});
-                                },
-                                animatedTexts: [
-                                  TypewriterAnimatedText(
-                                    answerCont.text,
-                                    speed: Duration(
-                                      milliseconds:
-                                          isTextAnimationCompleted ? 0 : 30,
-                                    ),
+                            AnimatedTextKit(
+                              repeatForever: false,
+                              totalRepeatCount: 1,
+                              isRepeatingAnimation: false,
+                              onFinished: () {
+                                if (!isTextAnimationCompleted) {
+                                  widget.recentList.insert(0, answerCont.text);
+                                }
+                                isTextAnimationCompleted = true;
+                                setState(() {});
+                              },
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  answerCont.text,
+                                  textStyle: primaryTextStyle(),
+                                  speed: Duration(
+                                    milliseconds:
+                                        isTextAnimationCompleted ? 0 : 30,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ).expand(),
                             if (isTextAnimationCompleted)
                               IconButton(
@@ -239,13 +235,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                         children: [
                           Text(
                             widget.gptModuleStrings.recent,
-                            style: primaryTextStyle(
-                              size: 16,
-                              color: context.platformBrightness() ==
-                                      Brightness.dark
-                                  ? whiteColor
-                                  : null,
-                            ),
+                            style: primaryTextStyle(size: 16),
                           ),
                           IconButton(
                             icon: Icon(Icons.clear_all_rounded,
@@ -257,7 +247,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                   widget.recentList.clear();
                                   setState(() {});
                                 },
-                                primaryColor: context.primaryColor,
+                                primaryColor: context.primaryColor.withOpacity(0.85),
                                 negativeText: widget.gptModuleStrings.no,
                                 positiveText: widget.gptModuleStrings.yes,
                                 title: widget
@@ -285,24 +275,15 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                 padding: EdgeInsets.all(8),
                                 decoration: boxDecorationWithRoundedCorners(
                                   borderRadius: radius(defaultRadius),
-                                  backgroundColor: context
-                                              .platformBrightness() ==
-                                          Brightness.dark
-                                      ? Colors.grey.shade200.withOpacity(0.1)
-                                      : whiteColor,
+                                  backgroundColor:
+                                      Colors.grey.shade300.withOpacity(0.1),
                                   border:
-                                      Border.all(color: Colors.grey.shade200),
+                                      Border.all(color: Colors.grey.shade300),
                                 ),
                                 child: Text(
                                   widget.recentList[index],
                                   textAlign: TextAlign.left,
-                                  style: secondaryTextStyle(
-                                    size: 14,
-                                    color: context.platformBrightness() ==
-                                            Brightness.dark
-                                        ? whiteColor
-                                        : null,
-                                  ),
+                                  style: secondaryTextStyle(size: 14),
                                   locale: Localizations.localeOf(context),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
