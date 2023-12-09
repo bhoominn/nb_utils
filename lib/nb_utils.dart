@@ -11,6 +11,10 @@ export 'package:fluttertoast/fluttertoast.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
 export 'src/customPaints/google_logo_painter.dart';
+export 'src/chatgpt/chat_gpt.dart';
+export 'src/chatgpt/chat_gpt_component.dart';
+export 'src/chatgpt/chat_gpt_strings.dart';
+export 'src/chatgpt/chat_gpt_models.dart';
 export 'src/deprecated_widgets.dart';
 export 'src/extensions/bool_extensions.dart';
 export 'src/extensions/color_extensions.dart';
@@ -49,6 +53,8 @@ export 'src/widgets/animatedList/animated_configurations.dart';
 export 'src/widgets/animatedList/animated_list_view.dart';
 export 'src/widgets/animatedList/animated_scroll_view.dart';
 export 'src/widgets/animatedList/animated_wrap.dart';
+export 'src/widgets/animatedText/animated_text.dart';
+export 'src/widgets/animatedText/type_writer_animation.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_text_field.dart';
 export 'src/widgets/blur_widget.dart';
@@ -149,6 +155,11 @@ BorderRadius defaultToastBorderRadiusGlobal = radius(30);
 
 PageRouteAnimation? pageRouteAnimationGlobal;
 Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
+
+//ChatGpt Key
+String chatGPTAPIkey = '';
+ChatGPTConfig chatGPTConfigGlobal = ChatGPTConfig();
+
 //endregion
 
 const channelName = 'nb_utils';

@@ -19,6 +19,15 @@ enum TextFieldType {
 }
 
 /// Default Text Form Field
+///
+/// ChatGPT Parameters:
+/// - `enableChatGPT`: A flag to enable or disable the ChatGPT feature.
+/// - `promptFieldInputDecoration`: Custom input decoration for the prompt field in the chatGpt widget.
+/// - `suffixChatGPTIcon`: An optional widget to be displayed as a suffix icon in the ChatGPT input field.
+/// - `loadingChatGPT`: An optional widget to be displayed as a loading indicator during ChatGPT response generation.
+/// - `shortReply`: If true, it will generate a 1-2 line reply. Default is false.
+/// - `testWithoutKey`: If true, it will provide a static test response without using the actual API key. Default is false.
+///
 class AppTextField extends StatefulWidget {
   final TextEditingController? controller;
   final TextFieldType textFieldType;
@@ -26,20 +35,19 @@ class AppTextField extends StatefulWidget {
   final InputDecoration? decoration;
   final FocusNode? focus;
   final FormFieldValidator<String>? validator;
-  final bool? isPassword;
-  final bool? isValidationRequired;
+  final bool isValidationRequired;
   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
   final Function(String)? onFieldSubmitted;
   final Function(String)? onChanged;
   final FocusNode? nextFocus;
   final TextStyle? textStyle;
-  final TextAlign? textAlign;
+  final TextAlign textAlign;
   final int? maxLines;
   final int? minLines;
   final bool? enabled;
-  final bool? autoFocus;
-  final bool? readOnly;
+  final bool autoFocus;
+  final bool readOnly;
   final bool? enableSuggestions;
   final int? maxLength;
   final Color? cursorColor;
@@ -54,11 +62,11 @@ class AppTextField extends StatefulWidget {
   final InputCounterWidgetBuilder? buildCounter;
   final List<TextInputFormatter>? inputFormatters;
   final TextAlignVertical? textAlignVertical;
-  final bool? expands;
+  final bool expands;
   final bool? showCursor;
   final TextSelectionControls? selectionControls;
   final StrutStyle? strutStyle;
-  final String? obscuringCharacter;
+  final String obscuringCharacter;
   final String? initialValue;
   final Brightness? keyboardAppearance;
   final Widget? suffixPasswordVisibleWidget;
@@ -75,6 +83,17 @@ class AppTextField extends StatefulWidget {
   final TextStyle? titleTextStyle;
   final int spacingBetweenTitleAndTextFormField;
 
+  //ChatGPT Params
+  final bool enableChatGPT;
+  final Widget? suffixChatGPTIcon;
+  final Widget? loaderWidgetForChatGPT;
+  final InputDecoration? promptFieldInputDecorationChatGPT;
+  final bool shortReplyChatGPT;
+  final bool testWithoutKeyChatGPT;
+
+  @Deprecated('Use TextFieldType.PASSWORD instead')
+  final bool? isPassword;
+
   AppTextField({
     this.controller,
     required this.textFieldType,
@@ -83,13 +102,13 @@ class AppTextField extends StatefulWidget {
     this.validator,
     this.isPassword,
     this.buildCounter,
-    this.isValidationRequired,
+    this.isValidationRequired = true,
     this.textCapitalization,
     this.textInputAction,
     this.onFieldSubmitted,
     this.nextFocus,
     this.textStyle,
-    this.textAlign,
+    this.textAlign = TextAlign.start,
     this.maxLines,
     this.minLines,
     this.enabled,
@@ -98,8 +117,8 @@ class AppTextField extends StatefulWidget {
     this.suffix,
     this.suffixIconColor,
     this.enableSuggestions,
-    this.autoFocus,
-    this.readOnly,
+    this.autoFocus = false,
+    this.readOnly = false,
     this.maxLength,
     this.keyboardType,
     this.autoFillHints,
@@ -114,11 +133,11 @@ class AppTextField extends StatefulWidget {
     this.errorInvalidURL,
     this.errorInvalidUsername,
     this.textAlignVertical,
-    this.expands,
+    this.expands = false,
     this.showCursor,
     this.selectionControls,
     this.strutStyle,
-    this.obscuringCharacter,
+    this.obscuringCharacter = '•',
     this.initialValue,
     this.keyboardAppearance,
     this.suffixPasswordVisibleWidget,
@@ -127,6 +146,14 @@ class AppTextField extends StatefulWidget {
     this.title,
     this.titleTextStyle,
     this.spacingBetweenTitleAndTextFormField = 4,
+
+    //ChatGpt Params
+    this.enableChatGPT = false,
+    this.loaderWidgetForChatGPT,
+    this.suffixChatGPTIcon,
+    this.promptFieldInputDecorationChatGPT,
+    this.shortReplyChatGPT = false,
+    this.testWithoutKeyChatGPT = false,
     Key? key,
   }) : super(key: key);
 
@@ -136,54 +163,63 @@ class AppTextField extends StatefulWidget {
 
 class _AppTextFieldState extends State<AppTextField> {
   bool isPasswordVisible = false;
+  List<String> recentChat = [];
 
   FormFieldValidator<String>? applyValidation() {
-    if (widget.isValidationRequired.validate(value: true)) {
+    if (widget.isValidationRequired) {
       if (widget.validator != null) {
         return widget.validator;
       } else if (widget.textFieldType == TextFieldType.EMAIL) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
-          if (!s.trim().validateEmail())
+          }
+          if (!s.trim().validateEmail()) {
             return widget.errorInvalidEmail.validate(value: 'Email is invalid');
+          }
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
-          if (!s.trim().validateEmailEnhanced())
+          }
+          if (!s.trim().validateEmailEnhanced()) {
             return widget.errorInvalidEmail.validate(value: 'Email is invalid');
+          }
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.PASSWORD) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
-          if (s.trim().length < passwordLengthGlobal)
+          }
+          if (s.trim().length < passwordLengthGlobal) {
             return widget.errorMinimumPasswordLength.validate(
                 value:
                     'Minimum password length should be $passwordLengthGlobal');
+          }
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.NAME ||
           widget.textFieldType == TextFieldType.PHONE ||
           widget.textFieldType == TextFieldType.NUMBER) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
+          }
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.URL) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
+          }
           if (!s.validateURL()) {
             return widget.errorInvalidURL.validate(value: 'Invalid URL');
           }
@@ -191,9 +227,10 @@ class _AppTextFieldState extends State<AppTextField> {
         };
       } else if (widget.textFieldType == TextFieldType.USERNAME) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
+          }
           if (s.contains(' ')) {
             return widget.errorInvalidUsername
                 .validate(value: 'Username should not contain space');
@@ -202,9 +239,10 @@ class _AppTextFieldState extends State<AppTextField> {
         };
       } else if (widget.textFieldType == TextFieldType.MULTILINE) {
         return (s) {
-          if (s!.trim().isEmpty)
+          if (s!.trim().isEmpty) {
             return widget.errorThisFieldRequired
                 .validate(value: errorThisFieldRequired);
+          }
           return null;
         };
       } else {
@@ -262,6 +300,41 @@ class _AppTextFieldState extends State<AppTextField> {
   void onPasswordVisibilityChange(bool val) {
     isPasswordVisible = val;
     setState(() {});
+  }
+
+  Widget chatGPTWidget() {
+    return ChatGPTWidget(
+      promptFieldInputDecoration: widget.promptFieldInputDecorationChatGPT,
+      shortReply: widget.shortReplyChatGPT,
+      testWithoutKey: widget.testWithoutKeyChatGPT,
+      initialPrompt: widget.controller != null ? widget.controller!.text : '',
+      recentList: recentChat,
+      loaderWidget: widget.loaderWidgetForChatGPT,
+      chatGPTModuleStrings: ChatGPTModuleStrings(),
+      onResponse: (s) {
+        if (s.isNotEmpty) {
+          widget.controller?.text = s;
+          setState(() {});
+        }
+      },
+      child: widget.suffixChatGPTIcon ??
+          Transform.flip(
+            flipX: true,
+            child: Image.asset(
+              "assets/icons/ic_beautify.png",
+              height: 22,
+              package: channelName,
+              width: 22,
+              color: context.iconColor,
+              fit: BoxFit.cover,
+              // color: context.primaryColor,
+              errorBuilder: (context, error, stackTrace) => Text(
+                "AI",
+                style: boldTextStyle(color: context.primaryColor, size: 16),
+              ),
+            ),
+          ),
+    );
   }
 
   Widget? suffixIcon() {
@@ -323,30 +396,36 @@ class _AppTextFieldState extends State<AppTextField> {
       textCapitalization: applyTextCapitalization(),
       textInputAction: applyTextInputAction(),
       onFieldSubmitted: (s) {
-        if (widget.nextFocus != null)
+        if (widget.nextFocus != null) {
           FocusScope.of(context).requestFocus(widget.nextFocus);
+        }
 
         if (widget.onFieldSubmitted != null) widget.onFieldSubmitted!.call(s);
       },
       keyboardType: applyTextInputType(),
       decoration: widget.decoration != null
           ? (widget.decoration!.copyWith(
-              suffixIcon: suffixIcon(),
+              suffixIcon: widget.enableChatGPT &&
+                      widget.textFieldType != TextFieldType.PASSWORD
+                  ? chatGPTWidget()
+                  : suffixIcon(),
             ))
           : InputDecoration(),
       focusNode: widget.focus,
       style: widget.textStyle ?? primaryTextStyle(),
-      textAlign: widget.textAlign ?? TextAlign.start,
+      textAlign: widget.textAlign,
       maxLines: widget.maxLines.validate(
-          value: widget.textFieldType == TextFieldType.MULTILINE ? 10 : 1),
+        value: widget.textFieldType == TextFieldType.MULTILINE ? 10 : 1,
+      ),
       minLines: widget.minLines.validate(
-          value: widget.textFieldType == TextFieldType.MULTILINE ? 2 : 1),
-      autofocus: widget.autoFocus ?? false,
+        value: widget.textFieldType == TextFieldType.MULTILINE ? 2 : 1,
+      ),
+      autofocus: widget.autoFocus,
       enabled: widget.enabled,
       onChanged: widget.onChanged,
       cursorColor: widget.cursorColor ??
           Theme.of(context).textSelectionTheme.cursorColor,
-      readOnly: widget.readOnly.validate(),
+      readOnly: widget.readOnly,
       maxLength: widget.maxLength,
       enableSuggestions: widget.enableSuggestions.validate(value: true),
       autofillHints: widget.autoFillHints ?? applyAutofillHints(),
@@ -360,12 +439,12 @@ class _AppTextFieldState extends State<AppTextField> {
       enableInteractiveSelection: true,
       inputFormatters: widget.inputFormatters,
       textAlignVertical: widget.textAlignVertical,
-      expands: widget.expands.validate(),
+      expands: widget.expands,
       showCursor: widget.showCursor,
       selectionControls:
           widget.selectionControls ?? MaterialTextSelectionControls(),
       strutStyle: widget.strutStyle,
-      obscuringCharacter: widget.obscuringCharacter.validate(value: '•'),
+      obscuringCharacter: widget.obscuringCharacter,
       initialValue: widget.initialValue,
       keyboardAppearance: widget.keyboardAppearance,
       contextMenuBuilder: widget.contextMenuBuilder,

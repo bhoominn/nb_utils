@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -69,6 +68,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController textCont = TextEditingController();
 
   double rating = 2.2;
 
@@ -437,6 +437,16 @@ class _HomePageState extends State<HomePage> {
                       /// Default AppTextField
                       AppTextField(
                         textFieldType: TextFieldType.OTHER,
+                        decoration: defaultInputDecoration(),
+                      ),
+                      8.height,
+
+                      /// Default AppTextField With ChatGPT
+                      AppTextField(
+                        controller: textCont,
+                        textFieldType: TextFieldType.OTHER,
+                        enableChatGPT: true,
+                        testWithoutKeyChatGPT: true,
                         decoration: defaultInputDecoration(),
                       ),
                       8.height,
