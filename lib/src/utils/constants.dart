@@ -55,7 +55,7 @@ class ChatGPTConfig {
     this.topP = 1,
     this.frequencyPenalty = 0,
     this.presencePenalty = 0,
-    this.chatGPTModel = 'text-davinci-002',
+    this.chatGPTModel = 'gpt-4-1106-preview',
   });
 }
 //endregion
