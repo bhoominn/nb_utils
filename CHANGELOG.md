@@ -1,3 +1,5 @@
+## 6.1.1
+- Change Chat GPT model
 ## 6.1.0
 - Integrated Chat GPT 🤖 in AppTextField Widget : Start using AI today
 ## 6.0.7
