@@ -32,22 +32,30 @@ Future<String> generateWithChatGPT({
       "model": chatGPTConfigGlobal.chatGPTModel,
       "choices": [
         {
-          "text":
-              "I am ChatGPT, a large language model trained by OpenAI, based on the GPT-3.5 architecture.",
           "index": 0,
+          "message": {
+            "role": "assistant",
+            "content":
+                "I am ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture."
+          },
           "logprobs": null,
           "finish_reason": "stop"
         }
       ],
       "usage": {"prompt_tokens": 7, "completion_tokens": 61, "total_tokens": 68}
     })));
-    log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
-    log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.choices[0].text}');
+    
+    if (forceEnableDebug) {
+      log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
+    }
 
     await 3.seconds.delay;
     if (gptAnsResModel.choices.isNotEmpty &&
-        gptAnsResModel.choices[0].text.isNotEmpty) {
-      return gptAnsResModel.choices[0].text.trim();
+        gptAnsResModel.choices.first.message.content.isNotEmpty) {
+      if (forceEnableDebug) {
+        log('GPT ANSWER  ${gptAnsResModel.choices.first.message.content}');
+      }
+      return gptAnsResModel.choices.first.message.content.trim();
     } else {
       throw gptModuleStrings.noDataFromChatGPT;
     }
@@ -60,18 +68,30 @@ Future<String> generateWithChatGPT({
 
     if (forceEnableDebug) log('CHAT GPT API HEADER: $header');
 
-    Map jsonBodyData = {
-      "model": chatGPTConfigGlobal.chatGPTModel,
-      "prompt":
-          "$promptPrefix $prompt${shortReply ? ", Please reply in 1-2 line only" : ""}",
-      "temperature": chatGPTConfigGlobal.temperature,
-      "max_tokens": chatGPTConfigGlobal.maxTokens,
-      "top_p": chatGPTConfigGlobal.topP,
-      "frequency_penalty": chatGPTConfigGlobal.frequencyPenalty,
-      "presence_penalty": chatGPTConfigGlobal.presencePenalty,
-    };
+    Map<String, dynamic> jsonBodyData = chatGPTConfigGlobal.request ??
+        {
+          "model": chatGPTConfigGlobal.chatGPTModel,
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a helpful assistant.",
+            },
+            {
+              "role": "user",
+              "content":
+                  "$promptPrefix $prompt${shortReply ? ", Please reply in 1-2 line only" : ""}",
+            }
+          ],
+          "temperature": chatGPTConfigGlobal.temperature,
+          "max_tokens": chatGPTConfigGlobal.maxTokens,
+          "top_p": chatGPTConfigGlobal.topP,
+          "frequency_penalty": chatGPTConfigGlobal.frequencyPenalty,
+          "presence_penalty": chatGPTConfigGlobal.presencePenalty,
+        };
 
-    if (forceEnableDebug) log('CHAT GPT API JSON BODY DATA: $jsonBodyData');
+    if (forceEnableDebug) {
+      log('CHAT GPT API JSON BODY DATA: ${chatGPTConfigGlobal.request ?? jsonBodyData}');
+    }
 
     if (prompt.isNotEmpty) {
       try {
@@ -93,13 +113,13 @@ Future<String> generateWithChatGPT({
           if (forceEnableDebug) {
             log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
           }
-          if (forceEnableDebug) {
-            log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.choices[0].text}');
-          }
 
           if (gptAnsResModel.choices.isNotEmpty &&
-              gptAnsResModel.choices[0].text.isNotEmpty) {
-            return gptAnsResModel.choices[0].text.trim();
+              gptAnsResModel.choices.first.message.content.isNotEmpty) {
+            if (forceEnableDebug) {
+              log('GPT ANSWER  ${gptAnsResModel.choices.first.message.content}');
+            }
+            return gptAnsResModel.choices.first.message.content.trim();
           } else {
             throw gptModuleStrings.noDataFromChatGPT;
           }

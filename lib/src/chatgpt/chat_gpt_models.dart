@@ -40,64 +40,98 @@ class ChatGPTAnswerResponseModel {
         "object": object,
         "created": created,
         "model": model,
-        "choices": List<dynamic>.from(choices.map((x) => x.toJson())),
+        "choices": choices.map((e) => e.toJson()).toList(),
         "usage": usage.toJson(),
         'error': error.toJson(),
       };
 }
 
 class ChatGPTChoiceModel {
-  ChatGPTChoiceModel({
-    required this.text,
-    required this.index,
-    this.logprobs,
-    required this.finishReason,
-  });
-
-  String text;
   int index;
+  ResponseMessage message;
   dynamic logprobs;
   String finishReason;
 
-  factory ChatGPTChoiceModel.fromJson(Map<String, dynamic> json) =>
-      ChatGPTChoiceModel(
-        text: json["text"],
-        index: json["index"],
-        logprobs: json["logprobs"],
-        finishReason: json["finish_reason"],
-      );
+  ChatGPTChoiceModel({
+    this.index = -1,
+    required this.message,
+    this.logprobs,
+    this.finishReason = "",
+  });
 
-  Map<String, dynamic> toJson() => {
-        "text": text,
-        "index": index,
-        "logprobs": logprobs,
-        "finish_reason": finishReason,
-      };
+  factory ChatGPTChoiceModel.fromJson(Map<String, dynamic> json) {
+    return ChatGPTChoiceModel(
+      index: json['index'] is int ? json['index'] : -1,
+      message: json['message'] is Map
+          ? ResponseMessage.fromJson(json['message'])
+          : ResponseMessage(),
+      logprobs: json['logprobs'],
+      finishReason:
+          json['finish_reason'] is String ? json['finish_reason'] : "",
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'index': index,
+      'message': message.toJson(),
+      'logprobs': logprobs,
+      'finish_reason': finishReason,
+    };
+  }
+}
+
+class ResponseMessage {
+  String role;
+  String content;
+
+  ResponseMessage({
+    this.role = "",
+    this.content = "",
+  });
+
+  factory ResponseMessage.fromJson(Map<String, dynamic> json) {
+    return ResponseMessage(
+      role: json['role'] is String ? json['role'] : "",
+      content: json['content'] is String ? json['content'] : "",
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'role': role,
+      'content': content,
+    };
+  }
 }
 
 class ChatGPTUsageModel {
-  ChatGPTUsageModel({
-    this.promptTokens = 0,
-    this.completionTokens = 0,
-    this.totalTokens = 0,
-  });
-
   int promptTokens;
   int completionTokens;
   int totalTokens;
 
-  factory ChatGPTUsageModel.fromJson(Map<String, dynamic> json) =>
-      ChatGPTUsageModel(
-        promptTokens: json["prompt_tokens"] ?? 0,
-        completionTokens: json["completion_tokens"] ?? 0,
-        totalTokens: json["total_tokens"] ?? 0,
-      );
+  ChatGPTUsageModel({
+    this.promptTokens = -1,
+    this.completionTokens = -1,
+    this.totalTokens = -1,
+  });
 
-  Map<String, dynamic> toJson() => {
-        "prompt_tokens": promptTokens,
-        "completion_tokens": completionTokens,
-        "total_tokens": totalTokens,
-      };
+  factory ChatGPTUsageModel.fromJson(Map<String, dynamic> json) {
+    return ChatGPTUsageModel(
+      promptTokens: json['prompt_tokens'] is int ? json['prompt_tokens'] : -1,
+      completionTokens:
+          json['completion_tokens'] is int ? json['completion_tokens'] : -1,
+      totalTokens: json['total_tokens'] is int ? json['total_tokens'] : -1,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'prompt_tokens': promptTokens,
+      'completion_tokens': completionTokens,
+      'total_tokens': totalTokens,
+    };
+  }
 }
 
 class ChatGPTErrorModel {

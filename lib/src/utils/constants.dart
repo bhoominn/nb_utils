@@ -47,15 +47,17 @@ class ChatGPTConfig {
   int frequencyPenalty;
   int presencePenalty;
   String chatGPTModel;
+  Map<String, dynamic>? request;
 
   ChatGPTConfig({
-    this.chatGPTAPIEndPoint = 'https://api.openai.com/v1/completions',
-    this.temperature = 0.7,
+    this.chatGPTAPIEndPoint = 'https://api.openai.com/v1/chat/completions',
+    this.temperature = 1,
     this.maxTokens = 1600,
     this.topP = 1,
     this.frequencyPenalty = 0,
     this.presencePenalty = 0,
-    this.chatGPTModel = 'gpt-4-1106-preview',
+    this.chatGPTModel = 'gpt-4',
+    this.request,
   });
 }
 //endregion
