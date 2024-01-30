@@ -44,7 +44,7 @@ Future<String> generateWithChatGPT({
       ],
       "usage": {"prompt_tokens": 7, "completion_tokens": 61, "total_tokens": 68}
     })));
-    
+
     if (forceEnableDebug) {
       log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
     }
