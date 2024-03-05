@@ -42,6 +42,7 @@ export 'src/utils/decorations.dart';
 export 'src/utils/enums.dart';
 export 'src/utils/jwt_decoder.dart';
 export 'src/utils/line_icons.dart';
+export 'src/utils/get_ip_address.dart';
 export 'src/utils/network_utils.dart';
 export 'src/utils/pattern.dart';
 export 'src/utils/shared_pref.dart';

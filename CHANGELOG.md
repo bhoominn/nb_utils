@@ -1,3 +1,5 @@
+## 6.1.3
+- Added getIPAddress method to get current IP Address in JSON or String format directly
 ## 6.1.2
 - Change Chat GPT model
 ## 6.1.0

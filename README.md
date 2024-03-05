@@ -45,12 +45,15 @@ import 'package:nb_utils/nb_utils.dart';
 ```
 
 Initialize nb_utils in main.dart file for initializing Shared Preferences and other variables.
+Also you can assign your Chat GPT key here.
 
 ```dart
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initialize();
+
+  chatGPTAPIkey = "YOUR_KEY";
 
   runApp(MyApp());
 }
