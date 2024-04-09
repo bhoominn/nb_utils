@@ -3,18 +3,23 @@ import 'package:nb_utils/nb_utils.dart';
 
 DateTime? _currentBackPressTime;
 
-/// DoublePressBackWidget
+/// A widget that handles double press back navigation.
 class DoublePressBackWidget extends StatelessWidget {
+  /// The child widget to display.
   final Widget child;
+
+  /// The message to display when prompting the user to double press back.
   final String? message;
+
+  /// Callback function that gets called on willPop.
   final WillPopCallback? onWillPop;
 
   DoublePressBackWidget({
-    Key? key,
+    super.key,
     required this.child,
     this.message,
     this.onWillPop,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

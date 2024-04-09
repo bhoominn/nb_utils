@@ -36,7 +36,7 @@ extension StringExtension on String? {
   }
 
   /// Capitalize given String
-  String capitalizeFirstLetter() => (validate().length >= 1)
+  String capitalizeFirstLetter() => (validate().isNotEmpty)
       ? (this!.substring(0, 1).toUpperCase() + this!.substring(1).toLowerCase())
       : validate();
 
@@ -340,5 +340,15 @@ extension StringExtension on String? {
     });
 
     return capitalizedWords.join(' ');
+  }
+
+  bool toBool() {
+    if (validate() == 'true') {
+      return true;
+    } else if (validate() == 'false') {
+      return false;
+    } else {
+      return false;
+    }
   }
 }

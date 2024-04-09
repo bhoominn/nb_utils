@@ -150,7 +150,7 @@ Widget snapWidgetHelper<T>(
   Widget Function(String)? errorBuilder,
 }) {
   if (snap.hasError) {
-    log(snap.error);
+    log('nb_utils->snapWidgetHelper(): ${snap.error}');
     if (errorBuilder != null) {
       return errorBuilder.call(defaultErrorMessage ?? snap.error.toString());
     }

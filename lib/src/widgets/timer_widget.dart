@@ -20,8 +20,8 @@ class TimerWidget extends StatefulWidget {
     this.initialDelay,
     this.enableWidgetBindingObserver = false,
     this.enableTimer = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _TimerWidgetState createState() => _TimerWidgetState();

@@ -13,8 +13,8 @@ class VersionInfoWidget extends StatelessWidget {
     this.prefixText = '',
     this.suffixText = '',
     this.showError = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

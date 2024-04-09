@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// A circular progress indicator with gradient effect.
 class CircularProgressGradient extends StatelessWidget {
   CircularProgressGradient({
-    Key? key,
+    super.key,
     this.stokeWidth = 2.0,
     required this.radius,
     required this.colors,
@@ -14,7 +14,7 @@ class CircularProgressGradient extends StatelessWidget {
     this.backgroundColor = const Color(0xFFEEEEEE),
     this.totalAngle = 2 * pi,
     this.value = 0.0,
-  }) : super(key: key);
+  });
 
   /// The width of the line used to draw the circle.
   final double stokeWidth;

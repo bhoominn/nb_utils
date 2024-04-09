@@ -27,8 +27,8 @@ class TextIcon extends StatelessWidget {
     this.expandedText = false,
     this.useMarquee = false,
     this.boxDecoration,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,15 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui';
 
+/// Creates a pixel array from the given image data.
+///
+/// Parameters:
+///   - imgData: The Uint8List representing the image data.
+///   - pixelCount: The total number of pixels in the image.
+///   - quality: The quality factor for sampling pixels.
+///
+/// Returns:
+///   A List of Lists representing the RGB values of valid pixels.
 List<List<int>> _createPixelArray(
     Uint8List imgData, int pixelCount, int quality) {
   final pixels = imgData;
@@ -26,6 +35,14 @@ List<List<int>> _createPixelArray(
   return pixelArray;
 }
 
+/// Validates the colorCount and quality options for palette generation.
+///
+/// Parameters:
+///   - colorCount: The desired number of colors in the palette.
+///   - quality: The quality factor for sampling pixels.
+///
+/// Returns:
+///   A List containing the validated colorCount and quality values.
 List<int> _validateOptions(int? colorCount, int? quality) {
   if (colorCount == null || colorCount.runtimeType != int) {
     colorCount = 10;
@@ -41,6 +58,18 @@ List<int> _validateOptions(int? colorCount, int? quality) {
   return [colorCount, quality];
 }
 
+/// Generates a palette from the provided image data.
+///
+/// Parameters:
+///   - imageData: The Uint8List representing the image data.
+///   - width: The width of the image.
+///   - height: The height of the image.
+///   - colorCount: (Optional) The desired number of colors in the palette.
+///   - quality: (Optional) The quality factor for sampling pixels.
+///
+/// Returns:
+///   A Future containing the palette as a List of Lists of RGB values,
+///   or null if palette generation fails.
 Future<List<List<int>>?> getPaletteFromBytes(
     Uint8List imageData, int width, int height,
     [int? colorCount, int? quality]) async {

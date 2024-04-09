@@ -9,11 +9,11 @@ class SizeListener extends StatefulWidget {
   final Duration? delayDuration;
 
   const SizeListener({
-    Key? key,
+    super.key,
     required this.child,
     required this.onSizeChange,
     this.delayDuration,
-  }) : super(key: key);
+  });
 
   @override
   _SizeListenerState createState() => _SizeListenerState();

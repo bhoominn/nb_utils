@@ -2,19 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-/// OTPTextField widget helps you to enter your OTP
+/// A widget for entering and managing OTP (One Time Password) input.
 class OTPTextField extends StatefulWidget {
+  /// The length of the OTP code.
   final int pinLength;
+
+  /// Callback function triggered when the OTP code changes.
   final Function(String)? onChanged;
+
+  /// Callback function triggered when the OTP code is completed.
   final Function(String)? onCompleted;
 
+  /// Flag to show/hide underline decoration for the OTP input fields.
   final bool showUnderline;
+
+  /// Custom input decoration for the OTP input fields.
   final InputDecoration? decoration;
+
+  /// Custom box decoration for the OTP input fields container.
   final BoxDecoration? boxDecoration;
 
+  /// The width of each OTP input field.
   final double fieldWidth;
+
+  /// Custom text style for the OTP input fields.
   final TextStyle? textStyle;
 
+  /// The color of the cursor in the OTP input fields.
   final Color? cursorColor;
 
   OTPTextField({
@@ -27,22 +41,27 @@ class OTPTextField extends StatefulWidget {
     this.boxDecoration,
     this.textStyle,
     this.cursorColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   OTPTextFieldState createState() => OTPTextFieldState();
 }
 
 class OTPTextFieldState extends State<OTPTextField> {
+  /// List to hold OTP input fields and focus nodes.
   List<OTPLengthModel> list = [];
+
+  /// Focus node for the OTP input fields.
   FocusNode focusNode = FocusNode();
 
+  /// Index of the current active OTP input field.
   int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
+    // Initialize the list with OTP input fields and focus nodes.
     list.addAll(List.generate(widget.pinLength, (index) {
       return OTPLengthModel(
         textEditingController: TextEditingController(),
@@ -51,6 +70,7 @@ class OTPTextFieldState extends State<OTPTextField> {
     }).toList());
   }
 
+  /// Concatenates the text from all OTP input fields.
   String get concatText {
     String text = '';
 
@@ -65,6 +85,7 @@ class OTPTextFieldState extends State<OTPTextField> {
     return text;
   }
 
+  /// Moves focus to the next OTP input field.
   void moveToNextFocus(int index) async {
     if (index == (list.length - 1)) {
       widget.onCompleted?.call(concatText);
@@ -77,6 +98,7 @@ class OTPTextFieldState extends State<OTPTextField> {
     }
   }
 
+  /// Moves focus to the previous OTP input field.
   void moveToPreviousFocus(int index) async {
     if (index >= 1) {
       context.unFocus(list[index].focusNode!);
@@ -91,6 +113,7 @@ class OTPTextFieldState extends State<OTPTextField> {
     }
   }
 
+  /// Sets text selection in the current OTP input field.
   void setTextSelection(int index) {
     currentIndex = index;
 
@@ -103,6 +126,7 @@ class OTPTextFieldState extends State<OTPTextField> {
   @override
   void dispose() {
     super.dispose();
+    // Dispose text editing controllers and focus nodes.
     for (var element in list) {
       element.textEditingController?.dispose();
       element.focusNode?.dispose();
@@ -188,6 +212,7 @@ class OTPTextFieldState extends State<OTPTextField> {
   }
 }
 
+/// Model class to hold the text editing controller and focus node for each OTP input field.
 class OTPLengthModel {
   final TextEditingController? textEditingController;
   final FocusNode? focusNode;

@@ -90,17 +90,17 @@ extension ContextExtensions on BuildContext {
 
   TargetPlatform get platform => Theme.of(this).platform;
 
-  bool get isAndroid => this.platform == TargetPlatform.android;
+  bool get isAndroid => platform == TargetPlatform.android;
 
-  bool get isIOS => this.platform == TargetPlatform.iOS;
+  bool get isIOS => platform == TargetPlatform.iOS;
 
-  bool get isMacOS => this.platform == TargetPlatform.macOS;
+  bool get isMacOS => platform == TargetPlatform.macOS;
 
-  bool get isWindows => this.platform == TargetPlatform.windows;
+  bool get isWindows => platform == TargetPlatform.windows;
 
-  bool get isFuchsia => this.platform == TargetPlatform.fuchsia;
+  bool get isFuchsia => platform == TargetPlatform.fuchsia;
 
-  bool get isLinux => this.platform == TargetPlatform.linux;
+  bool get isLinux => platform == TargetPlatform.linux;
 
   void openDrawer() => Scaffold.of(this).openDrawer();
 

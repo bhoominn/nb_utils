@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// A widget used to display a message when there is no data available.
 class NoDataWidget extends StatelessWidget {
+  /// The URL or asset path of the image to display.
   final String? image;
+
+  /// The size of the image to be displayed.
   final Size? imageSize;
+
+  /// The BoxFit property for fitting the image within its container.
   final BoxFit fit;
+
+  /// Custom widget to use as the image instead of an image URL or asset.
   final Widget? imageWidget;
 
+  /// The title text to display in the widget.
   final String? title;
+
+  /// The subtitle text to display in the widget.
   final String? subTitle;
 
+  /// Custom text style for the title text.
   final TextStyle? titleTextStyle;
+
+  /// Custom text style for the subtitle text.
   final TextStyle? subTitleTextStyle;
 
+  /// Callback function to be executed when the retry button is pressed.
   final VoidCallback? onRetry;
+
+  /// Text to display on the retry button.
   final String? retryText;
+
+  /// Padding for the retry button.
   final EdgeInsets? buttonPadding;
 
   NoDataWidget({
@@ -29,8 +48,8 @@ class NoDataWidget extends StatelessWidget {
     this.titleTextStyle,
     this.subTitleTextStyle,
     this.buttonPadding,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +83,7 @@ class NoDataWidget extends StatelessWidget {
     ).center();
   }
 
+  /// Builds the image widget based on the image URL or asset path.
   Widget _imageWidget() {
     if (imageWidget != null) return imageWidget!;
     if (image.validate().isEmpty) return Offstage();

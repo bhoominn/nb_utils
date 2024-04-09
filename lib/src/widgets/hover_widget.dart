@@ -11,8 +11,8 @@ class HoverWidget extends StatefulWidget {
   HoverWidget({
     required this.builder,
     this.opaque,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _HoverWidgetState createState() => _HoverWidgetState();

@@ -45,8 +45,8 @@ class SettingItemWidget extends StatelessWidget {
     this.highlightColor,
     this.radius,
     this.subTitleMaxLine = 2,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -32,7 +32,7 @@ class AnimatedScrollView extends StatefulWidget {
   final bool disposeScrollController;
 
   AnimatedScrollView({
-    Key? key,
+    super.key,
     this.controller,
     this.padding,
     this.physics,
@@ -54,7 +54,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.onSwipeRefresh,
     this.disposeScrollController = true,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedScrollView> createState() => _AnimatedScrollViewState();

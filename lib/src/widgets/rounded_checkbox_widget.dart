@@ -4,7 +4,7 @@ import 'package:nb_utils/nb_utils.dart';
 ///Widget that draw a beautiful checkbox rounded. Provided with animation if wanted
 class RoundedCheckBox extends StatefulWidget {
   const RoundedCheckBox({
-    Key? key,
+    super.key,
     this.isChecked,
     this.checkedWidget,
     this.uncheckedWidget,
@@ -18,7 +18,7 @@ class RoundedCheckBox extends StatefulWidget {
     this.onTap,
     this.text = '',
     this.textStyle,
-  }) : super(key: key);
+  });
 
   ///Define weather the checkbox is marked or not
   final bool? isChecked;

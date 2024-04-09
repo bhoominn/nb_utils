@@ -13,7 +13,7 @@ extension DoubleExtensions on double? {
   bool isBetween(num first, num second) {
     final lower = min(first, second);
     final upper = max(first, second);
-    return this.validate() >= lower && this.validate() <= upper;
+    return validate() >= lower && validate() <= upper;
   }
 
   /// Returns Size
