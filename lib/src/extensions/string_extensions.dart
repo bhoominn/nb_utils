@@ -342,13 +342,6 @@ extension StringExtension on String? {
     return capitalizedWords.join(' ');
   }
 
-  bool toBool() {
-    if (validate() == 'true') {
-      return true;
-    } else if (validate() == 'false') {
-      return false;
-    } else {
-      return false;
-    }
-  }
+  /// Returns true if the validate() method returns 'true', otherwise returns false.
+  bool toBool() => validate() == 'true';
 }
