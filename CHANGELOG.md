@@ -1,5 +1,6 @@
-## 7.0.0-beta1
+## 7.0.0
 - [Breaking] Migrate connectivity_plus library to latest
+- Added support for ethernet, bluetooth, vpn connectivity
 - Added toBool method that return true if given string is "true" as a String
 - Added more comments to improve pub points
 ## 6.1.3
