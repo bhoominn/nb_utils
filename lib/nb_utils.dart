@@ -25,6 +25,7 @@ export 'src/extensions/double_extensions.dart';
 export 'src/extensions/duration_extensions.dart';
 export 'src/extensions/int_extensions.dart';
 export 'src/extensions/list_extensions.dart';
+export 'src/extensions/map_extensions.dart';
 export 'src/extensions/num_extensions.dart';
 export 'src/extensions/scroll_extensions.dart';
 export 'src/extensions/string_extensions.dart';
