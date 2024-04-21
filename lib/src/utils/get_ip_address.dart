@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 /// Enum representing the format in which the IP address should be retrieved.
 enum IPAddressFormat {
@@ -8,6 +9,8 @@ enum IPAddressFormat {
   /// IP address will be returned as a string.
   string,
 }
+
+enum IPAddressVersion { v4, v6, v64 }
 
 /// Retrieves the public IP address using the ipify API.
 ///
@@ -21,30 +24,36 @@ enum IPAddressFormat {
 ///   A Future containing the IP address in the specified format,
 ///   or a default error message if retrieval fails.
 Future<dynamic> getIPAddress({
-  IPAddressFormat ipAddressFormat = IPAddressFormat.json,
+  IPAddressFormat ipAddressFormat = IPAddressFormat.string,
   String defaultErrorMessage = 'Not able to find the IP Address.',
+  IPAddressVersion ipAddressVersion = IPAddressVersion.v64,
 }) async {
   try {
-    var response = await get(Uri.parse('https://api64.ipify.org'));
-    if (response.statusCode == 200) {
-      if (ipAddressFormat == IPAddressFormat.json) {
+    var response = await get(Uri.parse(_getURl(ipAddressVersion)));
+
+    if (ipAddressFormat == IPAddressFormat.json) {
+      if (response.statusCode.isSuccessful()) {
         return handleJSONResponse(status: true, value: response.body);
       } else {
-        return response.body;
+        return handleJSONResponse(status: false, value: defaultErrorMessage);
       }
-    } else {
-      return handleJSONResponse(status: false, value: defaultErrorMessage);
+    } else if (ipAddressFormat == IPAddressFormat.string) {
+      if (response.statusCode.isSuccessful()) {
+        return response.body;
+      } else {
+        throw defaultErrorMessage;
+      }
     }
   } catch (_) {
-    return handleJSONResponse(status: false, value: defaultErrorMessage);
+    if (ipAddressFormat == IPAddressFormat.json) {
+      return handleJSONResponse(status: false, value: defaultErrorMessage);
+    } else {
+      throw defaultErrorMessage;
+    }
   }
 }
 
 /// Handles the JSON response for IP address retrieval.
-///
-/// Parameters:
-///   - status: (Optional) The status of the response, defaults to false.
-///   - value: (Optional) The value to include in the response, defaults to an empty string.
 ///
 /// Returns:
 ///   A Map representing the JSON response with 'status' and 'ip_address' keys.
@@ -53,7 +62,18 @@ Map<String, dynamic> handleJSONResponse({
   String value = '',
 }) {
   return {
-    'status': true,
+    'status': status,
     'ip_address': value,
   };
+}
+
+String _getURl(IPAddressVersion ipAddressVersion) {
+  if (ipAddressVersion == IPAddressVersion.v64) {
+    return 'https://api64.ipify.org';
+  } else if (ipAddressVersion == IPAddressVersion.v4) {
+    return 'https://api4.ipify.org';
+  } else if (ipAddressVersion == IPAddressVersion.v6) {
+    return 'https://api6.ipify.org';
+  }
+  return 'https://api64.ipify.org';
 }

@@ -76,12 +76,15 @@ extension ContextExtensions on BuildContext {
       MediaQuery.of(this).size.width < desktopBreakpointGlobal &&
       MediaQuery.of(this).size.width >= tabletBreakpointGlobal;
 
+  /// Return true if the platform is Desktop
   bool isDesktop() => MediaQuery.of(this).size.width >= desktopBreakpointGlobal;
 
   Orientation get orientation => MediaQuery.of(this).orientation;
 
+  /// Return true if current orientation is landscape
   bool get isLandscape => orientation == Orientation.landscape;
 
+  /// Return true if current orientation is portrait
   bool get isPortrait => orientation == Orientation.portrait;
 
   bool get canPop => Navigator.canPop(this);
@@ -90,19 +93,30 @@ extension ContextExtensions on BuildContext {
 
   TargetPlatform get platform => Theme.of(this).platform;
 
+  /// Return true if the platform is Android
   bool get isAndroid => platform == TargetPlatform.android;
 
+  /// Return true if the platform is iOS
   bool get isIOS => platform == TargetPlatform.iOS;
 
+  /// Return true if the platform is MacOS
   bool get isMacOS => platform == TargetPlatform.macOS;
 
+  /// Return true if the platform is Windows
   bool get isWindows => platform == TargetPlatform.windows;
 
+  /// Return true if the platform is Fuchsia
   bool get isFuchsia => platform == TargetPlatform.fuchsia;
 
+  /// Return true if the platform is Linux
   bool get isLinux => platform == TargetPlatform.linux;
 
+  /// Open Drawer
   void openDrawer() => Scaffold.of(this).openDrawer();
 
+  /// Hide Drawer
   void openEndDrawer() => Scaffold.of(this).openEndDrawer();
+
+  /// Returns true if keyboard is visible
+  bool get isKeyboardShowing => MediaQuery.of(this).viewInsets.bottom > 0;
 }

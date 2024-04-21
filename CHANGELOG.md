@@ -1,9 +1,14 @@
+## 7.0.1
+- Minimum dart version 3.0.0
+- Added new Map extension joinWithMap
+- Added checkConnectivityResult method to get ConnectivityResult instead of List<ConnectivityResult>
+- Migrate DoublePressBackWidget logic from WillPopScope to PopScope
 ## 7.0.0
 - [Breaking] Migrate connectivity_plus library to latest
 - Added support for ethernet, bluetooth, vpn connectivity
 - Added toBool method that return true if given string is "true" as a String
 - Added more comments to improve pub points
-## 6.1.3
+## 6.1.4
 - Added getIPAddress method to get current IP Address in JSON or String format directly
 ## 6.1.2
 - Change Chat GPT model

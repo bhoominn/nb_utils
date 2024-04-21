@@ -2,6 +2,7 @@ package com.nb.nb_utils
 
 import android.content.Context
 import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.annotation.NonNull
 import androidx.core.content.res.ResourcesCompat
@@ -45,7 +46,12 @@ class NbUtilsPlugin : FlutterPlugin, MethodCallHandler {
 
     private fun packageInfo(): Map<String, Any> {
         val packageManager = appContext!!.packageManager
-        val packageInfo = packageManager.getPackageInfo(appContext!!.packageName, 0)
+        val packageInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            packageManager.getPackageInfo(appContext!!.packageName, PackageManager.PackageInfoFlags.of(0))
+        } else {
+            @Suppress("DEPRECATION")
+            packageManager.getPackageInfo(appContext!!.packageName, 0)
+        }
 
         var appName = ""
         val applicationInfo = packageInfo.applicationInfo

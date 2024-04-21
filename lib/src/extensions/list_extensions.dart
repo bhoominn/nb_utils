@@ -11,7 +11,7 @@ extension ListExtensions<T> on Iterable<T>? {
   }
 
   /// Generate forEach but gives index for each element
-  void forEachIndexed(void action(T element, int index)) {
+  void forEachIndexed(void Function(T element, int index) action) {
     var index = 0;
     for (var element in this!) {
       action(element!, index++);

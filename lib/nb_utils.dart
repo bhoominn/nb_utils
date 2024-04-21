@@ -39,6 +39,7 @@ export 'src/utils/colors.dart';
 export 'src/utils/common.dart';
 export 'src/utils/confirmation_dialog.dart';
 export 'src/utils/constants.dart';
+export 'src/utils/debouncer.dart';
 export 'src/utils/decorations.dart';
 export 'src/utils/enums.dart';
 export 'src/utils/jwt_decoder.dart';
