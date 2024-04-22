@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Callback function signature for rating change events.
-typedef void RatingChangeCallback(double rating);
+typedef RatingChangeCallback = void Function(double rating);
 
 /// A widget for displaying and interacting with a rating bar.
 // ignore: must_be_immutable

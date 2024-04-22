@@ -1,4 +1,4 @@
-## 7.0.1
+## 7.0.2
 - Minimum dart version 3.0.0
 - Added new Map extension joinWithMap
 - Added checkConnectivityResult method to get ConnectivityResult instead of List<ConnectivityResult>

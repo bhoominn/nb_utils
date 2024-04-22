@@ -1,4 +1,4 @@
-extension on Map<String, dynamic> {
+extension MapExt on Map<String, dynamic> {
   String joinWithMap(String separator, {String keyValueSeparator = '='}) {
     return entries
         .map((entry) => "${entry.key}$keyValueSeparator${entry.value}")
