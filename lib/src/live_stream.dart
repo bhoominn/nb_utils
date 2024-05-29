@@ -9,33 +9,35 @@ import 'dart:collection';
 /// By using it, You can emit values to any stream with data value from anywhere in the application.
 /// Observers will receive data events when the value of subscribed stream is updated.
 class LiveStream {
-  final _DataStore? _mStorage = _DataStore.getInstance();
+  final _DataStore _mStorage = _DataStore.getInstance();
 
   /// Sets a new value [value] to the data stream [stream].
   /// If there are active subscribers, the value will be dispatched to them.
   void emit(String stream, [var value]) {
-    _mStorage?.setValue(stream, value ?? true);
+    _mStorage.setValue(stream, value ?? true);
   }
 
   /// Subscribes to the given stream [stream].
   /// If stream already has data set, it will be delivered to the [callback] function.
   void on(String stream, void Function(Object)? callback) {
-    _mStorage?.setCallback(stream, callback);
+    if (!_mStorage.exists(stream)) {
+      _mStorage.setCallback(stream, callback);
+    }
   }
 
   /// Returns the current value of a given data [stream].
   Object? getValue(String stream) {
-    return _mStorage?.getValue(stream);
+    return _mStorage.getValue(stream);
   }
 
   /// Remove key from HashMap
   void dispose(key) {
-    _mStorage?.removeKey(key);
+    _mStorage.removeKey(key);
   }
 
   /// Remove all keys from HashMap
   void disposeAllKeys() {
-    _mStorage?.removeAll();
+    _mStorage.removeAll();
   }
 }
 
@@ -114,10 +116,14 @@ class _DataStore {
     return _mDataItemsMap[key]!.value;
   }
 
+  bool exists(String key) {
+    return _mDataItemsMap.containsKey(key);
+  }
+
   // Returns singleton instance of _DataStore
-  static _DataStore? getInstance() {
+  static _DataStore getInstance() {
     _instance ??= _DataStore();
-    return _instance;
+    return _instance!;
   }
 }
 
