@@ -33,6 +33,9 @@ class NoDataWidget extends StatelessWidget {
   /// Text to display on the retry button.
   final String? retryText;
 
+  /// Text Color for the retry button.
+  final Color? retryButtonTextColor;
+
   /// Padding for the retry button.
   final EdgeInsets? buttonPadding;
 
@@ -45,6 +48,7 @@ class NoDataWidget extends StatelessWidget {
     this.subTitle,
     this.onRetry,
     this.retryText,
+    this.retryButtonTextColor,
     this.titleTextStyle,
     this.subTitleTextStyle,
     this.buttonPadding,
@@ -74,7 +78,7 @@ class NoDataWidget extends StatelessWidget {
             margin: EdgeInsets.only(top: 16),
             onTap: onRetry,
             text: retryText ?? 'Reload',
-            textColor: white,
+            textColor: retryButtonTextColor ?? white,
             padding: buttonPadding ??
                 EdgeInsets.symmetric(horizontal: 16, vertical: 2),
             color: context.primaryColor,

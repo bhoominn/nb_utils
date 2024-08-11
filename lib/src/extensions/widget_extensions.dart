@@ -246,6 +246,8 @@ extension WidgetExtension on Widget? {
     Color? splashColor,
     Color? hoverColor,
     Color? highlightColor,
+    Color? focusColor,
+    WidgetStateProperty<Color?>? overlayColor,
   }) {
     return InkWell(
       onTap: function as void Function()?,
@@ -255,6 +257,8 @@ extension WidgetExtension on Widget? {
       splashColor: splashColor ?? defaultInkWellSplashColor,
       hoverColor: hoverColor ?? defaultInkWellHoverColor,
       highlightColor: highlightColor ?? defaultInkWellHighlightColor,
+      focusColor: focusColor,
+      overlayColor: overlayColor,
     );
   }
 

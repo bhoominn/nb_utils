@@ -20,10 +20,11 @@ class Patterns {
   static String image = r'.(jpeg|jpg|gif|png|bmp)$';
 
   /// Audio regex
-  static String audio = r'.(mp3|wav|wma|amr|ogg)$';
+  static String audio = r'.(mp3|wav|wma|amr|ogg|opus|aac|flac|alac)$';
 
   /// Video regex
-  static String video = r'.(mp4|avi|wmv|rmvb|mpg|mpeg|3gp|mkv)$';
+  static String video =
+      r'.(mp4|avi|wmv|rmvb|mpg|mpeg|3gp|mkv|webm|flv|ogg|ogv)$';
 
   /// Txt regex
   static String txt = r'.txt$';

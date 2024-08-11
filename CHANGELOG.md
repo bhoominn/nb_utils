@@ -1,3 +1,10 @@
+## 7.0.4
+- Added Java 17 Compatibility to Android Project
+- Added retryButtonTextColor in NoDataWidget widget
+- Added more extensions support for isAudio and isVideo
+- Added focusColor, overlayColor property in onTap widget extension
+## 7.0.3
+- Optimization in LiveStream
 ## 7.0.2
 - Minimum dart version 3.0.0
 - Added new Map extension joinWithMap
