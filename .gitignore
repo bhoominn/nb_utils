@@ -18,3 +18,4 @@ example/.flutter-plugins
 example/.flutter-plugins-dependencies
 example/.metadata
 example/nb_utils_example.iml
+.vscode/settings.json
