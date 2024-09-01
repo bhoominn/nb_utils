@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id 'kotlin-parcelize' // New plugin for parcelable
 }
 
 def localProperties = new Properties()
@@ -14,20 +15,34 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw  GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 android {
     compileSdk 34
-    compileSdkVersion 33
+
     ndkVersion flutter.ndkVersion
 
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    // sourceCompatibility = JavaVersion.VERSION_17
+    // targetCompatibility = JavaVersion.VERSION_17
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+    // compileOptions {
+    //     sourceCompatibility = JavaVersion.VERSION_17
+    //     targetCompatibility = JavaVersion.VERSION_17
+    // }
+    // // kotlinOptions {
+    //     // jvmTarget = "17"
+    //     // jvmToolchain(17)
+    // // }
+    // kotlin {
+    // jvmToolchain {
+    //     languageVersion = JavaLanguageVersion.of(17)
+    // }
+    // Or shorter:
+    // jvmToolchain(<MAJOR_JDK_VERSION>)
+    // For example:
+    // jvmToolchain(17)
+// }
 
     defaultConfig {
         applicationId "com.nb.nb_utils"

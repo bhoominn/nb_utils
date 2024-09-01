@@ -19,3 +19,7 @@ example/.flutter-plugins-dependencies
 example/.metadata
 example/nb_utils_example.iml
 .vscode/settings.json
+.fvm/flutter_sdk
+.fvm/fvm_config.json
+example/.fvm/fvm_config.json
+example/.fvm/flutter_sdk
