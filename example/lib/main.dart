@@ -494,10 +494,13 @@ class _HomePageState extends State<HomePage> {
                       AppButton(
                         text: 'Toast',
                         onTap: () async {
-                          toasty(context, 'Toast',
-                              borderRadius: BorderRadius.circular(1),
-                              textColor: Colors.pinkAccent,
-                              gravity: ToastGravity.CENTER);
+                          toasty(
+                            context,
+                            'Toast',
+                            borderRadius: BorderRadius.circular(1),
+                            textColor: Colors.pinkAccent,
+                            gravity: ToastGravity.CENTER,
+                          );
                         },
                       ),
                     ],
