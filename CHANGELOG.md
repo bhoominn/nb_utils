@@ -1,3 +1,5 @@
+## 7.1.0-beta1
+- Fix Java 17 Compatibility to Android Project
 ## 7.0.4
 - Added Java 17 Compatibility to Android Project
 - Added retryButtonTextColor in NoDataWidget widget
