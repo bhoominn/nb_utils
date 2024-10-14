@@ -1,4 +1,4 @@
-#include "include/nb_utils/nb_utils_plugin.h"
+#include "nb_utils_plugin.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
@@ -10,26 +10,10 @@
 #include <flutter/plugin_registrar_windows.h>
 #include <flutter/standard_method_codec.h>
 
-#include <map>
 #include <memory>
 #include <sstream>
 
-namespace {
-
-class NbUtilsPlugin : public flutter::Plugin {
- public:
-  static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
-
-  NbUtilsPlugin();
-
-  virtual ~NbUtilsPlugin();
-
- private:
-  // Called when a method is called on this plugin's channel from Dart.
-  void HandleMethodCall(
-      const flutter::MethodCall<flutter::EncodableValue> &method_call,
-      std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
-};
+namespace nb_utils {
 
 // static
 void NbUtilsPlugin::RegisterWithRegistrar(
@@ -72,11 +56,4 @@ void NbUtilsPlugin::HandleMethodCall(
   }
 }
 
-}  // namespace
-
-void NbUtilsPluginRegisterWithRegistrar(
-    FlutterDesktopPluginRegistrarRef registrar) {
-  NbUtilsPlugin::RegisterWithRegistrar(
-      flutter::PluginRegistrarManager::GetInstance()
-          ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
-}
+}  // namespace nb_utils

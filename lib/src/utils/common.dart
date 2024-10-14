@@ -58,14 +58,15 @@ void toasty(
 
   FToast().showToast(
     child: Container(
-      child: Text(text.validate(),
-          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
       decoration: BoxDecoration(
         color: bgColor ?? defaultToastBackgroundColor,
         boxShadow: defaultBoxShadow(),
         borderRadius: borderRadius ?? defaultToastBorderRadiusGlobal,
       ),
-      padding: padding ?? EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+      padding:
+          padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+      child: Text(text.validate(),
+          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
     ),
     gravity: gravity ?? defaultToastGravityGlobal,
     toastDuration: duration,

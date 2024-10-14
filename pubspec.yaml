@@ -1,50 +1,51 @@
 name: nb_utils
-description: Collection of Widgets and helpful Methods that every developer needs.
-version: 7.0.4
+description: "Collection of Widgets and helpful Methods that every developer needs."
+version: 7.1.0-beta1
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
 funding:
   - https://www.github.com/sponsors/bhoominn
 
-platforms:
-  android:
-  ios:
-  linux:
-  macos:
-  web:
-  windows:
-
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.3.0"
+  sdk: ^3.5.3
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  web: ^0.5.1
+  plugin_platform_interface: ^2.0.2
 
-  shared_preferences: ^2.3.1
-  fluttertoast: ^8.2.6
+  shared_preferences: ^2.3.2
+  fluttertoast: ^8.2.8
   connectivity_plus: ^6.0.5
   http: ^1.2.2
 
 dev_dependencies:
-  lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
 
 flutter:
   plugin:
     platforms:
       android:
-        package: com.nb.nb_utils
+        package: com.example.nb_utils
         pluginClass: NbUtilsPlugin
       ios:
         pluginClass: NbUtilsPlugin
       linux:
-        pluginClass: nb_utils_plugin
+        pluginClass: NbUtilsPlugin
       macos:
         pluginClass: NbUtilsPlugin
       windows:
-        pluginClass: NbUtilsPlugin
+        pluginClass: NbUtilsPluginCApi
+      web:
+        pluginClass: NbUtilsWeb
+        fileName: nb_utils_web.dart
 
   fonts:
     - family: LineAwesomeIcons
@@ -55,7 +56,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
-    - assets/lottie/
 
 topics:
   - widgets
