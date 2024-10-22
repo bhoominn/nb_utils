@@ -162,6 +162,9 @@ class OTPTextFieldState extends State<OTPTextField> {
             focusNode: list[index].focusNode,
             keyboardType: TextInputType.number,
             style: widget.textStyle,
+            autofillHints: const [
+              AutofillHints.oneTimeCode,
+            ],
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp('[0-9]')),
             ],

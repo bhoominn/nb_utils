@@ -41,6 +41,7 @@ class AnimatedListView extends StatefulWidget {
 
   final bool disposeScrollController;
   final Widget? emptyWidget;
+  final Color? refreshIndicatorColor;
 
   AnimatedListView({
     super.key,
@@ -75,6 +76,7 @@ class AnimatedListView extends StatefulWidget {
     this.onSwipeRefresh,
     this.disposeScrollController = true,
     this.emptyWidget,
+    this.refreshIndicatorColor,
   });
 
   @override
@@ -166,6 +168,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
       return RefreshIndicator(
         child: _widget(),
         onRefresh: widget.onSwipeRefresh!,
+        color: widget.refreshIndicatorColor,
       );
     } else {
       return _widget();

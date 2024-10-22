@@ -30,6 +30,7 @@ class AnimatedScrollView extends StatefulWidget {
 
   final RefreshCallback? onSwipeRefresh;
   final bool disposeScrollController;
+  final Color? refreshIndicatorColor;
 
   AnimatedScrollView({
     super.key,
@@ -54,6 +55,7 @@ class AnimatedScrollView extends StatefulWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.onSwipeRefresh,
     this.disposeScrollController = true,
+    this.refreshIndicatorColor,
   });
 
   @override
@@ -137,6 +139,7 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
       return RefreshIndicator(
         child: _widget(),
         onRefresh: widget.onSwipeRefresh!,
+        color: widget.refreshIndicatorColor,
       );
     } else {
       return _widget();

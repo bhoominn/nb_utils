@@ -119,4 +119,10 @@ extension ContextExtensions on BuildContext {
 
   /// Returns true if keyboard is visible
   bool get isKeyboardShowing => MediaQuery.of(this).viewInsets.bottom > 0;
+
+  //TODO check if it is working
+  /*bool isContextInWidgetTree() {
+    final GlobalKey<State<StatefulWidget>> widgetKey = GlobalKey<State<StatefulWidget>>();
+    return widgetKey.currentState != null && widgetKey.currentContext != null;
+  }*/
 }

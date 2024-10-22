@@ -22,6 +22,9 @@ class AppButton extends StatefulWidget {
   final bool enabled;
   final bool? enableScaleAnimation;
   final Color? disabledTextColor;
+  final double? hoverElevation;
+  final double? focusElevation;
+  final double? highlightElevation;
 
   AppButton({
     this.onTap,
@@ -43,6 +46,9 @@ class AppButton extends StatefulWidget {
     this.splashColor,
     this.enableScaleAnimation,
     this.disabledTextColor,
+    this.hoverElevation,
+    this.focusElevation,
+    this.highlightElevation,
     super.key,
   });
 
@@ -50,15 +56,13 @@ class AppButton extends StatefulWidget {
   _AppButtonState createState() => _AppButtonState();
 }
 
-class _AppButtonState extends State<AppButton>
-    with SingleTickerProviderStateMixin {
+class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMixin {
   double _scale = 1.0;
   AnimationController? _controller;
 
   @override
   void initState() {
-    if (widget.enableScaleAnimation
-        .validate(value: enableAppButtonScaleAnimationGlobal)) {
+    if (widget.enableScaleAnimation.validate(value: enableAppButtonScaleAnimationGlobal)) {
       _controller = AnimationController(
         vsync: this,
         duration: Duration(
@@ -85,8 +89,7 @@ class _AppButtonState extends State<AppButton>
       _scale = 1 - _controller!.value;
     }
 
-    if (widget.enableScaleAnimation
-        .validate(value: enableAppButtonScaleAnimationGlobal)) {
+    if (widget.enableScaleAnimation.validate(value: enableAppButtonScaleAnimationGlobal) && isElevationEnabled) {
       return Listener(
         onPointerDown: (details) {
           _controller?.forward();
@@ -133,7 +136,21 @@ class _AppButtonState extends State<AppButton>
         hoverColor: widget.hoverColor,
         splashColor: widget.splashColor,
         disabledTextColor: widget.disabledTextColor,
+        hoverElevation: widget.hoverElevation ?? defaultAppButtonFocusElevation,
+        focusElevation: widget.focusElevation ?? defaultAppButtonHighlightElevation,
+        highlightElevation: widget.highlightElevation ?? defaultAppButtonHoverElevation,
       ),
     );
+  }
+
+  bool get isElevationEnabled {
+    return widget.elevation != 0 &&
+        defaultAppButtonElevation != 0 &&
+        widget.focusElevation != 0 &&
+        defaultAppButtonFocusElevation != 0 &&
+        widget.highlightElevation != 0 &&
+        defaultAppButtonHighlightElevation != 0 &&
+        widget.hoverElevation != 0 &&
+        defaultAppButtonHoverElevation != 0;
   }
 }
