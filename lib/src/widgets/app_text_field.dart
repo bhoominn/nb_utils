@@ -392,8 +392,9 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget textFormFieldWidget() {
     return TextFormField(
       controller: widget.controller,
-      obscureText:
-          widget.textFieldType == TextFieldType.PASSWORD && !isPasswordVisible && widget.obscureText,
+      obscureText: widget.textFieldType == TextFieldType.PASSWORD &&
+          !isPasswordVisible &&
+          widget.obscureText,
       validator: applyValidation(),
       textCapitalization: applyTextCapitalization(),
       textInputAction: applyTextInputAction(),

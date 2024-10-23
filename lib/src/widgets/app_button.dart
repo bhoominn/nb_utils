@@ -56,13 +56,15 @@ class AppButton extends StatefulWidget {
   _AppButtonState createState() => _AppButtonState();
 }
 
-class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMixin {
+class _AppButtonState extends State<AppButton>
+    with SingleTickerProviderStateMixin {
   double _scale = 1.0;
   AnimationController? _controller;
 
   @override
   void initState() {
-    if (widget.enableScaleAnimation.validate(value: enableAppButtonScaleAnimationGlobal)) {
+    if (widget.enableScaleAnimation
+        .validate(value: enableAppButtonScaleAnimationGlobal)) {
       _controller = AnimationController(
         vsync: this,
         duration: Duration(
@@ -89,7 +91,9 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
       _scale = 1 - _controller!.value;
     }
 
-    if (widget.enableScaleAnimation.validate(value: enableAppButtonScaleAnimationGlobal) && isElevationEnabled) {
+    if (widget.enableScaleAnimation
+            .validate(value: enableAppButtonScaleAnimationGlobal) &&
+        isElevationEnabled) {
       return Listener(
         onPointerDown: (details) {
           _controller?.forward();
@@ -137,8 +141,10 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
         splashColor: widget.splashColor,
         disabledTextColor: widget.disabledTextColor,
         hoverElevation: widget.hoverElevation ?? defaultAppButtonFocusElevation,
-        focusElevation: widget.focusElevation ?? defaultAppButtonHighlightElevation,
-        highlightElevation: widget.highlightElevation ?? defaultAppButtonHoverElevation,
+        focusElevation:
+            widget.focusElevation ?? defaultAppButtonHighlightElevation,
+        highlightElevation:
+            widget.highlightElevation ?? defaultAppButtonHoverElevation,
       ),
     );
   }
