@@ -32,8 +32,8 @@ void toast(
       msg: value.validate(),
       gravity: gravity,
       toastLength: length,
-      backgroundColor: bgColor,
-      textColor: textColor,
+      backgroundColor: bgColor ?? defaultToastBackgroundColor,
+      textColor: textColor ?? defaultToastTextColor,
     );
     if (print) log(value);
   }
