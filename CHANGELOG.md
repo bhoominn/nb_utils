@@ -1,3 +1,5 @@
+## 7.0.7
+- Added insetPadding in showInDialog method
 ## 7.0.6
 - Autofill hint support for OTP text field
 - Added obscureText param in App Text Field to show hide password
