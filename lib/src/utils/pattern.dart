@@ -1,7 +1,7 @@
 /// Predefined Patterns for different validation
 class Patterns {
   static String url =
-      r'^((?:.|\n)*?)((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?)';
+      r'^(https?|ftp):\/\/[a-zA-Z0-9\-\.]+(?:\.[a-zA-Z]{2,})(?::\d{1,5})?(?:\/[^\s?#]*)?(?:\?[^\s#]*)?(?:#[^\s]*)?$';
 
   static String phone = r'(^(?:[+0]9)?[0-9]{10,12}$)';
 
