@@ -134,7 +134,7 @@ Widget? getCenteredImage(
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+              .withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -149,7 +149,7 @@ Widget? getCenteredImage(
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+              .withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -164,7 +164,7 @@ Widget? getCenteredImage(
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+              .withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -180,7 +180,7 @@ Widget? getCenteredImage(
       widget = Container(
         decoration: BoxDecoration(
           color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+              .withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -198,7 +198,7 @@ Widget? getCenteredImage(
             context,
             dialogType,
             primaryColor,
-          ).withOpacity(0.2),
+          ).withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(Icons.refresh_rounded,
@@ -230,7 +230,7 @@ Widget defaultPlaceHolder(
     width: width,
     decoration: BoxDecoration(
       color: getDialogPrimaryColor(context, dialogType, primaryColor)
-          .withOpacity(0.2),
+          .withValues(alpha: 0.2),
     ),
     alignment: Alignment.center,
     child: child ?? getCenteredImage(context, dialogType, primaryColor),

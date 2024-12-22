@@ -113,7 +113,9 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                 Text(
                   "${widget.gptModuleStrings.generateUsingAI} 🤖",
                   style: boldTextStyle(
-                      size: 16, color: context.primaryColor.withOpacity(0.85)),
+                    size: 16,
+                    color: context.primaryColor.withValues(alpha: 0.85),
+                  ),
                 ).expand(),
                 CloseButton(color: context.iconColor),
               ],
@@ -144,7 +146,8 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                 vertical: 5,
                               ),
                               decoration: BoxDecoration(
-                                color: context.primaryColor.withOpacity(0.85),
+                                color: context.primaryColor
+                                    .withValues(alpha: 0.85),
                                 borderRadius: BorderRadius.circular(10),
                                 shape: BoxShape.rectangle,
                               ),
@@ -160,7 +163,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                 ? widget.gptModuleStrings.reGenerate
                                 : widget.gptModuleStrings.generate,
                             style: boldTextStyle(color: white)),
-                        color: context.primaryColor.withOpacity(0.85),
+                        color: context.primaryColor.withValues(alpha: 0.85),
                         textStyle: boldTextStyle(color: white),
                         width: context.width(),
                         elevation: defaultAppButtonElevation,
@@ -238,8 +241,10 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                             style: primaryTextStyle(size: 16),
                           ),
                           IconButton(
-                            icon: Icon(Icons.clear_all_rounded,
-                                color: context.iconColor.withOpacity(0.6)),
+                            icon: Icon(
+                              Icons.clear_all_rounded,
+                              color: context.iconColor.withValues(alpha: 0.6),
+                            ),
                             onPressed: () async {
                               showConfirmDialogCustom(
                                 context,
@@ -247,8 +252,8 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                   widget.recentList.clear();
                                   setState(() {});
                                 },
-                                primaryColor:
-                                    context.primaryColor.withOpacity(0.85),
+                                primaryColor: context.primaryColor
+                                    .withValues(alpha: 0.85),
                                 negativeText: widget.gptModuleStrings.no,
                                 positiveText: widget.gptModuleStrings.yes,
                                 title: widget
@@ -276,8 +281,8 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                 padding: EdgeInsets.all(8),
                                 decoration: boxDecorationWithRoundedCorners(
                                   borderRadius: radius(defaultRadius),
-                                  backgroundColor:
-                                      Colors.grey.shade300.withOpacity(0.1),
+                                  backgroundColor: Colors.grey.shade300
+                                      .withValues(alpha: 0.1),
                                   border:
                                       Border.all(color: Colors.grey.shade300),
                                 ),
