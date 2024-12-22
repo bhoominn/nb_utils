@@ -330,9 +330,12 @@ class _AppTextFieldState extends State<AppTextField> {
               color: context.iconColor,
               fit: BoxFit.cover,
               // color: context.primaryColor,
-              errorBuilder: (context, error, stackTrace) => Text(
-                "AI",
-                style: boldTextStyle(color: context.primaryColor, size: 16),
+              errorBuilder: (context, error, stackTrace) => Transform.flip(
+                flipX: true,
+                child: Text(
+                  "AI",
+                  style: boldTextStyle(color: context.primaryColor, size: 16),
+                ),
               ),
             ),
           ),

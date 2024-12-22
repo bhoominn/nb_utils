@@ -5,15 +5,16 @@
 Pod::Spec.new do |s|
   s.name             = 'nb_utils'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = 'Collection of Widgets and helpful Methods that every developer needs.'
   s.description      = <<-DESC
-A new flutter plugin project.
+Collection of Widgets and helpful Methods that every developer needs.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
+
   s.source           = { :path => '.' }
-  s.source_files     = 'Classes/**/*'
+  s.source_files = 'Classes/**/*'
   s.dependency 'FlutterMacOS'
 
   s.platform = :osx, '10.11'

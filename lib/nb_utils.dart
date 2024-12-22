@@ -1,4 +1,4 @@
-library nb_utils;
+import 'nb_utils_platform_interface.dart';
 
 import 'dart:async';
 
@@ -194,13 +194,9 @@ Future<void> initialize({
       getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
-/// nb_utils class
-class NBUtils {
-  static const MethodChannel _channel = MethodChannel(channelName);
-
-  static Future<String?> get platformVersion async {
-    final String? version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+class NbUtils {
+  Future<String?> getPlatformVersion() {
+    return NbUtilsPlatform.instance.getPlatformVersion();
   }
 }
 

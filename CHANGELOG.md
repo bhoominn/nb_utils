@@ -6,8 +6,6 @@
 - Added hoverElevation, focusElevation, highlightElevation in App Button
 - Added refreshIndicatorColor in AnimatedScrollView, AnimatedListView
 - Added support for defaultToastBackgroundColor, defaultToastTextColor for toast customization
-## 7.0.0
-- Fix Java 17 Compatibility to Android Project
 ## 7.0.4
 - Added Java 17 Compatibility to Android Project
 - Added retryButtonTextColor in NoDataWidget widget
