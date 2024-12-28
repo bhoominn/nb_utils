@@ -1,6 +1,6 @@
 name: nb_utils
 description: "Collection of Widgets and helpful Methods that every developer needs."
-version: 7.0.7
+version: 7.0.8
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
@@ -16,18 +16,18 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  web: ^0.5.1
-  plugin_platform_interface: ^2.0.2
+  web: ^1.1.0
+  plugin_platform_interface: ^2.1.8
 
-  shared_preferences: ^2.3.2
-  fluttertoast: ^8.2.8
-  connectivity_plus: ^6.0.5
+  shared_preferences: ^2.3.4
+  fluttertoast: ^8.2.10
+  connectivity_plus: ^6.1.1
   http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   plugin:
@@ -62,4 +62,4 @@ topics:
   - extensions
   - utils
   - chatgpt
-  - sharedpreference
+  - flutterutils

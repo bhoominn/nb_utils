@@ -153,6 +153,8 @@ List<LanguageDataModel> localeLanguageList = [];
 /// By default, your log will not seen in logcat in release mode.
 bool forceEnableDebug = false;
 
+bool isMaskingEnabledGlobal = true;
+
 // Toast Config
 Color defaultToastBackgroundColor = Colors.grey.shade200;
 Color defaultToastTextColor = Colors.black;

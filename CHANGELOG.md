@@ -1,3 +1,6 @@
+## 7.0.8
+- Updated URL validation Pattern
+- Added helper function for masking email and phone numbers
 ## 7.0.7
 - Added insetPadding in showInDialog method
 ## 7.0.6

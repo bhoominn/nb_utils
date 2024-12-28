@@ -344,4 +344,78 @@ extension StringExtension on String? {
 
   /// Returns true if the validate() method returns 'true', otherwise returns false.
   bool toBool() => validate() == 'true';
+
+  /// helper function to mask email and phone strings.
+  String mask({MaskType maskType = MaskType.auto, bool? isMaskingEnabled}) {
+    String data = validate();
+    isMaskingEnabled ??= isMaskingEnabledGlobal;
+
+    if (!isMaskingEnabledGlobal && !isMaskingEnabled) {
+      return data; // Return original data if masking is disabled
+    }
+    if (isMaskingEnabledGlobal && !isMaskingEnabled) {
+      return data; // Return original data if masking is disabled
+    }
+
+    if (maskType == MaskType.auto) {
+      if (data.validateEmail()) {
+        return maskEmail();
+      } else if (data.validatePhone()) {
+        return maskPhone();
+      }
+    }
+    if (maskType == MaskType.email) {
+      return maskEmail();
+    } else if (maskType == MaskType.phone) {
+      return maskPhone();
+    }
+
+    return data; // Return original data if something goes wrong
+  }
+
+  /// Mask email (e.g., user@example.com -> u***@example.com)
+  String maskEmail({bool? isMaskingEnabled}) {
+    String data = validate();
+
+    isMaskingEnabled ??= isMaskingEnabledGlobal;
+
+    if (!isMaskingEnabledGlobal && !isMaskingEnabled) {
+      return data; // Return original data if masking is disabled
+    }
+    if (isMaskingEnabledGlobal && !isMaskingEnabled) {
+      return data; // Return original data if masking is disabled
+    }
+
+    final parts = data.split('@');
+    if (parts.length == 2) {
+      final namePart = parts[0].substring(0, 1);
+      final domainPart = parts[1];
+      final maskedName = namePart + '*' * (parts[0].length - 1);
+      return '$maskedName@$domainPart';
+    }
+    return data;
+  }
+
+  /// Mask phone (e.g., 1234567890 -> 12****7890)
+  String maskPhone({bool? isMaskingEnabled}) {
+    String data = validate();
+
+    isMaskingEnabled ??= isMaskingEnabledGlobal;
+
+    if (!isMaskingEnabledGlobal && !isMaskingEnabled) {
+      return data; // Return original data if masking is disabled
+    }
+    if (isMaskingEnabledGlobal && !isMaskingEnabled) {
+      return data; // Return original data if masking is disabled
+    }
+
+    final length = data.length;
+    if (length > 4) {
+      final prefix = data.substring(0, 2);
+      final suffix = data.substring(length - 2);
+      final maskedMiddle = '*' * (length - 4);
+      return '$prefix$maskedMiddle$suffix';
+    }
+    return data;
+  }
 }
