@@ -1,3 +1,5 @@
+## 7.0.9
+- Added onTapOutside in AppTextField
 ## 7.0.8
 - Updated URL validation Pattern
 - Added helper function for masking email and phone numbers
