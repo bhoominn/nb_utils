@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 /// Make any variable nullable
 T? makeNullable<T>(T? value) => value;
@@ -394,7 +395,7 @@ Future<dynamic> showBottomSheetOrDialog({
 
 /// Retrieves package information asynchronously.
 Future<PackageInfoData> getPackageInfo() async {
-  if (isAndroid || isIOS) {
+  if (isAndroid) {
     var data = await invokeNativeMethod(channelName, 'packageInfo');
 
     if (data != null && data is Map) {
@@ -410,6 +411,16 @@ Future<PackageInfoData> getPackageInfo() async {
       // Throw an error if data retrieval fails.
       throw errorSomethingWentWrong;
     }
+  } else if (isIOS) {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    // Parse package info data from native method result.
+    return PackageInfoData(
+      appName: packageInfo.appName,
+      packageName: packageInfo.packageName,
+      versionName: packageInfo.version,
+      versionCode: packageInfo.buildNumber,
+    );
   } else {
     // Return empty package info for unsupported platforms.
     return PackageInfoData();
