@@ -95,7 +95,9 @@ class AppTextField extends StatefulWidget {
   final bool? isPassword;
   final bool obscureText;
 
-  AppTextField({
+  final Function(PointerDownEvent)? onTapOutside;
+
+  const AppTextField({
     this.controller,
     required this.textFieldType,
     this.decoration,
@@ -156,8 +158,9 @@ class AppTextField extends StatefulWidget {
     this.shortReplyChatGPT = false,
     this.testWithoutKeyChatGPT = false,
     this.obscureText = false,
-    Key? key,
-  }) : super(key: key);
+    this.onTapOutside,
+    super.key,
+  });
 
   @override
   _AppTextFieldState createState() => _AppTextFieldState();
@@ -395,6 +398,7 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget textFormFieldWidget() {
     return TextFormField(
       controller: widget.controller,
+      onTapOutside: widget.onTapOutside,
       obscureText: widget.textFieldType == TextFieldType.PASSWORD &&
           !isPasswordVisible &&
           widget.obscureText,
