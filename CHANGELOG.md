@@ -1,3 +1,5 @@
+## 7.0.10
+- Fixed packageInfo issue in iOS
 ## 7.0.9
 - Added onTapOutside in AppTextField
 ## 7.0.8
