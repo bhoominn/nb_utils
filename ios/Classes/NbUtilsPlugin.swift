@@ -15,8 +15,13 @@ public class NbUtilsPlugin: NSObject, FlutterPlugin {
     case "getPlatformVersion":
       result("iOS " + UIDevice.current.systemVersion)
     case "packageInfo":
-      self.packInfo = ["appName": Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String,"packageName": Bundle.main.bundleIdentifier!,"versionCode": Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String, "versionName": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String];
-      result("iOS " + UIDevice.current.systemVersion)
+      self.packInfo = [
+            "appName": Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "",
+            "packageName": Bundle.main.bundleIdentifier ?? "",
+            "versionCode": Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
+            "versionName": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        ]
+      result(packInfo) // Return the dictionary here
     default:
       result(FlutterMethodNotImplemented)
     }
