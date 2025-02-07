@@ -16,7 +16,7 @@ class UL extends StatelessWidget {
   final CrossAxisAlignment? symbolCrossAxisAlignment;
   final String? prefixText; // Used when SymbolType is Numbered
 
-  UL({
+  const UL({
     this.children,
     this.padding = 8,
     this.spacing = 8,

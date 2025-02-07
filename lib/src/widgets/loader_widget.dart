@@ -13,7 +13,7 @@ class Loader extends StatefulWidget {
   final double? value;
   final Animation<Color?>? valueColor;
 
-  Loader({
+  const Loader({
     this.color,
     this.decoration,
     this.size,

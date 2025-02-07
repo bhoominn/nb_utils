@@ -19,7 +19,7 @@ class DotIndicator<T> extends StatefulWidget {
   final BorderRadiusGeometry? borderRadius;
   final BorderRadiusGeometry? currentBorderRadius;
 
-  DotIndicator({
+  const DotIndicator({
     required this.pageController,
     required this.pages,
     this.indicatorColor,

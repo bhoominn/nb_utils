@@ -59,9 +59,9 @@ class Marquee extends StatelessWidget {
     return Directionality(
       textDirection: textDirection,
       child: SingleChildScrollView(
-        child: child,
         scrollDirection: direction,
         controller: scrollController,
+        child: child,
       ),
     );
   }

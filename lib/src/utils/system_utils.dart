@@ -132,7 +132,7 @@ Widget Function(BuildContext, Widget?)? scrollBehaviour() {
 class SBehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails axisDirection) {
+      BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }

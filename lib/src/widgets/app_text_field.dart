@@ -93,7 +93,7 @@ class AppTextField extends StatefulWidget {
 
   @Deprecated('Use TextFieldType.PASSWORD instead')
   final bool? isPassword;
-  final bool obscureText;
+  final bool? obscureText;
 
   final Function(PointerDownEvent)? onTapOutside;
 
@@ -157,7 +157,7 @@ class AppTextField extends StatefulWidget {
     this.promptFieldInputDecorationChatGPT,
     this.shortReplyChatGPT = false,
     this.testWithoutKeyChatGPT = false,
-    this.obscureText = false,
+    this.obscureText,
     this.onTapOutside,
     super.key,
   });
@@ -399,9 +399,9 @@ class _AppTextFieldState extends State<AppTextField> {
     return TextFormField(
       controller: widget.controller,
       onTapOutside: widget.onTapOutside,
-      obscureText: widget.textFieldType == TextFieldType.PASSWORD &&
-          !isPasswordVisible &&
-          widget.obscureText,
+      obscureText: widget.obscureText ??
+          (widget.textFieldType == TextFieldType.PASSWORD &&
+              !isPasswordVisible),
       validator: applyValidation(),
       textCapitalization: applyTextCapitalization(),
       textInputAction: applyTextInputAction(),

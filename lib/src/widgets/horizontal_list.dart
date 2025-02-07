@@ -14,7 +14,7 @@ class HorizontalList extends StatelessWidget {
   final WrapAlignment? wrapAlignment;
   final WrapCrossAlignment? crossAxisAlignment;
 
-  HorizontalList({
+  const HorizontalList({
     required this.itemCount,
     required this.itemBuilder,
     this.spacing,

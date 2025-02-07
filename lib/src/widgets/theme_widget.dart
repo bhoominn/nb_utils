@@ -11,7 +11,7 @@ class ThemeWidget extends StatefulWidget {
   final Widget? trailing;
   final EdgeInsets? padding;
 
-  ThemeWidget({
+  const ThemeWidget({
     this.scrollPhysics,
     this.onThemeChanged,
     this.subTitle,
@@ -92,11 +92,11 @@ String _getName(ThemeModes themeModes) {
 String? get getSelectedThemeMode {
   String? data;
 
-  ThemeModes.values.forEach((element) {
+  for (var element in ThemeModes.values) {
     if (ThemeModes.values.indexOf(element) == getIntAsync(THEME_MODE_INDEX)) {
       data = _getName(element);
     }
-  });
+  }
 
   return data;
 }

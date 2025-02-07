@@ -43,7 +43,7 @@ class AnimatedListView extends StatefulWidget {
   final Widget? emptyWidget;
   final Color? refreshIndicatorColor;
 
-  AnimatedListView({
+  const AnimatedListView({
     super.key,
     this.controller,
     this.itemCount,
@@ -166,9 +166,9 @@ class _AnimatedListViewState extends State<AnimatedListView> {
   Widget build(BuildContext context) {
     if (widget.onSwipeRefresh != null) {
       return RefreshIndicator(
-        child: _widget(),
         onRefresh: widget.onSwipeRefresh!,
         color: widget.refreshIndicatorColor,
+        child: _widget(),
       );
     } else {
       return _widget();

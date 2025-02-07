@@ -112,7 +112,7 @@ class AnimatedTextKit extends StatefulWidget {
   final int totalRepeatCount;
 
   const AnimatedTextKit({
-    Key? key,
+    super.key,
     required this.animatedTexts,
     this.pause = const Duration(milliseconds: 1000),
     this.displayFullTextOnTap = false,
@@ -126,8 +126,7 @@ class AnimatedTextKit extends StatefulWidget {
     this.repeatForever = false,
   })  : assert(animatedTexts.length > 0),
         assert(!isRepeatingAnimation || totalRepeatCount > 0 || repeatForever),
-        assert(null == onFinished || !repeatForever),
-        super(key: key);
+        assert(null == onFinished || !repeatForever);
 
   /// Creates the mutable state for this widget. See [StatefulWidget.createState].
   @override

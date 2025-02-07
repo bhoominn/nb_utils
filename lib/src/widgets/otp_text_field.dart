@@ -31,7 +31,7 @@ class OTPTextField extends StatefulWidget {
   /// The color of the cursor in the OTP input fields.
   final Color? cursorColor;
 
-  OTPTextField({
+  const OTPTextField({
     this.pinLength = 4,
     this.fieldWidth = 40,
     this.onChanged,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class RestartAppWidget extends StatefulWidget {
   final Widget child;
 
-  RestartAppWidget({super.key, required this.child});
+  const RestartAppWidget({super.key, required this.child});
 
   @override
   _RestartAppWidgetState createState() => _RestartAppWidgetState();

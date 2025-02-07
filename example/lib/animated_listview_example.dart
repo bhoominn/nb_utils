@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class AnimatedListViewExample extends StatelessWidget {
-  const AnimatedListViewExample({Key? key}) : super(key: key);
+  const AnimatedListViewExample({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class AnimatedListViewExample extends StatelessWidget {
       body: AnimatedListView(
         itemCount: 20,
         itemBuilder: (_, index) {
-          return Container(
+          return const Padding(
             padding: EdgeInsets.all(30),
             child: Text('hello'),
           );

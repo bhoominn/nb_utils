@@ -594,7 +594,6 @@ _medianCutApply(List<int?> histo, VBox vbox) {
             vbox1.b2 = d2;
             vbox2.b1 = vbox1.b2 + 1;
             break;
-          default:
         }
 
         return [vbox1, vbox2];

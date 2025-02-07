@@ -24,7 +24,7 @@ class SettingItemWidget extends StatelessWidget {
   final BorderRadius? radius;
   final int subTitleMaxLine;
 
-  SettingItemWidget({
+  const SettingItemWidget({
     required this.title,
     this.onTap,
     this.width,

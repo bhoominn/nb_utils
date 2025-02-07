@@ -32,7 +32,7 @@ class AnimatedScrollView extends StatefulWidget {
   final bool disposeScrollController;
   final Color? refreshIndicatorColor;
 
-  AnimatedScrollView({
+  const AnimatedScrollView({
     super.key,
     this.controller,
     this.padding,
@@ -137,9 +137,9 @@ class _AnimatedScrollViewState extends State<AnimatedScrollView> {
   Widget build(BuildContext context) {
     if (widget.onSwipeRefresh != null) {
       return RefreshIndicator(
-        child: _widget(),
         onRefresh: widget.onSwipeRefresh!,
         color: widget.refreshIndicatorColor,
+        child: _widget(),
       );
     } else {
       return _widget();

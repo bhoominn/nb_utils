@@ -7,7 +7,7 @@ class HyperLinkWidget extends StatefulWidget {
   final TextStyle? style;
   final int maxLines;
 
-  HyperLinkWidget({
+  const HyperLinkWidget({
     super.key,
     required this.text,
     this.style,

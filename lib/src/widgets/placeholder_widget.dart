@@ -21,7 +21,7 @@ class PlaceHolderWidget extends StatelessWidget {
 
   final Widget? child;
 
-  PlaceHolderWidget({
+  const PlaceHolderWidget({
     this.height,
     this.width,
     this.animationDuration,

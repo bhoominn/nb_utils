@@ -25,6 +25,8 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -54,7 +56,7 @@ class _MyAppState extends State<MyApp> {
           themeMode: getIntAsync(THEME_MODE_INDEX) == 2
               ? ThemeMode.dark
               : ThemeMode.light,
-          home: HomePage(),
+          home: const HomePage(),
         );
       },
     );
@@ -62,6 +64,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }

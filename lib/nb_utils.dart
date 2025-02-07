@@ -3,7 +3,6 @@ import 'nb_utils_platform_interface.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 export 'package:connectivity_plus/connectivity_plus.dart';

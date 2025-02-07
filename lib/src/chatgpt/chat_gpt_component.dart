@@ -13,7 +13,7 @@ class ChatGPTSheetComponent extends StatefulWidget {
 
   final ChatGPTModuleStrings gptModuleStrings;
 
-  ChatGPTSheetComponent({
+  const ChatGPTSheetComponent({
     super.key,
     this.initialPrompt = '',
     required this.recentList,
@@ -158,11 +158,6 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                             ),
                       )
                     : AppButton(
-                        child: Text(
-                            answerCont.text.isNotEmpty
-                                ? widget.gptModuleStrings.reGenerate
-                                : widget.gptModuleStrings.generate,
-                            style: boldTextStyle(color: white)),
                         color: context.primaryColor.withValues(alpha: 0.85),
                         textStyle: boldTextStyle(color: white),
                         width: context.width(),
@@ -170,6 +165,11 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                         onTap: () {
                           handleGenerateClick(context);
                         },
+                        child: Text(
+                            answerCont.text.isNotEmpty
+                                ? widget.gptModuleStrings.reGenerate
+                                : widget.gptModuleStrings.generate,
+                            style: boldTextStyle(color: white)),
                       ),
                 if (displayGeneratedText)
                   Column(
@@ -263,7 +263,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                           ),
                         ],
                       ),
-                      Container(
+                      SizedBox(
                         height: context.height() * 0.42,
                         child: AnimatedListView(
                           shrinkWrap: true,

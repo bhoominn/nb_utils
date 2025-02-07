@@ -11,7 +11,7 @@ class Responsive extends StatelessWidget {
   final double? minHeight;
   final Widget? defaultWidget;
 
-  Responsive({
+  const Responsive({
     this.web,
     required this.mobile,
     this.tablet,

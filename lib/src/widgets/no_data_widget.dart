@@ -39,7 +39,7 @@ class NoDataWidget extends StatelessWidget {
   /// Padding for the retry button.
   final EdgeInsets? buttonPadding;
 
-  NoDataWidget({
+  const NoDataWidget({
     this.image,
     this.imageSize,
     this.imageWidget,

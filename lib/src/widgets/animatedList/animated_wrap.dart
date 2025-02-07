@@ -27,8 +27,8 @@ class AnimatedWrap extends StatelessWidget {
 
   final List<Widget>? children;
 
-  AnimatedWrap({
-    Key? key,
+  const AnimatedWrap({
+    super.key,
     this.itemCount = 0,
     this.itemBuilder,
     this.clipBehavior,
@@ -47,12 +47,11 @@ class AnimatedWrap extends StatelessWidget {
     this.scaleConfiguration,
     this.flipConfiguration,
     this.children,
-  })  : assert(
+  }) : assert(
           (itemBuilder == null && children != null) ||
               (itemBuilder != null && children == null),
           'You must have to use children or itemBuilder',
-        ),
-        super(key: key);
+        );
 
   @override
   Widget build(BuildContext context) {

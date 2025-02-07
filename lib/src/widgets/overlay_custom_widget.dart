@@ -7,7 +7,8 @@ class OverlayCustomWidget extends StatelessWidget {
   final Widget Function(BuildContext, Offset anchor) overlayBuilder;
   final Widget child;
 
-  OverlayCustomWidget({
+  const OverlayCustomWidget({
+    super.key,
     this.showOverlay = false,
     required this.overlayBuilder,
     required this.child,
@@ -15,22 +16,20 @@ class OverlayCustomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return OverlayBuilder(
-            showOverlay: showOverlay,
-            overlayBuilder: (BuildContext overlayContext) {
-              RenderBox box = context.findRenderObject() as RenderBox;
-              final center =
-                  box.size.center(box.localToGlobal(const Offset(0.0, 0.0)));
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        return OverlayBuilder(
+          showOverlay: showOverlay,
+          overlayBuilder: (BuildContext overlayContext) {
+            RenderBox box = context.findRenderObject() as RenderBox;
+            final center =
+                box.size.center(box.localToGlobal(const Offset(0.0, 0.0)));
 
-              return overlayBuilder(overlayContext, center);
-            },
-            child: child,
-          );
-        },
-      ),
+            return overlayBuilder(overlayContext, center);
+          },
+          child: child,
+        );
+      },
     );
   }
 }
@@ -41,7 +40,8 @@ class OverlayBuilder extends StatefulWidget {
   final Widget Function(BuildContext)? overlayBuilder;
   final Widget? child;
 
-  OverlayBuilder({
+  const OverlayBuilder({
+    super.key,
     this.showOverlay = false,
     this.overlayBuilder,
     this.child,
@@ -124,7 +124,8 @@ class OverlayOffsetWidget extends StatelessWidget {
   final Offset? position;
   final Widget? child;
 
-  OverlayOffsetWidget({
+  const OverlayOffsetWidget({
+    super.key,
     this.position,
     this.child,
   });

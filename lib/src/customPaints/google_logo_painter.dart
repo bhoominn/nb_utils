@@ -5,7 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 class GoogleLogoWidget extends StatelessWidget {
   final int? size;
 
-  GoogleLogoWidget({this.size});
+  const GoogleLogoWidget({super.key, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class GoogleLogoWidget extends StatelessWidget {
 /// Google logo CustomPaint
 class GoogleLogoPainter extends CustomPainter {
   @override
-  bool shouldRepaint(_) => true;
+  bool shouldRepaint(oldDelegate) => true;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -36,8 +36,8 @@ class GoogleLogoPainter extends CustomPainter {
       ..strokeWidth = arcThickness;
 
     void drawArc(double startAngle, double sweepAngle, Color color) {
-      final _paint = paint..color = color;
-      canvas.drawArc(bounds, startAngle, sweepAngle, false, _paint);
+      final paint0 = paint..color = color;
+      canvas.drawArc(bounds, startAngle, sweepAngle, false, paint0);
     }
 
     drawArc(3.5, 1.9, Colors.red);

@@ -1,3 +1,5 @@
+## 7.1.0
+- Make obscureText nullable in AppTextField widget
 ## 7.0.10
 - Fixed packageInfo issue in iOS
 ## 7.0.9

@@ -16,7 +16,7 @@ class DoublePressBackWidget extends StatefulWidget {
   /// Callback function that gets called on pop confirmation (double press).
   final VoidCallback? onWillPop; // Changed type to VoidCallback
 
-  DoublePressBackWidget({
+  const DoublePressBackWidget({
     super.key,
     required this.child,
     this.message,

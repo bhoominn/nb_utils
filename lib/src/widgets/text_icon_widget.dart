@@ -15,7 +15,7 @@ class TextIcon extends StatelessWidget {
   final bool useMarquee;
   final BoxDecoration? boxDecoration;
 
-  TextIcon({
+  const TextIcon({
     this.text,
     this.textStyle,
     this.prefix,
