@@ -124,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Text('test@example.com'.mask(isMaskingEnabled: false)),
                   Text('+913537598797'.mask()),
+                  VersionInfoWidget(),
                   16.height,
                   OTPTextField(
                     boxDecoration: BoxDecoration(
