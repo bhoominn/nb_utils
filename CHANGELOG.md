@@ -1,3 +1,5 @@
+## 7.1.2
+- Fix obscureText issue in AppTextField widget
 ## 7.1.1
 - #69 Solved built error in java 17
 ## 7.1.0

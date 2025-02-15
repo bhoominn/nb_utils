@@ -170,6 +170,15 @@ class _AppTextFieldState extends State<AppTextField> {
   bool isPasswordVisible = false;
   List<String> recentChat = [];
 
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.obscureText != null) {
+      isPasswordVisible = widget.obscureText!;
+    }
+  }
+
   FormFieldValidator<String>? applyValidation() {
     if (widget.isValidationRequired) {
       if (widget.validator != null) {
@@ -399,8 +408,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return TextFormField(
       controller: widget.controller,
       onTapOutside: widget.onTapOutside,
-      obscureText: widget.obscureText ??
-          (widget.textFieldType == TextFieldType.PASSWORD &&
+      obscureText: (widget.textFieldType == TextFieldType.PASSWORD &&
               !isPasswordVisible),
       validator: applyValidation(),
       textCapitalization: applyTextCapitalization(),
