@@ -91,6 +91,7 @@ export 'src/widgets/timer_widget.dart';
 export 'src/widgets/ul_widget.dart';
 export 'src/widgets/version_info_widget.dart';
 export 'src/widgets/widgets.dart';
+export 'src/widgets/wavy_divider.dart';
 
 //region Global variables - This variables can be changed.
 Color textPrimaryColorGlobal = textPrimaryColor;

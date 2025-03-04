@@ -1,3 +1,5 @@
+## 7.1.3
+- Added Wavy Divider Widget
 ## 7.1.2
 - Fix obscureText issue in AppTextField widget
 ## 7.1.1
