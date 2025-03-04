@@ -191,7 +191,8 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 16.height,
-                const DottedBorderWidget(child: SizedBox(height: 100, width: 100)),
+                const DottedBorderWidget(
+                    child: SizedBox(height: 100, width: 100)),
 
                 16.height,
 
@@ -284,8 +285,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () async {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation:
-                                  DialogAnimation.SLIDE_RIGHT_LEFT,
+                              dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT,
                               title: "Do you want to logout from the app?",
                               dialogType: DialogType.CONFIRMATION,
                               centerImage:
@@ -306,8 +306,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation:
-                                  DialogAnimation.SLIDE_BOTTOM_TOP,
+                              dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
                               title: "Do you want to update this item?",
                               dialogType: DialogType.UPDATE,
                               onAccept: (_) {
@@ -321,8 +320,7 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation:
-                                  DialogAnimation.SLIDE_LEFT_RIGHT,
+                              dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT,
                               title: "Delete 89 files permanent?",
                               dialogType: DialogType.DELETE,
                               onAccept: (_) {
@@ -338,8 +336,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               title: "Do you want to add this item?",
                               dialogType: DialogType.ADD,
-                              dialogAnimation:
-                                  DialogAnimation.SLIDE_TOP_BOTTOM,
+                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
                               onAccept: (_) {
                                 snackBar(context, title: 'Added');
                               },
@@ -351,8 +348,10 @@ class _HomePageState extends State<HomePage> {
                     16.height,
 
                     /// Hover Widget Example
-                    Text('Dialog Animation Example',
-                        style: primaryTextStyle(),),
+                    Text(
+                      'Dialog Animation Example',
+                      style: primaryTextStyle(),
+                    ),
                     8.height,
                     Wrap(
                       spacing: 8,

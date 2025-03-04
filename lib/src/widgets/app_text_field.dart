@@ -409,7 +409,7 @@ class _AppTextFieldState extends State<AppTextField> {
       controller: widget.controller,
       onTapOutside: widget.onTapOutside,
       obscureText: (widget.textFieldType == TextFieldType.PASSWORD &&
-              !isPasswordVisible),
+          !isPasswordVisible),
       validator: applyValidation(),
       textCapitalization: applyTextCapitalization(),
       textInputAction: applyTextInputAction(),
