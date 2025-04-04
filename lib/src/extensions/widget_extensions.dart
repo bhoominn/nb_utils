@@ -61,6 +61,23 @@ extension WidgetExtension on Widget? {
     );
   }
 
+  Widget paddingDirectional({
+    double start = 0.0,
+    double top = 0.0,
+    double end = 0.0,
+    double bottom = 0.0,
+  }) {
+    return Padding(
+      padding: EdgeInsetsDirectional.only(
+        start: start,
+        top: top,
+        end: end,
+        bottom: bottom,
+      ),
+      child: this,
+    );
+  }
+
   /// set visibility
   Widget visible(bool visible, {Widget? defaultWidget}) {
     return visible ? this! : (defaultWidget ?? SizedBox());

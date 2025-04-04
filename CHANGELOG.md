@@ -1,3 +1,5 @@
+## 7.1.4
+- Added paddingDirectional widget extension
 ## 7.1.3
 - Added Wavy Divider Widget
 ## 7.1.2

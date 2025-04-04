@@ -10,6 +10,7 @@ class AnimatedListViewExample extends StatelessWidget {
       appBar: AppBar(),
       body: AnimatedListView(
         itemCount: 20,
+        physics: const AlwaysScrollableScrollPhysics(),
         itemBuilder: (_, index) {
           return const Padding(
             padding: EdgeInsets.all(30),
