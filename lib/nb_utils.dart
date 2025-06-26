@@ -1,19 +1,19 @@
-import 'nb_utils_platform_interface.dart';
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import 'nb_utils_platform_interface.dart';
+
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
-export 'src/customPaints/google_logo_painter.dart';
 export 'src/chatgpt/chat_gpt.dart';
 export 'src/chatgpt/chat_gpt_component.dart';
-export 'src/chatgpt/chat_gpt_strings.dart';
 export 'src/chatgpt/chat_gpt_models.dart';
+export 'src/chatgpt/chat_gpt_strings.dart';
+export 'src/customPaints/google_logo_painter.dart';
 export 'src/deprecated_widgets.dart';
 export 'src/extensions/bool_extensions.dart';
 export 'src/extensions/color_extensions.dart';
@@ -41,9 +41,9 @@ export 'src/utils/constants.dart';
 export 'src/utils/debouncer.dart';
 export 'src/utils/decorations.dart';
 export 'src/utils/enums.dart';
+export 'src/utils/get_ip_address.dart';
 export 'src/utils/jwt_decoder.dart';
 export 'src/utils/line_icons.dart';
-export 'src/utils/get_ip_address.dart';
 export 'src/utils/network_utils.dart';
 export 'src/utils/pattern.dart';
 export 'src/utils/shared_pref.dart';
@@ -72,8 +72,8 @@ export 'src/widgets/language_list_widget.dart';
 export 'src/widgets/loader_widget.dart';
 export 'src/widgets/marquee_widget.dart';
 export 'src/widgets/no_data_widget.dart';
-export 'src/widgets/overlay_custom_widget.dart';
 export 'src/widgets/otp_text_field.dart';
+export 'src/widgets/overlay_custom_widget.dart';
 export 'src/widgets/placeholder_widget.dart';
 export 'src/widgets/rating_bar_widget.dart';
 export 'src/widgets/read_more_text.dart';
@@ -90,8 +90,8 @@ export 'src/widgets/theme_widget.dart';
 export 'src/widgets/timer_widget.dart';
 export 'src/widgets/ul_widget.dart';
 export 'src/widgets/version_info_widget.dart';
-export 'src/widgets/widgets.dart';
 export 'src/widgets/wavy_divider.dart';
+export 'src/widgets/widgets.dart';
 
 //region Global variables - This variables can be changed.
 Color textPrimaryColorGlobal = textPrimaryColor;

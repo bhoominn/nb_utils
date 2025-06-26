@@ -39,6 +39,8 @@ class NbUtilsPlugin: FlutterPlugin, MethodCallHandler {
       result.success(getMaterialYouColours())
     } else if (call.method == "packageInfo") {
       result.success(packageInfo())
+    } else if (call.method == "getAndroidSDKVersion") {
+      result.success(android.os.Build.VERSION.SDK_INT)
     } else {
       result.notImplemented()
     }

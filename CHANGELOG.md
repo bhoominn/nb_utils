@@ -1,3 +1,9 @@
+## 7.1.5
+- Add getAndroidSDKVersion Method
+- Add asBool string extension
+- Improve AppTextField
+- Improve getMaterialYouTheme
+- Library updates
 ## 7.1.4
 - Added paddingDirectional widget extension
 ## 7.1.3

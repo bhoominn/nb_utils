@@ -5,7 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import 'animated_listview_example.dart';
 
-const APP_NAME = 'NB Utils Example';
+const appName = 'NB Utils Example';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,20 +21,22 @@ void main() async {
   defaultRadius = 16;
   defaultAppButtonRadius = 16;
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
+    //
   }
 
   @override
@@ -43,16 +45,19 @@ class _MyAppState extends State<MyApp> {
       future: getMaterialYouTheme(),
       builder: (_, snap) {
         return MaterialApp(
-          title: APP_NAME,
+          title: appName,
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
           theme: snap.data ??
-              ThemeData.light(
+              ThemeData(
                 useMaterial3: true,
+                useSystemColors: true,
               ),
-          darkTheme: ThemeData.dark(
-            useMaterial3: true,
-          ),
+          darkTheme: snap.data ??
+              ThemeData(
+                useMaterial3: true,
+                useSystemColors: true,
+              ),
           themeMode: getIntAsync(THEME_MODE_INDEX) == 2
               ? ThemeMode.dark
               : ThemeMode.light,
@@ -67,10 +72,10 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController textCont = TextEditingController();
 
@@ -101,11 +106,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     return DoublePressBackWidget(
       child: Scaffold(
-        appBar: AppBar(backgroundColor: transparentColor),
         drawerEdgeDragWidth: context.width() * 0.2,
         drawerEnableOpenDragGesture: true,
         floatingActionButton: FloatingActionButton(
@@ -163,24 +165,6 @@ class _HomePageState extends State<HomePage> {
                     log(size.width.toString());
                   },
                 ),*/
-
-                16.height,
-                SnapHelperWidget(
-                  future: getMaterialYouColors(),
-                  onSuccess: (data) {
-                    //var data1 = (data as Map).values.map((e) => e.toString().toColor()).toList();
-
-                    return Wrap(
-                      children: (data as Map).entries.map((e) {
-                        return Container(
-                          height: 50,
-                          color: e.value.toString().toColor(),
-                          child: Text(e.key),
-                        );
-                      }).toList(),
-                    );
-                  },
-                ),
 
                 16.height,
                 LanguageListWidget(
@@ -252,20 +236,23 @@ class _HomePageState extends State<HomePage> {
                         AppButton(
                           text: "Theme",
                           onTap: () async {
-                            showInDialog(context, builder: (_) {
-                              return SizedBox(
-                                height: 400,
-                                width: 500,
-                                child: ThemeWidget(
-                                  onThemeChanged: (data) {
-                                    setState(() {});
-                                    log(data);
-                                  },
-                                ),
-                              );
-                            },
-                                title: Text('Theme'),
-                                contentPadding: EdgeInsets.zero);
+                            showInDialog(
+                              context,
+                              builder: (_) {
+                                return SizedBox(
+                                  height: 400,
+                                  width: 500,
+                                  child: ThemeWidget(
+                                    onThemeChanged: (data) {
+                                      setState(() {});
+                                      log(data);
+                                    },
+                                  ),
+                                );
+                              },
+                              title: const Text('Theme'),
+                              contentPadding: EdgeInsets.zero,
+                            );
                           },
                         ),
                         AppButton(
@@ -285,7 +272,8 @@ class _HomePageState extends State<HomePage> {
                           onTap: () async {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT,
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_RIGHT_LEFT,
                               title: "Do you want to logout from the app?",
                               dialogType: DialogType.CONFIRMATION,
                               centerImage:
@@ -306,7 +294,8 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_BOTTOM_TOP,
                               title: "Do you want to update this item?",
                               dialogType: DialogType.UPDATE,
                               onAccept: (_) {
@@ -320,7 +309,8 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             showConfirmDialogCustom(
                               context,
-                              dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT,
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_LEFT_RIGHT,
                               title: "Delete 89 files permanent?",
                               dialogType: DialogType.DELETE,
                               onAccept: (_) {
@@ -336,7 +326,8 @@ class _HomePageState extends State<HomePage> {
                               context,
                               title: "Do you want to add this item?",
                               dialogType: DialogType.ADD,
-                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_TOP_BOTTOM,
                               onAccept: (_) {
                                 snackBar(context, title: 'Added');
                               },
@@ -367,53 +358,65 @@ class _HomePageState extends State<HomePage> {
                         AppButton(
                           text: 'Rotate',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation: DialogAnimation.ROTATE);
+                            showInDialog(
+                              context,
+                              builder: (_) => dialogWidget(),
+                              dialogAnimation: DialogAnimation.ROTATE,
+                            );
                           },
                         ),
                         AppButton(
                           text: 'Scale',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation: DialogAnimation.SCALE);
+                            showInDialog(
+                              context,
+                              builder: (_) => dialogWidget(),
+                              dialogAnimation: DialogAnimation.SCALE,
+                            );
                           },
                         ),
                         AppButton(
                           text: 'Top to Bottom',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_TOP_BOTTOM);
+                            showInDialog(
+                              context,
+                              builder: (_) => dialogWidget(),
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_TOP_BOTTOM,
+                            );
                           },
                         ),
                         AppButton(
                           text: 'Bottom to Top',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_BOTTOM_TOP);
+                            showInDialog(
+                              context,
+                              builder: (_) => dialogWidget(),
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_BOTTOM_TOP,
+                            );
                           },
                         ),
                         AppButton(
                           text: 'Left to Right',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_LEFT_RIGHT);
+                            showInDialog(
+                              context,
+                              builder: (_) => dialogWidget(),
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_LEFT_RIGHT,
+                            );
                           },
                         ),
                         AppButton(
                           text: 'Right to Left',
                           onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget(),
-                                dialogAnimation:
-                                    DialogAnimation.SLIDE_RIGHT_LEFT);
+                            showInDialog(
+                              context,
+                              builder: (_) => dialogWidget(),
+                              dialogAnimation:
+                                  DialogAnimation.SLIDE_RIGHT_LEFT,
+                            );
                           },
                         ),
                       ],
@@ -480,7 +483,7 @@ class _HomePageState extends State<HomePage> {
                 ).paddingAll(16),
 
                 16.height,
-                GoogleLogoWidget(size: 30),
+                const GoogleLogoWidget(size: 30),
 
                 16.height,
                 Row(
@@ -535,10 +538,28 @@ class _HomePageState extends State<HomePage> {
                       trailing: Icon(Icons.keyboard_arrow_right_rounded,
                           color: context.dividerColor),
                       onTap: () {
-                        push(HomePage());
+                        push(const HomePage());
                       },
                     ),
                   ],
+                ),
+
+                16.height,
+                SnapHelperWidget(
+                  future: getMaterialYouColors(),
+                  onSuccess: (data) {
+                    //var data1 = (data as Map).values.map((e) => e.toString().toColor()).toList();
+
+                    return Wrap(
+                      children: (data as Map).entries.map((e) {
+                        return Container(
+                          height: 50,
+                          color: e.value.toString().toColor(),
+                          child: Text(e.key),
+                        );
+                      }).toList(),
+                    );
+                  },
                 ),
               ],
             ),

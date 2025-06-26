@@ -175,7 +175,7 @@ class _AppTextFieldState extends State<AppTextField> {
     super.initState();
 
     if (widget.obscureText != null) {
-      isPasswordVisible = widget.obscureText!;
+      isPasswordVisible = !widget.obscureText!;
     }
   }
 

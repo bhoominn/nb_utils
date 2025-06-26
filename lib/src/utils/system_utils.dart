@@ -157,6 +157,11 @@ Future<Null> onError(Object o) async {
   log(o.toString());
 }
 
+/// Return android SDK version
+Future<int> getAndroidSDKVersion() async {
+  return (await invokeNativeMethod(channelName, 'getAndroidSDKVersion') as int);
+}
+
 /// Return true if Android OS version is above 12
 Future<bool> isAndroid12Above() async {
   if (isAndroid) {
@@ -176,29 +181,30 @@ Future<dynamic> getMaterialYouColors() async {
 }
 
 /// Returns primary color for material you theme
-Future<Color> getMaterialYouPrimaryColor() async {
-  Map colors = await getMaterialYouColors();
+Future<Color?> getMaterialYouPrimaryColor() async {
+  if (isAndroid && await isAndroid12Above()) {
+    Map colors = await getMaterialYouColors();
 
-  return colors['system_accent1_400'].toString().toColor();
+    return colors['system_accent1_100'].toString().toColor();
+  } else {
+    return null;
+  }
 }
 
 /// Returns material you ThemeData
 Future<ThemeData> getMaterialYouTheme() async {
   Map colors = await getMaterialYouColors();
 
-  Color accent50 = colors['system_accent1_50'].toString().toColor();
-  Color accent300 = colors['system_accent1_300'].toString().toColor();
-  Color accent400 = colors['system_accent1_400'].toString().toColor();
-
-  return ThemeData(
-    //primarySwatch: createMaterialColor(accent300),
-    primaryColor: accent400,
-    //scaffoldBackgroundColor: accent50,
-    useMaterial3: true,
-    colorScheme: ColorScheme.fromSwatch(
-      primarySwatch: createMaterialColor(accent300),
-      cardColor: accent50,
-      //backgroundColor: accent50,
-    ),
-  );
+  if (colors.isEmpty) {
+    return ThemeData(
+      useMaterial3: true,
+      useSystemColors: true,
+    );
+  } else {
+    return ThemeData(
+      useMaterial3: true,
+      useSystemColors: true,
+      colorSchemeSeed: colors['system_accent1_100'].toString().toColor(),
+    );
+  }
 }

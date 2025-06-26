@@ -418,4 +418,7 @@ extension StringExtension on String? {
     }
     return data;
   }
+
+  /// Returns true if the validate() method returns 'true', otherwise returns false.
+  bool get asBool => this == 'true';
 }
