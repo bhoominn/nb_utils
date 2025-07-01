@@ -1,6 +1,9 @@
+## 7.1.6
+- Added getAndroidOSVersion method
+- Added isAndroidOSVersionAbove method. You can pass Android OS version and check if it is above that version.
 ## 7.1.5
-- Add getAndroidSDKVersion Method
-- Add asBool string extension
+- Added getAndroidSDKVersion Method
+- Added asBool string extension
 - Improve AppTextField
 - Improve getMaterialYouTheme
 - Library updates

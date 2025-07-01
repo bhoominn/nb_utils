@@ -162,10 +162,26 @@ Future<int> getAndroidSDKVersion() async {
   return (await invokeNativeMethod(channelName, 'getAndroidSDKVersion') as int);
 }
 
+/// Return Android OS version
+Future<int> getAndroidOSVersion() async {
+  return (await invokeNativeMethod(channelName, 'getAndroidOSVersion'))
+      .toString()
+      .toInt();
+}
+
 /// Return true if Android OS version is above 12
 Future<bool> isAndroid12Above() async {
   if (isAndroid) {
     return (await invokeNativeMethod(channelName, 'isAndroid12Above') as bool);
+  } else {
+    return false;
+  }
+}
+
+/// Return true if Android OS version is above given OS version
+Future<bool> isAndroidOSVersionAbove(int osVersion) async {
+  if (isAndroid) {
+    return (await getAndroidOSVersion()) >= osVersion;
   } else {
     return false;
   }

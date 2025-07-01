@@ -41,6 +41,8 @@ class NbUtilsPlugin: FlutterPlugin, MethodCallHandler {
       result.success(packageInfo())
     } else if (call.method == "getAndroidSDKVersion") {
       result.success(android.os.Build.VERSION.SDK_INT)
+    } else if (call.method == "getAndroidOSVersion") {
+      result.success(android.os.Build.VERSION.RELEASE)
     } else {
       result.notImplemented()
     }
