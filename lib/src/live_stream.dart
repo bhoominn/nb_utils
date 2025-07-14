@@ -31,7 +31,7 @@ class LiveStream {
   }
 
   /// Remove key from HashMap
-  void dispose(key) {
+  void dispose(String key) {
     _mStorage.removeKey(key);
   }
 

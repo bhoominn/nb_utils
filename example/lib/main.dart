@@ -121,6 +121,23 @@ class HomePageState extends State<HomePage> {
             key: formKey,
             child: Column(
               children: <Widget>[
+                /*DotIndicator(
+                  pageController: PageController(),
+                  indicatorColor: Colors.black,
+                  unselectedIndicatorColor: Colors.blue,
+                  currentDotSize: 100,
+                  dotSize: 50,
+                  currentBoxShape: BoxShape.rectangle,
+                  boxShape: BoxShape.rectangle,
+                  currentBorderRadius: radius(),
+                  borderRadius: radius(),
+                  pages: [
+                    "",
+                    "",
+                    "",
+                  ],
+                ),*/
+
                 Text('test@example.com'.mask(isMaskingEnabled: false)),
                 Text('+913537598797'.mask()),
                 const VersionInfoWidget(),
@@ -176,7 +193,8 @@ class HomePageState extends State<HomePage> {
 
                 16.height,
                 const DottedBorderWidget(
-                    child: SizedBox(height: 100, width: 100)),
+                  child: SizedBox(height: 100, width: 100),
+                ),
 
                 16.height,
 

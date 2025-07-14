@@ -1,3 +1,6 @@
+## 7.1.7+1
+- Added JsonModel
+- Added routeName and routeArguments to launch Widget extension and buildPageRoute method
 ## 7.1.6
 - Added getAndroidOSVersion method
 - Added isAndroidOSVersionAbove method. You can pass Android OS version and check if it is above that version.

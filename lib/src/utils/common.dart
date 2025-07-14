@@ -65,8 +65,10 @@ void toasty(
       ),
       padding:
           padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
-      child: Text(text.validate(),
-          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
+      child: Text(
+        text.validate(),
+        style: boldTextStyle(color: textColor ?? defaultToastTextColor),
+      ),
     ),
     gravity: gravity ?? defaultToastGravityGlobal,
     toastDuration: duration,
@@ -297,6 +299,8 @@ Route<T> buildPageRoute<T>(
   Widget child,
   PageRouteAnimation? pageRouteAnimation,
   Duration? duration,
+  String? routeName,
+  Object? routeArguments,
 ) {
   if (pageRouteAnimation != null) {
     if (pageRouteAnimation == PageRouteAnimation.Fade) {
@@ -365,7 +369,13 @@ Route<T> buildPageRoute<T>(
     }
   }
   // Default page route.
-  return MaterialPageRoute<T>(builder: (_) => child);
+  return MaterialPageRoute<T>(
+    builder: (_) => child,
+    settings: RouteSettings(
+      name: routeName,
+      arguments: routeArguments,
+    ),
+  );
 }
 
 /// Provides dynamic padding for app buttons based on the context.
@@ -434,21 +444,17 @@ Uri mailTo({
   List<String> cc = const [],
   List<String> bcc = const [],
 }) {
-  String _subject = '';
-  if (subject.isNotEmpty) _subject = '&subject=$subject';
+  final queryParameters = <String, String>{};
+  queryParameters['to'] = to.join(',');
 
-  String _body = '';
-  if (body.isNotEmpty) _body = '&body=$body';
-
-  String _cc = '';
-  if (cc.isNotEmpty) _cc = '&cc=${cc.join(',')}';
-
-  String _bcc = '';
-  if (bcc.isNotEmpty) _bcc = '&bcc=${bcc.join(',')}';
+  if (subject.isNotEmpty) queryParameters['subject'] = subject;
+  if (body.isNotEmpty) queryParameters['body'] = body;
+  if (cc.isNotEmpty) queryParameters['cc'] = cc.join(',');
+  if (bcc.isNotEmpty) queryParameters['bcc'] = bcc.join(',');
 
   return Uri(
     scheme: 'mailto',
-    query: 'to=${to.join(',')}$_subject$_body$_cc$_bcc',
+    queryParameters: queryParameters,
   );
 }
 

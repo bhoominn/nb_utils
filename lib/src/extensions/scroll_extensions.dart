@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ScrollController Extensions
 extension ScrollExtension on ScrollController {
   /// Scroll to top with given animation duration
-  Future<void> animToTop({milliseconds = 300}) async {
+  Future<void> animToTop({int milliseconds = 300}) async {
     animateTo(
       0,
       duration: Duration(milliseconds: milliseconds),
@@ -12,7 +12,7 @@ extension ScrollExtension on ScrollController {
   }
 
   /// Scroll to bottom with given animation duration
-  Future<void> animToBottom({milliseconds = 300}) async {
+  Future<void> animToBottom({int milliseconds = 300}) async {
     animateTo(
       position.maxScrollExtent,
       duration: Duration(milliseconds: milliseconds),

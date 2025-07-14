@@ -280,20 +280,34 @@ extension WidgetExtension on Widget? {
   }
 
   /// Launch a new screen
-  Future<T?> launch<T>(BuildContext context,
-      {bool isNewTask = false,
-      PageRouteAnimation? pageRouteAnimation,
-      Duration? duration}) async {
+  Future<T?> launch<T>(
+    BuildContext context, {
+    bool isNewTask = false,
+    PageRouteAnimation? pageRouteAnimation,
+    Duration? duration,
+    String? routeName,
+    Object? routeArguments,
+  }) async {
     if (isNewTask) {
       return await Navigator.of(context).pushAndRemoveUntil(
         buildPageRoute(
-            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+          this!,
+          pageRouteAnimation ?? pageRouteAnimationGlobal,
+          duration,
+          routeName,
+          routeArguments,
+        ),
         (route) => false,
       );
     } else {
       return await Navigator.of(context).push(
         buildPageRoute(
-            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+          this!,
+          pageRouteAnimation ?? pageRouteAnimationGlobal,
+          duration,
+          routeName,
+          routeArguments,
+        ),
       );
     }
   }
@@ -344,10 +358,10 @@ extension WidgetExtension on Widget? {
   }
 
   /// add Expanded to parent widget
-  Widget expand({flex = 1}) => Expanded(flex: flex, child: this!);
+  Widget expand({int flex = 1}) => Expanded(flex: flex, child: this!);
 
   /// add Flexible to parent widget
-  Widget flexible({flex = 1, FlexFit? fit}) {
+  Widget flexible({int flex = 1, FlexFit? fit}) {
     return Flexible(flex: flex, fit: fit ?? FlexFit.loose, child: this!);
   }
 

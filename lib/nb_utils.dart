@@ -34,6 +34,7 @@ export 'src/models/language_data_model.dart';
 export 'src/models/package_info_model.dart';
 export 'src/models/walkthrough_model.dart';
 export 'src/utils/after_layout.dart';
+export 'src/utils/auto_json_model.dart';
 export 'src/utils/colors.dart';
 export 'src/utils/common.dart';
 export 'src/utils/confirmation_dialog.dart';
@@ -185,15 +186,17 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder =
-      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder = RoundedRectangleBorder(
+    borderRadius: radius(defaultAppButtonRadius),
+  );
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
 
-  selectedLanguageDataModel =
-      getSelectedLanguageModel(defaultLanguage: defaultLanguage);
+  selectedLanguageDataModel = getSelectedLanguageModel(
+    defaultLanguage: defaultLanguage,
+  );
 }
 
 class NbUtils {
@@ -208,17 +211,29 @@ Future<T?> push<T>(
   bool isNewTask = false,
   PageRouteAnimation? pageRouteAnimation,
   Duration? duration,
+  String? routeName,
+  Object? routeArguments,
 }) async {
   if (isNewTask) {
     return await Navigator.of(getContext).pushAndRemoveUntil(
       buildPageRoute(
-          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+        widget,
+        pageRouteAnimation ?? pageRouteAnimationGlobal,
+        duration,
+        routeName,
+        routeArguments,
+      ),
       (route) => false,
     );
   } else {
     return await Navigator.of(getContext).push(
       buildPageRoute(
-          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+        widget,
+        pageRouteAnimation ?? pageRouteAnimationGlobal,
+        duration,
+        routeName,
+        routeArguments,
+      ),
     );
   }
 }
