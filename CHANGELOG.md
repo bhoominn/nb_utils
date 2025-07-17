@@ -1,4 +1,4 @@
-## 7.1.7+1
+## 7.1.7+2
 - Added JsonModel
 - Added routeName and routeArguments to launch Widget extension and buildPageRoute method
 ## 7.1.6

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:nb_utils/nb_utils.dart';
+
 abstract class JsonModel {
   final Map<String, dynamic> _fieldMap = {};
 
@@ -14,27 +16,34 @@ abstract class JsonModel {
     }
   }*/
 
-  T? getField<T>(String key, {T? defaultValue}) {
+  T getField<T>(String key, {required T defaultValue}) {
     final value = _fieldMap[key];
     if (value == null) return defaultValue;
     if (value is T) return value;
-    print(
+    log(
       "❌ Type mismatch for '$key': Expected $T but got ${value.runtimeType}\n"
       "💡 Value: $value",
     );
-    return null;
+    return defaultValue;
   }
 
-  T? getModel<T>(String key, T Function(Map<String, dynamic>) fromJson) {
+  T getModel<T>(
+    String key,
+    T Function(Map<String, dynamic>) fromJson, {
+    required T defaultValue,
+  }) {
     final value = _fieldMap[key];
     if (value is Map<String, dynamic>) {
       return fromJson(value);
     }
-    return null;
+    return defaultValue;
   }
 
-  List<T>? getModelList<T>(
-      String key, T Function(Map<String, dynamic>) fromJson) {
+  List<T> getModelList<T>(
+    String key,
+    T Function(Map<String, dynamic>) fromJson, {
+    required List<T> defaultValue,
+  }) {
     final value = _fieldMap[key];
     if (value is List) {
       return value
@@ -42,16 +51,16 @@ abstract class JsonModel {
           .map((item) => fromJson(item))
           .toList();
     }
-    return null;
+    return defaultValue;
   }
 
-  List<T>? getFieldList<T>(String key, {List<T>? defaultValue}) {
+  List<T> getFieldList<T>(String key, {required List<T> defaultValue}) {
     final value = _fieldMap[key];
     if (value is List) {
       try {
         return value.map((e) => e as T).toList();
       } catch (e) {
-        print(
+        log(
           "❌ Type error in '$key': Expected List<$T>, got List<${value.map((e) => e.runtimeType).toSet()}>\n"
           "💡 Value: $value",
         );
