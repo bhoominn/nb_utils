@@ -29,21 +29,23 @@ class Marquee extends StatelessWidget {
         await Future.delayed(pauseDuration);
         if (scrollController.hasClients) {
           await scrollController.animateTo(
-              scrollController.position.maxScrollExtent,
-              duration: animationDuration,
-              curve: Curves.easeIn);
+            scrollController.position.maxScrollExtent,
+            duration: animationDuration,
+            curve: Curves.easeIn,
+          );
         }
         await Future.delayed(pauseDuration);
         if (scrollController.hasClients) {
           switch (directionMarguee) {
             case DirectionMarguee.oneDirection:
-              scrollController.jumpTo(
-                0.0,
-              );
+              scrollController.jumpTo(0.0);
               break;
             case DirectionMarguee.TwoDirection:
-              await scrollController.animateTo(0.0,
-                  duration: backDuration, curve: Curves.easeOut);
+              await scrollController.animateTo(
+                0.0,
+                duration: backDuration,
+                curve: Curves.easeOut,
+              );
               break;
           }
         }

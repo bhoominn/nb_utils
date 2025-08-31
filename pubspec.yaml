@@ -1,14 +1,15 @@
 name: nb_utils
 description: "Collection of Widgets and helpful Methods that every developer needs."
-version: 7.1.7+2
+version: 7.1.8
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
 funding:
   - https://www.github.com/sponsors/bhoominn
+  - https://www.buymeacoffee.com/bhoominn
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.8.0
   flutter: '>=3.3.0'
 
 dependencies:
@@ -21,8 +22,8 @@ dependencies:
 
   shared_preferences: ^2.5.3
   fluttertoast: ^8.2.12
-  connectivity_plus: ^6.1.4
-  http: ^1.4.0
+  connectivity_plus: ^6.1.5
+  http: ^1.5.0
 
 dev_dependencies:
   flutter_test:

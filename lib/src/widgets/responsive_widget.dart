@@ -42,7 +42,8 @@ class Responsive extends StatelessWidget {
                 constraints: useFullWidth.validate(value: true)
                     ? null
                     : BoxConstraints(
-                        maxWidth: width ?? (context.width() * 0.9)),
+                        maxWidth: width ?? (context.width() * 0.9),
+                      ),
                 child: web ?? SizedBox(),
               ),
             );

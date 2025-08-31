@@ -61,10 +61,7 @@ Map<String, dynamic> handleJSONResponse({
   bool status = false,
   String value = '',
 }) {
-  return {
-    'status': status,
-    'ip_address': value,
-  };
+  return {'status': status, 'ip_address': value};
 }
 
 String _getURl(IPAddressVersion ipAddressVersion) {

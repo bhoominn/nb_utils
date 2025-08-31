@@ -60,4 +60,5 @@ class ChatGPTConfig {
     this.request,
   });
 }
+
 //endregion

@@ -22,8 +22,9 @@ Future<T?> launchNewScreen<T>(BuildContext context, String tag) async =>
 /// launchNewScreenWithNewTask(context, '/HomePage');
 /// ```
 Future<T?> launchNewScreenWithNewTask<T>(
-        BuildContext context, String tag) async =>
-    Navigator.of(context).pushNamedAndRemoveUntil(tag, (r) => false);
+  BuildContext context,
+  String tag,
+) async => Navigator.of(context).pushNamedAndRemoveUntil(tag, (r) => false);
 
 /// Change status bar Color and Brightness
 Future<void> setStatusBarColor(
@@ -40,7 +41,8 @@ Future<void> setStatusBarColor(
       statusBarColor: statusBarColor,
       systemNavigationBarColor: systemNavigationBarColor,
       statusBarBrightness: statusBarBrightness,
-      statusBarIconBrightness: statusBarIconBrightness ??
+      statusBarIconBrightness:
+          statusBarIconBrightness ??
           (statusBarColor.isDark() ? Brightness.light : Brightness.dark),
     ),
   );
@@ -48,24 +50,28 @@ Future<void> setStatusBarColor(
 
 /// Dark Status Bar
 void setDarkStatusBar() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.black,
-    systemNavigationBarIconBrightness: Brightness.light,
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.light,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
 }
 
 /// Light Status Bar
 void setLightStatusBar() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark,
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.light,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
+    ),
+  );
 }
 
 /// This function will show status bar
@@ -132,7 +138,10 @@ Widget Function(BuildContext, Widget?)? scrollBehaviour() {
 class SBehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     return child;
   }
 }
@@ -164,9 +173,10 @@ Future<int> getAndroidSDKVersion() async {
 
 /// Return Android OS version
 Future<int> getAndroidOSVersion() async {
-  return (await invokeNativeMethod(channelName, 'getAndroidOSVersion'))
-      .toString()
-      .toInt();
+  return (await invokeNativeMethod(
+    channelName,
+    'getAndroidOSVersion',
+  )).toString().toInt();
 }
 
 /// Return true if Android OS version is above 12
@@ -212,10 +222,7 @@ Future<ThemeData> getMaterialYouTheme() async {
   Map colors = await getMaterialYouColors();
 
   if (colors.isEmpty) {
-    return ThemeData(
-      useMaterial3: true,
-      useSystemColors: true,
-    );
+    return ThemeData(useMaterial3: true, useSystemColors: true);
   } else {
     return ThemeData(
       useMaterial3: true,

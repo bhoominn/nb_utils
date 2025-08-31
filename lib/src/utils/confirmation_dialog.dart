@@ -12,7 +12,7 @@ enum DialogAnimation {
   SLIDE_BOTTOM_TOP,
   SLIDE_LEFT_RIGHT,
   SLIDE_RIGHT_LEFT,
-  SCALE
+  SCALE,
 }
 
 /// dialog primary color
@@ -108,8 +108,11 @@ Widget getIcon(DialogType dialogType, {double? size}) {
       icon = Icon(Icons.done, size: size ?? 20, color: Colors.white);
       break;
     case DialogType.DELETE:
-      icon = Icon(Icons.delete_forever_outlined,
-          size: size ?? 20, color: Colors.white);
+      icon = Icon(
+        Icons.delete_forever_outlined,
+        size: size ?? 20,
+        color: Colors.white,
+      );
       break;
     case DialogType.UPDATE:
       icon = Icon(Icons.edit, size: size ?? 20, color: Colors.white);
@@ -133,8 +136,11 @@ Widget? getCenteredImage(
     case DialogType.CONFIRMATION:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withValues(alpha: 0.2),
+          color: getDialogPrimaryColor(
+            context,
+            dialogType,
+            primaryColor,
+          ).withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         padding: EdgeInsets.all(16),
@@ -148,8 +154,11 @@ Widget? getCenteredImage(
     case DialogType.DELETE:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withValues(alpha: 0.2),
+          color: getDialogPrimaryColor(
+            context,
+            dialogType,
+            primaryColor,
+          ).withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         padding: EdgeInsets.all(16),
@@ -163,8 +172,11 @@ Widget? getCenteredImage(
     case DialogType.UPDATE:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withValues(alpha: 0.2),
+          color: getDialogPrimaryColor(
+            context,
+            dialogType,
+            primaryColor,
+          ).withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         padding: EdgeInsets.all(16),
@@ -179,8 +191,11 @@ Widget? getCenteredImage(
     case DialogType.ACCEPT:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withValues(alpha: 0.2),
+          color: getDialogPrimaryColor(
+            context,
+            dialogType,
+            primaryColor,
+          ).withValues(alpha: 0.2),
           shape: BoxShape.circle,
         ),
         padding: EdgeInsets.all(16),
@@ -202,13 +217,11 @@ Widget? getCenteredImage(
           shape: BoxShape.circle,
         ),
         padding: EdgeInsets.all(16),
-        child: Icon(Icons.refresh_rounded,
-            color: getDialogPrimaryColor(
-              context,
-              dialogType,
-              primaryColor,
-            ),
-            size: 40),
+        child: Icon(
+          Icons.refresh_rounded,
+          color: getDialogPrimaryColor(context, dialogType, primaryColor),
+          size: 40,
+        ),
       );
       break;
   }
@@ -229,8 +242,11 @@ Widget defaultPlaceHolder(
     height: height,
     width: width,
     decoration: BoxDecoration(
-      color: getDialogPrimaryColor(context, dialogType, primaryColor)
-          .withValues(alpha: 0.2),
+      color: getDialogPrimaryColor(
+        context,
+        dialogType,
+        primaryColor,
+      ).withValues(alpha: 0.2),
     ),
     alignment: Alignment.center,
     child: child ?? getCenteredImage(context, dialogType, primaryColor),
@@ -285,7 +301,7 @@ Widget buildTitleWidget(
             child: Loader(
               value: loadingProgress.expectedTotalBytes != null
                   ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
+                        loadingProgress.expectedTotalBytes!
                   : null,
             ),
           );
@@ -340,7 +356,7 @@ Future<bool?> showConfirmDialogCustom(
     barrierDismissible: barrierDismissible,
     barrierLabel: '',
     transitionDuration: transitionDuration ?? 400.milliseconds,
-    transitionBuilder: (_, animation, secondaryAnimation, child) {
+    transitionBuilder: (c, animation, secondaryAnimation, child) {
       return dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
@@ -348,19 +364,22 @@ Future<bool?> showConfirmDialogCustom(
         child: AlertDialog(
           shape: shape ?? dialogShape(),
           titlePadding: EdgeInsets.zero,
-          backgroundColor: _.cardColor,
+          backgroundColor: c.cardColor,
           elevation: defaultElevation.toDouble(),
-          title: buildTitleWidget(
-            _,
-            dialogType,
-            primaryColor,
-            customCenterWidget,
-            height ?? customDialogHeight,
-            width ?? customDialogWidth,
-            centerImage,
-            shape,
-          ).cornerRadiusWithClipRRectOnly(
-              topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt()),
+          title:
+              buildTitleWidget(
+                c,
+                dialogType,
+                primaryColor,
+                customCenterWidget,
+                height ?? customDialogHeight,
+                width ?? customDialogWidth,
+                centerImage,
+                shape,
+              ).cornerRadiusWithClipRRectOnly(
+                topLeft: defaultRadius.toInt(),
+                topRight: defaultRadius.toInt(),
+              ),
           content: Container(
             width: width ?? customDialogWidth,
             color: Colors.transparent,
@@ -388,7 +407,7 @@ Future<bool?> showConfirmDialogCustom(
                         borderRadius: radius(defaultAppButtonRadius),
                         side: BorderSide(color: viewLineColor),
                       ),
-                      color: _.cardColor,
+                      color: c.cardColor,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -401,21 +420,22 @@ Future<bool?> showConfirmDialogCustom(
                           Text(
                             negativeText ?? 'Cancel',
                             style: boldTextStyle(
-                                color: negativeTextColor ??
-                                    textPrimaryColorGlobal),
+                              color:
+                                  negativeTextColor ?? textPrimaryColorGlobal,
+                            ),
                           ),
                         ],
                       ).fit(),
                       onTap: () {
-                        if (cancelable) finish(_, false);
+                        if (cancelable) finish(c, false);
 
-                        onCancel?.call(_);
+                        onCancel?.call(c);
                       },
                     ).expand(),
                     16.width,
                     AppButton(
                       elevation: 0,
-                      color: getDialogPrimaryColor(_, dialogType, primaryColor),
+                      color: getDialogPrimaryColor(c, dialogType, primaryColor),
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: radius(defaultAppButtonRadius),
                       ),
@@ -427,14 +447,15 @@ Future<bool?> showConfirmDialogCustom(
                           Text(
                             positiveText ?? getPositiveText(dialogType),
                             style: boldTextStyle(
-                                color: positiveTextColor ?? Colors.white),
+                              color: positiveTextColor ?? Colors.white,
+                            ),
                           ),
                         ],
                       ).fit(),
                       onTap: () {
-                        onAccept.call(_);
+                        onAccept.call(c);
 
-                        if (cancelable) finish(_, true);
+                        if (cancelable) finish(c, true);
                       },
                     ).expand(),
                   ],

@@ -50,14 +50,22 @@ class GradientPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Rect innerRect = Rect.fromLTRB(strokeWidth, strokeWidth,
-        size.width - strokeWidth, size.height - strokeWidth);
-    RRect innerRoundedRect =
-        RRect.fromRectAndRadius(innerRect, Radius.circular(borderRadius));
+    Rect innerRect = Rect.fromLTRB(
+      strokeWidth,
+      strokeWidth,
+      size.width - strokeWidth,
+      size.height - strokeWidth,
+    );
+    RRect innerRoundedRect = RRect.fromRectAndRadius(
+      innerRect,
+      Radius.circular(borderRadius),
+    );
 
     Rect outerRect = Offset.zero & size;
-    RRect outerRoundedRect =
-        RRect.fromRectAndRadius(outerRect, Radius.circular(borderRadius));
+    RRect outerRoundedRect = RRect.fromRectAndRadius(
+      outerRect,
+      Radius.circular(borderRadius),
+    );
 
     paintObject.shader = gradient.createShader(outerRect);
     Path borderPath = _calculateBorderPath(outerRoundedRect, innerRoundedRect);

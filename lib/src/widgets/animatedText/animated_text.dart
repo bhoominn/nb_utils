@@ -43,11 +43,8 @@ abstract class AnimatedText {
 
   /// Utility method to create a styled [Text] widget using the [textAlign] and
   /// [textStyle], but you can specify the [data].
-  Widget textWidget(String data) => Text(
-        data,
-        textAlign: textAlign,
-        style: textStyle,
-      );
+  Widget textWidget(String data) =>
+      Text(data, textAlign: textAlign, style: textStyle);
 
   /// Widget showing the complete text (when animation is complete or paused).
   /// By default, it shows a Text widget, but this may be overridden.
@@ -124,9 +121,9 @@ class AnimatedTextKit extends StatefulWidget {
     this.isRepeatingAnimation = true,
     this.totalRepeatCount = 3,
     this.repeatForever = false,
-  })  : assert(animatedTexts.length > 0),
-        assert(!isRepeatingAnimation || totalRepeatCount > 0 || repeatForever),
-        assert(null == onFinished || !repeatForever);
+  }) : assert(animatedTexts.length > 0),
+       assert(!isRepeatingAnimation || totalRepeatCount > 0 || repeatForever),
+       assert(null == onFinished || !repeatForever);
 
   /// Creates the mutable state for this widget. See [StatefulWidget.createState].
   @override
@@ -261,12 +258,7 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
 
         assert(null == _timer || !_timer!.isActive);
         _timer = Timer(
-          Duration(
-            milliseconds: max(
-              widget.pause.inMilliseconds,
-              left,
-            ),
-          ),
+          Duration(milliseconds: max(widget.pause.inMilliseconds, left)),
           _nextAnimation,
         );
       }

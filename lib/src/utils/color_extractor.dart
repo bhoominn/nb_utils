@@ -14,7 +14,10 @@ import 'dart:ui';
 /// Returns:
 ///   A List of Lists representing the RGB values of valid pixels.
 List<List<int>> _createPixelArray(
-    Uint8List imgData, int pixelCount, int quality) {
+  Uint8List imgData,
+  int pixelCount,
+  int quality,
+) {
   final pixels = imgData;
   List<List<int>> pixelArray = [];
   int offset, r, g, b;
@@ -71,8 +74,12 @@ List<int> _validateOptions(int? colorCount, int? quality) {
 ///   A Future containing the palette as a List of Lists of RGB values,
 ///   or null if palette generation fails.
 Future<List<List<int>>?> getPaletteFromBytes(
-    Uint8List imageData, int width, int height,
-    [int? colorCount, int? quality]) async {
+  Uint8List imageData,
+  int width,
+  int height, [
+  int? colorCount,
+  int? quality,
+]) async {
   final options = _validateOptions(colorCount, quality);
   colorCount = options[0];
   quality = options[1];
@@ -94,8 +101,11 @@ Future<List<List<int>>?> getPaletteFromBytes(
 /// `colorCount` - Between 2 and 256. The maximum number of colours allowed in the reduced palette
 ///
 /// `quality` - Between 1 and 10. There is a trade-off between quality and speed. The bigger the number, the faster the palette generation but the greater the likelihood that colors will be missed.
-Future<List<List<int>>?> getPaletteFromImage(Image image,
-    [int? colorCount, int? quality]) async {
+Future<List<List<int>>?> getPaletteFromImage(
+  Image image, [
+  int? colorCount,
+  int? quality,
+]) async {
   final options = _validateOptions(colorCount, quality);
   colorCount = options[0];
   quality = options[1];
@@ -104,14 +114,15 @@ Future<List<List<int>>?> getPaletteFromImage(Image image,
       .toByteData(format: ImageByteFormat.rawRgba)
       .then((val) => Uint8List.view((val!.buffer)));
   return getPaletteFromBytes(
-      imageData, image.width, image.height, colorCount, quality);
+    imageData,
+    image.width,
+    image.height,
+    colorCount,
+    quality,
+  );
 }
 
-enum ColorPart {
-  r,
-  g,
-  b,
-}
+enum ColorPart { r, g, b }
 
 class _PV {
   static map(List array, [Function? f]) {
@@ -126,8 +137,8 @@ class _PV {
     return a < b
         ? -1
         : a > b
-            ? 1
-            : 0;
+        ? 1
+        : 0;
   }
 
   static sum(List array, [Function? f]) {
@@ -221,15 +232,7 @@ class VBox {
   int b2;
   List<int?> histo;
 
-  VBox(
-    this.r1,
-    this.r2,
-    this.g1,
-    this.g2,
-    this.b1,
-    this.b2,
-    this.histo,
-  );
+  VBox(this.r1, this.r2, this.g1, this.g2, this.b1, this.b2, this.histo);
 
   int? _volume;
 
@@ -300,7 +303,7 @@ class VBox {
         _avg = <int>[
           (mult * (r1 + r2 + 1) ~/ 2),
           (mult * (g1 + g2 + 1) ~/ 2),
-          (mult * (b1 + b2 + 1) ~/ 2)
+          (mult * (b1 + b2 + 1) ~/ 2),
         ];
       }
     }
@@ -334,7 +337,9 @@ class CMap {
   CMap() {
     vboxes = PQueue<VBoxElement>((a, b) {
       return _PV.naturalOrder(
-          a.vbox.count() * a.vbox.volume(), b.vbox.count() * b.vbox.volume());
+        a.vbox.count() * a.vbox.volume(),
+        b.vbox.count() * b.vbox.volume(),
+      );
     });
   }
 
@@ -369,9 +374,11 @@ class CMap {
     double? d1, d2, pColor;
 
     for (var i = 0; i < vboxes.size(); i++) {
-      d2 = math.sqrt(math.pow(color[0] - vboxes.peek(i).color[0], 2) +
-          math.pow(color[1] - vboxes.peek(i).color[1], 2) +
-          math.pow(color[2] - vboxes.peek(i).color[2], 2));
+      d2 = math.sqrt(
+        math.pow(color[0] - vboxes.peek(i).color[0], 2) +
+            math.pow(color[1] - vboxes.peek(i).color[1], 2) +
+            math.pow(color[2] - vboxes.peek(i).color[2], 2),
+      );
 
       if ((d1 != null && d2 < d1) || d1 == null) {
         d1 = d2;
@@ -605,8 +612,8 @@ _medianCutApply(List<int?> histo, VBox vbox) {
   return maxw == rw
       ? doCut(ColorPart.r)
       : maxw == gw
-          ? doCut(ColorPart.g)
-          : doCut(ColorPart.b);
+      ? doCut(ColorPart.g)
+      : doCut(ColorPart.b);
 }
 
 /// Usually returns an instance of `CMap`,

@@ -25,10 +25,10 @@ class AnimatedItemWidget extends StatelessWidget {
     FadeInConfiguration? fadeInConfiguration,
     ScaleConfiguration? scaleConfiguration,
     FlipConfiguration? flipConfiguration,
-  })  : slideConfiguration = slideConfiguration ?? SlideConfiguration(),
-        fadeInConfiguration = fadeInConfiguration ?? FadeInConfiguration(),
-        scaleConfiguration = scaleConfiguration ?? ScaleConfiguration(),
-        flipConfiguration = flipConfiguration ?? FlipConfiguration();
+  }) : slideConfiguration = slideConfiguration ?? SlideConfiguration(),
+       fadeInConfiguration = fadeInConfiguration ?? FadeInConfiguration(),
+       scaleConfiguration = scaleConfiguration ?? ScaleConfiguration(),
+       flipConfiguration = flipConfiguration ?? FlipConfiguration();
 
   @override
   Widget build(BuildContext context) {
@@ -162,10 +162,7 @@ class AnimationLimiterWidget extends StatefulWidget {
   /// animated if they don't appear in the first frame where AnimationLimiter is built.
   ///
   /// The [child] argument must not be null.
-  const AnimationLimiterWidget({
-    super.key,
-    required this.child,
-  });
+  const AnimationLimiterWidget({super.key, required this.child});
 
   @override
   _AnimationLimiterWidgetState createState() => _AnimationLimiterWidgetState();
@@ -253,9 +250,9 @@ class AnimationConfigurationClass extends InheritedWidget {
     super.key,
     this.duration = const Duration(milliseconds: 225),
     required super.child,
-  })  : position = 0,
-        delay = Duration.zero,
-        columnCount = 1;
+  }) : position = 0,
+       delay = Duration.zero,
+       columnCount = 1;
 
   /// Configure the children's animation to be staggered.
   ///
@@ -349,22 +346,21 @@ class AnimationConfigurationClass extends InheritedWidget {
     Duration? delay,
     required Widget Function(Widget) childAnimationBuilder,
     required List<Widget> children,
-  }) =>
-      children
-          .asMap()
-          .map((index, widget) {
-            return MapEntry(
-              index,
-              AnimationConfigurationClass.staggeredList(
-                position: index,
-                duration: duration ?? const Duration(milliseconds: 225),
-                delay: delay,
-                child: childAnimationBuilder(widget),
-              ),
-            );
-          })
-          .values
-          .toList();
+  }) => children
+      .asMap()
+      .map((index, widget) {
+        return MapEntry(
+          index,
+          AnimationConfigurationClass.staggeredList(
+            position: index,
+            duration: duration ?? const Duration(milliseconds: 225),
+            delay: delay,
+            child: childAnimationBuilder(widget),
+          ),
+        );
+      })
+      .values
+      .toList();
 
   static AnimationConfigurationClass? of(BuildContext context) {
     return context.findAncestorWidgetOfExactType<AnimationConfigurationClass>();
@@ -388,19 +384,19 @@ class AnimationConfiguratorClass extends StatelessWidget {
     final animationConfiguration = AnimationConfigurationClass.of(context);
 
     if (animationConfiguration == null) {
-      throw FlutterError.fromParts(
-        <DiagnosticsNode>[
-          ErrorSummary('Animation not wrapped in an AnimationConfiguration.'),
-          ErrorDescription(
-              'This error happens if you use an Animation that is not wrapped in an '
-              'AnimationConfiguration.'),
-          ErrorHint(
-              'The solution is to wrap your Animation(s) with an AnimationConfiguration. '
-              'Reminder: an AnimationConfiguration provides the configuration '
-              'used as a base for every children Animation. Configuration made in AnimationConfiguration '
-              'can be overridden in Animation children if needed.'),
-        ],
-      );
+      throw FlutterError.fromParts(<DiagnosticsNode>[
+        ErrorSummary('Animation not wrapped in an AnimationConfiguration.'),
+        ErrorDescription(
+          'This error happens if you use an Animation that is not wrapped in an '
+          'AnimationConfiguration.',
+        ),
+        ErrorHint(
+          'The solution is to wrap your Animation(s) with an AnimationConfiguration. '
+          'Reminder: an AnimationConfiguration provides the configuration '
+          'used as a base for every children Animation. Configuration made in AnimationConfiguration '
+          'can be overridden in Animation children if needed.',
+        ),
+      ]);
     }
 
     final _position = animationConfiguration.position;
@@ -417,9 +413,14 @@ class AnimationConfiguratorClass extends StatelessWidget {
   }
 
   Duration stagger(
-      int position, Duration duration, Duration? delay, int columnCount) {
-    var delayInMilliseconds =
-        (delay == null ? duration.inMilliseconds ~/ 6 : delay.inMilliseconds);
+    int position,
+    Duration duration,
+    Duration? delay,
+    int columnCount,
+  ) {
+    var delayInMilliseconds = (delay == null
+        ? duration.inMilliseconds ~/ 6
+        : delay.inMilliseconds);
 
     int _computeStaggeredGridDuration() {
       return (position ~/ columnCount + position % columnCount) *
@@ -431,14 +432,18 @@ class AnimationConfiguratorClass extends StatelessWidget {
     }
 
     return Duration(
-        milliseconds: columnCount > 1
-            ? _computeStaggeredGridDuration()
-            : _computeStaggeredListDuration());
+      milliseconds: columnCount > 1
+          ? _computeStaggeredGridDuration()
+          : _computeStaggeredListDuration(),
+    );
   }
 }
 
-typedef AnimatedConfigBuilder = Widget Function(
-    BuildContext context, AnimationController? animationController);
+typedef AnimatedConfigBuilder =
+    Widget Function(
+      BuildContext context,
+      AnimationController? animationController,
+    );
 
 class AnimationExecutorClass extends StatefulWidget {
   final Duration duration;
@@ -465,8 +470,10 @@ class _AnimationExecutorClassState extends State<AnimationExecutorClass>
   void initState() {
     super.initState();
 
-    _animationController =
-        AnimationController(duration: widget.duration, vsync: this);
+    _animationController = AnimationController(
+      duration: widget.duration,
+      vsync: this,
+    );
 
     if (AnimationLimiterWidget.shouldRunAnimation(context) ?? true) {
       _timer = Timer(widget.delay, () => _animationController!.forward());
@@ -537,10 +544,7 @@ class FadeInAnimationWidget extends StatelessWidget {
       ),
     );
 
-    return Opacity(
-      opacity: _opacityAnimation.value,
-      child: child,
-    );
+    return Opacity(opacity: _opacityAnimation.value, child: child);
   }
 }
 
@@ -668,10 +672,7 @@ class ScaleAnimationWidget extends StatelessWidget {
       ),
     );
 
-    return Transform.scale(
-      scale: _landingAnimation.value,
-      child: child,
-    );
+    return Transform.scale(scale: _landingAnimation.value, child: child);
   }
 }
 
@@ -710,8 +711,8 @@ class SlideAnimationWidget extends StatelessWidget {
     double? verticalOffset,
     double? horizontalOffset,
     required this.child,
-  })  : verticalOffset = verticalOffset ?? 50.0,
-        horizontalOffset = horizontalOffset ?? 0.0;
+  }) : verticalOffset = verticalOffset ?? 50.0,
+       horizontalOffset = horizontalOffset ?? 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -724,7 +725,9 @@ class SlideAnimationWidget extends StatelessWidget {
 
   Widget _slideAnimation(Animation<double> animation) {
     Animation<double> offsetAnimation(
-        double offset, Animation<double> animation) {
+      double offset,
+      Animation<double> animation,
+    ) {
       return Tween<double>(begin: offset, end: 0.0).animate(
         CurvedAnimation(
           parent: animation,
@@ -746,4 +749,5 @@ class SlideAnimationWidget extends StatelessWidget {
     );
   }
 }
+
 //endregion

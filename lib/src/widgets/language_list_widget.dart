@@ -59,15 +59,21 @@ class LanguageListWidgetState extends State<LanguageListWidget> {
             title: data.name.validate(),
             subTitle: data.subTitle,
             leading: (data.flag != null) ? buildImageWidget(data.flag!) : null,
-            trailing: Container(
-              child: widget.trailing ??
-                  Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: boxDecorationDefault(shape: BoxShape.circle),
-                    child: Icon(Icons.check, size: 15, color: Colors.black),
-                  ),
-            ).visible(getStringAsync(SELECTED_LANGUAGE_CODE) ==
-                data.languageCode.validate()),
+            trailing:
+                Container(
+                  child:
+                      widget.trailing ??
+                      Container(
+                        padding: EdgeInsets.all(2),
+                        decoration: boxDecorationDefault(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.check, size: 15, color: Colors.black),
+                      ),
+                ).visible(
+                  getStringAsync(SELECTED_LANGUAGE_CODE) ==
+                      data.languageCode.validate(),
+                ),
             onTap: () async {
               await setValue(SELECTED_LANGUAGE_CODE, data.languageCode);
 

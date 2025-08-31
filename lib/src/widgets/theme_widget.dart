@@ -52,7 +52,8 @@ class _ThemeWidgetState extends State<ThemeWidget> {
           title: _getName(ThemeModes.values[index]),
           subTitle: widget.subTitle,
           trailing: Container(
-            child: widget.trailing ??
+            child:
+                widget.trailing ??
                 Container(
                   padding: EdgeInsets.all(2),
                   decoration: boxDecorationDefault(shape: BoxShape.circle),

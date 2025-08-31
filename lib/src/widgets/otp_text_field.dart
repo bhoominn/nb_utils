@@ -62,12 +62,14 @@ class OTPTextFieldState extends State<OTPTextField> {
   void initState() {
     super.initState();
     // Initialize the list with OTP input fields and focus nodes.
-    list.addAll(List.generate(widget.pinLength, (index) {
-      return OTPLengthModel(
-        textEditingController: TextEditingController(),
-        focusNode: FocusNode(),
-      );
-    }).toList());
+    list.addAll(
+      List.generate(widget.pinLength, (index) {
+        return OTPLengthModel(
+          textEditingController: TextEditingController(),
+          focusNode: FocusNode(),
+        );
+      }).toList(),
+    );
   }
 
   /// Concatenates the text from all OTP input fields.
@@ -146,7 +148,8 @@ class OTPTextFieldState extends State<OTPTextField> {
         return Container(
           width: widget.fieldWidth,
           margin: EdgeInsets.symmetric(horizontal: 8),
-          decoration: widget.boxDecoration ??
+          decoration:
+              widget.boxDecoration ??
               BoxDecoration(
                 border: Border.all(
                   color: list[index].focusNode!.hasFocus
@@ -162,15 +165,14 @@ class OTPTextFieldState extends State<OTPTextField> {
             focusNode: list[index].focusNode,
             keyboardType: TextInputType.number,
             style: widget.textStyle,
-            autofillHints: const [
-              AutofillHints.oneTimeCode,
-            ],
+            autofillHints: const [AutofillHints.oneTimeCode],
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp('[0-9]')),
             ],
             maxLength: 1,
             cursorColor: widget.cursorColor,
-            decoration: widget.decoration ??
+            decoration:
+                widget.decoration ??
                 InputDecoration(
                   border: widget.showUnderline ? null : InputBorder.none,
                   counter: Offstage(),
@@ -220,8 +222,5 @@ class OTPLengthModel {
   final TextEditingController? textEditingController;
   final FocusNode? focusNode;
 
-  OTPLengthModel({
-    this.textEditingController,
-    this.focusNode,
-  });
+  OTPLengthModel({this.textEditingController, this.focusNode});
 }

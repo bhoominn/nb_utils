@@ -24,26 +24,34 @@ Future<String> generateWithChatGPT({
 }) async {
   if (testWithoutKey) {
     //=========================================For Test Without Api==============================================
-    ChatGPTAnswerResponseModel gptAnsResModel =
-        ChatGPTAnswerResponseModel.fromJson(jsonDecode(jsonEncode({
-      "id": "cmpl-6biNrkL5FlEhzIoGojdKPiRG6ZGN3",
-      "object": "text_completion",
-      "created": 1674446767,
-      "model": chatGPTConfigGlobal.chatGPTModel,
-      "choices": [
-        {
-          "index": 0,
-          "message": {
-            "role": "assistant",
-            "content":
-                "I am ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture."
+    ChatGPTAnswerResponseModel
+    gptAnsResModel = ChatGPTAnswerResponseModel.fromJson(
+      jsonDecode(
+        jsonEncode({
+          "id": "cmpl-6biNrkL5FlEhzIoGojdKPiRG6ZGN3",
+          "object": "text_completion",
+          "created": 1674446767,
+          "model": chatGPTConfigGlobal.chatGPTModel,
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content":
+                    "I am ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture.",
+              },
+              "logprobs": null,
+              "finish_reason": "stop",
+            },
+          ],
+          "usage": {
+            "prompt_tokens": 7,
+            "completion_tokens": 61,
+            "total_tokens": 68,
           },
-          "logprobs": null,
-          "finish_reason": "stop"
-        }
-      ],
-      "usage": {"prompt_tokens": 7, "completion_tokens": 61, "total_tokens": 68}
-    })));
+        }),
+      ),
+    );
 
     if (forceEnableDebug) {
       log('GPT ANSWER MODEL.VALUE.ID: ${gptAnsResModel.id}');
@@ -63,24 +71,22 @@ Future<String> generateWithChatGPT({
   } else {
     Map<String, String> header = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $chatGPTAPIkey'
+      'Authorization': 'Bearer $chatGPTAPIkey',
     };
 
     if (forceEnableDebug) log('CHAT GPT API HEADER: $header');
 
-    Map<String, dynamic> jsonBodyData = chatGPTConfigGlobal.request ??
+    Map<String, dynamic> jsonBodyData =
+        chatGPTConfigGlobal.request ??
         {
           "model": chatGPTConfigGlobal.chatGPTModel,
           "messages": [
-            {
-              "role": "system",
-              "content": "You are a helpful assistant.",
-            },
+            {"role": "system", "content": "You are a helpful assistant."},
             {
               "role": "user",
               "content":
                   "$promptPrefix $prompt${shortReply ? ", Please reply in 1-2 line only" : ""}",
-            }
+            },
           ],
           "temperature": chatGPTConfigGlobal.temperature,
           "max_tokens": chatGPTConfigGlobal.maxTokens,
@@ -90,15 +96,18 @@ Future<String> generateWithChatGPT({
         };
 
     if (forceEnableDebug) {
-      log('CHAT GPT API JSON BODY DATA: ${chatGPTConfigGlobal.request ?? jsonBodyData}');
+      log(
+        'CHAT GPT API JSON BODY DATA: ${chatGPTConfigGlobal.request ?? jsonBodyData}',
+      );
     }
 
     if (prompt.isNotEmpty) {
       try {
         var response = await http.post(
-            Uri.parse(chatGPTConfigGlobal.chatGPTAPIEndPoint),
-            body: json.encode(jsonBodyData),
-            headers: header);
+          Uri.parse(chatGPTConfigGlobal.chatGPTAPIEndPoint),
+          body: json.encode(jsonBodyData),
+          headers: header,
+        );
 
         var jsonResponse = json.decode(response.body);
 
@@ -117,7 +126,9 @@ Future<String> generateWithChatGPT({
           if (gptAnsResModel.choices.isNotEmpty &&
               gptAnsResModel.choices.first.message.content.isNotEmpty) {
             if (forceEnableDebug) {
-              log('GPT ANSWER  ${gptAnsResModel.choices.first.message.content}');
+              log(
+                'GPT ANSWER  ${gptAnsResModel.choices.first.message.content}',
+              );
             }
             return gptAnsResModel.choices.first.message.content.trim();
           } else {

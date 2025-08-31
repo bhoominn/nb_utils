@@ -79,7 +79,8 @@ class NoDataWidget extends StatelessWidget {
             onTap: onRetry,
             text: retryText ?? 'Reload',
             textColor: retryButtonTextColor ?? white,
-            padding: buttonPadding ??
+            padding:
+                buttonPadding ??
                 EdgeInsets.symmetric(horizontal: 16, vertical: 2),
             color: context.primaryColor,
           ),

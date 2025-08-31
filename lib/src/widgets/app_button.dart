@@ -63,18 +63,20 @@ class _AppButtonState extends State<AppButton>
 
   @override
   void initState() {
-    if (widget.enableScaleAnimation
-        .validate(value: enableAppButtonScaleAnimationGlobal)) {
-      _controller = AnimationController(
-        vsync: this,
-        duration: Duration(
-          milliseconds: appButtonScaleAnimationDurationGlobal ?? 50,
-        ),
-        lowerBound: 0.0,
-        upperBound: 0.1,
-      )..addListener(() {
-          setState(() {});
-        });
+    if (widget.enableScaleAnimation.validate(
+      value: enableAppButtonScaleAnimationGlobal,
+    )) {
+      _controller =
+          AnimationController(
+            vsync: this,
+            duration: Duration(
+              milliseconds: appButtonScaleAnimationDurationGlobal ?? 50,
+            ),
+            lowerBound: 0.0,
+            upperBound: 0.1,
+          )..addListener(() {
+            setState(() {});
+          });
     }
     super.initState();
   }
@@ -91,8 +93,9 @@ class _AppButtonState extends State<AppButton>
       _scale = 1 - _controller!.value;
     }
 
-    if (widget.enableScaleAnimation
-            .validate(value: enableAppButtonScaleAnimationGlobal) &&
+    if (widget.enableScaleAnimation.validate(
+          value: enableAppButtonScaleAnimationGlobal,
+        ) &&
         isElevationEnabled) {
       return Listener(
         onPointerDown: (details) {
@@ -101,10 +104,7 @@ class _AppButtonState extends State<AppButton>
         onPointerUp: (details) {
           _controller?.reverse();
         },
-        child: Transform.scale(
-          scale: _scale,
-          child: buildButton(),
-        ),
+        child: Transform.scale(scale: _scale, child: buildButton()),
       );
     } else {
       return buildButton();
@@ -119,8 +119,8 @@ class _AppButtonState extends State<AppButton>
         padding: widget.padding ?? dynamicAppButtonPadding(context),
         onPressed: widget.enabled
             ? widget.onTap != null
-                ? widget.onTap as void Function()?
-                : null
+                  ? widget.onTap as void Function()?
+                  : null
             : null,
         color: widget.color ?? appButtonBackgroundColorGlobal,
         shape: widget.shapeBorder ?? defaultAppButtonShapeBorder,
@@ -137,10 +137,12 @@ class _AppButtonState extends State<AppButton>
             widget.focusElevation ?? defaultAppButtonHighlightElevation,
         highlightElevation:
             widget.highlightElevation ?? defaultAppButtonHoverElevation,
-        child: widget.child ??
+        child:
+            widget.child ??
             Text(
               widget.text.validate(),
-              style: widget.textStyle ??
+              style:
+                  widget.textStyle ??
                   boldTextStyle(
                     color: widget.textColor ?? defaultAppButtonTextColorGlobal,
                   ),

@@ -1,3 +1,6 @@
+## 7.1.8
+- Added missing HTTP method types to HttpMethodType enum
+- Added comprehensive new String, num, DateTime, and BuildContext extensions for enhanced utility and productivity.
 ## 7.1.7+2
 - Added JsonModel
 - Added routeName and routeArguments to launch Widget extension and buildPageRoute method

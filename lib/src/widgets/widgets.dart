@@ -16,25 +16,26 @@ Future<bool?> showConfirmDialog<bool>(
   return showDialog(
     context: context,
     // barrierDismissible: barrierDismissible ?? false,
-    builder: (_) => AlertDialog(
+    builder: (c) => AlertDialog(
       title: Text(title.validate(), style: primaryTextStyle()),
       actions: <Widget>[
         SimpleDialogOption(
           child: Text(negativeText.validate(), style: secondaryTextStyle()),
           onPressed: () {
-            finish(_, false);
+            finish(c, false);
           },
         ),
         SimpleDialogOption(
           onPressed: () {
-            finish(_, true);
+            finish(c, true);
 
             onAccept?.call();
           },
           child: Text(
             positiveText.validate(),
             style: primaryTextStyle(
-                color: buttonColor ?? Theme.of(_).primaryColor),
+              color: buttonColor ?? Theme.of(c).primaryColor,
+            ),
           ),
         ),
       ],
@@ -75,13 +76,13 @@ Future<T?> showInDialog<T>(
     barrierLabel: '',
     barrierDismissible: barrierDismissible,
     transitionDuration: transitionDuration ?? 400.milliseconds,
-    transitionBuilder: (_, animation, secondaryAnimation, c) {
+    transitionBuilder: (c, animation, secondaryAnimation, w) {
       return dialogAnimatedWrapperWidget(
         animation: animation,
         dialogAnimation: dialogAnimation,
         curve: curve,
         child: AlertDialog(
-          content: builder != null ? builder.call(_) : child,
+          content: builder != null ? builder.call(c) : child,
           shape: shape ?? defaultDialogShape,
           title: title,
           titleTextStyle: titleTextStyle,
@@ -121,12 +122,16 @@ AppBar appBarWidget(
 }) {
   return AppBar(
     centerTitle: center,
-    title: titleWidget ??
+    title:
+        titleWidget ??
         Text(
           title,
-          style: titleTextStyle ??
+          style:
+              titleTextStyle ??
               (boldTextStyle(
-                  color: textColor ?? textPrimaryColorGlobal, size: textSize)),
+                color: textColor ?? textPrimaryColorGlobal,
+                size: textSize,
+              )),
         ),
     actions: actions,
     automaticallyImplyLeading: showBack,

@@ -22,8 +22,9 @@ class OverlayCustomWidget extends StatelessWidget {
           showOverlay: showOverlay,
           overlayBuilder: (BuildContext overlayContext) {
             RenderBox box = context.findRenderObject() as RenderBox;
-            final center =
-                box.size.center(box.localToGlobal(const Offset(0.0, 0.0)));
+            final center = box.size.center(
+              box.localToGlobal(const Offset(0.0, 0.0)),
+            );
 
             return overlayBuilder(overlayContext, center);
           },
@@ -59,23 +60,26 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
     super.initState();
 
     if (widget.showOverlay) {
-      makeNullable(WidgetsBinding.instance)!
-          .addPostFrameCallback((_) => showOverlay());
+      makeNullable(
+        WidgetsBinding.instance,
+      )!.addPostFrameCallback((_) => showOverlay());
     }
   }
 
   @override
   void didUpdateWidget(OverlayBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    makeNullable(WidgetsBinding.instance)!
-        .addPostFrameCallback((_) => syncWidgetAndOverlay());
+    makeNullable(
+      WidgetsBinding.instance,
+    )!.addPostFrameCallback((_) => syncWidgetAndOverlay());
   }
 
   @override
   void reassemble() {
     super.reassemble();
-    makeNullable(WidgetsBinding.instance)!
-        .addPostFrameCallback((_) => syncWidgetAndOverlay());
+    makeNullable(
+      WidgetsBinding.instance,
+    )!.addPostFrameCallback((_) => syncWidgetAndOverlay());
   }
 
   @override
@@ -90,9 +94,7 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
   bool isShowingOverlay() => overlayEntry != null;
 
   void showOverlay() {
-    overlayEntry = OverlayEntry(
-      builder: widget.overlayBuilder!,
-    );
+    overlayEntry = OverlayEntry(builder: widget.overlayBuilder!);
     addToOverlay(overlayEntry!);
   }
 
@@ -124,11 +126,7 @@ class OverlayOffsetWidget extends StatelessWidget {
   final Offset? position;
   final Widget? child;
 
-  const OverlayOffsetWidget({
-    super.key,
-    this.position,
-    this.child,
-  });
+  const OverlayOffsetWidget({super.key, this.position, this.child});
 
   @override
   Widget build(BuildContext context) {

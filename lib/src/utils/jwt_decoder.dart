@@ -40,8 +40,9 @@ class JwtDecoder {
   static DateTime getExpirationDate(String token) {
     final decodedToken = decode(token)!;
 
-    final expirationDate = DateTime.fromMillisecondsSinceEpoch(0)
-        .add(Duration(seconds: decodedToken['exp'].toInt()));
+    final expirationDate = DateTime.fromMillisecondsSinceEpoch(
+      0,
+    ).add(Duration(seconds: decodedToken['exp'].toInt()));
     return expirationDate;
   }
 
@@ -49,8 +50,9 @@ class JwtDecoder {
   static Duration getTokenTime(String token) {
     final decodedToken = decode(token)!;
 
-    final issuedAtDate = DateTime.fromMillisecondsSinceEpoch(0)
-        .add(Duration(seconds: decodedToken["iat"]));
+    final issuedAtDate = DateTime.fromMillisecondsSinceEpoch(
+      0,
+    ).add(Duration(seconds: decodedToken["iat"]));
     return DateTime.now().difference(issuedAtDate);
   }
 

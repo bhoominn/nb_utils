@@ -129,7 +129,8 @@ void snackBar(
         behavior: margin != null ? SnackBarBehavior.floating : behavior,
         elevation: elevation,
         onVisible: onVisible?.call(),
-        content: content ??
+        content:
+            content ??
             Padding(
               padding: padding ?? EdgeInsets.symmetric(vertical: 4),
               child: Text(
@@ -170,7 +171,7 @@ enum LinkProvider {
   TELEGRAM,
   WHATSAPP,
   FB_MESSENGER,
-  GOOGLE_DRIVE
+  GOOGLE_DRIVE,
 }
 
 /// Use getSocialMediaLink function to build social media links
@@ -211,8 +212,9 @@ double radians(double degrees) => degrees * degrees2Radians;
 
 /// Executes a function after the build is created.
 void afterBuildCreated(Function()? onCreated) {
-  makeNullable(SchedulerBinding.instance)!
-      .addPostFrameCallback((_) => onCreated?.call());
+  makeNullable(
+    SchedulerBinding.instance,
+  )!.addPostFrameCallback((_) => onCreated?.call());
 }
 
 /// Widget wrapper for animated dialog transitions.
@@ -255,9 +257,10 @@ Widget dialogAnimatedWrapperWidget({
     // Animation for sliding the dialog from bottom to top.
     case DialogAnimation.SLIDE_BOTTOM_TOP:
       return SlideTransition(
-        position: Tween(begin: Offset(0, 1), end: Offset.zero)
-            .chain(CurveTween(curve: curve))
-            .animate(animation),
+        position: Tween(
+          begin: Offset(0, 1),
+          end: Offset.zero,
+        ).chain(CurveTween(curve: curve)).animate(animation),
         child: Opacity(
           opacity: animation.value,
           child: FadeTransition(opacity: animation, child: child),
@@ -267,9 +270,10 @@ Widget dialogAnimatedWrapperWidget({
     // Animation for sliding the dialog from left to right.
     case DialogAnimation.SLIDE_LEFT_RIGHT:
       return SlideTransition(
-        position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero)
-            .chain(CurveTween(curve: curve))
-            .animate(animation),
+        position: Tween(
+          begin: Offset(1.0, 0.0),
+          end: Offset.zero,
+        ).chain(CurveTween(curve: curve)).animate(animation),
         child: Opacity(
           opacity: animation.value,
           child: FadeTransition(opacity: animation, child: child),
@@ -279,9 +283,10 @@ Widget dialogAnimatedWrapperWidget({
     // Animation for sliding the dialog from right to left.
     case DialogAnimation.SLIDE_RIGHT_LEFT:
       return SlideTransition(
-        position: Tween(begin: Offset(-1, 0), end: Offset.zero)
-            .chain(CurveTween(curve: curve))
-            .animate(animation),
+        position: Tween(
+          begin: Offset(-1, 0),
+          end: Offset.zero,
+        ).chain(CurveTween(curve: curve)).animate(animation),
         child: Opacity(
           opacity: animation.value,
           child: FadeTransition(opacity: animation, child: child),
@@ -329,10 +334,7 @@ Route<T> buildPageRoute<T>(
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
-          return ScaleTransition(
-            scale: anim,
-            child: child,
-          );
+          return ScaleTransition(scale: anim, child: child);
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
@@ -371,10 +373,7 @@ Route<T> buildPageRoute<T>(
   // Default page route.
   return MaterialPageRoute<T>(
     builder: (_) => child,
-    settings: RouteSettings(
-      name: routeName,
-      arguments: routeArguments,
-    ),
+    settings: RouteSettings(name: routeName, arguments: routeArguments),
   );
 }
 
@@ -452,10 +451,7 @@ Uri mailTo({
   if (cc.isNotEmpty) queryParameters['cc'] = cc.join(',');
   if (bcc.isNotEmpty) queryParameters['bcc'] = bcc.join(',');
 
-  return Uri(
-    scheme: 'mailto',
-    queryParameters: queryParameters,
-  );
+  return Uri(scheme: 'mailto', queryParameters: queryParameters);
 }
 
 /// Use this if you want to skip splash delay above Android 12

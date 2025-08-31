@@ -15,7 +15,7 @@ enum TextFieldType {
   PHONE,
   URL,
   NUMBER,
-  USERNAME
+  USERNAME,
 }
 
 /// Default Text Form Field
@@ -186,8 +186,9 @@ class _AppTextFieldState extends State<AppTextField> {
       } else if (widget.textFieldType == TextFieldType.EMAIL) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           if (!s.trim().validateEmail()) {
             return widget.errorInvalidEmail.validate(value: 'Email is invalid');
@@ -197,8 +198,9 @@ class _AppTextFieldState extends State<AppTextField> {
       } else if (widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           if (!s.trim().validateEmailEnhanced()) {
             return widget.errorInvalidEmail.validate(value: 'Email is invalid');
@@ -208,13 +210,14 @@ class _AppTextFieldState extends State<AppTextField> {
       } else if (widget.textFieldType == TextFieldType.PASSWORD) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           if (s.trim().length < passwordLengthGlobal) {
             return widget.errorMinimumPasswordLength.validate(
-                value:
-                    'Minimum password length should be $passwordLengthGlobal');
+              value: 'Minimum password length should be $passwordLengthGlobal',
+            );
           }
           return null;
         };
@@ -223,16 +226,18 @@ class _AppTextFieldState extends State<AppTextField> {
           widget.textFieldType == TextFieldType.NUMBER) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.URL) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           if (!s.validateURL()) {
             return widget.errorInvalidURL.validate(value: 'Invalid URL');
@@ -242,20 +247,23 @@ class _AppTextFieldState extends State<AppTextField> {
       } else if (widget.textFieldType == TextFieldType.USERNAME) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           if (s.contains(' ')) {
-            return widget.errorInvalidUsername
-                .validate(value: 'Username should not contain space');
+            return widget.errorInvalidUsername.validate(
+              value: 'Username should not contain space',
+            );
           }
           return null;
         };
       } else if (widget.textFieldType == TextFieldType.MULTILINE) {
         return (s) {
           if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
+            return widget.errorThisFieldRequired.validate(
+              value: errorThisFieldRequired,
+            );
           }
           return null;
         };
@@ -331,7 +339,8 @@ class _AppTextFieldState extends State<AppTextField> {
           setState(() {});
         }
       },
-      child: widget.suffixChatGPTIcon ??
+      child:
+          widget.suffixChatGPTIcon ??
           Transform.flip(
             flipX: true,
             child: Image.asset(
@@ -408,7 +417,8 @@ class _AppTextFieldState extends State<AppTextField> {
     return TextFormField(
       controller: widget.controller,
       onTapOutside: widget.onTapOutside,
-      obscureText: (widget.textFieldType == TextFieldType.PASSWORD &&
+      obscureText:
+          (widget.textFieldType == TextFieldType.PASSWORD &&
           !isPasswordVisible),
       validator: applyValidation(),
       textCapitalization: applyTextCapitalization(),
@@ -423,7 +433,8 @@ class _AppTextFieldState extends State<AppTextField> {
       keyboardType: applyTextInputType(),
       decoration: widget.decoration != null
           ? (widget.decoration!.copyWith(
-              suffixIcon: widget.enableChatGPT &&
+              suffixIcon:
+                  widget.enableChatGPT &&
                       widget.textFieldType != TextFieldType.PASSWORD
                   ? chatGPTWidget()
                   : suffixIcon(),
@@ -441,7 +452,8 @@ class _AppTextFieldState extends State<AppTextField> {
       autofocus: widget.autoFocus,
       enabled: widget.enabled,
       onChanged: widget.onChanged,
-      cursorColor: widget.cursorColor ??
+      cursorColor:
+          widget.cursorColor ??
           Theme.of(context).textSelectionTheme.cursorColor,
       readOnly: widget.readOnly,
       maxLength: widget.maxLength,

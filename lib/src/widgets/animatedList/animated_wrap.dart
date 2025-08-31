@@ -48,10 +48,10 @@ class AnimatedWrap extends StatelessWidget {
     this.flipConfiguration,
     this.children,
   }) : assert(
-          (itemBuilder == null && children != null) ||
-              (itemBuilder != null && children == null),
-          'You must have to use children or itemBuilder',
-        );
+         (itemBuilder == null && children != null) ||
+             (itemBuilder != null && children == null),
+         'You must have to use children or itemBuilder',
+       );
 
   @override
   Widget build(BuildContext context) {

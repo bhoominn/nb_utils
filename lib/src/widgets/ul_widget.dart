@@ -66,9 +66,7 @@ class UL extends StatelessWidget {
     } else if (symbolType == SymbolType.Numbered) {
       return Text(
         '${prefixText.validate()} ${index + 1}.',
-        style: boldTextStyle(
-          color: symbolColor ?? textPrimaryColorGlobal,
-        ),
+        style: boldTextStyle(color: symbolColor ?? textPrimaryColorGlobal),
       );
     }
 

@@ -33,8 +33,12 @@ class LanguageDataModel {
     List<Locale> list = [];
 
     for (var element in localeLanguageList) {
-      list.add(Locale(element.languageCode.validate(),
-          element.fullLanguageCode.validate()));
+      list.add(
+        Locale(
+          element.languageCode.validate(),
+          element.fullLanguageCode.validate(),
+        ),
+      );
     }
 
     return list;
@@ -46,8 +50,10 @@ LanguageDataModel? getSelectedLanguageModel({String? defaultLanguage}) {
 
   for (var element in localeLanguageList) {
     if (element.languageCode ==
-        getStringAsync(SELECTED_LANGUAGE_CODE,
-            defaultValue: defaultLanguage ?? 'en')) {
+        getStringAsync(
+          SELECTED_LANGUAGE_CODE,
+          defaultValue: defaultLanguage ?? 'en',
+        )) {
       data = element;
     }
   }

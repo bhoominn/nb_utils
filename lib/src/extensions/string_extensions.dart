@@ -196,10 +196,12 @@ extension StringExtension on String? {
 
     for (var exp in [
       RegExp(
-          r"^https://(?:www\.|m\.)?youtube\.com/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
+        r"^https://(?:www\.|m\.)?youtube\.com/watch\?v=([_\-a-zA-Z0-9]{11}).*$",
+      ),
       RegExp(
-          r"^https://(?:www\.|m\.)?youtube(?:-nocookie)?\.com/embed/([_\-a-zA-Z0-9]{11}).*$"),
-      RegExp(r"^https://youtu\.be/([_\-a-zA-Z0-9]{11}).*$")
+        r"^https://(?:www\.|m\.)?youtube(?:-nocookie)?\.com/embed/([_\-a-zA-Z0-9]{11}).*$",
+      ),
+      RegExp(r"^https://youtu\.be/([_\-a-zA-Z0-9]{11}).*$"),
     ]) {
       Match? match = exp.firstMatch(url);
       if (match != null && match.groupCount >= 1) return match.group(1)!;
@@ -421,4 +423,94 @@ extension StringExtension on String? {
 
   /// Returns true if the validate() method returns 'true', otherwise returns false.
   bool get asBool => this == 'true';
+
+  /// Returns true if this String is null, empty or consists of only whitespace characters.
+  bool get isNullOrBlank => this == null || this!.trim().isEmpty;
+
+  /// Compares this String to another String, ignoring case considerations.
+  bool equalsIgnoreCase(String? other) =>
+      (this == null && other == null) ||
+      (this != null &&
+          other != null &&
+          this!.toLowerCase() == other.toLowerCase());
+
+  /// Converts this String to camel case.
+  /// Example: "hello world" or "hello_world" or "hello-world" becomes "helloWorld".
+  String toCamelCase() {
+    if (isEmptyOrNull) return '';
+    String value = validate();
+    value = value.replaceAllMapped(RegExp(r'[\s_-]+(\w)'), (Match m) {
+      return m.group(1)!.toUpperCase();
+    });
+    return value[0].toLowerCase() + value.substring(1);
+  }
+
+  /// Truncates this String to a specified [maxLength] and appends an [ellipsis] string.
+  /// Example: "This is a long string".ellipsize(10) returns "This is a..."
+  String ellipsize(int maxLength, {String ellipsis = "..."}) {
+    if (isEmptyOrNull) return '';
+    String value = validate();
+    if (value.length <= maxLength) {
+      return value;
+    }
+    return value.substring(0, maxLength - ellipsis.length) + ellipsis;
+  }
+
+  /// Converts this String to PascalCase.
+  /// Example: "hello world" or "hello_world" becomes "HelloWorld".
+  String toPascalCase() {
+    if (isEmptyOrNull) return '';
+    String value = validate();
+    value = value.split(RegExp(r'[\s_-]+')).map((word) {
+      if (word.isEmpty) return '';
+      return word[0].toUpperCase() + word.substring(1).toLowerCase();
+    }).join();
+    return value;
+  }
+
+  /// Converts this String to snake_case.
+  /// Example: "helloWorld" or "Hello World" becomes "hello_world".
+  String toSnakeCase() {
+    if (isEmptyOrNull) return '';
+    String value = validate();
+    value = value.replaceAllMapped(RegExp(r'([A-Z])'), (Match m) {
+      return '_${m.group(1)!.toLowerCase()}';
+    });
+    value = value.replaceAll(RegExp(r'[\s-]+'), '_');
+    if (value.startsWith('_')) {
+      value = value.substring(1);
+    }
+    return value.toLowerCase();
+  }
+
+  /// Converts this String to kebab-case.
+  /// Example: "helloWorld" or "Hello World" becomes "hello-kebab".
+  String toKebabCase() {
+    if (isEmptyOrNull) return '';
+    String value = validate();
+    value = value.replaceAllMapped(RegExp(r'([A-Z])'), (Match m) {
+      return '-${m.group(1)!.toLowerCase()}';
+    });
+    value = value.replaceAll(RegExp(r'[\s_]+'), '-');
+    if (value.startsWith('-')) {
+      value = value.substring(1);
+    }
+    return value.toLowerCase();
+  }
+
+  /// Extracts initials from a string.
+  /// Example: "John Doe" returns "JD".
+  String initials() {
+    if (isEmptyOrNull) return '';
+    String value = validate();
+    return value
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((word) => word.isNotEmpty)
+        .map((word) => word[0].toUpperCase())
+        .join();
+  }
+
+  /// Returns true if this String is not null and contains at least one non-whitespace character.
+  bool get isNotBlank => this != null && this!.trim().isNotEmpty;
 }

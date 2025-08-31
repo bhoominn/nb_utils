@@ -28,6 +28,23 @@ extension DateTimeExt on DateTime {
 
     return DateTime(year, month, day) == tomorrow;
   }
+
+  /// Returns true if this DateTime instance is after the current date and time.
+  bool get isFuture => isAfter(DateTime.now());
+
+  /// Returns true if this DateTime instance is before the current date and time.
+  bool get isPast => isBefore(DateTime.now());
+
+  /// Returns a new DateTime instance representing the beginning of the day (00:00:00).
+  DateTime get startOfDay => DateTime(year, month, day);
+
+  /// Returns a new DateTime instance representing the end of the day (23:59:59.999).
+  DateTime get endOfDay => DateTime(year, month, day, 23, 59, 59, 999);
+
+  /// Returns true if this DateTime instance is on the same calendar day as the [other] DateTime.
+  bool isSameDay(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
 }
 
 /// return current time in milliseconds

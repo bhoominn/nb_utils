@@ -72,8 +72,9 @@ class SnapHelperWidget<T> extends StatelessWidget {
                 }
               } else {
                 if (errorBuilder != null) {
-                  return errorBuilder!
-                      .call(defaultErrorMessage ?? snap.error.toString());
+                  return errorBuilder!.call(
+                    defaultErrorMessage ?? snap.error.toString(),
+                  );
                 }
                 return errorWidget ??
                     Text(

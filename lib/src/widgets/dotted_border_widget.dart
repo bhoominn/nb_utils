@@ -71,13 +71,9 @@ class _DottedCustomPaint extends CustomPainter {
       ..strokeWidth = strokeWidth!;
 
     Path path = Path();
-    path.addRRect(RRect.fromLTRBR(
-      0,
-      0,
-      size.width,
-      size.height,
-      Radius.circular(radius!),
-    ));
+    path.addRRect(
+      RRect.fromLTRBR(0, 0, size.width, size.height, Radius.circular(radius!)),
+    );
 
     Path draw = buildDashPath(path, dottedLength!, space!);
     canvas.drawPath(draw, paint);

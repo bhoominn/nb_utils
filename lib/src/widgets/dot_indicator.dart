@@ -80,7 +80,7 @@ class DotIndicatorState extends State<DotIndicator> {
             duration: Duration(milliseconds: 300),
             height: selectedIndex == idx
                 ? (widget.currentDotWidth ??
-                    widget.currentDotSize.validate(value: 14))
+                      widget.currentDotSize.validate(value: 14))
                 : widget.dotSize.validate(value: 8),
             width: selectedIndex == idx
                 ? widget.currentDotSize.validate(value: 14)
@@ -99,8 +99,11 @@ class DotIndicatorState extends State<DotIndicator> {
             ),
           ).onTap(() {
             selectedIndex = idx;
-            widget.pageController.animateToPage(idx,
-                duration: Duration(milliseconds: 300), curve: Curves.linear);
+            widget.pageController.animateToPage(
+              idx,
+              duration: Duration(milliseconds: 300),
+              curve: Curves.linear,
+            );
 
             setState(() {});
 

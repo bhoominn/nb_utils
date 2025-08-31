@@ -30,9 +30,9 @@ class TypewriterAnimatedText extends AnimatedText {
     this.curve = Curves.linear,
     this.cursor = '_',
   }) : super(
-          text: text,
-          duration: speed * (text.characters.length + extraLengthForBlinks),
-        );
+         text: text,
+         duration: speed * (text.characters.length + extraLengthForBlinks),
+       );
 
   late Animation<double> _typewriterText;
 
@@ -43,25 +43,23 @@ class TypewriterAnimatedText extends AnimatedText {
 
   @override
   void initAnimation(AnimationController controller) {
-    _typewriterText = CurveTween(
-      curve: curve,
-    ).animate(controller);
+    _typewriterText = CurveTween(curve: curve).animate(controller);
   }
 
   @override
   Widget completeText(BuildContext context) => RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(text: text),
-            TextSpan(
-              text: cursor,
-              style: const TextStyle(color: Colors.transparent),
-            )
-          ],
-          style: DefaultTextStyle.of(context).style.merge(textStyle),
+    text: TextSpan(
+      children: [
+        TextSpan(text: text),
+        TextSpan(
+          text: cursor,
+          style: const TextStyle(color: Colors.transparent),
         ),
-        textAlign: textAlign,
-      );
+      ],
+      style: DefaultTextStyle.of(context).style.merge(textStyle),
+    ),
+    textAlign: textAlign,
+  );
 
   /// Widget showing partial text
   @override
@@ -69,9 +67,10 @@ class TypewriterAnimatedText extends AnimatedText {
     /// Output of CurveTween is in the range [0, 1] for majority of the curves.
     /// It is converted to [0, textCharacters.length + extraLengthForBlinks].
     final textLen = textCharacters.length;
-    final typewriterValue = (_typewriterText.value.clamp(0, 1) *
-            (textCharacters.length + extraLengthForBlinks))
-        .round();
+    final typewriterValue =
+        (_typewriterText.value.clamp(0, 1) *
+                (textCharacters.length + extraLengthForBlinks))
+            .round();
 
     var showCursor = true;
     var visibleString = text;
@@ -90,9 +89,10 @@ class TypewriterAnimatedText extends AnimatedText {
           TextSpan(text: visibleString),
           TextSpan(
             text: cursor,
-            style:
-                showCursor ? null : const TextStyle(color: Colors.transparent),
-          )
+            style: showCursor
+                ? null
+                : const TextStyle(color: Colors.transparent),
+          ),
         ],
         style: DefaultTextStyle.of(context).style.merge(textStyle),
       ),
@@ -125,9 +125,14 @@ class TypewriterAnimatedTextKit extends AnimatedTextKit {
     super.totalRepeatCount,
     Curve curve = Curves.linear,
   }) : super(
-          animatedTexts:
-              _animatedTexts(text, textAlign, textStyle, speed, curve),
-        );
+         animatedTexts: _animatedTexts(
+           text,
+           textAlign,
+           textStyle,
+           speed,
+           curve,
+         ),
+       );
 
   static List<AnimatedText> _animatedTexts(
     List<String> text,
@@ -135,14 +140,15 @@ class TypewriterAnimatedTextKit extends AnimatedTextKit {
     TextStyle textStyle,
     Duration speed,
     Curve curve,
-  ) =>
-      text
-          .map((_) => TypewriterAnimatedText(
-                _,
-                textAlign: textAlign,
-                textStyle: textStyle,
-                speed: speed,
-                curve: curve,
-              ))
-          .toList();
+  ) => text
+      .map(
+        (element) => TypewriterAnimatedText(
+          element,
+          textAlign: textAlign,
+          textStyle: textStyle,
+          speed: speed,
+          curve: curve,
+        ),
+      )
+      .toList();
 }

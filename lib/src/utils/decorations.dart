@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 /// returns default InputDecoration for AppTextField widget
-InputDecoration defaultInputDecoration(
-    {String? hint, String? label, TextStyle? textStyle}) {
+InputDecoration defaultInputDecoration({
+  String? hint,
+  String? label,
+  TextStyle? textStyle,
+}) {
   return InputDecoration(
     labelText: label,
     hintText: hint,
@@ -82,8 +85,9 @@ Decoration boxDecorationWithRoundedCorners({
 }) {
   return BoxDecoration(
     color: backgroundColor,
-    borderRadius:
-        boxShape == BoxShape.circle ? null : (borderRadius ?? radius()),
+    borderRadius: boxShape == BoxShape.circle
+        ? null
+        : (borderRadius ?? radius()),
     gradient: gradient,
     border: border,
     boxShadow: boxShadow,
@@ -107,7 +111,8 @@ Decoration boxDecorationWithShadow({
   BorderRadius? borderRadius,
 }) {
   return BoxDecoration(
-    boxShadow: boxShadow ??
+    boxShadow:
+        boxShadow ??
         defaultBoxShadow(
           shadowColor: shadowColor,
           blurRadius: blurRadius,
@@ -159,6 +164,6 @@ List<BoxShadow> defaultBoxShadow({
       blurRadius: blurRadius ?? defaultBlurRadius,
       spreadRadius: spreadRadius ?? defaultSpreadRadius,
       offset: offset,
-    )
+    ),
   ];
 }

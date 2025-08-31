@@ -25,7 +25,8 @@ class ChatGPTAnswerResponseModel {
         model: json["model"] ?? "",
         choices: json["choices"] != null
             ? List<ChatGPTChoiceModel>.from(
-                json["choices"].map((x) => ChatGPTChoiceModel.fromJson(x)))
+                json["choices"].map((x) => ChatGPTChoiceModel.fromJson(x)),
+              )
             : [],
         usage: json["usage"] != null
             ? ChatGPTUsageModel.fromJson(json["usage"])
@@ -36,14 +37,14 @@ class ChatGPTAnswerResponseModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "object": object,
-        "created": created,
-        "model": model,
-        "choices": choices.map((e) => e.toJson()).toList(),
-        "usage": usage.toJson(),
-        'error': error.toJson(),
-      };
+    "id": id,
+    "object": object,
+    "created": created,
+    "model": model,
+    "choices": choices.map((e) => e.toJson()).toList(),
+    "usage": usage.toJson(),
+    'error': error.toJson(),
+  };
 }
 
 class ChatGPTChoiceModel {
@@ -66,8 +67,9 @@ class ChatGPTChoiceModel {
           ? ResponseMessage.fromJson(json['message'])
           : ResponseMessage(),
       logprobs: json['logprobs'],
-      finishReason:
-          json['finish_reason'] is String ? json['finish_reason'] : "",
+      finishReason: json['finish_reason'] is String
+          ? json['finish_reason']
+          : "",
     );
   }
 
@@ -85,10 +87,7 @@ class ResponseMessage {
   String role;
   String content;
 
-  ResponseMessage({
-    this.role = "",
-    this.content = "",
-  });
+  ResponseMessage({this.role = "", this.content = ""});
 
   factory ResponseMessage.fromJson(Map<String, dynamic> json) {
     return ResponseMessage(
@@ -98,10 +97,7 @@ class ResponseMessage {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'role': role,
-      'content': content,
-    };
+    return {'role': role, 'content': content};
   }
 }
 
@@ -119,8 +115,9 @@ class ChatGPTUsageModel {
   factory ChatGPTUsageModel.fromJson(Map<String, dynamic> json) {
     return ChatGPTUsageModel(
       promptTokens: json['prompt_tokens'] is int ? json['prompt_tokens'] : -1,
-      completionTokens:
-          json['completion_tokens'] is int ? json['completion_tokens'] : -1,
+      completionTokens: json['completion_tokens'] is int
+          ? json['completion_tokens']
+          : -1,
       totalTokens: json['total_tokens'] is int ? json['total_tokens'] : -1,
     );
   }
@@ -157,11 +154,6 @@ class ChatGPTErrorModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'message': message,
-      'type': type,
-      'param': param,
-      'code': code,
-    };
+    return {'message': message, 'type': type, 'param': param, 'code': code};
   }
 }

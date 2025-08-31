@@ -2,10 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// TrimMode enum
-enum TrimMode {
-  Length,
-  Line,
-}
+enum TrimMode { Length, Line }
 
 /// Add read more button to a long text
 class ReadMoreText extends StatefulWidget {
@@ -77,9 +74,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
     TextSpan link = TextSpan(
       text: _readMore ? widget.trimCollapsedText : widget.trimExpandedText,
-      style: effectiveTextStyle!.copyWith(
-        color: colorClickableText,
-      ),
+      style: effectiveTextStyle!.copyWith(color: colorClickableText),
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
@@ -89,10 +84,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
         final double maxWidth = constraints.maxWidth;
 
         // Create a TextSpan with data
-        final text = TextSpan(
-          style: effectiveTextStyle,
-          text: widget.data,
-        );
+        final text = TextSpan(style: effectiveTextStyle, text: widget.data);
 
         // Layout and measure link
         TextPainter textPainter = TextPainter(
@@ -117,10 +109,9 @@ class ReadMoreTextState extends State<ReadMoreText> {
         int? endIndex;
 
         if (linkSize.width < maxWidth) {
-          final pos = textPainter.getPositionForOffset(Offset(
-            textSize.width - linkSize.width,
-            textSize.height,
-          ));
+          final pos = textPainter.getPositionForOffset(
+            Offset(textSize.width - linkSize.width, textSize.height),
+          );
           endIndex = textPainter.getOffsetBefore(pos.offset);
         } else {
           var pos = textPainter.getPositionForOffset(
@@ -142,10 +133,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                 children: <TextSpan>[link],
               );
             } else {
-              textSpan = TextSpan(
-                style: effectiveTextStyle,
-                text: widget.data,
-              );
+              textSpan = TextSpan(style: effectiveTextStyle, text: widget.data);
             }
             break;
           case TrimMode.Line:
@@ -154,21 +142,21 @@ class ReadMoreTextState extends State<ReadMoreText> {
                 style: effectiveTextStyle,
                 text: _readMore
                     ? widget.data.substring(0, endIndex) +
-                        (linkLongerThanLine ? _kLineSeparator : '')
+                          (linkLongerThanLine ? _kLineSeparator : '')
                     : widget.data,
                 children: <TextSpan>[link],
               );
             } else {
-              textSpan = TextSpan(
-                style: effectiveTextStyle,
-                text: widget.data,
-              );
+              textSpan = TextSpan(style: effectiveTextStyle, text: widget.data);
             }
             break;
         }
 
-        return SelectableText.rich(textSpan,
-            textAlign: textAlign, textDirection: textDirection);
+        return SelectableText.rich(
+          textSpan,
+          textAlign: textAlign,
+          textDirection: textDirection,
+        );
       },
     );
 
@@ -176,9 +164,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
       result = Semantics(
         textDirection: widget.textDirection,
         label: widget.semanticsLabel,
-        child: ExcludeSemantics(
-          child: result,
-        ),
+        child: ExcludeSemantics(child: result),
       );
     }
     return result;

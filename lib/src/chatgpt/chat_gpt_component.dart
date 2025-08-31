@@ -68,20 +68,23 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
     setState(() {});
 
     await generateWithChatGPT(
-      prompt: promptCont.text,
-      promptPrefix: widget.promptPrefix,
-      shortReply: widget.shortReply,
-      testWithoutKey: widget.testWithoutKey,
-      gptModuleStrings: widget.gptModuleStrings,
-    ).then((value) async {
-      answerCont.text = value.trim();
+          prompt: promptCont.text,
+          promptPrefix: widget.promptPrefix,
+          shortReply: widget.shortReply,
+          testWithoutKey: widget.testWithoutKey,
+          gptModuleStrings: widget.gptModuleStrings,
+        )
+        .then((value) async {
+          answerCont.text = value.trim();
 
-      await 350.milliseconds.delay;
+          await 350.milliseconds.delay;
 
-      displayGeneratedText = true;
-    }).catchError((e) {
-      toast(e.toString());
-    }).whenComplete(() {});
+          displayGeneratedText = true;
+        })
+        .catchError((e) {
+          toast(e.toString());
+        })
+        .whenComplete(() {});
 
     isLoading = false;
     setState(() {});
@@ -98,8 +101,10 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
       height: context.height() * 0.96,
       margin: EdgeInsets.only(top: context.height() * 0.04),
       decoration: boxDecorationWithRoundedCorners(
-        borderRadius:
-            radiusOnly(topLeft: defaultRadius, topRight: defaultRadius),
+        borderRadius: radiusOnly(
+          topLeft: defaultRadius,
+          topRight: defaultRadius,
+        ),
         backgroundColor: context.cardColor,
       ),
       padding: EdgeInsets.only(right: 16, left: 16, bottom: 16, top: 8),
@@ -123,7 +128,8 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
             AppTextField(
               textFieldType: TextFieldType.MULTILINE,
               controller: promptCont,
-              decoration: widget.promptFieldInputDecoration ??
+              decoration:
+                  widget.promptFieldInputDecoration ??
                   defaultInputDecoration(
                     hint: widget.gptModuleStrings.writeTextHere,
                   ),
@@ -133,7 +139,8 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
               children: [
                 isLoading
                     ? Center(
-                        child: widget.loaderWidget ??
+                        child:
+                            widget.loaderWidget ??
                             Container(
                               width: context.width() * 0.35,
                               height: 37,
@@ -142,12 +149,11 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                 vertical: 5,
                                 horizontal: 10,
                               ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 5,
-                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 5),
                               decoration: BoxDecoration(
-                                color: context.primaryColor
-                                    .withValues(alpha: 0.85),
+                                color: context.primaryColor.withValues(
+                                  alpha: 0.85,
+                                ),
                                 borderRadius: BorderRadius.circular(10),
                                 shape: BoxShape.rectangle,
                               ),
@@ -166,10 +172,11 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                           handleGenerateClick(context);
                         },
                         child: Text(
-                            answerCont.text.isNotEmpty
-                                ? widget.gptModuleStrings.reGenerate
-                                : widget.gptModuleStrings.generate,
-                            style: boldTextStyle(color: white)),
+                          answerCont.text.isNotEmpty
+                              ? widget.gptModuleStrings.reGenerate
+                              : widget.gptModuleStrings.generate,
+                          style: boldTextStyle(color: white),
+                        ),
                       ),
                 if (displayGeneratedText)
                   Column(
@@ -181,9 +188,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                         decoration: boxDecorationWithRoundedCorners(
                           borderRadius: radius(defaultRadius),
                           backgroundColor: context.cardColor,
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                          ),
+                          border: Border.all(color: Colors.grey.shade300),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,8 +209,9 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                   answerCont.text,
                                   textStyle: primaryTextStyle(),
                                   speed: Duration(
-                                    milliseconds:
-                                        isTextAnimationCompleted ? 0 : 30,
+                                    milliseconds: isTextAnimationCompleted
+                                        ? 0
+                                        : 30,
                                   ),
                                 ),
                               ],
@@ -218,8 +224,11 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
 
                                   finish(context, answerCont.text);
                                 },
-                                icon: Icon(Icons.copy_outlined,
-                                    color: context.iconColor, size: 18),
+                                icon: Icon(
+                                  Icons.copy_outlined,
+                                  color: context.iconColor,
+                                  size: 18,
+                                ),
                               ),
                           ],
                         ),
@@ -252,12 +261,14 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                   widget.recentList.clear();
                                   setState(() {});
                                 },
-                                primaryColor: context.primaryColor
-                                    .withValues(alpha: 0.85),
+                                primaryColor: context.primaryColor.withValues(
+                                  alpha: 0.85,
+                                ),
                                 negativeText: widget.gptModuleStrings.no,
                                 positiveText: widget.gptModuleStrings.yes,
                                 title: widget
-                                    .gptModuleStrings.doYouWantClearRecent,
+                                    .gptModuleStrings
+                                    .doYouWantClearRecent,
                               );
                             },
                           ),
@@ -283,8 +294,9 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                                   borderRadius: radius(defaultRadius),
                                   backgroundColor: Colors.grey.shade300
                                       .withValues(alpha: 0.1),
-                                  border:
-                                      Border.all(color: Colors.grey.shade300),
+                                  border: Border.all(
+                                    color: Colors.grey.shade300,
+                                  ),
                                 ),
                                 child: Text(
                                   widget.recentList[index],
@@ -302,7 +314,7 @@ class _ChatGPTSheetComponentState extends State<ChatGPTSheetComponent> {
                     ],
                   ),
               ],
-            )
+            ),
           ],
         ),
       ),

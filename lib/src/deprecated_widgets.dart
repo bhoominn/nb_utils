@@ -3,7 +3,8 @@ import 'package:nb_utils/nb_utils.dart';
 
 extension TextExtension on Text {
   @Deprecated(
-      'This style is not anymore maintained and will be deleted in next major update (4.0).')
+    'This style is not anymore maintained and will be deleted in next major update (4.0).',
+  )
   Text withStyle({
     double fontSize = 16,
     FontWeight? fontWeight,

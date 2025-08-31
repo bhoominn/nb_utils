@@ -35,8 +35,9 @@ class _HyperLinkWidgetState extends State<HyperLinkWidget> {
                 text: (e as TextSpan).text,
                 style: e.recognizer != null
                     ? widget.style?.copyWith(
-                        decoration:
-                            hover == e.text! ? TextDecoration.underline : null,
+                        decoration: hover == e.text!
+                            ? TextDecoration.underline
+                            : null,
                       )
                     : null,
                 recognizer: e.recognizer,

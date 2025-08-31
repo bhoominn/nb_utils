@@ -147,7 +147,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
         restorationId: widget.restorationId,
         reverse: widget.reverse,
         semanticChildCount: widget.semanticChildCount,
-        itemBuilder: (_, index) => AnimationConfigurationClass.staggeredList(
+        itemBuilder: (c, index) => AnimationConfigurationClass.staggeredList(
           position: index,
           child: AnimatedItemWidget(
             listAnimationType: widget.listAnimationType,
@@ -155,7 +155,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
             scaleConfiguration: widget.scaleConfiguration,
             slideConfiguration: widget.slideConfiguration,
             flipConfiguration: widget.flipConfiguration,
-            child: widget.itemBuilder.call(_, index),
+            child: widget.itemBuilder.call(c, index),
           ),
         ),
       ),
