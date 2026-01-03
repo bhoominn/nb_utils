@@ -108,470 +108,493 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return DoublePressBackWidget(
       child: Scaffold(
-        drawerEdgeDragWidth: context.width() * 0.2,
-        drawerEnableOpenDragGesture: true,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             //
           },
           child: const Icon(Icons.add),
         ),
-        body: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: <Widget>[
-                /*DotIndicator(
-                  pageController: PageController(),
-                  indicatorColor: Colors.black,
-                  unselectedIndicatorColor: Colors.blue,
-                  currentDotSize: 100,
-                  dotSize: 50,
-                  currentBoxShape: BoxShape.rectangle,
-                  boxShape: BoxShape.rectangle,
-                  currentBorderRadius: radius(),
-                  borderRadius: radius(),
-                  pages: [
-                    "",
-                    "",
-                    "",
-                  ],
-                ),*/
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 100),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: <Widget>[
+                  /*DotIndicator(
+                    pageController: PageController(),
+                    indicatorColor: Colors.black,
+                    unselectedIndicatorColor: Colors.blue,
+                    currentDotSize: 100,
+                    dotSize: 50,
+                    currentBoxShape: BoxShape.rectangle,
+                    boxShape: BoxShape.rectangle,
+                    currentBorderRadius: radius(),
+                    borderRadius: radius(),
+                    pages: [
+                      "",
+                      "",
+                      "",
+                    ],
+                  ),*/
 
-                Text('test@example.com'.mask(isMaskingEnabled: false)),
-                Text('+913537598797'.mask()),
-                const VersionInfoWidget(),
-                WavyDivider(width: context.width()),
-                16.height,
-                OTPTextField(
-                  boxDecoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: radius(4),
+                  Text('test@example.com'.mask(isMaskingEnabled: false)),
+                  Text('+913537598797'.mask()),
+                  const VersionInfoWidget(),
+                  WavyDivider(width: context.width()),
+                  16.height,
+                  OTPTextField(
+                    boxDecoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: radius(4),
+                    ),
+                    onChanged: (text) {
+                      log(text);
+                    },
+                    onCompleted: (s) {
+                      toast('onCompleted $s');
+                    },
                   ),
-                  onChanged: (text) {
-                    log(text);
-                  },
-                  onCompleted: (s) {
-                    toast('onCompleted $s');
-                  },
-                ),
-                16.height,
-                TextButton(
-                  onPressed: () {
-                    const AnimatedListViewExample().launch(context);
-                  },
-                  child: const Text('Pagination Example'),
-                ),
-
-                16.height,
-                RoundedCheckBox(
-                  size: 24,
-                  text: 'Remember me',
-                  onTap: (val) {
-                    //
-                  },
-                ),
-
-                /*16.height,
-                SizeListener(
-                  child: PlaceHolderWidget(
-                    height: 50.dynamicHeight,
-                    width: 100.dynamicWidth,
+                  16.height,
+                  TextButton(
+                    onPressed: () {
+                      const AnimatedListViewExample().launch(context);
+                    },
+                    child: const Text('Pagination Example'),
                   ),
-                  onSizeChange: (size) {
-                    log(size.width.toString());
-                  },
-                ),*/
 
-                16.height,
-                LanguageListWidget(
-                  widgetType: WidgetType.DROPDOWN,
-                  onLanguageChange: (data) {
-                    log(data.name);
-                  },
-                ),
+                  16.height,
+                  RoundedCheckBox(
+                    size: 24,
+                    text: 'Remember me',
+                    onTap: (val) {
+                      //
+                    },
+                  ),
 
-                16.height,
-                const DottedBorderWidget(
-                  child: SizedBox(height: 100, width: 100),
-                ),
+                  /*16.height,
+                  SizeListener(
+                    child: PlaceHolderWidget(
+                      height: 50.dynamicHeight,
+                      width: 100.dynamicWidth,
+                    ),
+                    onSizeChange: (size) {
+                      log(size.width.toString());
+                    },
+                  ),*/
 
-                16.height,
+                  16.height,
+                  LanguageListWidget(
+                    widgetType: WidgetType.DROPDOWN,
+                    onLanguageChange: (data) {
+                      log(data.name);
+                    },
+                  ),
 
-                /// Gradient Border Widget
-                GradientBorder(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Colors.orange,
-                      Colors.yellow,
-                      Colors.pink,
+                  16.height,
+                  const DottedBorderWidget(
+                    child: SizedBox(height: 100, width: 100),
+                  ),
+
+                  16.height,
+
+                  /// Gradient Border Widget
+                  GradientBorder(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Colors.orange,
+                        Colors.yellow,
+                        Colors.pink,
+                      ],
+                    ),
+                    strokeWidth: 4.0,
+                    child: Image.network(
+                      "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                      width: 100,
+                    ).cornerRadiusWithClipRRect(8),
+                  ),
+
+                  16.height,
+                  Text('Rating Bar Widget Example', style: primaryTextStyle()),
+                  RatingBarWidget(
+                    rating: rating,
+                    size: 40,
+                    activeColor: context.primaryColor,
+                    allowHalfRating: true,
+                    onRatingChanged: (e) {
+                      rating = e;
+                    },
+                  ),
+
+                  16.height,
+
+                  /// Hover Widget Example
+                  Text('Hover Widget Example', style: primaryTextStyle()),
+                  HoverWidget(
+                    builder: (_, isHovering) {
+                      return AnimatedContainer(
+                        height: 100,
+                        width: 100,
+                        decoration: boxDecorationDefault(
+                          color: isHovering ? Colors.blue : Colors.white,
+                          borderRadius: radius(isHovering ? 50 : null),
+                        ),
+                        duration: 400.milliseconds,
+                      );
+                    },
+                  ),
+
+                  16.height,
+                  Column(
+                    children: [
+                      Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: [
+                          AppButton(
+                            text: "Theme",
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) {
+                                  return SizedBox(
+                                    height: 400,
+                                    width: 500,
+                                    child: ThemeWidget(
+                                      onThemeChanged: (data) {
+                                        setState(() {});
+                                        log(data);
+                                      },
+                                    ),
+                                  );
+                                },
+                                title: const Text('Theme'),
+                                contentPadding: EdgeInsets.zero,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: "Confirmation",
+                            onTap: () async {
+                              showConfirmDialogCustom(
+                                context,
+                                dialogAnimation: DialogAnimation.DEFAULT,
+                                onAccept: (_) {
+                                  snackBar(context, title: 'Confirmed');
+                                },
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: "Confirmation with Custom Image",
+                            onTap: () async {
+                              showConfirmDialogCustom(
+                                context,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_RIGHT_LEFT,
+                                title: "Do you want to logout from the app?",
+                                dialogType: DialogType.CONFIRMATION,
+                                centerImage:
+                                    'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
+                                onAccept: (_) {
+                                  //
+                                },
+                                onCancel: (_) {
+                                  //
+                                },
+                                height: 300,
+                                width: 400,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: "Update",
+                            onTap: () {
+                              showConfirmDialogCustom(
+                                context,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_BOTTOM_TOP,
+                                title: "Do you want to update this item?",
+                                dialogType: DialogType.UPDATE,
+                                onAccept: (_) {
+                                  snackBar(context, title: 'Updated');
+                                },
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: "Delete",
+                            onTap: () {
+                              showConfirmDialogCustom(
+                                context,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_LEFT_RIGHT,
+                                title: "Delete 89 files permanent?",
+                                dialogType: DialogType.DELETE,
+                                onAccept: (_) {
+                                  snackBar(context, title: 'Deleted');
+                                },
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: "Add",
+                            onTap: () {
+                              showConfirmDialogCustom(
+                                context,
+                                title: "Do you want to add this item?",
+                                dialogType: DialogType.ADD,
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_TOP_BOTTOM,
+                                onAccept: (_) {
+                                  snackBar(context, title: 'Added');
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                      16.height,
+
+                      /// Hover Widget Example
+                      Text(
+                        'Dialog Animation Example',
+                        style: primaryTextStyle(),
+                      ),
+                      8.height,
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          AppButton(
+                            text: 'Default',
+                            onTap: () async {
+                              showInDialog(context,
+                                  builder: (_) => dialogWidget());
+                            },
+                          ),
+                          AppButton(
+                            text: 'Rotate',
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation: DialogAnimation.ROTATE,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: 'Scale',
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation: DialogAnimation.SCALE,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: 'Top to Bottom',
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_TOP_BOTTOM,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: 'Bottom to Top',
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_BOTTOM_TOP,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: 'Left to Right',
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_LEFT_RIGHT,
+                              );
+                            },
+                          ),
+                          AppButton(
+                            text: 'Right to Left',
+                            onTap: () async {
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                                dialogAnimation:
+                                    DialogAnimation.SLIDE_RIGHT_LEFT,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+
+                      16.height,
+                      UL(
+                        symbolType: SymbolType.Numbered,
+                        children: [
+                          Text('Hi', style: primaryTextStyle()),
+                          Text('Hello', style: primaryTextStyle()),
+                          Text('How are you?', style: primaryTextStyle()),
+                        ],
+                      ),
+                      16.height,
+                      UL(
+                        children: [
+                          Text('Hi', style: primaryTextStyle()),
+                          Text('Hello', style: primaryTextStyle()),
+                          Text('How are you?', style: primaryTextStyle()),
+                        ],
+                      ),
+                      16.height,
+
+                      /// Default AppTextField
+                      AppTextField(
+                        textFieldType: TextFieldType.OTHER,
+                        decoration: defaultInputDecoration(),
+                      ),
+                      8.height,
+
+                      /// Default AppTextField With ChatGPT
+                      AppTextField(
+                        controller: textCont,
+                        textFieldType: TextFieldType.OTHER,
+                        enableChatGPT: true,
+                        testWithoutKeyChatGPT: true,
+                        decoration: defaultInputDecoration(),
+                      ),
+                      8.height,
+
+                      /// Email TextField
+                      AppTextField(
+                        textFieldType: TextFieldType.EMAIL,
+                        decoration: defaultInputDecoration(label: 'Email'),
+                        title: 'Email',
+                      ),
+                      8.height,
+
+                      /// Address TextField
+                      AppTextField(
+                        textFieldType: TextFieldType.MULTILINE,
+                        decoration: defaultInputDecoration(label: 'Address'),
+                        minLines: 4,
+                      ),
+                      8.height,
+
+                      /// Password TextField
+                      AppTextField(
+                        textFieldType: TextFieldType.PASSWORD,
+                        decoration: defaultInputDecoration(label: 'Password'),
+                      ),
+                    ],
+                  ).paddingAll(16),
+
+                  16.height,
+                  const GoogleLogoWidget(size: 30),
+
+                  16.height,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppButton(
+                        text: 'Save',
+                        onTap: () async {
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save();
+                          }
+                        },
+                      ),
+                      8.width,
+                      AppButton(
+                        text: 'Toast',
+                        onTap: () async {
+                          toasty(
+                            context,
+                            'Toast',
+                            borderRadius: BorderRadius.circular(1),
+                            textColor: Colors.pinkAccent,
+                            gravity: ToastGravity.CENTER,
+                          );
+                        },
+                      ),
                     ],
                   ),
-                  strokeWidth: 4.0,
-                  child: Image.network(
-                    "https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    width: 100,
-                  ).cornerRadiusWithClipRRect(8),
-                ),
 
-                16.height,
-                Text('Rating Bar Widget Example', style: primaryTextStyle()),
-                RatingBarWidget(
-                  rating: rating,
-                  size: 40,
-                  activeColor: context.primaryColor,
-                  allowHalfRating: true,
-                  onRatingChanged: (e) {
-                    rating = e;
-                  },
-                ),
-
-                16.height,
-
-                /// Hover Widget Example
-                Text('Hover Widget Example', style: primaryTextStyle()),
-                HoverWidget(
-                  builder: (_, isHovering) {
-                    return AnimatedContainer(
-                      height: 100,
-                      width: 100,
-                      decoration: boxDecorationDefault(
-                        color: isHovering ? Colors.blue : Colors.white,
-                        borderRadius: radius(isHovering ? 50 : null),
+                  16.height,
+                  SettingSection(
+                    title: Text('Account Management',
+                        style: boldTextStyle(size: 24)),
+                    subTitle: Text('Control your account',
+                        style: primaryTextStyle(size: 16)),
+                    items: [
+                      SettingItemWidget(
+                        title: 'Hibernate account',
+                        subTitle: 'Temporary deactivate your account',
+                        decoration: BoxDecoration(borderRadius: radius()),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
+                            color: context.dividerColor),
+                        onTap: () {
+                          //
+                        },
                       ),
-                      duration: 400.milliseconds,
-                    );
-                  },
-                ),
+                      SettingItemWidget(
+                        title: 'Close account',
+                        subTitle:
+                            'Learn about your options, and close your account if you wish',
+                        decoration: BoxDecoration(borderRadius: radius()),
+                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
+                            color: context.dividerColor),
+                        onTap: () {
+                          push(const HomePage());
+                        },
+                      ),
+                    ],
+                  ),
 
-                16.height,
-                Column(
-                  children: [
-                    Wrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: [
-                        AppButton(
-                          text: "Theme",
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) {
-                                return SizedBox(
-                                  height: 400,
-                                  width: 500,
-                                  child: ThemeWidget(
-                                    onThemeChanged: (data) {
-                                      setState(() {});
-                                      log(data);
-                                    },
-                                  ),
-                                );
-                              },
-                              title: const Text('Theme'),
-                              contentPadding: EdgeInsets.zero,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: "Confirmation",
-                          onTap: () async {
-                            showConfirmDialogCustom(
-                              context,
-                              dialogAnimation: DialogAnimation.DEFAULT,
-                              onAccept: (_) {
-                                snackBar(context, title: 'Confirmed');
-                              },
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: "Confirmation with Custom Image",
-                          onTap: () async {
-                            showConfirmDialogCustom(
-                              context,
-                              dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT,
-                              title: "Do you want to logout from the app?",
-                              dialogType: DialogType.CONFIRMATION,
-                              centerImage:
-                                  'https://images.unsplash.com/photo-1579154392429-0e6b4e850ad2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=397&q=80',
-                              onAccept: (_) {
-                                //
-                              },
-                              onCancel: (_) {
-                                //
-                              },
-                              height: 300,
-                              width: 400,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: "Update",
-                          onTap: () {
-                            showConfirmDialogCustom(
-                              context,
-                              dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
-                              title: "Do you want to update this item?",
-                              dialogType: DialogType.UPDATE,
-                              onAccept: (_) {
-                                snackBar(context, title: 'Updated');
-                              },
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: "Delete",
-                          onTap: () {
-                            showConfirmDialogCustom(
-                              context,
-                              dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT,
-                              title: "Delete 89 files permanent?",
-                              dialogType: DialogType.DELETE,
-                              onAccept: (_) {
-                                snackBar(context, title: 'Deleted');
-                              },
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: "Add",
-                          onTap: () {
-                            showConfirmDialogCustom(
-                              context,
-                              title: "Do you want to add this item?",
-                              dialogType: DialogType.ADD,
-                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
-                              onAccept: (_) {
-                                snackBar(context, title: 'Added');
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    16.height,
+                  16.height,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SnapHelperWidget(
+                      future: getMaterialYouColors(),
+                      onSuccess: (data) {
+                        //var data1 = (data as Map).values.map((e) => e.toString().toColor()).toList();
 
-                    /// Hover Widget Example
-                    Text(
-                      'Dialog Animation Example',
-                      style: primaryTextStyle(),
-                    ),
-                    8.height,
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        AppButton(
-                          text: 'Default',
-                          onTap: () async {
-                            showInDialog(context,
-                                builder: (_) => dialogWidget());
-                          },
-                        ),
-                        AppButton(
-                          text: 'Rotate',
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) => dialogWidget(),
-                              dialogAnimation: DialogAnimation.ROTATE,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: 'Scale',
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) => dialogWidget(),
-                              dialogAnimation: DialogAnimation.SCALE,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: 'Top to Bottom',
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) => dialogWidget(),
-                              dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: 'Bottom to Top',
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) => dialogWidget(),
-                              dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: 'Left to Right',
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) => dialogWidget(),
-                              dialogAnimation: DialogAnimation.SLIDE_LEFT_RIGHT,
-                            );
-                          },
-                        ),
-                        AppButton(
-                          text: 'Right to Left',
-                          onTap: () async {
-                            showInDialog(
-                              context,
-                              builder: (_) => dialogWidget(),
-                              dialogAnimation: DialogAnimation.SLIDE_RIGHT_LEFT,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-
-                    16.height,
-                    UL(
-                      symbolType: SymbolType.Numbered,
-                      children: [
-                        Text('Hi', style: primaryTextStyle()),
-                        Text('Hello', style: primaryTextStyle()),
-                        Text('How are you?', style: primaryTextStyle()),
-                      ],
-                    ),
-                    16.height,
-                    UL(
-                      children: [
-                        Text('Hi', style: primaryTextStyle()),
-                        Text('Hello', style: primaryTextStyle()),
-                        Text('How are you?', style: primaryTextStyle()),
-                      ],
-                    ),
-                    16.height,
-
-                    /// Default AppTextField
-                    AppTextField(
-                      textFieldType: TextFieldType.OTHER,
-                      decoration: defaultInputDecoration(),
-                    ),
-                    8.height,
-
-                    /// Default AppTextField With ChatGPT
-                    AppTextField(
-                      controller: textCont,
-                      textFieldType: TextFieldType.OTHER,
-                      enableChatGPT: true,
-                      testWithoutKeyChatGPT: true,
-                      decoration: defaultInputDecoration(),
-                    ),
-                    8.height,
-
-                    /// Email TextField
-                    AppTextField(
-                      textFieldType: TextFieldType.EMAIL,
-                      decoration: defaultInputDecoration(label: 'Email'),
-                      title: 'Email',
-                    ),
-                    8.height,
-
-                    /// Address TextField
-                    AppTextField(
-                      textFieldType: TextFieldType.MULTILINE,
-                      decoration: defaultInputDecoration(label: 'Address'),
-                      minLines: 4,
-                    ),
-                    8.height,
-
-                    /// Password TextField
-                    AppTextField(
-                      textFieldType: TextFieldType.PASSWORD,
-                      decoration: defaultInputDecoration(label: 'Password'),
-                    ),
-                  ],
-                ).paddingAll(16),
-
-                16.height,
-                const GoogleLogoWidget(size: 30),
-
-                16.height,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppButton(
-                      text: 'Save',
-                      onTap: () async {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                        }
-                      },
-                    ),
-                    8.width,
-                    AppButton(
-                      text: 'Toast',
-                      onTap: () async {
-                        toasty(
-                          context,
-                          'Toast',
-                          borderRadius: BorderRadius.circular(1),
-                          textColor: Colors.pinkAccent,
-                          gravity: ToastGravity.CENTER,
+                        return Wrap(
+                          runSpacing: 8,
+                          spacing: 8,
+                          children: (data as Map).entries.map((e) {
+                            return Container(
+                              width: context.width() * 0.3,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: e.value.toString().toColor(),
+                                borderRadius: radius(),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 4, vertical: 2),
+                              child: Text(e.key,
+                                  style: secondaryTextStyle(size: 12)),
+                            ).onTap(() {
+                              e.key.toString().copyToClipboard();
+                            });
+                          }).toList(),
                         );
                       },
                     ),
-                  ],
-                ),
-
-                16.height,
-                SettingSection(
-                  title: Text('Account Management',
-                      style: boldTextStyle(size: 24)),
-                  subTitle: Text('Control your account',
-                      style: primaryTextStyle(size: 16)),
-                  items: [
-                    SettingItemWidget(
-                      title: 'Hibernate account',
-                      subTitle: 'Temporary deactivate your account',
-                      decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
-                      onTap: () {
-                        //
-                      },
-                    ),
-                    SettingItemWidget(
-                      title: 'Close account',
-                      subTitle:
-                          'Learn about your options, and close your account if you wish',
-                      decoration: BoxDecoration(borderRadius: radius()),
-                      trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                          color: context.dividerColor),
-                      onTap: () {
-                        push(const HomePage());
-                      },
-                    ),
-                  ],
-                ),
-
-                16.height,
-                SnapHelperWidget(
-                  future: getMaterialYouColors(),
-                  onSuccess: (data) {
-                    //var data1 = (data as Map).values.map((e) => e.toString().toColor()).toList();
-
-                    return Wrap(
-                      children: (data as Map).entries.map((e) {
-                        return Container(
-                          height: 50,
-                          color: e.value.toString().toColor(),
-                          child: Text(e.key),
-                        );
-                      }).toList(),
-                    );
-                  },
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

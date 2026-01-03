@@ -1,3 +1,5 @@
+## 7.2.0
+- Upgrade Gradle, Kotlin, and SDK versions
 ## 7.1.8
 - Added missing HTTP method types to HttpMethodType enum
 - Added comprehensive new String, num, DateTime, and BuildContext extensions for enhanced utility and productivity.
