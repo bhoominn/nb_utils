@@ -21,7 +21,7 @@ public class NbUtilsPlugin: NSObject, FlutterPlugin {
             "versionCode": Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
             "versionName": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
         ]
-      result(packInfo) // Return the dictionary here
+      result(packInfo)
     default:
       result(FlutterMethodNotImplemented)
     }

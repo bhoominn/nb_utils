@@ -38,10 +38,12 @@ flutter:
         pluginClass: NbUtilsPlugin
       ios:
         pluginClass: NbUtilsPlugin
+        swift_package_manager: true
       linux:
         pluginClass: NbUtilsPlugin
       macos:
         pluginClass: NbUtilsPlugin
+        swift_package_manager: true
       windows:
         pluginClass: NbUtilsPluginCApi
       web:
