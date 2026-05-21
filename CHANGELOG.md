@@ -1,3 +1,6 @@
+## 7.3.0
+- Added support for Swift Package Manager
+- Refactored Android `build.gradle` to use the modern plugins DSL and removed redundant buildscript configurations
 ## 7.2.0
 - Upgrade Gradle, Kotlin, and SDK versions
 ## 7.1.8

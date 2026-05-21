@@ -9,17 +9,13 @@ let package = Package(
         .iOS("12.0")
     ],
     products: [
-        .library(name: "nb-utils", targets: ["nb_utils"])
+        .library(name: "nb_utils", targets: ["nb_utils"])
     ],
-    dependencies: [
-        .package(name: "Flutter", path: "Flutter")
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "nb_utils",
-            dependencies: [
-                .product(name: "Flutter", package: "Flutter")
-            ],
+            dependencies: [],
             path: "Classes"
         )
     ]
