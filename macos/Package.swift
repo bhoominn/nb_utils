@@ -11,15 +11,11 @@ let package = Package(
     products: [
         .library(name: "nb-utils", targets: ["nb_utils"])
     ],
-    dependencies: [
-        .package(name: "FlutterMacOS", path: "FlutterMacOS")
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "nb_utils",
-            dependencies: [
-                .product(name: "FlutterMacOS", package: "FlutterMacOS")
-            ],
+            dependencies: [],
             path: "Classes"
         )
     ]
