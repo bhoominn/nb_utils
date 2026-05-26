@@ -6,10 +6,10 @@ import PackageDescription
 let package = Package(
     name: "nb_utils",
     platforms: [
-        .macOS("10.11")
+        .macOS("10.15")
     ],
     products: [
-        .library(name: "nb_utils", targets: ["nb_utils"])
+        .library(name: "nb-utils", targets: ["nb_utils"])
     ],
     dependencies: [],
     targets: [

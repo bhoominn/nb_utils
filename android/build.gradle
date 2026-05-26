@@ -1,15 +1,23 @@
-group = "com.example.nb_utils"
-version = "1.0-SNAPSHOT"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.20"
+    }
+}
 
 plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
 }
 
+group = "com.example.nb_utils"
+version = "1.0-SNAPSHOT"
+
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace = "com.example.nb_utils"
-    }
+    namespace = "com.example.nb_utils"
 
     compileSdk = 36
 
@@ -22,24 +30,12 @@ android {
         jvmTarget = "17"
     }
 
-    sourceSets {
-        main.java.srcDirs += "src/main/kotlin"
-        test.java.srcDirs += "src/test/kotlin"
-    }
-
     defaultConfig {
         minSdk = 21
     }
 
-    dependencies {
-        testImplementation("org.jetbrains.kotlin:kotlin-test")
-        testImplementation("org.mockito:mockito-core:5.21.0")
-    }
-
     testOptions {
         unitTests.all {
-            useJUnitPlatform()
-
             testLogging {
                events "passed", "skipped", "failed", "standardOut", "standardError"
                outputs.upToDateWhen {false}
@@ -47,4 +43,9 @@ android {
             }
         }
     }
+}
+
+dependencies {
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.mockito:mockito-core:5.21.0")
 }

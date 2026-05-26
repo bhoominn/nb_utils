@@ -1,6 +1,6 @@
 name: nb_utils
 description: "Collection of Widgets and helpful Methods that every developer needs."
-version: 7.3.0
+version: 7.3.4
 #homepage: https://bhoominn.github.io
 repository: https://github.com/bhoominn/nb_utils
 issue_tracker: https://github.com/bhoominn/nb_utils/issues
@@ -38,10 +38,12 @@ flutter:
         pluginClass: NbUtilsPlugin
       ios:
         pluginClass: NbUtilsPlugin
+        swift_package_manager: true
       linux:
         pluginClass: NbUtilsPlugin
       macos:
         pluginClass: NbUtilsPlugin
+        swift_package_manager: true
       windows:
         pluginClass: NbUtilsPluginCApi
       web:
