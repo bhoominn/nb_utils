@@ -10,10 +10,12 @@ const appName = 'NB Utils Example';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await initialize(aLocaleLanguageList: [
-    LanguageDataModel(name: 'English', languageCode: 'en'),
-    LanguageDataModel(name: 'Hindi', languageCode: 'hi'),
-  ]);
+  await initialize(
+    aLocaleLanguageList: [
+      LanguageDataModel(name: 'English', languageCode: 'en'),
+      LanguageDataModel(name: 'Hindi', languageCode: 'hi'),
+    ],
+  );
 
   defaultToastBackgroundColor = Colors.black;
   defaultToastTextColor = Colors.white;
@@ -48,16 +50,10 @@ class MyAppState extends State<MyApp> {
           title: appName,
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
-          theme: snap.data ??
-              ThemeData(
-                useMaterial3: true,
-                useSystemColors: true,
-              ),
-          darkTheme: snap.data ??
-              ThemeData(
-                useMaterial3: true,
-                useSystemColors: true,
-              ),
+          theme:
+              snap.data ?? ThemeData(useMaterial3: true, useSystemColors: true),
+          darkTheme:
+              snap.data ?? ThemeData(useMaterial3: true, useSystemColors: true),
           themeMode: getIntAsync(THEME_MODE_INDEX) == 2
               ? ThemeMode.dark
               : ThemeMode.light,
@@ -96,8 +92,10 @@ class HomePageState extends State<HomePage> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('This is the example of showInDialog method',
-            style: primaryTextStyle()),
+        Text(
+          'This is the example of showInDialog method',
+          style: primaryTextStyle(),
+        ),
         4.height,
         Text('Secondary text here', style: secondaryTextStyle()),
       ],
@@ -137,7 +135,6 @@ class HomePageState extends State<HomePage> {
                       "",
                     ],
                   ),*/
-
                   Text('test@example.com'.mask(isMaskingEnabled: false)),
                   Text('+913537598797'.mask()),
                   const VersionInfoWidget(),
@@ -182,7 +179,6 @@ class HomePageState extends State<HomePage> {
                       log(size.width.toString());
                     },
                   ),*/
-
                   16.height,
                   LanguageListWidget(
                     widgetType: WidgetType.DROPDOWN,
@@ -201,11 +197,7 @@ class HomePageState extends State<HomePage> {
                   /// Gradient Border Widget
                   GradientBorder(
                     gradient: const LinearGradient(
-                      colors: [
-                        Colors.orange,
-                        Colors.yellow,
-                        Colors.pink,
-                      ],
+                      colors: [Colors.orange, Colors.yellow, Colors.pink],
                     ),
                     strokeWidth: 4.0,
                     child: Image.network(
@@ -369,8 +361,10 @@ class HomePageState extends State<HomePage> {
                           AppButton(
                             text: 'Default',
                             onTap: () async {
-                              showInDialog(context,
-                                  builder: (_) => dialogWidget());
+                              showInDialog(
+                                context,
+                                builder: (_) => dialogWidget(),
+                              );
                             },
                           ),
                           AppButton(
@@ -533,17 +527,23 @@ class HomePageState extends State<HomePage> {
 
                   16.height,
                   SettingSection(
-                    title: Text('Account Management',
-                        style: boldTextStyle(size: 24)),
-                    subTitle: Text('Control your account',
-                        style: primaryTextStyle(size: 16)),
+                    title: Text(
+                      'Account Management',
+                      style: boldTextStyle(size: 24),
+                    ),
+                    subTitle: Text(
+                      'Control your account',
+                      style: primaryTextStyle(size: 16),
+                    ),
                     items: [
                       SettingItemWidget(
                         title: 'Hibernate account',
                         subTitle: 'Temporary deactivate your account',
                         decoration: BoxDecoration(borderRadius: radius()),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                            color: context.dividerColor),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          color: context.dividerColor,
+                        ),
                         onTap: () {
                           //
                         },
@@ -553,8 +553,10 @@ class HomePageState extends State<HomePage> {
                         subTitle:
                             'Learn about your options, and close your account if you wish',
                         decoration: BoxDecoration(borderRadius: radius()),
-                        trailing: Icon(Icons.keyboard_arrow_right_rounded,
-                            color: context.dividerColor),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right_rounded,
+                          color: context.dividerColor,
+                        ),
                         onTap: () {
                           push(const HomePage());
                         },
@@ -582,9 +584,13 @@ class HomePageState extends State<HomePage> {
                                 borderRadius: radius(),
                               ),
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 2),
-                              child: Text(e.key,
-                                  style: secondaryTextStyle(size: 12)),
+                                horizontal: 4,
+                                vertical: 2,
+                              ),
+                              child: Text(
+                                e.key,
+                                style: secondaryTextStyle(size: 12),
+                              ),
                             ).onTap(() {
                               e.key.toString().copyToClipboard();
                             });
