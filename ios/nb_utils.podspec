@@ -13,7 +13,7 @@ Collection of Widgets and helpful Methods that every developer needs.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Bhoomin Naik' => 'bhoominn@gmail.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*.swift'
+  s.source_files = 'nb_utils/Sources/nb_utils/**/*.swift'
   s.dependency 'Flutter'
   s.platform = :ios, '13.0'
 
