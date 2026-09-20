@@ -36,11 +36,7 @@ class SettingSection extends StatelessWidget {
               headingDecoration ?? BoxDecoration(color: Color(0xFFECECEC)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ?title,
-              if (subTitle != null) 4.height,
-              ?subTitle,
-            ],
+            children: [?title, if (subTitle != null) 4.height, ?subTitle],
           ),
         ),
         divider ?? Divider(height: 0),

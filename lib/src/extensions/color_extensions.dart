@@ -19,7 +19,8 @@ extension Hex on Color {
   bool isLight() => !isDark();
 
   /// Returns Brightness of give Color
-  double getBrightness() => (_channel(r) * 299 + _channel(g) * 587 + _channel(b) * 114) / 1000;
+  double getBrightness() =>
+      (_channel(r) * 299 + _channel(g) * 587 + _channel(b) * 114) / 1000;
 
   /// Returns Luminance of give Color
   double getLuminance() => computeLuminance();
