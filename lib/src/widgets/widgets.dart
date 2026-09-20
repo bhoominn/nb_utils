@@ -4,7 +4,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 /// show confirm dialog box
 Future<bool?> showConfirmDialog<bool>(
-  context,
+  dynamic context,
   String title, {
   String positiveText = 'Yes',
   String negativeText = 'No',

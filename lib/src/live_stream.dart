@@ -68,7 +68,7 @@ class _DataStore {
     });
   }
 
-  void removeKey(key) {
+  void removeKey(dynamic key) {
     _mDataItemsMap.remove(key);
   }
 

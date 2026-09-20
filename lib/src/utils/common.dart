@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -144,7 +145,7 @@ void snackBar(
 }
 
 /// Hide soft keyboard
-void hideKeyboard(context) => FocusScope.of(context).requestFocus(FocusNode());
+void hideKeyboard(dynamic context) => FocusScope.of(context).requestFocus(FocusNode());
 
 /// Returns a string from Clipboard
 Future<String> paste() async {
@@ -300,6 +301,9 @@ Widget dialogAnimatedWrapperWidget({
 }
 
 /// Builds a page route with the specified animation.
+///
+/// Note: routes built with a custom animation other than [PageRouteAnimation.Slide]
+/// on iOS use a [PageRouteBuilder], which does not support the iOS swipe-back gesture.
 Route<T> buildPageRoute<T>(
   Widget child,
   PageRouteAnimation? pageRouteAnimation,
@@ -307,10 +311,13 @@ Route<T> buildPageRoute<T>(
   String? routeName,
   Object? routeArguments,
 ) {
+  final settings = RouteSettings(name: routeName, arguments: routeArguments);
+
   if (pageRouteAnimation != null) {
     if (pageRouteAnimation == PageRouteAnimation.Fade) {
       // Fade animation for page route.
-      return PageRouteBuilder(
+      return PageRouteBuilder<T>(
+        settings: settings,
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return FadeTransition(opacity: anim, child: child);
@@ -319,7 +326,8 @@ Route<T> buildPageRoute<T>(
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
       // Rotation animation for page route.
-      return PageRouteBuilder(
+      return PageRouteBuilder<T>(
+        settings: settings,
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return RotationTransition(
@@ -331,7 +339,8 @@ Route<T> buildPageRoute<T>(
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
       // Scale animation for page route.
-      return PageRouteBuilder(
+      return PageRouteBuilder<T>(
+        settings: settings,
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return ScaleTransition(scale: anim, child: child);
@@ -339,8 +348,15 @@ Route<T> buildPageRoute<T>(
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
+      // On iOS use the native Cupertino transition so the swipe-back gesture
+      // keeps working; PageRouteBuilder does not support it.
+      if (isIOS) {
+        return CupertinoPageRoute<T>(builder: (_) => child, settings: settings);
+      }
+
       // Slide animation for page route.
-      return PageRouteBuilder(
+      return PageRouteBuilder<T>(
+        settings: settings,
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
@@ -355,7 +371,8 @@ Route<T> buildPageRoute<T>(
       );
     } else if (pageRouteAnimation == PageRouteAnimation.SlideBottomTop) {
       // Slide from bottom to top animation for page route.
-      return PageRouteBuilder(
+      return PageRouteBuilder<T>(
+        settings: settings,
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
@@ -371,10 +388,7 @@ Route<T> buildPageRoute<T>(
     }
   }
   // Default page route.
-  return MaterialPageRoute<T>(
-    builder: (_) => child,
-    settings: RouteSettings(name: routeName, arguments: routeArguments),
-  );
+  return MaterialPageRoute<T>(builder: (_) => child, settings: settings);
 }
 
 /// Provides dynamic padding for app buttons based on the context.

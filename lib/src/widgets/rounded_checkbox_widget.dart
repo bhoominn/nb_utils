@@ -58,7 +58,7 @@ class RoundedCheckBox extends StatefulWidget {
   final Duration? animationDuration;
 
   @override
-  _RoundedCheckBoxState createState() => _RoundedCheckBoxState();
+  State<RoundedCheckBox> createState() => _RoundedCheckBoxState();
 }
 
 class _RoundedCheckBoxState extends State<RoundedCheckBox> {

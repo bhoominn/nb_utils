@@ -125,7 +125,7 @@ Future<List<List<int>>?> getPaletteFromImage(
 enum ColorPart { r, g, b }
 
 class _PV {
-  static map(List array, [Function? f]) {
+  static dynamic map(List array, [Function? f]) {
     return f != null
         ? array.map((d) {
             return f(d);
@@ -141,7 +141,7 @@ class _PV {
         : 0;
   }
 
-  static sum(List array, [Function? f]) {
+  static dynamic sum(List array, [Function? f]) {
     final num Function(num, dynamic) combine = f != null
         ? (p, d) {
             return p + f(d);
@@ -152,7 +152,7 @@ class _PV {
     return array.fold(0, combine);
   }
 
-  static max(List array, [Function? f]) {
+  static dynamic max(List array, [Function? f]) {
     final list = f != null ? _PV.map(array, f) : array;
     int max = list.first;
     list.skip(1).forEach((element) {
@@ -179,17 +179,17 @@ class PQueue<T> {
   final contents = <T>[];
   var sorted = false;
 
-  sort([int Function(T, T)? oneTimeComparator]) {
+  dynamic sort([int Function(T, T)? oneTimeComparator]) {
     contents.sort(oneTimeComparator ?? comparator);
     sorted = true;
   }
 
-  push(T o) {
+  dynamic push(T o) {
     contents.add(o);
     sorted = false;
   }
 
-  peek(index) {
+  dynamic peek(dynamic index) {
     if (!sorted) {
       sort();
     }
@@ -213,9 +213,9 @@ class PQueue<T> {
     return contents.map<R>(f).toList();
   }
 
-  T operator [](index) => contents[index];
+  T operator [](dynamic index) => contents[index];
 
-  debug() {
+  dynamic debug() {
     if (!sorted) {
       sort();
     }
@@ -236,7 +236,7 @@ class VBox {
 
   int? _volume;
 
-  volume([force]) {
+  dynamic volume([dynamic force]) {
     if (_volume == null || force == true) {
       _volume = (r2 - r1 + 1) * (g2 - g1 + 1) * (b2 - b1 + 1);
     }
@@ -268,13 +268,13 @@ class VBox {
     return _count!;
   }
 
-  copy() {
+  dynamic copy() {
     return VBox(r1, r2, g1, g2, b1, b2, histo);
   }
 
   List<int>? _avg;
 
-  List<int> avg([force]) {
+  List<int> avg([dynamic force]) {
     if (_avg == null || force == true) {
       var ntot = 0.0,
           mult = 1 << 8 - _sigbits,
@@ -311,7 +311,7 @@ class VBox {
     return _avg!;
   }
 
-  contains(pixel) {
+  dynamic contains(dynamic pixel) {
     var rval = pixel[0] >> _rshift,
         gval = pixel[1] >> _rshift,
         bval = pixel[2] >> _rshift;
@@ -343,7 +343,7 @@ class CMap {
     });
   }
 
-  push(VBox vbox) {
+  dynamic push(VBox vbox) {
     vboxes.push(VBoxElement(vbox, vbox.avg()));
   }
 
@@ -353,11 +353,11 @@ class CMap {
     });
   }
 
-  size() {
+  dynamic size() {
     return vboxes.size();
   }
 
-  map(color) {
+  dynamic map(dynamic color) {
     var vboxes = this.vboxes;
 
     for (var i = 0; i < vboxes.size(); i++) {
@@ -369,7 +369,7 @@ class CMap {
     return nearest(color);
   }
 
-  nearest(color) {
+  dynamic nearest(dynamic color) {
     var vboxes = this.vboxes;
     double? d1, d2, pColor;
 
@@ -389,7 +389,7 @@ class CMap {
     return pColor;
   }
 
-  forcebw() {
+  dynamic forcebw() {
     var vboxes = this.vboxes;
     vboxes.sort((a, b) {
       return _PV.naturalOrder(_PV.sum(a.color), _PV.sum(b.color));
@@ -456,21 +456,21 @@ VBox _vboxFromPixels(List pixels, List<int?> histo) {
   return VBox(rmin, rmax, gmin, gmax, bmin, bmax, histo);
 }
 
-_safeSetArray(List list, index, element) {
+dynamic _safeSetArray(List list, index, element) {
   if (!(list.length > index)) {
     list.addAll(List.filled(index - list.length + 1, null, growable: false));
   }
   list[index] = element;
 }
 
-_safeGetArray(List list, int index) {
+dynamic _safeGetArray(List list, int index) {
   if (!(list.length > index) || index < 0) {
     return null;
   }
   return list[index];
 }
 
-_medianCutApply(List<int?> histo, VBox vbox) {
+dynamic _medianCutApply(List<int?> histo, VBox vbox) {
   if (vbox.count() == 0) {
     return [null, null];
   }

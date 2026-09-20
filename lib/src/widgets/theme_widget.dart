@@ -21,7 +21,7 @@ class ThemeWidget extends StatefulWidget {
   });
 
   @override
-  _ThemeWidgetState createState() => _ThemeWidgetState();
+  State<ThemeWidget> createState() => _ThemeWidgetState();
 }
 
 class _ThemeWidgetState extends State<ThemeWidget> {

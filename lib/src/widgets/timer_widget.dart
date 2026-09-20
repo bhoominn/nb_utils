@@ -24,7 +24,7 @@ class TimerWidget extends StatefulWidget {
   });
 
   @override
-  _TimerWidgetState createState() => _TimerWidgetState();
+  State<TimerWidget> createState() => _TimerWidgetState();
 }
 
 class _TimerWidgetState extends State<TimerWidget> with WidgetsBindingObserver {

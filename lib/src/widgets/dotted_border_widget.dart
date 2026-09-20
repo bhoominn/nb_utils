@@ -24,7 +24,7 @@ class DottedBorderWidget extends StatefulWidget {
   });
 
   @override
-  _DottedBorderWidgetState createState() => _DottedBorderWidgetState();
+  State<DottedBorderWidget> createState() => _DottedBorderWidgetState();
 }
 
 class _DottedBorderWidgetState extends State<DottedBorderWidget> {

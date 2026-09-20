@@ -174,7 +174,7 @@ ChatGPTConfig chatGPTConfigGlobal = ChatGPTConfig();
 const channelName = 'nb_utils';
 final navigatorKey = GlobalKey<NavigatorState>();
 
-get getContext => navigatorKey.currentState?.overlay?.context;
+dynamic get getContext => navigatorKey.currentState?.overlay?.context;
 
 LiveStream liveStream = LiveStream();
 

@@ -1,3 +1,7 @@
+## 7.3.6-beta2
+- #71 Fixed iOS swipe-back gesture with `PageRouteAnimation.Slide` (uses `CupertinoPageRoute` on iOS)
+- Fixed `routeName` and `routeArguments` being dropped for animated page routes
+- Lint cleanups (public `State<T>` return types in widgets)
 ## 7.3.6-beta
 - Support for Flutter SDK 3.47
 ## 7.3.5

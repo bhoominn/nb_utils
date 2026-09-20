@@ -53,7 +53,7 @@ class AppButton extends StatefulWidget {
   });
 
   @override
-  _AppButtonState createState() => _AppButtonState();
+  State<AppButton> createState() => _AppButtonState();
 }
 
 class _AppButtonState extends State<AppButton>

@@ -16,7 +16,7 @@ class SizeListener extends StatefulWidget {
   });
 
   @override
-  _SizeListenerState createState() => _SizeListenerState();
+  State<SizeListener> createState() => _SizeListenerState();
 }
 
 class _SizeListenerState extends State<SizeListener> {

@@ -59,7 +59,7 @@ class RatingBarWidget extends StatefulWidget {
   });
 
   @override
-  _RatingBarWidgetState createState() => _RatingBarWidgetState();
+  State<RatingBarWidget> createState() => _RatingBarWidgetState();
 }
 
 class _RatingBarWidgetState extends State<RatingBarWidget> {
