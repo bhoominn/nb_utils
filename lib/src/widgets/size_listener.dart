@@ -28,6 +28,7 @@ class _SizeListenerState extends State<SizeListener> {
     if (context == null) return;
 
     await Future.delayed(widget.delayDuration ?? Duration(milliseconds: 0));
+    if (!context.mounted) return;
 
     var newSize = context.size;
     if (oldSize == newSize || newSize == null) return;

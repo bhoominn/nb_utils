@@ -206,6 +206,7 @@ class OTPTextFieldState extends State<OTPTextField> {
             onTap: () async {
               context.unFocus(list[index].focusNode!);
               await 1.milliseconds.delay;
+              if (!context.mounted) return;
               context.requestFocus(list[index].focusNode!);
 
               setTextSelection(index);

@@ -13,7 +13,7 @@ class TimerWidget extends StatefulWidget {
   final bool enableWidgetBindingObserver;
   final bool enableTimer;
 
-  TimerWidget({
+  const TimerWidget({
     required this.function,
     required this.child,
     required this.duration,

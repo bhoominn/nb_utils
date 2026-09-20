@@ -136,6 +136,7 @@ class _AnimatedListViewState extends State<AnimatedListView> {
         addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
         addRepaintBoundaries: widget.addRepaintBoundaries,
         addSemanticIndexes: widget.addSemanticIndexes,
+        // ignore: deprecated_member_use
         cacheExtent: widget.cacheExtent,
         clipBehavior: widget.clipBehavior,
         dragStartBehavior: widget.dragStartBehavior,

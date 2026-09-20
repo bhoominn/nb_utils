@@ -35,7 +35,7 @@ class _DoublePressBackWidgetState extends State<DoublePressBackWidget> {
     return PopScope(
       // Allow pop only after 2 seconds since last press
       canPop: _currentBackPressTime != null,
-      onPopInvoked: (bool didPop) async {
+      onPopInvokedWithResult: (bool didPop, dynamic result) async {
         if (didPop) {
           // User confirmed with double press within 2 seconds
           widget.onWillPop?.call(); // Call the user-defined callback

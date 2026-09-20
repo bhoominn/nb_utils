@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 /// show confirm dialog box
-Future<bool?> showConfirmDialog<bool>(
+Future<bool?> showConfirmDialog<T>(
   dynamic context,
   String title, {
   String positiveText = 'Yes',

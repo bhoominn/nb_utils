@@ -37,9 +37,9 @@ class SettingSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (title != null) title!,
+              ?title,
               if (subTitle != null) 4.height,
-              if (subTitle != null) subTitle!,
+              ?subTitle,
             ],
           ),
         ),

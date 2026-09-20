@@ -19,7 +19,7 @@ class HyperLinkWidget extends StatefulWidget {
 }
 
 class _HyperLinkWidgetState extends State<HyperLinkWidget> {
-  String hover = '\0';
+  String hover = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _HyperLinkWidgetState extends State<HyperLinkWidget> {
                   setState(() {});
                 },
                 onExit: (_) {
-                  hover = '\0';
+                  hover = '0';
                   setState(() {});
                 },
               ),

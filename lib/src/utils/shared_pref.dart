@@ -7,7 +7,7 @@ Future<SharedPreferences> getSharedPref() async {
   return await SharedPreferences.getInstance();
 }
 
-/// Add a value in SharedPref based on their type - Must be a String, int, bool, double, Map<String, dynamic> or StringList
+/// Add a value in SharedPref based on their type - Must be a String, int, bool, double, `Map<String, dynamic>` or StringList
 Future<bool> setValue(String key, dynamic value, {bool print = true}) async {
   if (value == null) {
     if (print) log('$key - value is null');
@@ -29,7 +29,7 @@ Future<bool> setValue(String key, dynamic value, {bool print = true}) async {
     return await sharedPreferences.setStringList(key, value);
   } else {
     throw ArgumentError(
-      'Invalid value ${value.runtimeType} - Must be a String, int, bool, double, Map<String, dynamic> or StringList',
+      'Invalid value ${value.runtimeType} - Must be a String, int, bool, double, `Map<String, dynamic>` or StringList',
     );
   }
 }

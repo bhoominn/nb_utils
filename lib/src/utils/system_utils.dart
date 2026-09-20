@@ -158,7 +158,10 @@ Future<T?> invokeNativeMethod<T>(
 
 /// Prints only if in debug or profile mode
 void log(Object? value) {
-  if (!kReleaseMode || forceEnableDebug) print(value);
+  if (!kReleaseMode || forceEnableDebug) {
+    // ignore: avoid_print
+    print(value);
+  }
 }
 
 /// use this for catchError in Future functions

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 /// A circular progress indicator with gradient effect.
 class CircularProgressGradient extends StatelessWidget {
-  CircularProgressGradient({
+  const CircularProgressGradient({
     super.key,
     this.stokeWidth = 2.0,
     required this.radius,
