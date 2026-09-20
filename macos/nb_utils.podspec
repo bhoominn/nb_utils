@@ -20,4 +20,6 @@ Collection of Widgets and helpful Methods that every developer needs.
   s.platform = :osx, '10.15'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
+
+  s.resource_bundles = {'nb_utils_privacy' => ['nb_utils/Sources/nb_utils/PrivacyInfo.xcprivacy']}
 end

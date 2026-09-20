@@ -1,4 +1,9 @@
+## 7.3.6-beta
+- Support for Flutter SDK 3.47
 ## 7.3.5
+- #79 Migrates Android to built-in Kotlin (removed Kotlin Gradle Plugin; `kotlinOptions` replaced by `kotlin.compilerOptions`)
+- Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12
+## 7.3.4
 - Added support for Swift Package Manager
 - Refactored Android `build.gradle` to use the modern plugins DSL and removed redundant buildscript configurations
 ## 7.2.0

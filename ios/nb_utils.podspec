@@ -21,5 +21,5 @@ Collection of Widgets and helpful Methods that every developer needs.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
 
-  s.resource_bundles = {'nb_utils_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+  s.resource_bundles = {'nb_utils_privacy' => ['nb_utils/Sources/nb_utils/PrivacyInfo.xcprivacy']}
 end
