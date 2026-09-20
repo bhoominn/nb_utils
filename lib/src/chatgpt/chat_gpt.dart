@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -115,7 +114,7 @@ Future<String> generateWithChatGPT({
           log('getAnswerChatGPTApi JSON RESPONSE: $jsonResponse');
         }
 
-        if (response.statusCode == HttpStatus.ok) {
+        if (response.statusCode == 200) {
           ChatGPTAnswerResponseModel gptAnsResModel =
               ChatGPTAnswerResponseModel.fromJson(jsonResponse);
 
