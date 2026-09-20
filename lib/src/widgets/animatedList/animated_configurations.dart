@@ -399,14 +399,14 @@ class AnimationConfiguratorClass extends StatelessWidget {
       ]);
     }
 
-    final _position = animationConfiguration.position;
-    final _duration = duration ?? animationConfiguration.duration;
-    final _delay = delay ?? animationConfiguration.delay;
-    final _columnCount = animationConfiguration.columnCount;
+    final itemPosition = animationConfiguration.position;
+    final itemDuration = duration ?? animationConfiguration.duration;
+    final itemDelay = delay ?? animationConfiguration.delay;
+    final itemColumnCount = animationConfiguration.columnCount;
 
     return AnimationExecutorClass(
-      duration: _duration,
-      delay: stagger(_position, _duration, _delay, _columnCount),
+      duration: itemDuration,
+      delay: stagger(itemPosition, itemDuration, itemDelay, itemColumnCount),
       builder: (context, animationController) =>
           animatedChildBuilder(animationController!),
     );
@@ -422,19 +422,19 @@ class AnimationConfiguratorClass extends StatelessWidget {
         ? duration.inMilliseconds ~/ 6
         : delay.inMilliseconds);
 
-    int _computeStaggeredGridDuration() {
+    int computeStaggeredGridDuration() {
       return (position ~/ columnCount + position % columnCount) *
           delayInMilliseconds;
     }
 
-    int _computeStaggeredListDuration() {
+    int computeStaggeredListDuration() {
       return position * delayInMilliseconds;
     }
 
     return Duration(
       milliseconds: columnCount > 1
-          ? _computeStaggeredGridDuration()
-          : _computeStaggeredListDuration(),
+          ? computeStaggeredGridDuration()
+          : computeStaggeredListDuration(),
     );
   }
 }
@@ -537,14 +537,14 @@ class FadeInAnimationWidget extends StatelessWidget {
   }
 
   Widget _fadeInAnimation(Animation<double> animation) {
-    final _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    final opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: animation,
         curve: Interval(0.0, 1.0, curve: curve),
       ),
     );
 
-    return Opacity(opacity: _opacityAnimation.value, child: child);
+    return Opacity(opacity: opacityAnimation.value, child: child);
   }
 }
 
@@ -598,15 +598,15 @@ class FlipAnimationWidget extends StatelessWidget {
   }
 
   Widget _flipAnimation(Animation<double> animation) {
-    final _flipAnimation = Tween<double>(begin: 0, end: 1).animate(
+    final flipAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: animation,
         curve: Interval(0.0, 1.0, curve: curve),
       ),
     );
 
-    Matrix4 _computeTransformationMatrix() {
-      var radians = (1 - _flipAnimation.value) * pi / 2;
+    Matrix4 computeTransformationMatrix() {
+      var radians = (1 - flipAnimation.value) * pi / 2;
 
       switch (flipAxis) {
         case FlipAxisClass.y:
@@ -617,7 +617,7 @@ class FlipAnimationWidget extends StatelessWidget {
     }
 
     return Transform(
-      transform: _computeTransformationMatrix(),
+      transform: computeTransformationMatrix(),
       alignment: Alignment.center,
       child: child,
     );
@@ -665,14 +665,14 @@ class ScaleAnimationWidget extends StatelessWidget {
   }
 
   Widget _landingAnimation(Animation<double> animation) {
-    final _landingAnimation = Tween<double>(begin: scale, end: 1.0).animate(
+    final landingAnimation = Tween<double>(begin: scale, end: 1.0).animate(
       CurvedAnimation(
         parent: animation,
         curve: Interval(0.0, 1.0, curve: curve),
       ),
     );
 
-    return Transform.scale(scale: _landingAnimation.value, child: child);
+    return Transform.scale(scale: landingAnimation.value, child: child);
   }
 }
 

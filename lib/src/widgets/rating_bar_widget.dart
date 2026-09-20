@@ -100,9 +100,9 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
       },
       onHorizontalDragUpdate: (dragDetails) {
         RenderBox box = context.findRenderObject() as RenderBox;
-        var _pos = box.globalToLocal(dragDetails.globalPosition);
+        var pos = box.globalToLocal(dragDetails.globalPosition);
 
-        var i = _pos.dx / widget.size;
+        var i = pos.dx / widget.size;
         var newRating = widget.allowHalfRating ? i : i.round().toDouble();
         if (newRating > widget.itemCount) {
           newRating = widget.itemCount.toDouble();

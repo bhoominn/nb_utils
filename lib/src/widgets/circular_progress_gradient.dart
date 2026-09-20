@@ -66,17 +66,17 @@ class CircularProgressGradient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _offset = .0;
+    double offset = .0;
     if (strokeCapRound) {
-      _offset = asin(stokeWidth / (radius * 2 - stokeWidth));
+      offset = asin(stokeWidth / (radius * 2 - stokeWidth));
     }
-    List<Color> _colors = colors;
-    /*if (_colors == null) {
+    List<Color> effectiveColors = colors;
+    /*if (effectiveColors == null) {
       Color color = Theme.of(context).colorScheme.secondary;
-      _colors = [color, color];
+      effectiveColors = [color, color];
     }*/
     return Transform.rotate(
-      angle: -pi / 2.0 - _offset,
+      angle: -pi / 2.0 - offset,
       child: CustomPaint(
         size: Size.fromRadius(radius),
         painter: _GradientCircularProgressPainter(
@@ -86,7 +86,7 @@ class CircularProgressGradient extends StatelessWidget {
           value: value,
           total: totalAngle,
           radius: radius,
-          colors: _colors,
+          colors: effectiveColors,
         ),
       ),
     );
@@ -117,17 +117,17 @@ class _GradientCircularProgressPainter extends CustomPainter {
     if (radius != null) {
       size = Size.fromRadius(radius!);
     }
-    double _offset = stokeWidth / 2.0;
-    double _value = (value ?? .0);
-    _value = _value.clamp(.0, 1.0) * total;
-    double _start = .0;
+    double offset = stokeWidth / 2.0;
+    double effectiveValue = (value ?? .0);
+    effectiveValue = effectiveValue.clamp(.0, 1.0) * total;
+    double startAngle = .0;
 
     if (strokeCapRound) {
-      _start = asin(stokeWidth / (size.width - stokeWidth));
+      startAngle = asin(stokeWidth / (size.width - stokeWidth));
     }
 
     Rect rect =
-        Offset(_offset, _offset) &
+        Offset(offset, offset) &
         Size(size.width - stokeWidth, size.height - stokeWidth);
 
     var paint = Paint()
@@ -139,19 +139,19 @@ class _GradientCircularProgressPainter extends CustomPainter {
     // draw background arc
     if (backgroundColor != Colors.transparent) {
       paint.color = backgroundColor;
-      canvas.drawArc(rect, _start, total, false, paint);
+      canvas.drawArc(rect, startAngle, total, false, paint);
     }
 
     // draw foreground arc.
     // apply gradient
-    if (_value > 0) {
+    if (effectiveValue > 0) {
       paint.shader = SweepGradient(
         startAngle: 0.0,
-        endAngle: _value,
+        endAngle: effectiveValue,
         colors: colors,
       ).createShader(rect);
 
-      canvas.drawArc(rect, _start, _value, false, paint);
+      canvas.drawArc(rect, startAngle, effectiveValue, false, paint);
     }
   }
 
