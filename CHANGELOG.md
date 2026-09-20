@@ -2,6 +2,9 @@
 - #71 Fixed iOS swipe-back gesture with `PageRouteAnimation.Slide` (uses `CupertinoPageRoute` on iOS)
 - Fixed `routeName` and `routeArguments` being dropped for animated page routes
 - Lint cleanups (public `State<T>` return types in widgets)
+- Removed dart:io so the package works on web and WASM. The isAndroid and isIOS getters now use defaultTargetPlatform.
+- Replaced deprecated Color and text-scale APIs.
+- Fixed all static analysis issues, with no public API changes.
 ## 7.3.6-beta
 - Support for Flutter SDK 3.47
 ## 7.3.5
