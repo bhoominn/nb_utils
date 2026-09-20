@@ -145,7 +145,8 @@ void snackBar(
 }
 
 /// Hide soft keyboard
-void hideKeyboard(dynamic context) => FocusScope.of(context).requestFocus(FocusNode());
+void hideKeyboard(dynamic context) =>
+    FocusScope.of(context).requestFocus(FocusNode());
 
 /// Returns a string from Clipboard
 Future<String> paste() async {
